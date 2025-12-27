@@ -15,8 +15,6 @@ SET row_security = off;
 
 COMMENT ON SCHEMA "public" IS 'standard public schema';
 
-
-
 CREATE EXTENSION IF NOT EXISTS "pg_graphql" WITH SCHEMA "graphql";
 
 
