@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.19 - 27/12/2025
+
+### ✨ Funcionalidades
+
+* Feat (database): nova trigger que conta quantas vezes a kb foi utilizada.
+
 ## v3.1.18 - 27/12/2025
 
 ### ✨ Funcionalidades
