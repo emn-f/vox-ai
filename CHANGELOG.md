@@ -2,6 +2,17 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.21 - 27/12/2025
+
+### ✨ Funcionalidades
+
+* Adicionar coluna 'modificado_em' na tabela knowledge_base.
+
+
+### 🐛 Correções
+
+* Fix (dashboard): Versão da KB agora é exibida corretamente.
+
 ## v3.1.20 - 27/12/2025
 
 ### 🐛 Correções
