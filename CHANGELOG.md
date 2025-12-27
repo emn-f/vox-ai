@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.20 - 27/12/2025
+
+### 🐛 Correções
+
+* Fix (dashboard): Versão da KB agora é exibida corretamente.
+
 ## v3.1.19 - 27/12/2025
 
 ### ✨ Funcionalidades
