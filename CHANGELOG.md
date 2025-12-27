@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.17 - 27/12/2025
+
+### ✨ Funcionalidades
+
+* Feat (database): estrutura do banco de dados atualizada.
+
 ## v3.1.16 - 27/12/2025
 
 ### ♻️ Refatoração & Melhorias
