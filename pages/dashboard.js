@@ -1,14 +1,12 @@
-// ==========================================================
-// CONFIGURAÇÕES DO SUPABASE
-// Estas strings são substituídas automaticamente pelo script de deploy/python
-// ==========================================================
+
 const SUPABASE_URL = "__SUPABASE_URL__";
 const SUPABASE_KEY = "__SUPABASE_KEY__";
 
 async function updateDashboardMetrics() {
-    // Verificação de segurança: Se as chaves não foram injetadas, avisa no console
+
     if (SUPABASE_URL.startsWith("__") || SUPABASE_KEY.startsWith("__")) {
-        console.warn("⚠️ Vox AI Dashboard: Variáveis de ambiente não foram substituídas. O dashboard pode não carregar.");
+        console.warn("⚠️ Dashboard: Variáveis de ambiente não injetadas. Verifique o GitHub Secrets.");
+
     }
 
     const headers = {
@@ -18,61 +16,86 @@ async function updateDashboardMetrics() {
     };
 
     try {
-        // --- 1. BUSCAR A VERSÃO (Data da última modificação) ---
+
         const versionEl = document.getElementById('kb-version');
-        
         if (versionEl) {
-            // Busca apenas o campo 'modificado_em' do registro mais recente
-            const versionRes = await fetch(`${SUPABASE_URL}/rest/v1/knowledge_base?select=modificado_em&order=modificado_em.desc&limit=1`, {
-                headers: headers
-            });
-            
+            const versionRes = await fetch(`${SUPABASE_URL}/rest/v1/knowledge_base?select=modificado_em&order=modificado_em.desc&limit=1`, { headers });
+
             if (versionRes.ok) {
-                const versionData = await versionRes.json();
-                
-                if (versionData.length > 0 && versionData[0].modificado_em) {
-                    const date = new Date(versionData[0].modificado_em);
-                    // Formata a data: vYYYY.MM.DD (ex: v2025.12.27)
-                    const fmtDate = `v${date.getFullYear()}.${String(date.getMonth()+1).padStart(2,'0')}.${String(date.getDate()).padStart(2,'0')}`;
-                    versionEl.innerText = fmtDate;
+                const data = await versionRes.json();
+                if (data.length > 0 && data[0].modificado_em) {
+                    const date = new Date(data[0].modificado_em);
+                    const fmt = `v${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
+                    versionEl.innerText = fmt;
                 } else {
-                    versionEl.innerText = "v1.0.0"; // Fallback padrão
+                    versionEl.innerText = "v1.0.0";
                 }
             }
         }
 
-        // --- 2. BUSCAR O TOTAL DE REGISTROS (Count) ---
+
         const countEl = document.getElementById('kb-count');
-        
         if (countEl) {
-            // Usa method: 'HEAD' com 'Prefer: count=exact' para contar sem baixar o JSON (muito mais rápido)
             const countRes = await fetch(`${SUPABASE_URL}/rest/v1/knowledge_base?select=id`, {
                 method: 'HEAD',
-                headers: {
-                    ...headers,
-                    'Prefer': 'count=exact'
-                }
+                headers: { ...headers, 'Prefer': 'count=exact' }
             });
 
             if (countRes.ok) {
-                // O total vem no cabeçalho 'Content-Range' (formato "0-5/6", onde 6 é o total)
-                const contentRange = countRes.headers.get('Content-Range');
-                if (contentRange) {
-                    const total = contentRange.split('/')[1]; 
-                    countEl.innerText = total;
-                } else {
-                    countEl.innerText = "0";
-                }
+                const range = countRes.headers.get('Content-Range');
+                if (range) countEl.innerText = range.split('/')[1];
             }
         }
 
     } catch (err) {
-        console.error("❌ Erro ao conectar no Supabase:", err);
-        // Em caso de erro, tira o "Carregando..." para não confundir
+        console.error("❌ Erro Supabase:", err);
         const vEl = document.getElementById('kb-version');
-        if (vEl && vEl.innerText === "Carregando...") vEl.innerText = "-";
+        if (vEl && vEl.innerText.includes("Carregando")) vEl.innerText = "-";
     }
 }
 
-// Inicia a função assim que o HTML estiver pronto
-document.addEventListener('DOMContentLoaded', updateDashboardMetrics);
+async function loadChangelog() {
+    const el = document.getElementById('latest-changelog');
+    if (!el) return;
+
+    try {
+        const response = await fetch('CHANGELOG.md', {
+            headers: { 'Cache-Control': 'max-age=300' }
+        });
+
+        if (!response.ok) throw new Error("Changelog não encontrado");
+
+        const markdown = await response.text();
+
+
+        const start = markdown.indexOf('## ');
+        if (start !== -1) {
+            let end = start;
+
+            for (let i = 0; i < 5; i++) {
+                const next = markdown.indexOf('\n## ', end + 1);
+                if (next === -1) {
+                    end = markdown.length;
+                    break;
+                }
+                end = next;
+            }
+
+            const entryMarkdown = markdown.substring(start, end);
+
+            if (typeof marked !== 'undefined') {
+                el.innerHTML = marked.parse(entryMarkdown);
+            } else {
+                el.innerText = "Erro: Biblioteca Markdown não carregada.";
+            }
+        }
+    } catch (error) {
+        console.error("Erro Changelog:", error);
+        el.innerHTML = '<p style="color: #ef4444;">Não foi possível carregar o histórico.</p>';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateDashboardMetrics();
+    loadChangelog();
+});
