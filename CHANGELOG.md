@@ -8,12 +8,6 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 * Feat (database): estrutura do banco de dados atualizada.
 
-## v3.1.17 - 27/12/2025
-
-### ✨ Funcionalidades
-
-* Feat (database): estrutura do banco de dados atualizada.
-
 ## v3.1.16 - 27/12/2025
 
 ### ♻️ Refatoração & Melhorias
@@ -22,13 +16,11 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 * Remoção de exibição de logs desnecessários no console.
 
-
 ### ✨ Funcionalidades
 
 * Feat (database): melhoria na estrutura da knowledge_base; Vox agora utiliza um contexto expandido durante busca semântica.
 
 * Criação de testes para validar funcionamento de funções semanticas e de registro de log
-
 
 ### 📚 Documentação
 
