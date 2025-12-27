@@ -20,6 +20,8 @@
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏳️‍🌈</text></svg>">
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -86,34 +88,37 @@
             </div>
 
             <div class="stacked-cards">
-                <div class="stat-card">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon">
-                            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-                            <path d="M3 5v14c0 1.66 4 3 9 3s 9-1.34 9-3V5"></path>
-                        </svg>
-                        Temas na KB
-                    </h3>
-                    <div class="value" id="kb-count"><span class="loading">...</span></div>
+                <div class="metric-card">
+                    <div class="metric-icon" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="metric-info">
+                        <h3>Total de Conhecimentos</h3>
+                        <p class="metric-value" id="kb-count">...</p>
+                        <span class="metric-trend positive">
+                            <i class="fas fa-chart-line"></i> Dados em tempo real
+                        </span>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="16" x2="12" y2="12"></line>
-                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                        </svg>
-                        Versão da KB
-                    </h3>
-                    <div class="value" id="kb-version"><span class="loading">...</span></div>
+
+                <div class="metric-card">
+                    <div class="metric-icon" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <div class="metric-info">
+                        <h3>Versão da Base</h3>
+                        <p class="metric-value" id="kb-version">Carregando...</p>
+                        <span class="metric-trend neutral">
+                            <i class="fas fa-sync-alt"></i> Atualizado via Trigger
+                        </span>
+                    </div>
                 </div>
+
                 <div class="stat-card">
                     <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="card-icon">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                         </svg>
                         Licença (MIT)
@@ -122,13 +127,14 @@
                     <a href="https://github.com/emn-f/vox-ai/blob/master/LICENSE" target="_blank" class="card-link">Ver
                         Licença &rarr;</a>
                 </div>
-                </div>
+            </div>
 
             <div class="stacked-cards">
                 <div class="stat-card">
                     <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="card-icon">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                         </svg>
                         Privacidade
@@ -141,8 +147,9 @@
 
                 <div class="stat-card">
                     <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="card-icon">
                             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                             <circle cx="9" cy="7" r="4"></circle>
                             <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
@@ -158,15 +165,17 @@
 
                 <div class="stat-card">
                     <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="card-icon">
                             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                         </svg>
                         Segurança
                     </h3>
                     <p>Como reportar vulnerabilidades.</p>
-                    <a href="https://github.com/emn-f/vox-ai/blob/master/SECURITY.md" target="_blank" class="card-link">Ver
+                    <a href="https://github.com/emn-f/vox-ai/blob/master/SECURITY.md" target="_blank"
+                        class="card-link">Ver
                         Política &rarr;</a>
                 </div>
             </div>
@@ -203,7 +212,8 @@
             <p>O Vox AI é um projeto Open Source e sua ajuda é essencial! Seja corrigindo bugs, melhorando a
                 documentação ou
                 sugerindo novos temas.</p>
-            <a href="https://github.com/emn-f/vox-ai/blob/master/CONTRIBUTING.md" target="_blank" class="cta-button-secondary">
+            <a href="https://github.com/emn-f/vox-ai/blob/master/CONTRIBUTING.md" target="_blank"
+                class="cta-button-secondary">
                 Ver Guia de Contribuição &rarr;
             </a>
         </div>
@@ -215,9 +225,11 @@
                 <div class="about-column">
                     <h3>Missão e Propósito</h3>
                     <p>
-                        O Vox AI é uma <strong>tecnologia social open source</strong> de apoio à comunidade LGBTQIA+. Nascido como um projeto de
+                        O Vox AI é uma <strong>tecnologia social open source</strong> de apoio à comunidade LGBTQIA+.
+                        Nascido como um projeto de
                         extensão da
-                        <strong>Universidade Católica do Salvador (UCSal)</strong>, hoje expande suas fronteiras como uma ferramenta de
+                        <strong>Universidade Católica do Salvador (UCSal)</strong>, hoje expande suas fronteiras como
+                        uma ferramenta de
                         cidadania digital.
                     </p>
                     <p>
@@ -254,7 +266,7 @@
                                 jurídicos.</div>
                         </li>
                     </ul>
-                    </div>
+                </div>
 
                 <div class="about-column">
                     <h3>Parceria: Casa Marielle Franco</h3>
@@ -283,11 +295,11 @@
                             <span class="team-tag">Marcio Ventura</span>
                         </div>
                     </div>
-                    </div>
-                    </div>
+                </div>
+            </div>
         </div>
     </main>
-    
+
     <footer>
         <p>🤖 Desenvolvido para a comunidade 🏳️‍🌈</p>
         <p>&copy; 2025 Projeto Vox AI<br>Todos os direitos reservados.</p>
