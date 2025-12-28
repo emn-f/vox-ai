@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.27 - 28/12/2025
+
+### 📚 Documentação
+
+* Comprehensive code review documentation
+
 ## v3.1.26 - 28/12/2025
 
 ### test
