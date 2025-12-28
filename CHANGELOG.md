@@ -2,6 +2,39 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.34 - 28/12/2025
+
+### ♻️ Refatoração & Melhorias
+
+* Chave anon do supabase é utilizada por padrão quando necessário
+
+
+### ✨ Funcionalidades
+
+* Adiciona hooks para code_review utilizando modelo de IA Qwen.
+
+* Adiciona hooks para code_review utilizando modelo de IA Zephyr.
+
+* Adiciona hooks para code_review com Gemini.
+
+* Code review vai ignorar valores que começam com _ (underline)
+
+* Code review vai ignorar valores que começam com _ (underline)
+
+* Adiciona scripts de teste locais ao .gitignore.
+
+* Adiciona script de verificação de segurança com detecção de segredos e revisão de código por IA para hooks Git.
+
+
+### 🐛 Correções
+
+* Correção no nome do secret
+
+
+### 🤖 CI/CD & Automação
+
+* Corrige nome incorreto de secrets de deploy no Git Pages
+
 ## v3.1.33 - 28/12/2025
 
 ### ✨ Funcionalidades
