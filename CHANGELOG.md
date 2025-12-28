@@ -8,21 +8,11 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 * Chave anon do supabase é utilizada por padrão quando necessário
 
-
 ### ✨ Funcionalidades
 
-* Adiciona hooks para code_review utilizando modelo de IA Qwen.
-
-* Adiciona hooks para code_review utilizando modelo de IA Zephyr.
-
 * Adiciona hooks para code_review com Gemini.
-
 * Code review vai ignorar valores que começam com _ (underline)
-
-* Code review vai ignorar valores que começam com _ (underline)
-
 * Adiciona scripts de teste locais ao .gitignore.
-
 * Adiciona script de verificação de segurança com detecção de segredos e revisão de código por IA para hooks Git.
 
 
@@ -41,76 +31,27 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 * Adiciona .agent ao .gitignore.
 
-* Adiciona hooks para code_review utilizando modelo de IA microsoft/codereviewer.
-
-* Adiciona hooks para code_review utilizando modelo de IA microsoft/codereviewer.
-
-* Adiciona hooks para code_review utilizando modelo de IA microsoft/codereviewer.
-
-* Adiciona hooks para code_review utilizando modelo de IA microsoft/codereviewer.
-
-* Adiciona hooks para code_review utilizando modelo de IA microsoft/codereviewer.
-
-* Adiciona hooks para code_review utilizando modelo de IA microsoft/codereviewer.
-
 ## v3.1.32 - 28/12/2025
 
 ### revert
 
 * Remove code review por IA (abordagem errada e push equivocado)
 
-
 ### 🎨 Estilo e Formatação
 
 * Melhor formatação do .gitignore
-
-## v3.1.31 - 28/12/2025
-
-### 📚 Documentação
-
-* Add quick start guide for code review system
 
 ## v3.1.30 - 28/12/2025
 
 ### 🤖 CI/CD & Automação
 
-* Add GitHub Actions workflow for automated code review
+* Adicionar workflow GitHub Actions para revisão automática do código
 
 ## v3.1.28 - 28/12/2025
 
 ### 🔧 Tarefas Internas
 
-* Add dependencies for AI-powered code review system
-
-## v3.1.27 - 28/12/2025
-
-### 📚 Documentação
-
-* Comprehensive code review documentation
-
-## v3.1.26 - 28/12/2025
-
-### test
-
-* Add unit tests for code review system
-
-## v3.1.25 - 28/12/2025
-
-### 📚 Documentação
-
-* Add comprehensive code review usage examples
-
-## v3.1.24 - 28/12/2025
-
-### ✨ Funcionalidades
-
-* Add GitHub integration for automated code review on PRs
-
-## v3.1.23 - 28/12/2025
-
-### ✨ Funcionalidades
-
-* Implement AI-powered code review system using microsoft/codereviewer model
+* Adicionar dependências para sistema de revisão de código com IA
 
 ## v3.1.22 - 28/12/2025
 
