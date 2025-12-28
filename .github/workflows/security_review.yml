@@ -25,7 +25,7 @@ jobs:
       - name: Run Security & AI Review
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+          SUPABASE_KEY_PROD: ${{ secrets.SUPABASE_KEY_PROD }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           python scripts/security_check.py --mode pre-push
