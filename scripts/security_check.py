@@ -176,7 +176,7 @@ def check_supabase_connection() -> bool:
     secrets = load_secrets()
     sb_config = secrets.get("supabase", {})
     url = sb_config.get("url") or os.environ.get("SUPABASE_URL")
-    key = sb_config.get("key") or os.environ.get("SUPABASE_ANON_KEY_DEV")
+    key = sb_config.get("key") or os.environ.get("SUPABASE_KEY_PROD")
 
     if not url or not key:
         print_colored("❌ Credenciais do Supabase ausentes (secrets.toml ou ENV).", COLOR_RED)
