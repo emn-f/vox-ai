@@ -2,6 +2,83 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.31 - 28/12/2025
+
+### 📚 Documentação
+
+* Add quick start guide for code review system
+
+## v3.1.30 - 28/12/2025
+
+### 🤖 CI/CD & Automação
+
+* Add GitHub Actions workflow for automated code review
+
+## v3.1.28 - 28/12/2025
+
+### 🔧 Tarefas Internas
+
+* Add dependencies for AI-powered code review system
+
+## v3.1.27 - 28/12/2025
+
+### 📚 Documentação
+
+* Comprehensive code review documentation
+
+## v3.1.26 - 28/12/2025
+
+### test
+
+* Add unit tests for code review system
+
+## v3.1.25 - 28/12/2025
+
+### 📚 Documentação
+
+* Add comprehensive code review usage examples
+
+## v3.1.24 - 28/12/2025
+
+### ✨ Funcionalidades
+
+* Add GitHub integration for automated code review on PRs
+
+## v3.1.23 - 28/12/2025
+
+### ✨ Funcionalidades
+
+* Implement AI-powered code review system using microsoft/codereviewer model
+
+## v3.1.22 - 28/12/2025
+
+### 🐛 Correções
+
+* Fix (dashboard): Versão da Base de Conhecimento agora é exibida corretamente.
+
+## v3.1.21 - 27/12/2025
+
+### ✨ Funcionalidades
+
+* Adicionar coluna 'modificado_em' na tabela knowledge_base.
+
+
+### 🐛 Correções
+
+* Fix (dashboard): Versão da KB agora é exibida corretamente.
+
+## v3.1.20 - 27/12/2025
+
+### 🐛 Correções
+
+* Fix (dashboard): Versão da KB agora é exibida corretamente.
+
+## v3.1.19 - 27/12/2025
+
+### ✨ Funcionalidades
+
+* Feat (database): nova trigger que conta quantas vezes a kb foi utilizada.
+
 ## v3.1.18 - 27/12/2025
 
 ### ✨ Funcionalidades
