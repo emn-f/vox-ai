@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.23 - 28/12/2025
+
+### ✨ Funcionalidades
+
+* Implement AI-powered code review system using microsoft/codereviewer model
+
 ## v3.1.22 - 28/12/2025
 
 ### 🐛 Correções
