@@ -25,6 +25,11 @@ SECRETS_PATTERNS = [
     (r"xox[baprs]-([0-9a-zA-Z]{10,48})?", "Slack Token"),
     (r"-----BEGIN PRIVATE KEY-----", "Generic Private Key"),
     (r"AIza[0-9A-Za-z-_]{35}", "Google API Key"),
+    # Padrão JWT (comum em Supabase, Auth0, etc) - começa com ey...
+    (r"ey[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*", "Potential JWT/Token"),
+    # Heurística Genérica: Variaveis com nomes suspeitos recebendo strings longas (>4 chars)
+    # Ex: my_secret_key = "abcdef12345..."
+    (r"(?i)(?:key|secret|password|token|auth|credential|jwt)\w*\s*=\s*['\"][\w\-@\.]{4,}['\"]", "Generic High-Entropy Assignment"),
 ]
 
 # Modelo da Microsoft para Code Review
