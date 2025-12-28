@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.22 - 28/12/2025
+
+### 🐛 Correções
+
+* Fix (dashboard): Versão da Base de Conhecimento agora é exibida corretamente.
+
 ## v3.1.21 - 27/12/2025
 
 ### ✨ Funcionalidades
