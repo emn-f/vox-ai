@@ -25,12 +25,23 @@ except ImportError:
 # CONSTANTES E CONFIGURAÇÕES
 # =============================================================================
 
+# =============================================================================
+# CONSTANTES E CONFIGURAÇÕES
+# =============================================================================
+
 # Constantes de Cores para Terminal
 COLOR_RED = "\033[91m"
 COLOR_GREEN = "\033[92m"
 COLOR_YELLOW = "\033[93m"
 COLOR_BLUE = "\033[94m"
 COLOR_RESET = "\033[0m"
+
+def print_colored(msg: str, color: str = COLOR_RESET):
+    """Imprime mensagem colorida se o terminal suportar."""
+    if sys.stdout.isatty():
+        print(f"{color}{msg}{COLOR_RESET}")
+    else:
+        print(msg)
 
 # Configuração da IA (Google Gemini)
 # Modelo: gemini-2.5-flash (Mais recente detectado)
@@ -41,29 +52,21 @@ SECRETS_PATTERNS = [
     (r"xox[baprs]-([0-9a-zA-Z]{10,48})?", "Slack Token"),
     (r"-----BEGIN PRIVATE KEY-----", "Generic Private Key"),
     (r"AIza[0-9A-Za-z-_]{35}", "Google API Key"),
+    # Regex crítica para JWTs, restaurada para garantir segurança
     (r"ey[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*", "Potential JWT/Token"),
     # Ignora placeholders que começam com '__' (ex: __VAR__)
     (r"(?i)(?:key|secret|password|token|auth|credential|jwt)\w*\s*=\s*['\"](?!__)[\w\-@\.]{24,}['\"]", "Generic High-Entropy Assignment"),
 ]
 
-# Palavras-chave que, se a IA mencionar na revisão, bloqueiam o push.
+# Palavras-chave que, se a IA mencionar, bloqueiam o push.
 BLOCK_KEYWORDS = [
     "security vulnerability", "critical issue", "password exposed", 
     "sql injection", "vulnerabilidade crítica", "senha exposta",
-    "remote code execution", "xss"
+    "remote code execution", "xss", "[block]", 
+    "vulnerabilidade de segurança crítica", "bug lógico grave"
 ]
 
-# =============================================================================
-# FUNÇÕES UTILITÁRIAS
-# =============================================================================
-
-def print_colored(msg: str, color: str = COLOR_RESET):
-    """Imprime mensagem colorida se o terminal suportar."""
-    # Simples verificação se estamos em um TTY
-    if sys.stdout.isatty():
-        print(f"{color}{msg}{COLOR_RESET}")
-    else:
-        print(msg)
+# ... (código intermediário omitido, indo para load_secrets)
 
 def load_secrets() -> dict:
     """Carrega segredos do arquivo .streamlit/secrets.toml de forma segura."""
@@ -74,22 +77,33 @@ def load_secrets() -> dict:
 
     data = {}
     if not toml:
-        print_colored("⚠️ Aviso: Nenhuma biblioteca TOML encontrada (pip install tomli). Secrets.toml ignorado.", COLOR_YELLOW)
-        return {}
+        # Tenta carregar mesmo sem biblioteca TOML via parseamento manual simples para chaves criticas
+        # Mas idealmente avisa
+        print_colored("⚠️ Aviso: Nenhuma biblioteca TOML (tomllib/tomli) encontrada.", COLOR_YELLOW)
 
     try:
         # Tenta abrir como binário primeiro (tomllib/tomli)
         with open(secrets_path, "rb") as f:
-            if hasattr(toml, 'load'):
+            if toml and hasattr(toml, 'load'):
                 data = toml.load(f)
             else:
-                pass
-    except:
+                raise ImportError("TOML lib falhou ou ausente")
+    except Exception:
+        # Fallback: Tenta ler como texto ou parse manual básico
         try:
              with open(secrets_path, "r", encoding="utf-8") as f:
-                data = toml.load(f)
-        except:
-            pass
+                if toml:
+                    data = toml.load(f)
+                else:
+                    # Parse manual de emergência para recuperar chaves simples
+                    content = f.read()
+                    for line in content.splitlines():
+                        if "=" in line:
+                            k, v = line.split("=", 1)
+                            data[k.strip()] = v.strip().strip('"').strip("'")
+        except Exception as e:
+            print_colored(f"⚠️ Erro ao ler secrets.toml: {e}", COLOR_YELLOW)
+            pass # Segue vazio, mas avisou
             
     # Ajuste crítico: mapeia HF_TOKEN da raiz para dentro da estrutura esperada
     if "HF_TOKEN" in data:
@@ -136,7 +150,6 @@ def check_secrets_in_files(files: List[str]) -> bool:
                     found_secrets = True
                     
         except Exception:
-            # Arquivos que não puderem ser lidos (binários, links quebrados) são ignorados
             pass
 
     if found_secrets:
@@ -196,7 +209,7 @@ def run_ai_code_review(diff_text: str) -> bool:
         return True 
 
     secrets = load_secrets()
-    # Tenta achar a chave do Gemini em vários lugares comuns do secrets.toml
+    # Tenta achar a chave do Gemini em vários lugares comuns
     gemini_key = (
         secrets.get("GEMINI_API_KEY") 
         or secrets.get("gemini", {}).get("api_key") 
@@ -212,11 +225,7 @@ def run_ai_code_review(diff_text: str) -> bool:
         import google.generativeai as genai
         
         genai.configure(api_key=gemini_key)
-        
-        # Tenta usar o modelo mais recente detectado nos testes (2.5), senão fallback para 1.5
-        # Na prática, se o teste passou com 2.5, vamos forçar 2.5 para aproveitar os recursos
         model_name = "gemini-2.5-flash"
-        
         model = genai.GenerativeModel(model_name)
         
         safe_diff = sanitize_diff_for_ai(diff_text)
@@ -224,16 +233,14 @@ def run_ai_code_review(diff_text: str) -> bool:
             safe_diff = safe_diff[:20000] + "\n... (truncated)"
 
         prompt = (
-            "Você é um Engenheiro de Software Sênior e Especialista em Segurança.\n"
-            "Analise o seguinte git diff do projeto Vox AI.\n"
-            "Foque EXCLUSIVAMENTE em:\n"
-            "1. VULNERABILIDADES DE SEGURANÇA CRÍTICAS (Ex: SQL Injection, XSS, Chaves Expostas, RCE).\n"
-            "2. BUGS LÓGICOS GRAVES que podem quebrar a produção.\n"
-            "3. Má utilização crítica de recursos (loops infinitos, memory leaks óbvios).\n\n"
-            "Se o código estiver seguro, responda APENAS: '✅ Código Seguro. Nenhuma vulnerabilidade crítica encontrada.'\n"
-            "Se encontrar problemas, seja direto, cite o arquivo/linha e explique o risco.\n"
-            "Use Português Brasileiro.\n\n"
-            f"DIFF:\n{safe_diff}"
+            "ATENÇÃO: Você é um Gatekeeper de Segurança.\n"
+            "Analise o git diff abaixo do projeto Vox AI.\n"
+            "Regras:\n"
+            "1. Se encontrar VULNERABILIDADE CRÍTICA (senha exposta, SQLi, chave de API) -> Inicie a resposta com '[BLOCK]'.\n"
+            "2. Se encontrar BUG DE PRODUÇÃO (loop infinito, crash certo) -> Inicie a resposta com '[BLOCK]'.\n"
+            "3. Se for apenas sugestão de melhoria ou não houver problemas graves -> Inicie com '[PASS]'.\n\n"
+            "DIFF DO CÓDIGO:\n"
+            f"{safe_diff}"
         )
 
         response = model.generate_content(prompt)
@@ -242,17 +249,16 @@ def run_ai_code_review(diff_text: str) -> bool:
         if review_text:
             print(f"\n📝 Relatório Gemini:\n{review_text}\n")
             
-            # Bloqueio baseado em keywords no output do Gemini
-            lower_review = review_text.lower()
-            if any(k in lower_review for k in BLOCK_KEYWORDS):
-                print_colored("⛔ Bloqueio: Gemini apontou vulnerabilidade crítica.", COLOR_RED)
+            # Bloqueio Determinístico
+            if review_text.strip().upper().startswith("[BLOCK]") or any(k in review_text.lower() for k in BLOCK_KEYWORDS):
+                print_colored("⛔ Bloqueio: IA identificou problema crítico.", COLOR_RED)
                 return False
                 
     except Exception as e:
         print_colored(f"⚠️ Erro ao consultar Gemini: {e}", COLOR_YELLOW)
         return True
 
-    print_colored("✅ Revisão IA finalizada.", COLOR_GREEN)
+    print_colored("✅ Revisão IA finalizada (Aprovado).", COLOR_GREEN)
     return True
 
 # =============================================================================
