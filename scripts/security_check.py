@@ -244,8 +244,16 @@ def run_ai_code_review(diff_text: str) -> bool:
         if review_text:
             print(f"\n📝 Relatório Gemini:\n{review_text}\n")
             
-            # Bloqueio Determinístico
-            if review_text.strip().upper().startswith("[BLOCK]") or any(k in review_text.lower() for k in BLOCK_KEYWORDS):
+            # Lógica de Decisão Híbrida
+            clean_review = review_text.strip().upper()
+            
+            # 1. Aprovação Explícita (Soberana)
+            if clean_review.startswith("[PASS]"):
+                print_colored("✅ IA Aprovou (Protocolo [PASS]).", COLOR_GREEN)
+                return True
+                
+            # 2. Bloqueio Explícito ou por Palavras-Chave
+            if clean_review.startswith("[BLOCK]") or any(k in review_text.lower() for k in BLOCK_KEYWORDS):
                 print_colored("⛔ Bloqueio: IA identificou problema crítico.", COLOR_RED)
                 return False
                 
