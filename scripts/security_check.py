@@ -210,12 +210,7 @@ def run_ai_code_review(diff_text: str) -> bool:
 
     secrets = load_secrets()
     # Tenta achar a chave do Gemini em vários lugares comuns
-    gemini_key = (
-        secrets.get("GEMINI_API_KEY") 
-        or secrets.get("gemini", {}).get("api_key") 
-        or secrets.get("google", {}).get("api_key")
-        or os.environ.get("GEMINI_API_KEY")
-    )
+    gemini_key = secrets.get("GEMINI_API_KEY") or os.environ.get("GEMINI_API_KEY")
     
     if not gemini_key:
         print_colored("⚠️ GEMINI_API_KEY não encontrada. Revisão IA pulada.", COLOR_YELLOW)
