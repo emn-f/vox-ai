@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.26 - 28/12/2025
+
+### test
+
+* Add unit tests for code review system
+
 ## v3.1.25 - 28/12/2025
 
 ### 📚 Documentação
