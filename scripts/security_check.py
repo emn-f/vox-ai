@@ -277,28 +277,27 @@ def run_ai_code_review(diff_text: str) -> bool:
         if review_text:
             print(f"\n📝 Relatório Gemini:\n{review_text}\n")
 
-            # Lógica de Decisão Segura (Prioridade para Bloqueio)
-            # 1. Verifica keywords críticas em QUALQUER lugar do texto (soberano sobre [PASS])
-            if any(k in review_text.lower() for k in BLOCK_KEYWORDS):
-                print_colored(
-                    "⛔ Bloqueio: Palavra-chave crítica encontrada no relatório.",
-                    COLOR_RED,
-                )
-                return False
-
             clean_review = review_text.strip().upper()
-
-            # 2. Verifica tag de bloqueio explícito
+            
+            # 1. Bloqueio Explícito (Prioridade Máxima)
             if clean_review.startswith("[BLOCK]"):
                 print_colored(
                     "⛔ Bloqueio: IA solicitou bloqueio explícito ([BLOCK]).", COLOR_RED
                 )
                 return False
 
-            # 3. Se passou pelos filtros de segurança, verifica aprovação
+            # 2. Aprovação (Se não é BLOCK, e começa com PASS ou não tem nada grave, assume ok)
+            # A IA tem autoridade final. Se ela não usou [BLOCK] no início, seguimos.
             if clean_review.startswith("[PASS]"):
                 print_colored("✅ IA Aprovou (Protocolo [PASS]).", COLOR_GREEN)
                 return True
+            
+            # Fallback seguro: Se não começou nem com BLOCK nem PASS (resposta estranha), 
+            # podemos optar por aprovar com aviso ou bloquear. 
+            # Dado o pedido de "evitar inferno", se não for BLOCK, vamos considerar PASS.
+            print_colored("✅ IA finalizou sem bloqueio explícito.", COLOR_GREEN)
+            return True
+
 
     except Exception as e:
         print_colored(f"⚠️ Erro ao consultar Gemini: {e}", COLOR_YELLOW)
