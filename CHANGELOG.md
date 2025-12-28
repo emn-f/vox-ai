@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.31 - 28/12/2025
+
+### 📚 Documentação
+
+* Add quick start guide for code review system
+
 ## v3.1.30 - 28/12/2025
 
 ### 🤖 CI/CD & Automação
