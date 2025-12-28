@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.29 - 28/12/2025
+
+### ✨ Funcionalidades
+
+* Add GitHub Actions script for automated PR review
+
 ## v3.1.28 - 28/12/2025
 
 ### 🔧 Tarefas Internas
