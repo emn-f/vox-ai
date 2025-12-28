@@ -25,6 +25,10 @@ except ImportError:
 # CONSTANTES E CONFIGURAÇÕES
 # =============================================================================
 
+# =============================================================================
+# CONSTANTES E CONFIGURAÇÕES
+# =============================================================================
+
 # Constantes de Cores para Terminal
 COLOR_RED = "\033[91m"
 COLOR_GREEN = "\033[92m"
@@ -32,44 +36,37 @@ COLOR_YELLOW = "\033[93m"
 COLOR_BLUE = "\033[94m"
 COLOR_RESET = "\033[0m"
 
-# URL da API de Inferência do Hugging Face
-HF_API_URL = "https://api-inference.huggingface.co/models/microsoft/codereviewer"
-# Limite máximo de caracteres para envio à IA (evita timeout/erro 413)
-MAX_DIFF_CONTEXT = 3000
+def print_colored(msg: str, color: str = COLOR_RESET):
+    """Imprime mensagem colorida se o terminal suportar."""
+    if sys.stdout.isatty():
+        print(f"{color}{msg}{COLOR_RESET}")
+    else:
+        print(msg)
 
-# Lista de padrões de Segredos (Regex, Descrição)
+# Configuração da IA (Google Gemini)
+# Modelo: gemini-2.5-flash (Mais recente detectado)
+# Limite máximo de caracteres para envio à IA
 SECRETS_PATTERNS = [
     (r"sk-[a-zA-Z0-9]{48}", "OpenAI API Key"),
     (r"ghp_[a-zA-Z0-9]{36}", "GitHub Personal Access Token"),
     (r"xox[baprs]-([0-9a-zA-Z]{10,48})?", "Slack Token"),
     (r"-----BEGIN PRIVATE KEY-----", "Generic Private Key"),
     (r"AIza[0-9A-Za-z-_]{35}", "Google API Key"),
-    # Padrão JWT Genérico (comum em Supabase, Auth0, Firebase, etc)
+    # Regex crítica para JWTs, restaurada para garantir segurança
     (r"ey[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*", "Potential JWT/Token"),
-    # Heurística Genérica de Alta Entropia
-    # Bloqueia atribuições diretas de strings longas (>24 chars) a variáveis com nomes suspeitos.
-    # Aumentado para 24 para reduzir falsos positivos (ex: chaves curtas ou config strings).
-    (r"(?i)(?:key|secret|password|token|auth|credential|jwt)\w*\s*=\s*['\"][\w\-@\.]{24,}['\"]", "Generic High-Entropy Assignment"),
+    # Ignora placeholders que começam com '__' (ex: __VAR__)
+    (r"(?i)(?:key|secret|password|token|auth|credential|jwt)\w*\s*=\s*['\"](?!__)[\w\-@\.]{24,}['\"]", "Generic High-Entropy Assignment"),
 ]
 
-# Palavras-chave que, se a IA mencionar na revisão, bloqueiam o push.
+# Palavras-chave que, se a IA mencionar, bloqueiam o push.
 BLOCK_KEYWORDS = [
     "security vulnerability", "critical issue", "password exposed", 
     "sql injection", "vulnerabilidade crítica", "senha exposta",
-    "remote code execution", "xss"
+    "remote code execution", "xss", "[block]", 
+    "vulnerabilidade de segurança crítica", "bug lógico grave"
 ]
 
-# =============================================================================
-# FUNÇÕES UTILITÁRIAS
-# =============================================================================
-
-def print_colored(msg: str, color: str = COLOR_RESET):
-    """Imprime mensagem colorida se o terminal suportar."""
-    # Simples verificação se estamos em um TTY
-    if sys.stdout.isatty():
-        print(f"{color}{msg}{COLOR_RESET}")
-    else:
-        print(msg)
+# ... (código intermediário omitido, indo para load_secrets)
 
 def load_secrets() -> dict:
     """Carrega segredos do arquivo .streamlit/secrets.toml de forma segura."""
@@ -78,28 +75,43 @@ def load_secrets() -> dict:
     if not os.path.exists(secrets_path):
         return {}
 
+    data = {}
     if not toml:
-        print_colored("⚠️ Aviso: Nenhuma biblioteca TOML encontrada (pip install tomli). Secrets.toml ignorado.", COLOR_YELLOW)
-        return {}
+        # Tenta carregar mesmo sem biblioteca TOML via parseamento manual simples para chaves criticas
+        # Mas idealmente avisa
+        print_colored("⚠️ Aviso: Nenhuma biblioteca TOML (tomllib/tomli) encontrada.", COLOR_YELLOW)
 
     try:
         # Tenta abrir como binário primeiro (tomllib/tomli)
         with open(secrets_path, "rb") as f:
-            # Verifica se o modulo 'toml' carregado tem o metodo load que aceita bytes
-            # tomllib.load aceita bytes. toml.load aceita string.
-            try:
+            if toml and hasattr(toml, 'load'):
                 data = toml.load(f)
-                return data
-            except (TypeError, AttributeError):
-                pass # Tenta fallback texto
+            else:
+                raise ImportError("TOML lib falhou ou ausente")
+    except Exception:
+        # Fallback: Tenta ler como texto ou parse manual básico
+        try:
+             with open(secrets_path, "r", encoding="utf-8") as f:
+                if toml:
+                    data = toml.load(f)
+                else:
+                    # Parse manual de emergência para recuperar chaves simples
+                    content = f.read()
+                    for line in content.splitlines():
+                        if "=" in line:
+                            k, v = line.split("=", 1)
+                            data[k.strip()] = v.strip().strip('"').strip("'")
+        except Exception as e:
+            print_colored(f"⚠️ Erro ao ler secrets.toml: {e}", COLOR_YELLOW)
+            pass # Segue vazio, mas avisou
+            
+    # Ajuste crítico: mapeia HF_TOKEN da raiz para dentro da estrutura esperada
+    if "HF_TOKEN" in data:
+        if "huggingface" not in data:
+            data["huggingface"] = {}
+        data["huggingface"]["token"] = data["HF_TOKEN"]
         
-        # Fallback para string (toml legado)
-        with open(secrets_path, "r", encoding="utf-8") as f:
-            return toml.load(f)
-
-    except Exception as e:
-        print_colored(f"⚠️ Erro ao ler secrets.toml: {e}", COLOR_YELLOW)
-        return {}
+    return data
 
 # =============================================================================
 # CHECAGENS DE SEGURANÇA
@@ -138,7 +150,6 @@ def check_secrets_in_files(files: List[str]) -> bool:
                     found_secrets = True
                     
         except Exception:
-            # Arquivos que não puderem ser lidos (binários, links quebrados) são ignorados
             pass
 
     if found_secrets:
@@ -149,7 +160,7 @@ def check_secrets_in_files(files: List[str]) -> bool:
     return True
 
 # =============================================================================
-# INTEGRAÇÕES (SUPABASE E IA)
+# INTEGRAÇÕES (SUPABASE E GEMINI)
 # =============================================================================
 
 def check_supabase_connection() -> bool:
@@ -157,30 +168,23 @@ def check_supabase_connection() -> bool:
     print_colored("🔌 Testando conexão com Supabase...", COLOR_BLUE)
     
     try:
-        import requests 
         from supabase import create_client, Client
     except ImportError:
-        print_colored("⚠️ Biblioteca 'supabase' ou 'requests' ausente.", COLOR_YELLOW)
-        return False # Poderia ser True se quiséssemos ignorar, mas o user pediu rigor
+        print_colored("⚠️ Biblioteca 'supabase' ausente.", COLOR_YELLOW)
+        return False
 
     secrets = load_secrets()
     sb_config = secrets.get("supabase", {})
     url = sb_config.get("url") or os.environ.get("SUPABASE_URL")
-    key = sb_config.get("key") or os.environ.get("SUPABASE_KEY")
+    key = sb_config.get("key") or os.environ.get("SUPABASE_KEY_PROD")
 
     if not url or not key:
         print_colored("❌ Credenciais do Supabase ausentes (secrets.toml ou ENV).", COLOR_RED)
         return False
 
     try:
-        # Apenas inicializa o cliente (validação de formato de URL/Key)
         client: Client = create_client(url, key)
-        
-        # Teste real de conectividade: Ping em uma tabela leve
-        # Usamos uma query simples que deve falhar rápido se auth estiver errado
-        # Assumindo tabela 'chat_logs' existente.
         client.table("chat_logs").select("chat_id", count="exact").limit(0).execute()
-        
         print_colored("✅ Conexão DB OK.", COLOR_GREEN)
         return True
     except Exception as e:
@@ -190,84 +194,71 @@ def check_supabase_connection() -> bool:
 def sanitize_diff_for_ai(diff_text: str) -> str:
     """Remove linhas adicionadas que possam conter segredos antes de enviar para a IA."""
     sanitized_lines = []
-    
     for line in diff_text.splitlines():
-        # Se a linha for uma adição (+) e parecer conter atribuição de chave, ofusca
         if line.startswith("+") and any(re.search(p[0], line) for p in SECRETS_PATTERNS):
             sanitized_lines.append("+ [REDACTED SECRET DETECTED]")
         else:
             sanitized_lines.append(line)
-            
     return "\n".join(sanitized_lines)
 
 def run_ai_code_review(diff_text: str) -> bool:
-    """Submete o diff à IA para revisão."""
-    print_colored("🤖 Iniciando Code Review IA (Microsoft/CodeReviewer)...", COLOR_BLUE)
+    """Submete o diff ao Gemini para revisão."""
+    print_colored("🤖 Iniciando Code Review IA (Gemini)...", COLOR_BLUE)
     
     if not diff_text.strip():
-        return True # Nada a revisar
+        return True 
 
     secrets = load_secrets()
-    hf_token = secrets.get("huggingface", {}).get("token") or os.environ.get("HF_TOKEN")
+    # Tenta achar a chave do Gemini em vários lugares comuns
+    gemini_key = (
+        secrets.get("GEMINI_API_KEY") 
+        or secrets.get("gemini", {}).get("api_key") 
+        or secrets.get("google", {}).get("api_key")
+        or os.environ.get("GEMINI_API_KEY")
+    )
     
-    if not hf_token:
-        print_colored("⚠️ Token Hugging Face não encontrado. Revisão IA pulada.", COLOR_YELLOW)
-        return True # Não bloqueamos sem token = resiliência
-
-    import requests
-
-    # Sanitização: Remove segredos óbvios antes de enviar para nuvem
-    safe_diff = sanitize_diff_for_ai(diff_text)
-    
-    # Truncate
-    if len(safe_diff) > MAX_DIFF_CONTEXT:
-        safe_diff = safe_diff[:MAX_DIFF_CONTEXT] + "\n... (truncated)"
-
-    headers = {"Authorization": f"Bearer {hf_token}"}
-    payload = {
-        "inputs": safe_diff,
-        "parameters": {
-            "max_new_tokens": 512,
-            "return_full_text": False
-        }
-    }
+    if not gemini_key:
+        print_colored("⚠️ GEMINI_API_KEY não encontrada. Revisão IA pulada.", COLOR_YELLOW)
+        return True 
 
     try:
-        response = requests.post(HF_API_URL, headers=headers, json=payload, timeout=25)
+        import google.generativeai as genai
         
-        # Tratamento de erro de API (não bloqueante)
-        if response.status_code in [500, 503, 504]:
-            print_colored("⏳ IA indisponível temporariamente. Check ignorado.", COLOR_YELLOW)
-            return True
-        elif response.status_code == 401:
-            print_colored("❌ Token Hugging Face inválido/expirado.", COLOR_RED)
-            return True # Opcional: Bloquear se autenticação for crítica
+        genai.configure(api_key=gemini_key)
+        model_name = "gemini-2.5-flash"
+        model = genai.GenerativeModel(model_name)
         
-        response.raise_for_status()
-        
-        output = response.json()
-        
-        # Extrair texto
-        review_text = ""
-        if isinstance(output, list) and output:
-            review_text = output[0].get("generated_text", "")
-        elif isinstance(output, dict):
-            review_text = output.get("generated_text", "") or output.get("error", "")
+        safe_diff = sanitize_diff_for_ai(diff_text)
+        if len(safe_diff) > 20000: 
+            safe_diff = safe_diff[:20000] + "\n... (truncated)"
+
+        prompt = (
+            "ATENÇÃO: Você é um Gatekeeper de Segurança.\n"
+            "Analise o git diff abaixo do projeto Vox AI.\n"
+            "Regras:\n"
+            "1. Se encontrar VULNERABILIDADE CRÍTICA (senha exposta, SQLi, chave de API) -> Inicie a resposta com '[BLOCK]'.\n"
+            "2. Se encontrar BUG DE PRODUÇÃO (loop infinito, crash certo) -> Inicie a resposta com '[BLOCK]'.\n"
+            "3. Se for apenas sugestão de melhoria ou não houver problemas graves -> Inicie com '[PASS]'.\n\n"
+            "DIFF DO CÓDIGO:\n"
+            f"{safe_diff}"
+        )
+
+        response = model.generate_content(prompt)
+        review_text = response.text
 
         if review_text:
-            print(f"\n📝 {review_text}\n")
+            print(f"\n📝 Relatório Gemini:\n{review_text}\n")
             
-            # Bloqueio baseado em keywords
-            lower_review = review_text.lower()
-            if any(k in lower_review for k in BLOCK_KEYWORDS):
-                print_colored("⛔ Bloqueio: IA apontou vulnerabilidade crítica.", COLOR_RED)
+            # Bloqueio Determinístico
+            if review_text.strip().upper().startswith("[BLOCK]") or any(k in review_text.lower() for k in BLOCK_KEYWORDS):
+                print_colored("⛔ Bloqueio: IA identificou problema crítico.", COLOR_RED)
                 return False
-        
+                
     except Exception as e:
-        print_colored(f"⚠️ Erro ao consultar IA: {e}", COLOR_YELLOW)
+        print_colored(f"⚠️ Erro ao consultar Gemini: {e}", COLOR_YELLOW)
         return True
 
-    print_colored("✅ Revisão IA finalizada.", COLOR_GREEN)
+    print_colored("✅ Revisão IA finalizada (Aprovado).", COLOR_GREEN)
     return True
 
 # =============================================================================
@@ -341,7 +332,6 @@ def main():
             if not run_ai_code_review(full_diff):
                 sys.exit(1)
     
-    print_colored("✨ Tudo limpo! Procedendo...", COLOR_GREEN)
     sys.exit(0)
 
 if __name__ == "__main__":

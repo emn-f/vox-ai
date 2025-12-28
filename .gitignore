@@ -83,3 +83,5 @@ scripts/migrate_to_supabase.py
 scripts/testa_conexao.py
 scripts/gerar_embedding.py
 CONVENTIONAL_COMMITS.md
+scripts/test_gemini.py
+scripts/test_hf_models.py

@@ -1,12 +1,12 @@
 
 const SUPABASE_URL = "__SUPABASE_URL__";
-const SUPABASE_KEY = "__SUPABASE_KEY__";
+const SUPABASE_ANON_KEY_DEV = "__SUPABASE_ANON_KEY_DEV__";
 
 document.addEventListener('DOMContentLoaded', function () {
 
     const headers = {
-        'apikey': SUPABASE_KEY,
-        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'apikey': SUPABASE_ANON_KEY_DEV,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY_DEV}`,
         'Content-Type': 'application/json'
     };
 

@@ -35,10 +35,10 @@ jobs:
       - name: Inject Supabase Credentials
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          SUPABASE_ANON_KEY_DEV: ${{ secrets.SUPABASE_ANON_KEY_DEV }}
         run: |
           sed -i "s|__SUPABASE_URL__|$SUPABASE_URL|g" pages/dashboard.js
-          sed -i "s|__SUPABASE_KEY__|$SUPABASE_KEY|g" pages/dashboard.js
+          sed -i "s|__SUPABASE_ANON_KEY_DEV__|$SUPABASE_ANON_KEY_DEV|g" pages/dashboard.js
           
           echo "✅ Credenciais injetadas no dashboard.js"
 
