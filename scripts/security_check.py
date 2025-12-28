@@ -315,7 +315,7 @@ def main():
     parser.add_argument("--mode", choices=["pre-commit", "pre-push"], required=True)
     args = parser.parse_args()
     
-    print_colored(f"\n🛡️  [Vox AI Security] Mode: {args.mode}", COLOR_BLUE)
+    print_colored(f"\n🛡️ [Project Vox AI - Security] Mode: {args.mode}", COLOR_BLUE)
     
     # 1. Obter arquivos modificados
     files = get_git_files(args.mode)
