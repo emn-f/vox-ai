@@ -35,9 +35,6 @@ COLOR_RESET = "\033[0m"
 # Configuração da IA (Google Gemini)
 # Modelo: gemini-2.5-flash (Mais recente detectado)
 # Limite máximo de caracteres para envio à IA
-MAX_DIFF_CONTEXT = 20000
-
-# Lista de padrões de Segredos (Regex, Descrição)
 SECRETS_PATTERNS = [
     (r"sk-[a-zA-Z0-9]{48}", "OpenAI API Key"),
     (r"ghp_[a-zA-Z0-9]{36}", "GitHub Personal Access Token"),
@@ -45,7 +42,8 @@ SECRETS_PATTERNS = [
     (r"-----BEGIN PRIVATE KEY-----", "Generic Private Key"),
     (r"AIza[0-9A-Za-z-_]{35}", "Google API Key"),
     (r"ey[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*", "Potential JWT/Token"),
-    (r"(?i)(?:key|secret|password|token|auth|credential|jwt)\w*\s*=\s*['\"][\w\-@\.]{24,}['\"]", "Generic High-Entropy Assignment"),
+    # Ignora placeholders que começam com '__' (ex: __VAR__)
+    (r"(?i)(?:key|secret|password|token|auth|credential|jwt)\w*\s*=\s*['\"](?!__)[\w\-@\.]{24,}['\"]", "Generic High-Entropy Assignment"),
 ]
 
 # Palavras-chave que, se a IA mencionar na revisão, bloqueiam o push.
@@ -165,7 +163,7 @@ def check_supabase_connection() -> bool:
     secrets = load_secrets()
     sb_config = secrets.get("supabase", {})
     url = sb_config.get("url") or os.environ.get("SUPABASE_URL")
-    key = sb_config.get("key") or os.environ.get("SUPABASE_KEY")
+    key = sb_config.get("key") or os.environ.get("SUPABASE_ANON_KEY_DEV")
 
     if not url or not key:
         print_colored("❌ Credenciais do Supabase ausentes (secrets.toml ou ENV).", COLOR_RED)
