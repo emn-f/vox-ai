@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.24 - 28/12/2025
+
+### ✨ Funcionalidades
+
+* Add GitHub integration for automated code review on PRs
+
 ## v3.1.23 - 28/12/2025
 
 ### ✨ Funcionalidades
