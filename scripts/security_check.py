@@ -33,7 +33,9 @@ COLOR_BLUE = "\033[94m"
 COLOR_RESET = "\033[0m"
 
 # URL da API de Inferência do Hugging Face
-HF_API_URL = "https://api-inference.huggingface.co/models/microsoft/codereviewer"
+# Modelo atualizado: Qwen 2.5 Coder (SOTA Open Source para código)
+# Nota: O modelo antigo microsoft/codereviewer foi descontinuado da API pública.
+HF_API_URL = "https://api-inference.huggingface.co/models/Qwen/Qwen2.5-Coder-32B-Instruct"
 # Limite máximo de caracteres para envio à IA (evita timeout/erro 413)
 MAX_DIFF_CONTEXT = 3000
 
@@ -224,11 +226,27 @@ def run_ai_code_review(diff_text: str) -> bool:
         safe_diff = safe_diff[:MAX_DIFF_CONTEXT] + "\n... (truncated)"
 
     headers = {"Authorization": f"Bearer {hf_token}"}
+    
+    # Prompt estruturado para modelo Instruct (Qwen/Llama)
+    prompt = (
+        f"<|im_start|>system\n"
+        f"You are an expert Senior Software Engineer and Security Researcher. "
+        f"Review the provided code diff. Focus on identifying critical SECURITY VULNERABILITIES "
+        f"(like exposed secrets, injection flaws) and MAJOR BUGS. "
+        f"Be concise. If the code is safe, just say 'No major issues found'.\n"
+        f"<|im_end|>\n"
+        f"<|im_start|>user\n"
+        f"Review this git diff:\n\n{safe_diff}\n"
+        f"<|im_end|>\n"
+        f"<|im_start|>assistant\n"
+    )
+
     payload = {
-        "inputs": safe_diff,
+        "inputs": prompt,
         "parameters": {
             "max_new_tokens": 512,
-            "return_full_text": False
+            "return_full_text": False,
+            "temperature": 0.2
         }
     }
 
