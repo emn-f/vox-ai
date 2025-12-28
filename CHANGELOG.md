@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.30 - 28/12/2025
+
+### 🤖 CI/CD & Automação
+
+* Add GitHub Actions workflow for automated code review
+
 ## v3.1.28 - 28/12/2025
 
 ### 🔧 Tarefas Internas
