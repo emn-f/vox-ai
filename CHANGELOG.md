@@ -2,6 +2,24 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.33 - 28/12/2025
+
+### ✨ Funcionalidades
+
+* Adiciona .agent ao .gitignore.
+
+* Adiciona hooks para code_review utilizando modelo de IA microsoft/codereviewer.
+
+* Adiciona hooks para code_review utilizando modelo de IA microsoft/codereviewer.
+
+* Adiciona hooks para code_review utilizando modelo de IA microsoft/codereviewer.
+
+* Adiciona hooks para code_review utilizando modelo de IA microsoft/codereviewer.
+
+* Adiciona hooks para code_review utilizando modelo de IA microsoft/codereviewer.
+
+* Adiciona hooks para code_review utilizando modelo de IA microsoft/codereviewer.
+
 ## v3.1.32 - 28/12/2025
 
 ### revert
