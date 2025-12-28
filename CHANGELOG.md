@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.28 - 28/12/2025
+
+### 🔧 Tarefas Internas
+
+* Add dependencies for AI-powered code review system
+
 ## v3.1.27 - 28/12/2025
 
 ### 📚 Documentação
