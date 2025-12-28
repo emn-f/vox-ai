@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.25 - 28/12/2025
+
+### 📚 Documentação
+
+* Add comprehensive code review usage examples
+
 ## v3.1.24 - 28/12/2025
 
 ### ✨ Funcionalidades
