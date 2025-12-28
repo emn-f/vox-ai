@@ -1,0 +1,31 @@
+name: Security & Code Review
+
+on:
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install Dependencies
+        run: |
+          pip install requests python-dotenv supabase tomli
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run Security & AI Review
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          python scripts/security_check.py --mode pre-push
