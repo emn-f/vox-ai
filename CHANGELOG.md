@@ -2,6 +2,17 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.32 - 28/12/2025
+
+### revert
+
+* Remove code review por IA (abordagem errada e push equivocado)
+
+
+### 🎨 Estilo e Formatação
+
+* Melhor formatação do .gitignore
+
 ## v3.1.31 - 28/12/2025
 
 ### 📚 Documentação
