@@ -36,12 +36,14 @@ COLOR_YELLOW = "\033[93m"
 COLOR_BLUE = "\033[94m"
 COLOR_RESET = "\033[0m"
 
+
 def print_colored(msg: str, color: str = COLOR_RESET):
     """Imprime mensagem colorida se o terminal suportar."""
     if sys.stdout.isatty():
         print(f"{color}{msg}{COLOR_RESET}")
     else:
         print(msg)
+
 
 # Configuração da IA (Google Gemini)
 # Modelo: gemini-2.5-flash (Mais recente detectado)
@@ -55,23 +57,34 @@ SECRETS_PATTERNS = [
     # Regex crítica para JWTs, restaurada para garantir segurança
     (r"ey[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*", "Potential JWT/Token"),
     # Ignora placeholders que começam com '__' (ex: __VAR__)
-    (r"(?i)(?:key|secret|password|token|auth|credential|jwt)\w*\s*=\s*['\"](?!__)[\w\-@\.]{24,}['\"]", "Generic High-Entropy Assignment"),
+    (
+        r"(?i)(?:key|secret|password|token|auth|credential|jwt)\w*\s*=\s*['\"](?!__)[\w\-@\.]{24,}['\"]",
+        "Generic High-Entropy Assignment",
+    ),
 ]
 
 # Palavras-chave que, se a IA mencionar, bloqueiam o push.
+# Palavras-chave específicas que indicam problemas reais.
+# Removemos termos genéricos para evitar falsos positivos quando a IA diz "Não foi encontrada vulnerabilidade crítica".
 BLOCK_KEYWORDS = [
-    "security vulnerability", "critical issue", "password exposed", 
-    "sql injection", "vulnerabilidade crítica", "senha exposta",
-    "remote code execution", "xss", "[block]", 
-    "vulnerabilidade de segurança crítica", "bug lógico grave"
+    "password exposed",
+    "senha exposta",
+    "sql injection",
+    "remote code execution",
+    "xss",
+    "[block]",
+    "rce",
+    "exposed secret",
+    "chave exposta",
 ]
 
-# ... (código intermediário omitido, indo para load_secrets)
+# ...
+
 
 def load_secrets() -> dict:
     """Carrega segredos do arquivo .streamlit/secrets.toml de forma segura."""
     secrets_path = os.path.join(os.getcwd(), ".streamlit", "secrets.toml")
-    
+
     if not os.path.exists(secrets_path):
         return {}
 
@@ -79,19 +92,21 @@ def load_secrets() -> dict:
     if not toml:
         # Tenta carregar mesmo sem biblioteca TOML via parseamento manual simples para chaves criticas
         # Mas idealmente avisa
-        print_colored("⚠️ Aviso: Nenhuma biblioteca TOML (tomllib/tomli) encontrada.", COLOR_YELLOW)
+        print_colored(
+            "⚠️ Aviso: Nenhuma biblioteca TOML (tomllib/tomli) encontrada.", COLOR_YELLOW
+        )
 
     try:
         # Tenta abrir como binário primeiro (tomllib/tomli)
         with open(secrets_path, "rb") as f:
-            if toml and hasattr(toml, 'load'):
+            if toml and hasattr(toml, "load"):
                 data = toml.load(f)
             else:
                 raise ImportError("TOML lib falhou ou ausente")
     except Exception:
         # Fallback: Tenta ler como texto ou parse manual básico
         try:
-             with open(secrets_path, "r", encoding="utf-8") as f:
+            with open(secrets_path, "r", encoding="utf-8") as f:
                 if toml:
                     data = toml.load(f)
                 else:
@@ -103,70 +118,80 @@ def load_secrets() -> dict:
                             data[k.strip()] = v.strip().strip('"').strip("'")
         except Exception as e:
             print_colored(f"⚠️ Erro ao ler secrets.toml: {e}", COLOR_YELLOW)
-            pass # Segue vazio, mas avisou
-            
+            pass  # Segue vazio, mas avisou
+
     # Ajuste crítico: mapeia HF_TOKEN da raiz para dentro da estrutura esperada
     if "HF_TOKEN" in data:
         if "huggingface" not in data:
             data["huggingface"] = {}
         data["huggingface"]["token"] = data["HF_TOKEN"]
-        
+
     return data
+
 
 # =============================================================================
 # CHECAGENS DE SEGURANÇA
 # =============================================================================
 
+
 def check_secrets_in_files(files: List[str]) -> bool:
     """Varre arquivos em busca de padrões de segredos."""
     print_colored("🔒 Iniciando verificação de segredos...", COLOR_BLUE)
     found_secrets = False
-    
+
     # Caminho absoluto deste script para evitar auto-detecção
     current_script = os.path.abspath(__file__)
-    
+
     for file_path in files:
         abs_path = os.path.abspath(file_path)
-        
+
         if not os.path.exists(abs_path):
             continue
-            
+
         # Pula o próprio script
         if abs_path == current_script:
             continue
-            
+
         # Verificação rápida de tamanho (evita ler arquivos de bloqueio gigantes)
         try:
             if os.path.getsize(abs_path) > 1024 * 1024:  # > 1MB
                 continue
-                
+
             # Ler apenas como texto
             with open(abs_path, "r", encoding="utf-8", errors="ignore") as f:
                 content = f.read()
-            
+
             for pattern, name in SECRETS_PATTERNS:
                 if re.search(pattern, content):
-                    print_colored(f"❌ ALERTA DE SEGURANÇA: {name} detectado em '{file_path}'", COLOR_RED)
+                    print_colored(
+                        f"❌ ALERTA DE SEGURANÇA: {name} detectado em '{file_path}'",
+                        COLOR_RED,
+                    )
                     found_secrets = True
-                    
+
         except Exception:
             pass
 
     if found_secrets:
-        print_colored("⛔ Bloqueio: Segredos detectados no código. Remova-os antes de commitar.", COLOR_RED)
+        print_colored(
+            "⛔ Bloqueio: Segredos detectados no código. Remova-os antes de commitar.",
+            COLOR_RED,
+        )
         return False
-        
+
     print_colored("✅ Nenhum segredo detectado.", COLOR_GREEN)
     return True
+
 
 # =============================================================================
 # INTEGRAÇÕES (SUPABASE E GEMINI)
 # =============================================================================
 
+
 def check_supabase_connection() -> bool:
     """Verifica se é possível conectar ao Supabase com as credenciais atuais."""
     print_colored("🔌 Testando conexão com Supabase...", COLOR_BLUE)
-    
+
     try:
         from supabase import create_client, Client
     except ImportError:
@@ -179,7 +204,9 @@ def check_supabase_connection() -> bool:
     key = sb_config.get("key") or os.environ.get("SUPABASE_KEY_PROD")
 
     if not url or not key:
-        print_colored("❌ Credenciais do Supabase ausentes (secrets.toml ou ENV).", COLOR_RED)
+        print_colored(
+            "❌ Credenciais do Supabase ausentes (secrets.toml ou ENV).", COLOR_RED
+        )
         return False
 
     try:
@@ -191,40 +218,46 @@ def check_supabase_connection() -> bool:
         print_colored(f"❌ Falha de Conexão DB: {str(e)}", COLOR_RED)
         return False
 
+
 def sanitize_diff_for_ai(diff_text: str) -> str:
     """Remove linhas adicionadas que possam conter segredos antes de enviar para a IA."""
     sanitized_lines = []
     for line in diff_text.splitlines():
-        if line.startswith("+") and any(re.search(p[0], line) for p in SECRETS_PATTERNS):
+        if line.startswith("+") and any(
+            re.search(p[0], line) for p in SECRETS_PATTERNS
+        ):
             sanitized_lines.append("+ [REDACTED SECRET DETECTED]")
         else:
             sanitized_lines.append(line)
     return "\n".join(sanitized_lines)
 
+
 def run_ai_code_review(diff_text: str) -> bool:
     """Submete o diff ao Gemini para revisão."""
     print_colored("🤖 Iniciando Code Review IA (Gemini)...", COLOR_BLUE)
-    
+
     if not diff_text.strip():
-        return True 
+        return True
 
     secrets = load_secrets()
     # Tenta achar a chave do Gemini em vários lugares comuns
     gemini_key = secrets.get("GEMINI_API_KEY") or os.environ.get("GEMINI_API_KEY")
-    
+
     if not gemini_key:
-        print_colored("⚠️ GEMINI_API_KEY não encontrada. Revisão IA pulada.", COLOR_YELLOW)
-        return True 
+        print_colored(
+            "⚠️ GEMINI_API_KEY não encontrada. Revisão IA pulada.", COLOR_YELLOW
+        )
+        return True
 
     try:
         import google.generativeai as genai
-        
+
         genai.configure(api_key=gemini_key)
         model_name = "gemini-2.5-flash"
         model = genai.GenerativeModel(model_name)
-        
+
         safe_diff = sanitize_diff_for_ai(diff_text)
-        if len(safe_diff) > 20000: 
+        if len(safe_diff) > 20000:
             safe_diff = safe_diff[:20000] + "\n... (truncated)"
 
         prompt = (
@@ -243,20 +276,30 @@ def run_ai_code_review(diff_text: str) -> bool:
 
         if review_text:
             print(f"\n📝 Relatório Gemini:\n{review_text}\n")
-            
-            # Lógica de Decisão Híbrida
+
+            # Lógica de Decisão Segura (Prioridade para Bloqueio)
+            # 1. Verifica keywords críticas em QUALQUER lugar do texto (soberano sobre [PASS])
+            if any(k in review_text.lower() for k in BLOCK_KEYWORDS):
+                print_colored(
+                    "⛔ Bloqueio: Palavra-chave crítica encontrada no relatório.",
+                    COLOR_RED,
+                )
+                return False
+
             clean_review = review_text.strip().upper()
-            
-            # 1. Aprovação Explícita (Soberana)
+
+            # 2. Verifica tag de bloqueio explícito
+            if clean_review.startswith("[BLOCK]"):
+                print_colored(
+                    "⛔ Bloqueio: IA solicitou bloqueio explícito ([BLOCK]).", COLOR_RED
+                )
+                return False
+
+            # 3. Se passou pelos filtros de segurança, verifica aprovação
             if clean_review.startswith("[PASS]"):
                 print_colored("✅ IA Aprovou (Protocolo [PASS]).", COLOR_GREEN)
                 return True
-                
-            # 2. Bloqueio Explícito ou por Palavras-Chave
-            if clean_review.startswith("[BLOCK]") or any(k in review_text.lower() for k in BLOCK_KEYWORDS):
-                print_colored("⛔ Bloqueio: IA identificou problema crítico.", COLOR_RED)
-                return False
-                
+
     except Exception as e:
         print_colored(f"⚠️ Erro ao consultar Gemini: {e}", COLOR_YELLOW)
         return True
@@ -264,28 +307,35 @@ def run_ai_code_review(diff_text: str) -> bool:
     print_colored("✅ Revisão IA finalizada (Aprovado).", COLOR_GREEN)
     return True
 
+
 # =============================================================================
 # GIT UTILS
 # =============================================================================
+
 
 def get_git_files(mode: str) -> List[str]:
     """Retorna lista de nomes de arquivos modificados."""
     cmd = []
     if mode == "pre-commit":
         cmd = ["git", "diff", "--name-only", "--cached"]
-    else: # pre-push
+    else:  # pre-push
         # Tenta detectar origin/master, se falhar, usa apenas staged/local changes como fallback
         cmd = ["git", "diff", "--name-only", "origin/master..HEAD"]
-        
+
     try:
         output = subprocess.check_output(cmd, stderr=subprocess.DEVNULL).decode()
         return [f.strip() for f in output.splitlines() if f.strip()]
     except subprocess.CalledProcessError:
         # Fallback para diff cached se origin/master não existir (primeiro push de branch nova)
         try:
-            return subprocess.check_output(["git", "diff", "--name-only", "--cached"]).decode().splitlines()
+            return (
+                subprocess.check_output(["git", "diff", "--name-only", "--cached"])
+                .decode()
+                .splitlines()
+            )
         except:
             return []
+
 
 def get_git_diff_content(mode: str) -> str:
     """Retorna o conteúdo do diff."""
@@ -294,23 +344,25 @@ def get_git_diff_content(mode: str) -> str:
         cmd = ["git", "diff", "--cached"]
     else:
         cmd = ["git", "diff", "origin/master..HEAD"]
-        
+
     try:
         return subprocess.check_output(cmd, stderr=subprocess.DEVNULL).decode()
     except:
         return ""
 
+
 # =============================================================================
 # MAIN
 # =============================================================================
+
 
 def main():
     parser = argparse.ArgumentParser(description="Vox AI Security & Code Review Tool")
     parser.add_argument("--mode", choices=["pre-commit", "pre-push"], required=True)
     args = parser.parse_args()
-    
+
     print_colored(f"\n🛡️ [Project Vox AI - Security] Mode: {args.mode}", COLOR_BLUE)
-    
+
     # 1. Obter arquivos modificados
     files = get_git_files(args.mode)
     if not files:
@@ -320,22 +372,23 @@ def main():
     # 2. Verificação de Segredos (Executa em AMBOS os modos)
     if not check_secrets_in_files(files):
         sys.exit(1)
-        
+
     # 3. Verificações Avançadas (Apenas PRE-PUSH)
     # Evita latência no commit local, mas garante qualidade antes de subir.
     if args.mode == "pre-push":
-        
+
         # a) Banco de Dados
         if not check_supabase_connection():
             sys.exit(1)
-            
+
         # b) Code Review IA
         full_diff = get_git_diff_content(args.mode)
         if full_diff:
             if not run_ai_code_review(full_diff):
                 sys.exit(1)
-    
+
     sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
