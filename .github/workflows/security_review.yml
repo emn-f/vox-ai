@@ -1,4 +1,4 @@
-name: Security & Code Review
+name: 🔒 Security & Code Review
 
 on:
   pull_request:

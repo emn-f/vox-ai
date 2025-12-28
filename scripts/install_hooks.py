@@ -3,78 +3,85 @@ import sys
 import stat
 
 
-def get_python_path():
-    """Retorna o caminho absoluto do Python a ser usado nos hooks."""
-    base_dir = os.getcwd()
+def generate_hook_script(hook_name):
+    """Gera o script shell do hook de forma dinâmica."""
 
-    # 1. Tentar localizar o venv padrão do projeto
-    venv_python = os.path.join(base_dir, ".venv", "Scripts", "python.exe")
-    if os.path.exists(venv_python):
-        return venv_python.replace("\\", "/")
+    # Script Shell cross-platform (Git Bash / Unix)
+    # Tenta usar o python do venv local se existir, senão usa o python do PATH.
+    # Isso torna o hook portável para outros devs que clonarem o repo.
+    script = f"""#!/bin/sh
+# Vox AI Git Hook: {hook_name}
 
-    # 2. Se não, usar o sys.executable atual (assumindo que o usuário rodou o install com o python correto)
-    # Mas precisamos garantir que seja o python.exe e não um wrapper estranho
-    exe = sys.executable.replace("\\", "/")
-    return exe
+# Cores
+RED='\\033[0;31m'
+NC='\\033[0m' # No Color
+
+echo "running {hook_name} hook..."
+
+# Define o caminho do script python relativo à raiz do git
+SCRIPT_PATH="scripts/security_check.py"
+
+# Verifica se estamos na raiz (onde scripts/ existe)
+if [ ! -f "$SCRIPT_PATH" ]; then
+    echo -e "${{RED}}❌ Erro: Não foi possível encontrar $SCRIPT_PATH. Execute o git da raiz do projeto.${{NC}}"
+    exit 1
+fi
+
+# Tenta encontrar o Python correto
+if [ -f ".venv/Scripts/python.exe" ]; then
+    PYTHON_CMD=".venv/Scripts/python.exe"
+elif [ -f ".venv/bin/python" ]; then
+    PYTHON_CMD=".venv/bin/python"
+elif [ -f "venv/Scripts/python.exe" ]; then
+    PYTHON_CMD="venv/Scripts/python.exe"
+elif [ -f "venv/bin/python" ]; then
+    PYTHON_CMD="venv/bin/python"
+else
+    # Fallback para o python do sistema
+    PYTHON_CMD="python"
+fi
+
+# Executa o script
+"$PYTHON_CMD" "$SCRIPT_PATH" --mode {hook_name}
+EXIT_CODE=$?
+
+if [ $EXIT_CODE -ne 0 ]; then
+    echo -e "${{RED}}❌ {hook_name} falhou. Ação abortada.${{NC}}"
+    exit 1
+fi
+
+exit 0
+"""
+    return script
 
 
 def install_hooks():
-    python_exe = get_python_path()
-    print(f"🔧 Configurando hooks usando Python: {python_exe}")
+    print("🔧 Instalando Git Hooks (V2 - Portável)...")
 
     hooks_dir = os.path.join(".git", "hooks")
     if not os.path.exists(hooks_dir):
-        # Tenta criar se não existir (raro em repo git válido)
+        print(
+            f"❌ Diretório .git/hooks não encontrado. Certifique-se de estar na raiz de um repositório git."
+        )
+        return
+
+    hooks_to_install = ["pre-commit", "pre-push"]
+
+    for hook in hooks_to_install:
+        content = generate_hook_script(hook)
+        dest_path = os.path.join(hooks_dir, hook)
+
         try:
-            os.makedirs(hooks_dir)
-        except:
-            print(f"❌ Diretório {hooks_dir} não encontrado. Execute na raiz do repo.")
-            return
+            with open(dest_path, "w", newline="\n") as f:
+                f.write(content)
 
-    # Definir conteúdo dos scripts
-    # Usamos aspas no caminho do python para lidar com espaços (Ex: Program Files)
+            # Tenta dar permissão de execução
+            st = os.stat(dest_path)
+            os.chmod(dest_path, st.st_mode | stat.S_IEXEC)
+            print(f"✅ Hook '{hook}' atualizado em {dest_path}")
 
-    # PRE-COMMIT
-    pre_commit_content = f"""#!/bin/sh
-echo "🔒 [Vox AI] Verificação pré-commit..."
-"{python_exe}" scripts/security_check.py --mode pre-commit
-if [ $? -ne 0 ]; then
-    echo "❌ Verificação falhou. Commit abortado."
-    exit 1
-fi
-"""
-
-    # PRE-PUSH
-    pre_push_content = f"""#!/bin/sh
-echo "🚀 [Vox AI] Verificação pré-push..."
-"{python_exe}" scripts/security_check.py --mode pre-push
-if [ $? -ne 0 ]; then
-    echo "❌ Verificação falhou. Push abortado."
-    exit 1
-fi
-"""
-
-    # Escrever arquivos
-    pc_path = os.path.join(hooks_dir, "pre-commit")
-    with open(
-        pc_path, "w", newline="\n"
-    ) as f:  # newline='\n' para garantir LF (unix style) essencial para git hooks
-        f.write(pre_commit_content)
-
-    pp_path = os.path.join(hooks_dir, "pre-push")
-    with open(pp_path, "w", newline="\n") as f:
-        f.write(pre_push_content)
-
-    # Permissões (Ignorado no Windows nativo, mas útil se usando WSL/Cygwin)
-    try:
-        st = os.stat(pc_path)
-        os.chmod(pc_path, st.st_mode | stat.S_IEXEC)
-        st = os.stat(pp_path)
-        os.chmod(pp_path, st.st_mode | stat.S_IEXEC)
-    except:
-        pass
-
-    print(f"✅ Hooks instalados: \n   - {pc_path}\n   - {pp_path}")
+        except Exception as e:
+            print(f"❌ Erro ao escrever {hook}: {e}")
 
 
 if __name__ == "__main__":
