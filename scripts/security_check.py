@@ -33,9 +33,8 @@ COLOR_BLUE = "\033[94m"
 COLOR_RESET = "\033[0m"
 
 # URL da API de Inferência do Hugging Face
-# Modelo atualizado: Qwen 2.5 Coder (SOTA Open Source para código)
-# Nota: O modelo antigo microsoft/codereviewer foi descontinuado da API pública.
-HF_API_URL = "https://api-inference.huggingface.co/models/Qwen/Qwen2.5-Coder-32B-Instruct"
+# Modelo atualizado: Zephyr 7B Beta (Modelo robusto e gratuito para Chat/Review)
+HF_API_URL = "https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta"
 # Limite máximo de caracteres para envio à IA (evita timeout/erro 413)
 MAX_DIFF_CONTEXT = 3000
 
@@ -46,11 +45,7 @@ SECRETS_PATTERNS = [
     (r"xox[baprs]-([0-9a-zA-Z]{10,48})?", "Slack Token"),
     (r"-----BEGIN PRIVATE KEY-----", "Generic Private Key"),
     (r"AIza[0-9A-Za-z-_]{35}", "Google API Key"),
-    # Padrão JWT Genérico (comum em Supabase, Auth0, Firebase, etc)
     (r"ey[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*", "Potential JWT/Token"),
-    # Heurística Genérica de Alta Entropia
-    # Bloqueia atribuições diretas de strings longas (>24 chars) a variáveis com nomes suspeitos.
-    # Aumentado para 24 para reduzir falsos positivos (ex: chaves curtas ou config strings).
     (r"(?i)(?:key|secret|password|token|auth|credential|jwt)\w*\s*=\s*['\"][\w\-@\.]{24,}['\"]", "Generic High-Entropy Assignment"),
 ]
 
@@ -204,7 +199,7 @@ def sanitize_diff_for_ai(diff_text: str) -> str:
 
 def run_ai_code_review(diff_text: str) -> bool:
     """Submete o diff à IA para revisão."""
-    print_colored("🤖 Iniciando Code Review IA (Microsoft/CodeReviewer)...", COLOR_BLUE)
+    print_colored("🤖 Iniciando Code Review IA...", COLOR_BLUE)
     
     if not diff_text.strip():
         return True # Nada a revisar
