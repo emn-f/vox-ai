@@ -326,7 +326,6 @@ def main():
             if not run_ai_code_review(full_diff):
                 sys.exit(1)
     
-    print_colored("✨ Tudo limpo! Procedendo...", COLOR_GREEN)
     sys.exit(0)
 
 if __name__ == "__main__":
