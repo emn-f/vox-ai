@@ -54,9 +54,7 @@ SECRETS_PATTERNS = [
     (r"xox[baprs]-([0-9a-zA-Z]{10,48})?", "Slack Token"),
     (r"-----BEGIN PRIVATE KEY-----", "Generic Private Key"),
     (r"AIza[0-9A-Za-z-_]{35}", "Google API Key"),
-    # Regex crítica para JWTs, restaurada para garantir segurança
-    (r"ey[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*", "Potential JWT/Token"),
-    # Ignora placeholders que começam com '__' (ex: __VAR__)
+    (r"\bey[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*", "Potential JWT/Token"),
     (
         r"(?i)(?:key|secret|password|token|auth|credential|jwt)\w*\s*=\s*['\"](?!__)[\w\-@\.]{24,}['\"]",
         "Generic High-Entropy Assignment",
