@@ -12,8 +12,21 @@ from supabase import Client, create_client
 @st.cache_resource
 def get_db_client() -> Client:
     try:
-        url = st.secrets["supabase"]["url"]
-        key = st.secrets["supabase"]["key"]
+        if "supabase" in st.secrets:
+            url = st.secrets["supabase"]["url"]
+            key = st.secrets["supabase"]["key"]
+        else:
+            url = os.environ.get("SUPABASE_URL")
+            key = os.environ.get("SUPABASE_KEY")
+
+        if not url or not key:
+            url = st.secrets.get("SUPABASE_URL")
+            key = st.secrets.get("SUPABASE_KEY")
+
+        if not url or not key:
+            st.error("❌ Credenciais do Supabase não encontradas (secrets.toml ou ENV variables).")
+            return None
+
         return create_client(url, key)
     except Exception as e:
         st.error(f"Erro ao conectar no banco de dados: {e}")
