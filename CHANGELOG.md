@@ -2,6 +2,27 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.35 - 29/12/2025
+
+### ✨ Funcionalidades
+
+* Melhorias no code reviewer
+
+* Melhorias no code reviewer
+
+
+### 🐛 Correções
+
+* Correção na forma como que a key do Gemini é buscada
+
+* Correção na forma como que a key do Gemini é buscada
+
+* Correção na forma como que a key do Gemini é buscada
+
+* Correções na lógica de bloqueio da IA e ajustes no prompt de segurança
+
+* Correções na lógica de bloqueio da IA e ajustes no prompt de segurança
+
 ## v3.1.34 - 28/12/2025
 
 ### ♻️ Refatoração & Melhorias
