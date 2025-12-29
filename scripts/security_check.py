@@ -264,10 +264,10 @@ def run_ai_code_review(diff_text: str) -> bool:
             "ATENÇÃO: Você é um Gatekeeper de Segurança.\n"
             "Analise o git diff abaixo do projeto Vox AI.\n"
             "Regras:\n"
-            "1. Se encontrar VULNERABILIDADE CRÍTICA (senha exposta, SQLi, chave de API) -> Inicie a resposta com '[BLOCK]'.\n"
-            "2. Se encontrar BUG DE PRODUÇÃO (loop infinito, crash certo) -> Inicie a resposta com '[BLOCK]'.\n"
-            "3. Se for seguro (mesmo com débitos técnicos leves) -> Inicie com '[PASS]'.\n"
-            "   IMPORTANTE: Se aprovar com '[PASS]', NÃO use termos como 'vulnerabilidade', 'crítica', 'exposta' na explicação. Use 'pontos de atenção' ou 'ajustes'.\n\n"
+            "1. Se encontrar VULNERABILIDADE CRÍTICA (senha exposta, SQLi, chave de API) -> Inicie a resposta com '[BLOCK]' e explique o erro.\n"
+            "2. Se encontrar BUG DE PRODUÇÃO (loop infinito, crash certo) -> Inicie a resposta com '[BLOCK]' e explique.\n"
+            "3. Se for seguro (mesmo com débitos técnicos leves) -> Responda ESTRITAMENTE: '[PASS] Aprovado. So fale algo a mais se voce tiver alguma melhoria para sugerir.'\n"
+            "   NÃO escreva resumos, NÃO elogie, NÃO explique nada se for aprovar. Seja mudo em caso de sucesso.\n\n"
             "DIFF DO CÓDIGO:\n"
             f"{safe_diff}"
         )
@@ -278,7 +278,6 @@ def run_ai_code_review(diff_text: str) -> bool:
         if review_text:
             print(f"\n📝 Relatório Gemini:\n{review_text}\n")
 
-            # Lógica de Decisão Segura (Restaurada)
             # 1. Verifica keywords críticas em QUALQUER lugar do texto (soberano sobre [PASS])
             # Isso garante que se a IA citar "password exposed" no meio do texto, bloqueia.
             lower_review = review_text.lower()
