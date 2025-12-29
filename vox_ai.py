@@ -10,8 +10,7 @@ import streamlit as st
 import startup_patch
 from data.prompts.ui_content import SAUDACAO, SIDEBAR
 from src.app.ui import (
-    carregar_css,
-    carregar_sidebar,
+    carregar_css,    carregar_sidebar,
     configurar_pagina,
     stream_resposta,
 )

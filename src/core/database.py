@@ -24,7 +24,9 @@ def get_db_client() -> Client:
             key = st.secrets.get("SUPABASE_KEY")
 
         if not url or not key:
-            st.error("❌ Credenciais do Supabase não encontradas (secrets.toml ou ENV variables).")
+            st.error(
+                "❌ Credenciais do Supabase não encontradas (secrets.toml ou ENV variables)."
+            )
             return None
 
         return create_client(url, key)
@@ -130,23 +132,37 @@ def salvar_erro(session_id, git_version, error_msg):
         return "N/A"
 
 
-def salvar_report(session_id, git_version, history_text):
+def salvar_report(session_id, git_version, history_text, category_id, comment):
     client = get_db_client()
 
-    if not client:
-        return False
-
     try:
+        if not client:
+            return False
         data = {
             "session_id": session_id,
             "git_version": git_version,
             "chat_history": history_text,
+            "category_id": category_id,
+            "comment": comment,
         }
         client.table("user_reports").insert(data).execute()
         return True
     except Exception as e:
         print(f"⚠️ Erro ao salvar report: {e}")
         return False
+
+
+def get_categorias_erro():
+    client = get_db_client()
+    try:
+        if not client:
+            return False
+        response = client.table("report_categories").select("id", "label").execute()
+        return response.data if response.data else []
+
+    except Exception as e:
+        print(f"⚠️ Erro ao buscar categorias: {e}")
+        return []
 
 
 def add_conhecimento_db(tema, descricao, referencias, autor):
@@ -260,7 +276,6 @@ def recuperar_contexto_inteligente(vector_embedding):
     if not contagem_topicos:
         top_5 = resultados_iniciais[:5]
         contexto_final = [item["descricao"] for item in top_5]
-        # Tenta pegar kb_id ou id, e remove Nones
         for item in top_5:
             kid = item.get("kb_id") or item.get("id")
             if kid:
