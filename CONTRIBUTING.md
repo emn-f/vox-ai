@@ -28,7 +28,7 @@ Se você quer rodar o projeto localmente para testar mudanças:
 1.  **Fork** este repositório.
 2.  **Clone** o seu fork:
     ```bash
-    git clone [https://github.com/SEU-USUARIO/vox-ai.git](https://github.com/SEU-USUARIO/vox-ai.git)
+    git clone https://github.com/SEU-USUARIO/vox-ai.git
     cd vox-ai
     ```
 3.  **Crie um ambiente virtual** (Recomendado Python 3.11+):
@@ -61,7 +61,7 @@ Se você quer rodar o projeto localmente para testar mudanças:
     > * **Sem credenciais:** <u>O projeto rodará sem conexão com a base de dados do projeto usando apenas a resposta da IA</u>. Você verá avisos de conexão no terminal, o que é esperado.
     > * **Precisa de acesso ao banco?** Se a feature que você deseja implementar depende estritamente do acesso ao banco de dados, envie um e-mail para a equipe. Podemos fornecer credenciais temporárias ou um ambiente de sandbox.
 6.  **Instale os Git Hooks (Segurança):**
-    Para garantir que nenhum segredo seja commitado e que o banco de dados esteja consistente, instale os hooks de pré-commit:
+    Para garantir que nenhum segredo seja commitado, que o banco de dados esteja consistente e que as **mensagens de commit estejam no padrão**, instale os hooks de pré-commit:
     ```bash
     python scripts/install_hooks.py
     ```
@@ -122,8 +122,7 @@ A base de conhecimento é gerida internamente.
 
 Se você alterar a estrutura do banco (tabelas, colunas), **é obrigatório incluir o arquivo de migração (.sql)** no commit. Nossos hooks bloquearão o commit se detectarem mudanças no código de banco sem o respectivo SQL.
 
-*   Use nomes descritivos para suas migrations.
-*   Consulte **[CONVENTIONAL_MIGRATIONS.md](CONVENTIONAL_MIGRATIONS.md)** para o padrão de nomenclatura.
+*   Use nomes descritivos para suas migrations. Consulte **[CONVENTIONAL_MIGRATIONS.md](CONVENTIONAL_MIGRATIONS.md)** para o padrão de nomenclatura.
 
 
 ## 📥 Abrindo um Pull Request
