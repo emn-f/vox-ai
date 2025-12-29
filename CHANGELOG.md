@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.36 - 29/12/2025
+
+### 🐛 Correções
+
+* Correção no nome do secret do supabase.
+
 ## v3.1.35 - 29/12/2025
 
 ### ✨ Funcionalidades
