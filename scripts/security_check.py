@@ -181,6 +181,75 @@ def check_secrets_in_files(files: List[str]) -> bool:
     return True
 
 
+def check_database_migrations(files: List[str], mode: str) -> bool:
+    """
+    Verifica se alterações em arquivos chave de banco de dados (ex: database.py)
+    estão acompanhadas de um arquivo de migração (.sql).
+    Agora com heurística: Só trava se detectar adição de chaves em dicionários (novas colunas).
+    """
+    # 1. Filtra se database.py foi alterado
+    target_file = "src/core/database.py"
+    if not any(f.replace("\\", "/").endswith(target_file) for f in files):
+        return True
+
+    print_colored(
+        "🔎 Verificando Consistência de Migrations (Smart Check)...", COLOR_BLUE
+    )
+
+    # 2. Obtém o diff ignorando espaços em branco (-w) para evitar falsos positivos de formatação
+    cmd = []
+    if mode == "pre-commit":
+        cmd = ["git", "diff", "-w", "--cached", "--", target_file]
+    else:
+        # Pre-push
+        cmd = ["git", "diff", "-w", "origin/master..HEAD", "--", target_file]
+
+    try:
+        # O diff pode falhar se o arquivo for novo ou deletado, mas tratamos com try
+        diff_output = subprocess.check_output(cmd, stderr=subprocess.DEVNULL).decode()
+    except Exception:
+        return True
+
+    # 3. Analisa se há adição de chaves de dicionário (ex: "coluna": valor)
+    # Regex: Linha começando com +, espaço opcional, aspas, palavra, aspas, dois pontos
+    # Exemplo match: + "comment": comment,
+    new_column_pattern = re.compile(r"^\+\s*[\"'][\w_]+[\"']\s*:", re.MULTILINE)
+
+    potential_schema_change = False
+    if new_column_pattern.search(diff_output):
+        potential_schema_change = True
+
+    if not potential_schema_change:
+        # Se mudou o arquivo mas não achou padrão de nova coluna, deixa passar (ex: log, refatoração)
+        print_colored(
+            "✅ Alteração em database.py detectada, mas parece segura (sem novas colunas).",
+            COLOR_GREEN,
+        )
+        return True
+
+    # 4. Se detectou mudança de schema, exige .sql
+    has_sql = any(f.endswith(".sql") for f in files)
+
+    if not has_sql:
+        print_colored(
+            "⛔ BLOQUEIO DE CONSISTÊNCIA: Nova coluna detectada em 'database.py' sem migração (.sql).",
+            COLOR_RED,
+        )
+        print_colored(
+            "   O sistema detectou uma adição de campo (ex: 'chave': valor) no código,\n"
+            "   mas nenhum arquivo .sql foi encontrado no commit.\n"
+            "   - Por favor, adicione o script de migração do Supabase.\n"
+            "   - Se for um falso positivo, use 'git commit --no-verify'.",
+            COLOR_YELLOW,
+        )
+        return False
+
+    print_colored(
+        "✅ Check de Migrations OK (Schema Change + .sql encontrado).", COLOR_GREEN
+    )
+    return True
+
+
 # =============================================================================
 # INTEGRAÇÕES (SUPABASE E GEMINI)
 # =============================================================================
@@ -378,6 +447,10 @@ def main():
 
     # 2. Verificação de Segredos (Executa em AMBOS os modos)
     if not check_secrets_in_files(files):
+        sys.exit(1)
+
+    # 3. Verificação de Migrations (Consistência DB)
+    if not check_database_migrations(files, args.mode):
         sys.exit(1)
 
     # 3. Verificações Avançadas (Apenas PRE-PUSH)
