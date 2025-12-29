@@ -1,5 +1,5 @@
 
-const SUPABASE_URL = "__SUPABASE_URL__";
+const SUPABASE_URL_DEV = "__SUPABASE_URL_DEV__";
 const SUPABASE_ANON_KEY_DEV = "__SUPABASE_ANON_KEY_DEV__";
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         'Content-Type': 'application/json'
     };
 
-    fetch(`${SUPABASE_URL}/rest/v1/knowledge_base?select=kb_id&limit=1`, {
+    fetch(`${SUPABASE_URL_DEV}/rest/v1/knowledge_base?select=kb_id&limit=1`, {
         method: 'GET',
         headers: {
             ...headers,
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             console.warn("Header Content-Range indisponível. Usando fallback de contagem manual.");
-            return fetch(`${SUPABASE_URL}/rest/v1/knowledge_base?select=kb_id`, { headers })
+            return fetch(`${SUPABASE_URL_DEV}/rest/v1/knowledge_base?select=kb_id`, { headers })
                 .then(r => r.json())
                 .then(data => {
                     const el = document.getElementById('kb-count');
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
 
-    fetch(`${SUPABASE_URL}/rest/v1/knowledge_base?select=modificado_em&order=modificado_em.desc&limit=1`, {
+    fetch(`${SUPABASE_URL_DEV}/rest/v1/knowledge_base?select=modificado_em&order=modificado_em.desc&limit=1`, {
         method: 'GET',
         headers: headers
     })
