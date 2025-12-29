@@ -20,6 +20,9 @@ echo "running {hook_name} hook..."
 
 # Define o caminho do script python relativo à raiz do git
 SCRIPT_PATH="scripts/security_check.py"
+if [ "{hook_name}" = "commit-msg" ]; then
+    SCRIPT_PATH="scripts/validate_commit_msg.py"
+fi
 
 # Verifica se estamos na raiz (onde scripts/ existe)
 if [ ! -f "$SCRIPT_PATH" ]; then
@@ -42,7 +45,12 @@ else
 fi
 
 # Executa o script
-"$PYTHON_CMD" "$SCRIPT_PATH" --mode {hook_name}
+if [ "{hook_name}" = "commit-msg" ]; then
+    # O hook commit-msg recebe o caminho do arquivo de mensagem como $1
+    "$PYTHON_CMD" "$SCRIPT_PATH" "$1"
+else
+    "$PYTHON_CMD" "$SCRIPT_PATH" --mode {hook_name}
+fi
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -ne 0 ]; then
@@ -65,7 +73,7 @@ def install_hooks():
         )
         return
 
-    hooks_to_install = ["pre-commit", "pre-push"]
+    hooks_to_install = ["pre-commit", "pre-push", "commit-msg"]
 
     for hook in hooks_to_install:
         content = generate_hook_script(hook)
