@@ -9,7 +9,6 @@ tags:
   - streamlit
 pinned: false
 short_description: Open-Source AI Assistant powered by Gemini & Neural Search
-license: gpl-3.0
 thumbnail: >-
   https://cdn-uploads.huggingface.co/production/uploads/691dabcd414f8efa5ffbe9ef/AbpLiVKsB7xKgsGDActPN.png
 ---
