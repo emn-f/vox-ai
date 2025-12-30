@@ -37,6 +37,7 @@ commit_parsers = [
     { message = "^ci", group = "🤖 CI/CD & Automação" },
     { message = "^build", group = "📦 Build & Dependências" },
     { message = "^chore", group = "🔧 Tarefas Internas" },
+    { message = "^test", group = "🧪 Testes Unitários e de Integração" },
 ]
 
 filter_commits = false
