@@ -16,6 +16,6 @@ Em vez disso, pedimos que siga este processo:
 
 * **Confirmação:** Responderemos ao seu e-mail em até 48 horas para confirmar o recebimento.
 * **Análise:** Faremos uma análise técnica e manteremos você informado sobre o progresso.
-* **Correção:** Assim que a correção for aplicada, notificaremos você. Se desejar, daremos o devido crédito pela descoberta nas notas da versão (Release Notes).
+* **Correção:** Assim que a correção for aplicada, notificaremos você. Daremos o devido crédito pela descoberta nas notas da versão :).
 
-> Obrigado por ajudar a comunidade e tornar o Vox mais seguro para todos! 💛
+Obrigado por ajudar a comunidade e tornar o Vox mais seguro para todos! 💛
