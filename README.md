@@ -1,5 +1,5 @@
 ---
-title: VoxAI
+title: Vox AI
 emoji: 🏳️‍🌈
 colorFrom: purple
 colorTo: blue
