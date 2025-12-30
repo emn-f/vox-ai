@@ -9,7 +9,6 @@ python_version: 3.11
 app_file: vox_ai.py
 pinned: false
 license: gpl
-tags: [streamlit, llm, gemini]
 short_description: Open-Source AI Assistant powered by Gemini
 ---
 
