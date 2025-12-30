@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.2.11 - 30/12/2025
+
+### 🐛 Correções
+
+* Corrige a versão da licença nos metadados do README.md
+
 ## v3.2.10 - 30/12/2025
 
 ### 🐛 Correções
