@@ -1,5 +1,5 @@
 ---
-title: Vox AI
+title: VoxAI
 emoji: 🏳️‍🌈
 colorFrom: purple
 colorTo: blue
@@ -8,7 +8,7 @@ sdk_version: 1.52.1
 python_version: 3.11
 app_file: vox_ai.py
 pinned: false
-license: mit
+license: gpl v3
 ---
 
 # 🏳️‍🌈 Projeto Vox AI: Assistente de Apoio e Informação LGBTQIA+
