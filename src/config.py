@@ -11,7 +11,7 @@ logging.basicConfig(
 )
 
 # Logger principal
-logger = logging.getLogger("VoxAI")
+logger = logging.getLogger("Vox AI")
 
 
 def get_secret(key: str, default: str = "") -> str:
