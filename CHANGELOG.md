@@ -2,7 +2,6 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
-## v3.2.4 - 30/12/2025
 ## v3.2.3 - 30/12/2025
 
 ### 🐛 Correções
@@ -12,8 +11,6 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 ## v3.2.2 - 30/12/2025
 
 ### 📚 Documentação
-
-* Update CHANGELOG with test scripts and section adjustments
 
 * Atualiza licença nos metadados do hugging face no README
 
