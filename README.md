@@ -5,7 +5,8 @@ colorFrom: red
 colorTo: red
 sdk: docker
 app_port: 8501
-tags: streamlit
+tags:
+- streamlit
 pinned: false
 license: gpl
 short_description: Open-Source AI Assistant powered by Gemini & Neural Search
