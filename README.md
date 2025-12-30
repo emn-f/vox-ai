@@ -10,6 +10,12 @@ app_file: vox_ai.py
 pinned: false
 license: gpl-3.0
 short_description: Open-Source AI Assistant powered by Gemini
+tags:
+  - lgbtq
+  - ai
+  - chatbot
+  - gemini
+  - portuguese
 ---
 
 # 🏳️‍🌈 Projeto Vox AI: Assistente de Apoio e Informação LGBTQIA+
