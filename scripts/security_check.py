@@ -63,9 +63,9 @@ BLOCK_KEYWORDS = [
     "senha exposta",
     "sql injection",
     "remote code execution",
-    "xss",
+    " xss ",
     "[block]",
-    "rce",
+    " rce ",
     "exposed secret",
     "chave exposta",
 ]
