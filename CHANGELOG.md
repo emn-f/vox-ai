@@ -2,6 +2,65 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.2.14 - 30/12/2025
+
+### ♻️ Refatoração & Melhorias
+
+* Corrige nome do Vox AI na exibição do log
+
+
+### ✨ Funcionalidades
+
+* Change git push branch from master to dev
+
+* Remove metadata from README.md
+
+* Add metadata and description to README.md
+
+* Não executa code review se os arquivos modificados forem markdown
+
+* Sidebar organizado para melhor experiência do usuário
+
+
+### 🐛 Correções
+
+* Adiciona tags obrigatórias no README.md para deploy no HF
+
+* Remove push de tags para evitar erro de metadata em commits antigos
+
+* Remove push de tags para evitar erro de metadata em commits antigos
+
+* Refina keywords para evitar falsos positivos em XSS e RCE
+
+* Implementa verificação via regex boundaries (\b) para evitar falsos positivos
+
+* Corrige erro que fazia fluxo de report fechar sozinho em telas menores
+
+
+### 📚 Documentação
+
+* Documentações atualizadas para melhor clareza
+
+* Inventário de links do Vox revisado e atualizado
+
+
+### 🔧 Tarefas Internas
+
+* Utilizaçao de @st.cache_resource para previnir execução redundante da configuração da key do Gemini
+
+* Atualiza as dependências do projeto.
+
+* Padroniza geração de changelog de testes
+
+* Adição de comentário explicando necessidade para previnir exclusão
+
+* Padroniza utilização de `logger` para exibição de logs no terminal
+
+
+### 🧪 Testes Unitários e de Integração
+
+* Implementação de testes unitários e de integração utilizando `pytest`
+
 ## v3.2.13 - 30/12/2025
 
 ### 🐛 Correções
