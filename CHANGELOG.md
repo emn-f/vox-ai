@@ -1,48 +1,40 @@
 # Changelog do Vox AI
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
+Arquivo gerado automaticamente via `git-cliff`.
 
 ## v3.2.14 - 30/12/2025
-
-### ♻️ Refatoração & Melhorias
-
-* Corrige nome do Vox AI na exibição do log
-
-
-### ✨ Funcionalidades
-
-* Change git push branch from master to dev
-
-* Remove metadata from README.md
-
-* Add metadata and description to README.md
-
-* Não executa code review se os arquivos modificados forem markdown
-
-* Sidebar organizado para melhor experiência do usuário
-
 
 ### 🐛 Correções
 
 * Adiciona tags obrigatórias no README.md para deploy no HF
 
-* Remove push de tags para evitar erro de metadata em commits antigos
-
-* Remove push de tags para evitar erro de metadata em commits antigos
-
-* Refina keywords para evitar falsos positivos em XSS e RCE
+* (gatekeeper) Refina keywords para evitar falsos positivos em XSS e RCE
 
 * Implementa verificação via regex boundaries (\b) para evitar falsos positivos
 
-* Corrige erro que fazia fluxo de report fechar sozinho em telas menores
+* (sidebar) Corrige erro que fazia fluxo de report fechar sozinho em telas menores
 
+### ✨ Funcionalidades
+
+* Não executa code review se os arquivos modificados forem markdown
+
+* Melhorias na organização da Sidebar organizada
+
+### ♻️ Refatoração & Melhorias
+* Corrige nome do Vox AI na exibição do log
 
 ### 📚 Documentação
 
 * Documentações atualizadas para melhor clareza
 
-* Inventário de links do Vox revisado e atualizado
+ ### 🤖 CI/CD & Automação
 
+* (fix) Remove push de tags para evitar erro de metadata em commits antigos
+
+### 🧪 Testes Unitários e de Integração
+
+* Implementação de testes unitários e de integração utilizando `pytest`
 
 ### 🔧 Tarefas Internas
 
@@ -52,66 +44,9 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 * Padroniza geração de changelog de testes
 
-* Adição de comentário explicando necessidade para previnir exclusão
+* (startup_patch) Adição de comentário explicando necessidade do arquivo
 
 * Padroniza utilização de `logger` para exibição de logs no terminal
-
-
-### 🧪 Testes Unitários e de Integração
-
-* Implementação de testes unitários e de integração utilizando `pytest`
-
-## v3.2.13 - 30/12/2025
-
-### 🐛 Correções
-
-* Correção nos metadados para o Hugging Face
-
-## v3.2.12 - 30/12/2025
-
-### 🐛 Correções
-
-* Corrige metadados no README.
-
-## v3.2.11 - 30/12/2025
-
-### 🐛 Correções
-
-* Corrige a versão da licença nos metadados do README.md
-
-## v3.2.10 - 30/12/2025
-
-### 🐛 Correções
-
-* Corrige a versão da licença nos metadados do README.md
-
-## v3.2.9 - 30/12/2025
-
-### 🐛 Correções
-
-* Remove licença problematica dos metadados do README
-
-* Remove licença problematica dos metadados do README
-
-## v3.2.8 - 30/12/2025
-
-### 🐛 Correções
-
-* Remove licença problematica dos metadados do README
-
-## v3.2.7 - 30/12/2025
-
-### 🐛 Correções
-
-* Remove licença problematica dos metadados do README
-
-* Corrige a versão da licença nos metadados do README.md
-
-## v3.2.6 - 30/12/2025
-
-### 🐛 Correções
-
-* Corrige a versão da licença nos metadados do README.md
 
 ## v3.2.5 - 30/12/2025
 
@@ -119,27 +54,10 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 * Centraliza configuração de secrets principais e aplica logging
 
-
-### 🐛 Correções
-
-* Corrige a versão da licença nos metadados do README.md
-
-
 ### 🤖 CI/CD & Automação
 
 * Adiciona paths-ignore para ignorar arquivos .md no fluxo de revisão de segurança
 
-## v3.2.3 - 30/12/2025
-
-### 🐛 Correções
-
-* Corrige licença nos metadados do hugging face para `gpl-3.0`
-
-## v3.2.2 - 30/12/2025
-
-### 📚 Documentação
-
-* Atualiza licença nos metadados do hugging face no README
 
 ## v3.2.1 - 30/12/2025
 
