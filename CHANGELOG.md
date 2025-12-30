@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.2.13 - 30/12/2025
+
+### 🐛 Correções
+
+* Correção nos metadados para o Hugging Face
+
 ## v3.2.12 - 30/12/2025
 
 ### 🐛 Correções
