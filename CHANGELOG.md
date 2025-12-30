@@ -2,6 +2,22 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.2.5 - 30/12/2025
+
+### ♻️ Refatoração & Melhorias
+
+* Centraliza configuração de secrets principais e aplica logging
+
+
+### 🐛 Correções
+
+* Corrige a versão da licença nos metadados do README.md
+
+
+### 🤖 CI/CD & Automação
+
+* Adiciona paths-ignore para ignorar arquivos .md no fluxo de revisão de segurança
+
 ## v3.2.3 - 30/12/2025
 
 ### 🐛 Correções
