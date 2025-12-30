@@ -17,3 +17,6 @@ python-dotenv
 
 # Code Review System
 PyGithub>=2.1.1
+
+# Testing
+pytest

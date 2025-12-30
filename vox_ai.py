@@ -8,7 +8,7 @@ import traceback
 import streamlit as st
 
 import startup_patch
-from data.prompts.ui_content import SAUDACAO, SIDEBAR
+from data.prompts.ui_content import SAUDACAO, SIDEBAR_BODY, SIDEBAR_FOOTER
 from src.app.ui import (
     carregar_css,    carregar_sidebar,
     configurar_pagina,
@@ -22,24 +22,16 @@ from src.core.genai import (
     transcrever_audio,
 )
 from src.core.semantica import semantica
-from src.utils import git_version, texto_para_audio
+from src.utils import texto_para_audio
 
 configurar_pagina()
 carregar_css()
-
-if "kb_version_str" not in st.session_state:
-    st.session_state.kb_version_str = "Supabase v3.1"
-
-if "git_version_str" not in st.session_state:
-    st.session_state.git_version_str = git_version()
 
 if "session_id" not in st.session_state:
     st.session_state.session_id = str(uuid.uuid4())
     salvar_sessao(st.session_state.session_id)
 
-carregar_sidebar(
-    SIDEBAR, st.session_state.git_version_str, st.session_state.kb_version_str
-)
+carregar_sidebar(SIDEBAR_BODY, SIDEBAR_FOOTER)
 
 st.session_state.key_api = configurar_api_gemini()
 

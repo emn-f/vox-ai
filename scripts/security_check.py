@@ -340,13 +340,15 @@ def run_ai_code_review(diff_text: str) -> bool:
             # 1. Verifica keywords críticas em QUALQUER lugar do texto (soberano sobre [PASS])
             # Isso garante que se a IA citar "password exposed" no meio do texto, bloqueia.
             lower_review = review_text.lower()
-            if any(k in lower_review for k in BLOCK_KEYWORDS):
-                triggered_word = next(k for k in BLOCK_KEYWORDS if k in lower_review)
-                print_colored(
-                    f"⛔ Bloqueio: Palavra-chave crítica '{triggered_word}' encontrada no relatório.",
-                    COLOR_RED,
-                )
-                return False
+            for k in BLOCK_KEYWORDS:
+                # Usa regex boundaries (\b) para evitar falsos positivos como 'foorce' maping para 'rce'
+                pattern = r"\b" + re.escape(k) + r"\b"
+                if re.search(pattern, lower_review):
+                    print_colored(
+                        f"⛔ Bloqueio: Palavra-chave crítica '{k}' encontrada no relatório.",
+                        COLOR_RED,
+                    )
+                    return False
 
             clean_review = review_text.strip().upper()
 

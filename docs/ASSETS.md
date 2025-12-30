@@ -1,55 +1,58 @@
 # 🗺️ Vox AI: Inventário de Links e Ativos Digitais
 
-**Objetivo:** Centralizar todas as URLs externas e internas para facilitar a manutenção e atualização dos canais.
+**Objetivo:** Centralizar todas as URLs externas, internas e documentações do projeto para facilitar a manutenção e o acesso rápido.
 
-**Última Atualização:** 24/12/2025
+**Última Atualização:** 30/12/2025 
 
-**Responsável:** Emanuel Ferreira
+**Responsável:** Equipe Vox AI (Emanuel Ferreira)
 
+## 🌐 Canais Oficiais
 
-## 📱 Canais Oficiais (Redes Sociais)
+Canais de contato oficiais e de divulgação do Projeto Vox.
 
-Onde a marca Vox AI está presente publicamente.
-
-| Canal | @ / Nome | Link Direto | Status |
+| Canal | Username | Link | Descrição |
 | :--- | :--- | :--- | :--- |
-| **Instagram do Vox** | @projetovoxai | [https://www.instagram.com/projetovoxai/](https://www.instagram.com/projetovoxai/) | ✅ Ativo |
-| **Instagram (Parceiro)** | @casamariellefrancobr | [https://www.instagram.com/casamariellefrancobr/](https://www.instagram.com/casamariellefrancobr/) | ✅ Ativo |
-| **LinkedIn** | Projeto Vox | [https://www.linkedin.com/company/assistentevox/](https://www.linkedin.com/company/assistentevox/) | ✅ Ativo |
-| **Linktree** | @vox_ai | [https://linktr.ee/vox_ai](https://linktr.ee/vox_ai) | ✅ Ativo |
+| **Instagram** | @projetovoxai | [https://www.instagram.com/projetovoxai/](https://www.instagram.com/projetovoxai/) | Perfil oficial com novidades e conteúdo. |
+| **LinkedIn** | @projetovox | [https://www.linkedin.com/company/projetovox/](https://www.linkedin.com/company/projetovox/) | Página institucional do projeto. |
+| **Linktree** | @vox_ai | [https://linktr.ee/vox_ai](https://linktr.ee/vox_ai) | Agregador de todos os links acima. |
+| **Email** | Projeto Vox | [assistentedeapoiolgbtvox@gmail.com](mailto:assistentedeapoiolgbtvox@gmail.com) | Contato profissional e parcerias. |
 
+### 🤝 Parceiros
+| Canal | Link |
+| :--- | :--- |
+| **Casa Marielle Franco** | [@casamariellefrancobr](https://www.instagram.com/casamariellefrancobr/) |
 
 ## 🚀 Infraestrutura & Deploy
-
 Links técnicos de acesso à aplicação e código-fonte.
-
-| Ambiente | Descrição | Link |
+| Ambiente | URL | Status |
 | :--- | :--- | :--- |
-| **App Oficial (Streamlit)** | Aplicação principal (Produção) | https://assistentevox.streamlit.app/ |
-| **Espelho (Hugging Face)** | Ambiente de redundância | https://huggingface.co/spaces/emn-f/vox-ai |
-| **Repositório GitHub** | Código-fonte público | https://github.com/emn-f/vox-ai |
-| **Dashboard (GitPages)** | Dashboard do Vox | https://emn-f.github.io/vox-ai/ |
-
-
-## 🗣️ Feedback & Suporte
-
-Canais de contato direto com o usuário.
-
-| Canal | Finalidade | Link |
-| :--- | :--- | :--- |
-| **Form de feedback** | Avaliação e Feedback do Chatbot | https://forms.gle/GpG9ESkUpBTA7HoV9 |
-| **E-mail Oficial** | Suporte, Denúncias e Parcerias | `assistentedeapoiolgbtvox@gmail.com` |
-| **Form para contribuir com a Knowledge Base** | Contribuir com a base de conhecimento | https://forms.gle/Bwb3NEurV7YoZFXG8
+| **Streamlit Cloud** | [assistentevox.streamlit.app](https://assistentevox.streamlit.app/) | ✅ Produção (Principal) |
+| **Hugging Face** | [huggingface.co/spaces/emn-f/vox-ai](https://huggingface.co/spaces/emn-f/vox-ai) | 🤗 Deploy espelhado |
+| **Repositório GitHub** | [github.com/emn-f/vox-ai](https://github.com/emn-f/vox-ai) | 💻 Código Fonte |
+| **Dashboard no Git Pages** | [https://emn-f.github.io/vox-ai/](https://assistentevox.streamlit.app/) | 📊 Painel Administrativo |
 
 ## ⚖️ Documentação Legal e Governança
 
-Links diretos para os arquivos markdown de governança no repositório (Branch Master).
+Links diretos para os arquivos markdown de governança no repositório (Branch `master`).
+| Arquivo | Definição | Descrição |
+| :--- | :--- | :--- |
+| **[CONTRIBUTING.md](../CONTRIBUTING.md)** | **Como Contribuir** | Guia para contribuidores. |
+| **[CODE_OF_CONDUCT.md](../CODE_OF_CONDUCT.md)** | **Código de Conduta** | Conduta esperada da comunidade. |
+| **[CHANGELOG.md](../CHANGELOG.md)** | **Registro de Mudanças** | Histórico de versões e atualizações. |
+| **[SECURITY.md](../SECURITY.md)** | **Segurança** | Políticas de segurança e report de vulnerabilidades. |
+| **[PRIVACY_POLICY.md](../PRIVACY_POLICY.md)** | **Política de Privacidade** | Política de tratamento de dados. |
+| **[CONVENTIONAL_COMMITS.md](../CONVENTIONAL_COMMITS.md)** | **Padrão de Commits** | Convenção para mensagens de commit. |
+| **[CONVENTIONAL_MIGRATIONS.md](../CONVENTIONAL_MIGRATIONS.md)** | **Migrações de Banco** | Diretrizes para versionamento e scripts de migração (.sql). |
 
-* **Política de Privacidade:** [PRIVACY_POLICY.md](https://github.com/emn-f/vox-ai/blob/master/PRIVACY_POLICY.md)
-* **Termos de Segurança:** [SECURITY.md](https://github.com/emn-f/vox-ai/blob/master/SECURITY.md)
-* **Código de Conduta:** [CODE_OF_CONDUCT.md](https://github.com/emn-f/vox-ai/blob/master/CODE_OF_CONDUCT.md)
-* **Licença (MIT):** [LICENSE](https://github.com/emn-f/vox-ai/blob/master/LICENSE)
-* **Guia de Contribuição:** [CONTRIBUTING.md](https://github.com/emn-f/vox-ai/blob/master/LICENSE/CONTRIBUTING.md)
+### 🗣️ Feedback & Contribuição da comunidade
+
+Canais de contato direto com o usuário.
+
+| Canal | Finalidade | Acesso |
+| :--- | :--- | :--- |
+| **Formulário de Feedback** | Avaliar a experiência com o Chatbot | https://forms.gle/GpG9ESkUpBTA7HoV9 |
+| **Contribuição de Conteúdo** | Sugerir novos temas para a Base de Conhecimento | https://forms.gle/Bwb3NEurV7YoZFXG8 |
+| **E-mail Oficial** | Suporte, Denúncias e Parcerias | [assistentedeapoiolgbtvox@gmail.com](mailto:assistentedeapoiolgbtvox@gmail.com) |
 
 ## 🎨 Ativos de Design (Ícones)
 

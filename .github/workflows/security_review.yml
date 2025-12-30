@@ -1,6 +1,10 @@
 name: 🔒 Security & Code Review
 
 on:
+  push:
+    branches: [ "dev", "master" ]
+    paths-ignore:
+      - "**.md"
   pull_request:
     branches: [ "master" ]
     paths-ignore:
