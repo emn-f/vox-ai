@@ -2,6 +2,42 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.2.1 - 30/12/2025
+
+### ♻️ Refatoração & Melhorias
+
+* Melhorias na formatação de `security_check`
+
+### ✨ Funcionalidades
+
+* Implementa fluxo completo de denúncia com seleção de categorias e campo de comentário
+
+
+### 📚 Documentação
+
+* Adiciona guias de convenção para commits e migrations (`CONVENTIONAL_COMMITS.md` e `CONVETIONAL_MIGRATIONS.md`)
+
+* Adiciona instalação de Git Hooks, diretrizes de migração e referência para commits convencionais nas instruções de contribuição
+
+* Altera licença de MIT para GNU GPLv3
+
+* Atualiza guia de contribuição com fluxo de hooks e migrations
+
+
+### 🔧 Tarefas Internas
+
+* Configura git hook para validar mensagens de commit
+
+
+### 🤖 CI/CD & Automação
+
+* Adiciona trava de segurança para migrations de banco de dados
+
+* Ativa cache do pip e utiliza novo requirements-gatekeep para acelerar code review
+### 🧪 Testes
+
+* Adiciona scripts de teste de conexão e banco de dados
+
 ## v3.1.37 - 29/12/2025
 
 ### ✨ Funcionalidades
@@ -14,6 +50,7 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 * Ajustes no prompt de segurança
 
 * Corrige erro de conexão com supabase do hugging face
+
 
 ## v3.1.36 - 29/12/2025
 
