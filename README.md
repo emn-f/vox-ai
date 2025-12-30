@@ -18,7 +18,7 @@ license: mit
 [![Gemini](https://img.shields.io/badge/Gemini-8E75B8?style=flat-square&logo=google&logoColor=white)](https://ai.google.dev/)
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black)](https://huggingface.co/)
 [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white)](https://docs.github.com/en/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0)
 
 ### [Acesse aqui o Vox AI](https://assistentevox.streamlit.app/) | [Dashboard no GitPages](https://emn-f.github.io/vox-ai/)
 
@@ -45,6 +45,7 @@ Ser um ponto de apoio digital seguro, oferecendo informações confiáveis, orie
 * **Interface Acolhedora:** Chatbot intuitivo desenvolvido com Streamlit, focado na experiência do usuário.
 * **Busca Semântica (RAG):** Respostas embasadas em uma base de conhecimento curada, utilizando `SentenceTransformers` para garantir precisão e evitar alucinações.
 * **IA Generativa:** Integração com Google Gemini, instruído para atuar com empatia e segurança.
+* **Sistema de Denúncia:** Ferramenta integrada ao chat para reportar respostas inadequadas, alucinações ou violações, com categorização e comentários.
 * **Feedback Loop:** Mecanismo de avaliação integrado para melhoria contínua baseada na opinião da comunidade.
 * **Portal de Transparência:** Um [Dashboard](https://emn-f.github.io/vox-ai/) público para acompanhar changelogs, status da base de dados e outras métricas do projeto.
 
@@ -77,7 +78,7 @@ Segurança e respeito são pilares do Vox. Consulte nossos documentos oficiais:
 
 ## 📝 Licença
 
-Licenciado sob a **Licença MIT**. Veja o arquivo [LICENSE](LICENSE).
+Licenciado sob a **Licença GNU GPLv3**. Veja o arquivo [LICENSE](LICENSE).
 
 ## 🤝 Parceria com a Casa de Cultura Marielle Franco
 
