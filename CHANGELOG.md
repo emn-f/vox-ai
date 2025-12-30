@@ -2,6 +2,7 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.2.4 - 30/12/2025
 ## v3.2.3 - 30/12/2025
 
 ### 🐛 Correções
