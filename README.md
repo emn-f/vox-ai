@@ -8,6 +8,7 @@ app_port: 8501
 tags:
   - streamlit
 pinned: false
+license: gpl
 short_description: Open-Source AI Assistant powered by Gemini & Neural Search
 thumbnail: >-
   https://cdn-uploads.huggingface.co/production/uploads/691dabcd414f8efa5ffbe9ef/AbpLiVKsB7xKgsGDActPN.png
