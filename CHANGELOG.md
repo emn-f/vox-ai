@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.2.12 - 30/12/2025
+
+### 🐛 Correções
+
+* Corrige metadados no README.
+
 ## v3.2.11 - 30/12/2025
 
 ### 🐛 Correções
