@@ -8,6 +8,7 @@ from src.app.ui import stream_resposta
 from src.config import GEMINI_MODEL_NAME, get_secret, logger
 
 
+@st.cache_resource
 def configurar_api_gemini():
     try:
         api_key = get_secret("GEMINI_API_KEY")
