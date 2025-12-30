@@ -5,28 +5,18 @@ import uuid
 import google.generativeai as genai
 import streamlit as st
 
-from src.config import LIMITE_TEMAS, MAX_CHUNCK, SEMANTICA_THRESHOLD
+from src.config import LIMITE_TEMAS, MAX_CHUNCK, SEMANTICA_THRESHOLD, get_secret, logger
 from supabase import Client, create_client
 
 
 @st.cache_resource
 def get_db_client() -> Client:
     try:
-        if "supabase" in st.secrets:
-            url = st.secrets["supabase"]["url"]
-            key = st.secrets["supabase"]["key"]
-        else:
-            url = os.environ.get("SUPABASE_URL")
-            key = os.environ.get("SUPABASE_KEY")
+        url = get_secret("supabase.url")
+        key = get_secret("supabase.key")
 
         if not url or not key:
-            url = st.secrets.get("SUPABASE_URL")
-            key = st.secrets.get("SUPABASE_KEY")
-
-        if not url or not key:
-            st.error(
-                "❌ Credenciais do Supabase não encontradas (secrets.toml ou ENV variables)."
-            )
+            logger.error("Credenciais do Supabase não encontradas.")
             return None
 
         return create_client(url, key)
