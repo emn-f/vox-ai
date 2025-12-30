@@ -25,10 +25,6 @@ except ImportError:
 # CONSTANTES E CONFIGURAÇÕES
 # =============================================================================
 
-# =============================================================================
-# CONSTANTES E CONFIGURAÇÕES
-# =============================================================================
-
 # Constantes de Cores para Terminal
 COLOR_RED = "\033[91m"
 COLOR_GREEN = "\033[92m"
@@ -45,25 +41,23 @@ def print_colored(msg: str, color: str = COLOR_RESET):
         print(msg)
 
 
-# Configuração da IA (Google Gemini)
-# Modelo: gemini-2.5-flash (Mais recente detectado)
-# Limite máximo de caracteres para envio à IA
 SECRETS_PATTERNS = [
     (r"sk-[a-zA-Z0-9]{48}", "OpenAI API Key"),
     (r"ghp_[a-zA-Z0-9]{36}", "GitHub Personal Access Token"),
     (r"xox[baprs]-([0-9a-zA-Z]{10,48})?", "Slack Token"),
     (r"-----BEGIN PRIVATE KEY-----", "Generic Private Key"),
     (r"AIza[0-9A-Za-z-_]{35}", "Google API Key"),
-    (r"\bey[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*", "Potential JWT/Token"),
+    (
+        r"\bey[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*",
+        "Potential JWT/Token",
+    ),
     (
         r"(?i)(?:key|secret|password|token|auth|credential|jwt)\w*\s*=\s*['\"](?!__)[\w\-@\.]{24,}['\"]",
         "Generic High-Entropy Assignment",
     ),
 ]
 
-# Palavras-chave que, se a IA mencionar, bloqueiam o push.
 # Palavras-chave específicas que indicam problemas reais.
-# Removemos termos genéricos para evitar falsos positivos quando a IA diz "Não foi encontrada vulnerabilidade crítica".
 BLOCK_KEYWORDS = [
     "password exposed",
     "senha exposta",
@@ -75,8 +69,6 @@ BLOCK_KEYWORDS = [
     "exposed secret",
     "chave exposta",
 ]
-
-# ...
 
 
 def load_secrets() -> dict:
@@ -357,7 +349,7 @@ def run_ai_code_review(diff_text: str) -> bool:
                 return False
 
             clean_review = review_text.strip().upper()
-            
+
             # 2. Verifica tag de bloqueio explícito
             if clean_review.startswith("[BLOCK]"):
                 print_colored(
@@ -369,12 +361,14 @@ def run_ai_code_review(diff_text: str) -> bool:
             if clean_review.startswith("[PASS]"):
                 print_colored("✅ IA Aprovou (Protocolo [PASS]).", COLOR_GREEN)
                 return True
-            
+
             # Fallback (sem tag clara) -> Bloqueia por segurança ou Passa com aviso?
             # Por segurança, melhor pedir para verificar manualmente se não entendeu.
-            print_colored("⚠️ Resposta da IA inconclusiva (sem [PASS]/[BLOCK]). Verifique o log acima.", COLOR_YELLOW)
-            return True # Deixa passar se não detectou perigo explícito (keywords já filtraram)
-
+            print_colored(
+                "⚠️ Resposta da IA inconclusiva (sem [PASS]/[BLOCK]). Verifique o log acima.",
+                COLOR_YELLOW,
+            )
+            return True  # Deixa passar se não detectou perigo explícito (keywords já filtraram)
 
     except Exception as e:
         print_colored(f"⚠️ Erro ao consultar Gemini: {e}", COLOR_YELLOW)
