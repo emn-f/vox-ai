@@ -1,3 +1,17 @@
+---
+title: Vox AI
+emoji: 🏳️‍🌈
+colorFrom: purple
+colorTo: red
+sdk: streamlit
+sdk_version: 1.52.2
+python_version: 3.11
+app_file: vox_ai.py
+pinned: false
+license: gpl-3.0
+short_description: Open-Source AI Assistant powered by Gemini
+---
+
 # 🏳️‍🌈 Projeto Vox AI: Assistente de Apoio e Informação LGBTQIA+
 
 [![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
