@@ -88,35 +88,30 @@ def dialog_reportar():
                     return
 
 
-def carregar_sidebar(sidebar_content, git_version, kb_version):
+def carregar_sidebar(sidebar_content, sidebar_footer):
     with st.sidebar:
-        col_clear, col_report = st.columns([0.4, 0.6])
-
-        with col_clear:
-            if st.button("🧹 Limpar", help="Limpar histórico do chat"):
-                st.session_state.pop("hist", None)
-                st.session_state.pop("hist_exibir", None)
-                st.rerun()
-
-        with col_report:
-            if st.button("🚩 Reportar", help="Reportar conversa inadequada"):
-                dialog_reportar()
+        # Body
+        st.markdown(sidebar_content, unsafe_allow_html=True)
 
         st.link_button(
             label="💛 Ajude o Vox a crescer!",
             url="https://forms.gle/fw8CNXaFme3FnNxn6",
-            help="Ajude a expandir o conhecimento da IA respondendo um formulário rápido.",
+            use_container_width=True,
         )
 
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("🧹 Limpar conversa", use_container_width=True):
+                st.session_state.pop("hist", None)
+                st.session_state.pop("hist_exibir", None)
+                st.rerun()
+        with col2:
+            if st.button("🚩 Reportar", use_container_width=True):
+                dialog_reportar()
         st.markdown("---")
-        st.markdown(sidebar_content, unsafe_allow_html=True)
 
-        version_display = f"""
-        <div style='color: #88888888; text-align: center; margin: auto; font-size: 0.9em;'>
-            {git_version} | KB: {kb_version}
-        </div>
-        """
-        st.sidebar.markdown(version_display, unsafe_allow_html=True)
+        # Footer
+        st.markdown(sidebar_footer, unsafe_allow_html=True)
 
 
 def stream_resposta(resposta):
