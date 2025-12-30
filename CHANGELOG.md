@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.2.8 - 30/12/2025
+
+### 🐛 Correções
+
+* Remove licença problematica dos metadados do README
+
 ## v3.2.7 - 30/12/2025
 
 ### 🐛 Correções
