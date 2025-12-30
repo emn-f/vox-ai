@@ -3,7 +3,7 @@
 # Contas e Redes Sociais
 INSTAGRAM_VOX = "https://www.instagram.com/projetovoxai/"
 INSTAGRAM_MARIELLE = "https://www.instagram.com/casamariellefrancobr/"
-LINKEDIN_VOX = "https://www.linkedin.com/company/assistentevox/"
+LINKEDIN_VOX = "https://www.linkedin.com/company/projetovox/"
 LINKTREE_VOX = "https://linktr.ee/vox_ai"
 EMAIL_CONTATO = "mailto:assistentedeapoiolgbtvox@gmail.com"
 
