@@ -3,13 +3,14 @@ title: Vox AI
 emoji: 🏳️‍🌈
 colorFrom: purple
 colorTo: red
-sdk: docker
-app_port: 8501
-tags:
-  - streamlit
+sdk: streamlit
+sdk_version: 1.52.2
+python_version: 3.11
+app_file: vox_ai.py
 pinned: false
 license: gpl
-short_description: Open-Source AI Assistant powered by Gemini & Neural Search
+tags: [streamlit, llm, gemini]
+short_description: Open-Source AI Assistant powered by Gemini
 ---
 
 # 🏳️‍🌈 Projeto Vox AI: Assistente de Apoio e Informação LGBTQIA+
