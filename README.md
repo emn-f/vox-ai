@@ -4,11 +4,13 @@ emoji: 🏳️‍🌈
 colorFrom: purple
 colorTo: blue
 sdk: streamlit
-sdk_version: 1.52.1
+sdk_version: 1.52.2
 python_version: 3.11
 app_file: vox_ai.py
 pinned: false
-license: gpl
+license: gpl-3.0
+thumbnail: >-
+  https://cdn-uploads.huggingface.co/production/uploads/691dabcd414f8efa5ffbe9ef/AbpLiVKsB7xKgsGDActPN.png
 ---
 
 # 🏳️‍🌈 Projeto Vox AI: Assistente de Apoio e Informação LGBTQIA+
