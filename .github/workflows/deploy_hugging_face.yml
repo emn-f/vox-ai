@@ -18,4 +18,4 @@ jobs:
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push --force https://emn-f:$HF_TOKEN@huggingface.co/spaces/emn-f/vox-ai dev:main --tags
+        run: git push --force https://emn-f:$HF_TOKEN@huggingface.co/spaces/emn-f/vox-ai dev:main
