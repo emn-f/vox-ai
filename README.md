@@ -8,7 +8,7 @@ sdk_version: 1.52.1
 python_version: 3.11
 app_file: vox_ai.py
 pinned: false
-license: mit
+license: gpl-3.0
 ---
 
 # 🏳️‍🌈 Projeto Vox AI: Assistente de Apoio e Informação LGBTQIA+

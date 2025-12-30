@@ -2,6 +2,18 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.2.3 - 30/12/2025
+
+### 🐛 Correções
+
+* Corrige licença nos metadados do hugging face para `gpl-3.0`
+
+## v3.2.2 - 30/12/2025
+
+### 📚 Documentação
+
+* Atualiza licença nos metadados do hugging face no README
+
 ## v3.2.1 - 30/12/2025
 
 ### ♻️ Refatoração & Melhorias
