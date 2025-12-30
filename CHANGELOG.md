@@ -2,6 +2,19 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.1.37 - 29/12/2025
+
+### ✨ Funcionalidades
+
+* Adiciona política RLS para leitura da tabela `knowledge_base` utilizando key anon.
+
+
+### 🐛 Correções
+
+* Ajustes no prompt de segurança
+
+* Corrige erro de conexão com supabase do hugging face
+
 ## v3.1.36 - 29/12/2025
 
 ### 🐛 Correções
