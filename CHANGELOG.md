@@ -1,58 +1,52 @@
 # Changelog do Vox AI
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
+Arquivo gerado automaticamente via `git-cliff`.
 
-## v3.2.13 - 30/12/2025
-
-### 🐛 Correções
-
-* Correção nos metadados para o Hugging Face
-
-## v3.2.12 - 30/12/2025
+## v3.2.14 - 30/12/2025
 
 ### 🐛 Correções
 
-* Corrige metadados no README.
+* Adiciona tags obrigatórias no README.md para deploy no HF
 
-## v3.2.11 - 30/12/2025
+* (gatekeeper) Refina keywords para evitar falsos positivos em XSS e RCE
 
-### 🐛 Correções
+* Implementa verificação via regex boundaries (\b) para evitar falsos positivos
 
-* Corrige a versão da licença nos metadados do README.md
+* (sidebar) Corrige erro que fazia fluxo de report fechar sozinho em telas menores
 
-## v3.2.10 - 30/12/2025
+### ✨ Funcionalidades
 
-### 🐛 Correções
+* Não executa code review se os arquivos modificados forem markdown
 
-* Corrige a versão da licença nos metadados do README.md
+* Melhorias na organização da Sidebar organizada
 
-## v3.2.9 - 30/12/2025
+### ♻️ Refatoração & Melhorias
+* Corrige nome do Vox AI na exibição do log
 
-### 🐛 Correções
+### 📚 Documentação
 
-* Remove licença problematica dos metadados do README
+* Documentações atualizadas para melhor clareza
 
-* Remove licença problematica dos metadados do README
+ ### 🤖 CI/CD & Automação
 
-## v3.2.8 - 30/12/2025
+* (fix) Remove push de tags para evitar erro de metadata em commits antigos
 
-### 🐛 Correções
+### 🧪 Testes Unitários e de Integração
 
-* Remove licença problematica dos metadados do README
+* Implementação de testes unitários e de integração utilizando `pytest`
 
-## v3.2.7 - 30/12/2025
+### 🔧 Tarefas Internas
 
-### 🐛 Correções
+* Utilizaçao de @st.cache_resource para previnir execução redundante da configuração da key do Gemini
 
-* Remove licença problematica dos metadados do README
+* Atualiza as dependências do projeto.
 
-* Corrige a versão da licença nos metadados do README.md
+* Padroniza geração de changelog de testes
 
-## v3.2.6 - 30/12/2025
+* (startup_patch) Adição de comentário explicando necessidade do arquivo
 
-### 🐛 Correções
-
-* Corrige a versão da licença nos metadados do README.md
+* Padroniza utilização de `logger` para exibição de logs no terminal
 
 ## v3.2.5 - 30/12/2025
 
@@ -60,27 +54,10 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 * Centraliza configuração de secrets principais e aplica logging
 
-
-### 🐛 Correções
-
-* Corrige a versão da licença nos metadados do README.md
-
-
 ### 🤖 CI/CD & Automação
 
 * Adiciona paths-ignore para ignorar arquivos .md no fluxo de revisão de segurança
 
-## v3.2.3 - 30/12/2025
-
-### 🐛 Correções
-
-* Corrige licença nos metadados do hugging face para `gpl-3.0`
-
-## v3.2.2 - 30/12/2025
-
-### 📚 Documentação
-
-* Atualiza licença nos metadados do hugging face no README
 
 ## v3.2.1 - 30/12/2025
 
