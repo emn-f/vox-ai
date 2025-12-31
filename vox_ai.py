@@ -10,7 +10,8 @@ import streamlit as st
 import startup_patch
 from data.prompts.ui_content import SAUDACAO, SIDEBAR_BODY, SIDEBAR_FOOTER
 from src.app.ui import (
-    carregar_css,    carregar_sidebar,
+    carregar_css,
+    carregar_sidebar,
     configurar_pagina,
     stream_resposta,
 )
@@ -22,7 +23,7 @@ from src.core.genai import (
     transcrever_audio,
 )
 from src.core.semantica import semantica
-from src.utils import texto_para_audio
+from src.utils import texto_para_audio, git_version
 
 configurar_pagina()
 carregar_css()
@@ -119,7 +120,7 @@ if "key_api" in st.session_state:
 
                 salvar_log_chat(
                     st.session_state.session_id,
-                    st.session_state.git_version_str,
+                    git_version(),
                     prompt_final,
                     resposta_log,
                     tema_match,
