@@ -18,19 +18,29 @@ tags:
   - portuguese
 ---
 
-# 🏳️‍🌈 Projeto Vox AI: Assistente de Apoio e Informação LGBTQIA+
+<div align="center">
 
-[![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat-square&logo=Streamlit&logoColor=white)](https://streamlit.io/)
-[![Gemini](https://img.shields.io/badge/Gemini-8E75B8?style=flat-square&logo=google&logoColor=white)](https://ai.google.dev/)
-[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black)](https://huggingface.co/)
-[![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white)](https://docs.github.com/en/actions)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0)
+# 🏳️‍🌈 Vox AI: Assistente de Apoio e Informação LGBTQIA+
+
+
+![Build Status](https://img.shields.io/github/actions/workflow/status/emn-f/vox-ai/production_pipeline.yml?branch=master&label=Build&logo=github&style=flat-square)
+![Prod Version](https://img.shields.io/github/v/release/emn-f/vox-ai?label=Prod&color=2ea44f&style=flat-square)
+![Dev Version](https://img.shields.io/github/v/tag/emn-f/vox-ai?include_prereleases&label=Dev&color=orange&style=flat-square)
+![License](https://img.shields.io/github/license/emn-f/vox-ai?style=flat-square&color=blue)
+
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&style=flat-square)
+![Streamlit](https://img.shields.io/badge/Deploy-Streamlit-FF4B4B?logo=streamlit&style=flat-square)
+![Supabase](https://img.shields.io/badge/Backend-Supabase-3ECF8E?logo=supabase&style=flat-square)
+![Gemini](https://img.shields.io/badge/AI-Gemini-8E75B2?logo=google&style=flat-square)
+![Hugging Face](https://img.shields.io/badge/Mirror-Hugging%20Face-FFD21E?logo=huggingface&style=flat-square&logoColor=black)
 
 ### [Acesse aqui o Vox AI](https://assistentevox.streamlit.app/) | [Dashboard no GitPages](https://emn-f.github.io/vox-ai/)
 
+</div>
+
+O **Vox AI** é um chatbot de apoio e informação a comunidade LGBTQIA+. Nossa missão é ser um ponto de apoio digital seguro, oferecendo informações confiáveis, orientação e acolhimento para a comunidade e seus aliados. O Vox AI usa tecnologia para combater a desinformação e promover cidadania, respeito e dignidade.
+
 ## 📋 Sumário
-* [💡 Sobre o Projeto](#-sobre-o-projeto)
 * [✨ Funcionalidades](#-funcionalidades)
 * [💻 Tecnologias Utilizadas](#-tecnologias-utilizadas)
 * [🤖 Automação e CI/CD](#-automação-e-cicd)
@@ -41,11 +51,6 @@ tags:
 * [👥 Equipe](#-equipe)
 * [📬 Contato](#-contato)
 
-## 💡 Sobre o Projeto
-O **Vox AI** é um chatbot de apoio e informação a comunidade LGBTQIA+.
-
-### Missão
-Ser um ponto de apoio digital seguro, oferecendo informações confiáveis, orientação e acolhimento para a comunidade e seus aliados. O Vox AI usa tecnologia para combater a desinformação e promover cidadania, respeito e dignidade.
 
 ## ✨ Funcionalidades
 
