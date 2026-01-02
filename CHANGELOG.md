@@ -3,6 +3,45 @@
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.2.16 - 02/01/2026
+
+### ♻️ Refatoração & Melhorias
+
+* Correção de erro no sumário
+
+## v3.2.15 - 02/01/2026
+
+### 🐛 Correções
+
+* Corrigido nome da função que busca versão atual do Vox para registro de log
+
+### 📚 Documentação
+* README atualizado de acordo com o status atual do projeto
+
+
+### 📦 Build & Dependências
+
+* Remoção de libs que não são mais utilizadas
+
+
+### 🔧 Tarefas Internas
+
+* Adição de arquivos do pytest no .gitginore
+
+
+### 🤖 CI/CD & Automação
+
+* Adiciona log automatico de bloqueios e sugestões do Code Reviewer
+
+* Melhorias na mensagem exibida pelo Code Reviewer
+
+* Tenta abrir o arquivo de log do code reviewer automaticamente
+
+
+### 🧪 Testes Unitários e de Integração
+
+* Implementa testes automatizados para o fluxo de code review da IA
+
 ## v3.2.14 - 30/12/2025
 
 ### 🐛 Correções
@@ -156,10 +195,6 @@ Arquivo gerado automaticamente via `git-cliff`.
 * Adiciona .agent ao .gitignore.
 
 ## v3.1.32 - 28/12/2025
-
-### revert
-
-* Remove code review por IA (abordagem errada e push equivocado)
 
 ### 🎨 Estilo e Formatação
 
