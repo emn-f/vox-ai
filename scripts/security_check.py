@@ -148,16 +148,22 @@ CODE REVIEWER FEEDBACK (Gemini):
     try:
         with open(log_file, "a", encoding="utf-8") as f:
             f.write(entry)
-        # print_colored(f"📝 Evento registrado em '{log_file}'", COLOR_BLUE)
-
         # Se for um Bloqueio, tenta abrir o log automaticamente para o usuário ver
         if "BLOCK" in event_type:
             try:
-                # Tenta abrir no VS Code se disponível
-                if shutil.which("code"):
-                    subprocess.Popen(["code", log_file], shell=True)
+                # Conta linhas para tentar posicionar o cursor no final
+                line_count = 0
+                if os.path.exists(log_file):
+                    with open(log_file, "r", encoding="utf-8") as f_cnt:
+                        line_count = sum(1 for _ in f_cnt)
+
+                # Tenta abrir log no Notepad++ no VS Code ou no edito .txt padrão do Windows
+                if shutil.which("notepad++"):
+                    subprocess.Popen(["notepad++", log_file])
+                elif shutil.which("code"):
+                    subprocess.Popen(["code", "-g", log_file], shell=True)
                 else:
-                    # Fallback para o editor padrão do sistema (Windows: start, Linux: xdg-open)
+                    # Fallback para o editor padrão do sistema
                     if sys.platform == "win32":
                         os.startfile(log_file)
                     else:
