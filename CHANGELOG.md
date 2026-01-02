@@ -2,6 +2,12 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+## v3.2.16 - 02/01/2026
+
+### ♻️ Refatoração & Melhorias
+
+* Correção de erro no sumário
+
 ## v3.2.15 - 02/01/2026
 
 ### 🐛 Correções
