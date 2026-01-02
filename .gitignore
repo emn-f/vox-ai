@@ -80,6 +80,7 @@ vox
 # Specific Scripts & Ignores
 # ==============================================================================
 scripts/gerar_embedding.py
+ai_gatekeeper.log
 
 # ==============================================================================
 # Arquivos do PyTest
