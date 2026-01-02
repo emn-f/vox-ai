@@ -3,6 +3,8 @@ import sys
 import re
 import argparse
 import subprocess
+import datetime
+import shutil
 from typing import List, Optional, Any
 
 # =============================================================================
@@ -69,6 +71,108 @@ BLOCK_KEYWORDS = [
     "exposed secret",
     "chave exposta",
 ]
+
+
+def get_git_metadata():
+    """Coleta metadados básicos do estado atual do git para o log."""
+    try:
+        # Hash Curto
+        commit_hash = (
+            subprocess.check_output(["git", "rev-parse", "--short", "HEAD"])
+            .decode()
+            .strip()
+        )
+        # Branch Atual
+        branch = (
+            subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"])
+            .decode()
+            .strip()
+        )
+        # Tenta pegar a tag mais próxima, se houver
+        try:
+            version = (
+                subprocess.check_output(["git", "describe", "--tags", "--abbrev=0"])
+                .decode()
+                .strip()
+            )
+        except Exception:
+            version = "No Tag"
+
+        except Exception:
+            version = "No Tag"
+
+        # Mensagem do Commit (HEAD)
+        try:
+            msg = (
+                subprocess.check_output(["git", "log", "-1", "--pretty=%B"])
+                .decode()
+                .strip()
+            )
+        except Exception:
+            msg = "No Message"
+
+        return {
+            "hash": commit_hash,
+            "branch": branch,
+            "version": version,
+            "message": msg,
+        }
+    except Exception:
+        return {
+            "hash": "Unknown",
+            "branch": "Unknown",
+            "version": "Unknown",
+            "message": "Unknown",
+        }
+
+
+def log_ai_event(event_type: str, ai_response: str):
+    """Grava o evento em um arquivo de log persistente."""
+    log_file = "ai_gatekeeper.log"
+    meta = get_git_metadata()
+    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    entry = f"""
+=============================================================================
+TIMESTAMP: {now}
+EVENT: {event_type}
+VERSION: {meta['version']}
+BRANCH: {meta['branch']}
+COMMIT (HEAD): {meta['hash']}
+MESSAGE: {meta['message']}
+
+CODE REVIEWER FEEDBACK (Gemini):
+{ai_response.strip()}
+=============================================================================
+"""
+    try:
+        with open(log_file, "a", encoding="utf-8") as f:
+            f.write(entry)
+        # Se for um Bloqueio, tenta abrir o log automaticamente para o usuário ver
+        if "BLOCK" in event_type:
+            try:
+                # Conta linhas para tentar posicionar o cursor no final
+                line_count = 0
+                if os.path.exists(log_file):
+                    with open(log_file, "r", encoding="utf-8") as f_cnt:
+                        line_count = sum(1 for _ in f_cnt)
+
+                # Tenta abrir log no Notepad++ no VS Code ou no edito .txt padrão do Windows
+                if shutil.which("notepad++"):
+                    subprocess.Popen(["notepad++", log_file])
+                elif shutil.which("code"):
+                    subprocess.Popen(["code", "-g", log_file], shell=True)
+                else:
+                    # Fallback para o editor padrão do sistema
+                    if sys.platform == "win32":
+                        os.startfile(log_file)
+                    else:
+                        subprocess.Popen(["xdg-open", log_file])
+            except Exception:
+                pass  # Falha silenciosa se não conseguir abrir
+
+    except Exception as e:
+        print_colored(f"⚠️ Falha ao gravar log: {e}", COLOR_YELLOW)
 
 
 def load_secrets() -> dict:
@@ -163,10 +267,12 @@ def check_secrets_in_files(files: List[str]) -> bool:
             pass
 
     if found_secrets:
+        msg = "Segredos detectados no código. Bloqueio automático de segurança."
         print_colored(
-            "⛔ Bloqueio: Segredos detectados no código. Remova-os antes de commitar.",
+            f"⛔ Bloqueio: {msg} Remova-os antes de commitar.",
             COLOR_RED,
         )
+        log_ai_event("BLOCK (Local Secret Check)", msg)
         return False
 
     print_colored("✅ Nenhum segredo detectado.", COLOR_GREEN)
@@ -223,8 +329,9 @@ def check_database_migrations(files: List[str], mode: str) -> bool:
     has_sql = any(f.endswith(".sql") for f in files)
 
     if not has_sql:
+        msg = "Nova coluna detectada em 'database.py' sem migração (.sql)."
         print_colored(
-            "⛔ BLOQUEIO DE CONSISTÊNCIA: Nova coluna detectada em 'database.py' sem migração (.sql).",
+            f"⛔ BLOQUEIO DE CONSISTÊNCIA: {msg}",
             COLOR_RED,
         )
         print_colored(
@@ -234,6 +341,7 @@ def check_database_migrations(files: List[str], mode: str) -> bool:
             "   - Se for um falso positivo, use 'git commit --no-verify'.",
             COLOR_YELLOW,
         )
+        log_ai_event("BLOCK (Missing Migration)", msg)
         return False
 
     print_colored(
@@ -325,7 +433,7 @@ def run_ai_code_review(diff_text: str) -> bool:
             "Regras:\n"
             "1. Se encontrar VULNERABILIDADE CRÍTICA (senha exposta, SQLi, chave de API) -> Inicie a resposta com '[BLOCK]' e explique o erro.\n"
             "2. Se encontrar BUG DE PRODUÇÃO (loop infinito, crash certo) -> Inicie a resposta com '[BLOCK]' e explique.\n"
-            "3. Se for seguro (mesmo com débitos técnicos leves) -> Responda ESTRITAMENTE: '[PASS] Aprovado. So fale algo a mais se voce tiver alguma melhoria para sugerir.'\n"
+            "3. Se for seguro (mesmo com débitos técnicos leves) -> Responda ESTRITAMENTE: '[PASS] Aprovado.' Só fale algo a mais se voce tiver alguma melhoria para sugerir.\n"
             "   NÃO escreva resumos, NÃO elogie, NÃO explique nada se for aprovar. Seja mudo em caso de sucesso.\n\n"
             "DIFF DO CÓDIGO:\n"
             f"{safe_diff}"
@@ -348,6 +456,7 @@ def run_ai_code_review(diff_text: str) -> bool:
                         f"⛔ Bloqueio: Palavra-chave crítica '{k}' encontrada no relatório.",
                         COLOR_RED,
                     )
+                    log_ai_event("BLOCK (Keyword Trigger)", review_text)
                     return False
 
             clean_review = review_text.strip().upper()
@@ -357,15 +466,29 @@ def run_ai_code_review(diff_text: str) -> bool:
                 print_colored(
                     "⛔ Bloqueio: IA solicitou bloqueio explícito ([BLOCK]).", COLOR_RED
                 )
+                log_ai_event("BLOCK (AI Explicit)", review_text)
                 return False
 
-            # 3. Aprovação
+            # 3. Aprovação com ou sem sugestões
             if clean_review.startswith("[PASS]"):
-                print_colored("✅ IA Aprovou (Protocolo [PASS]).", COLOR_GREEN)
+                # Verifica se há conteúdo além do PASS (sugestões)
+                # Remove o prefixo padrão e espaços
+                content_body = re.sub(
+                    r"^\[PASS\]\s*(Aprovado\.?)?", "", review_text, flags=re.IGNORECASE
+                ).strip()
+
+                if (
+                    len(content_body) > 10
+                ):  # Se tiver mais que alguns caracteres, consideramos sugestão
+                    print_colored(
+                        "✅ IA Aprovou com sugestões de melhoria.", COLOR_GREEN
+                    )
+                    log_ai_event("PASS (With Suggestions)", review_text)
+                else:
+                    print_colored("✅ IA Aprovou (Limpo).", COLOR_GREEN)
+
                 return True
 
-            # Fallback (sem tag clara) -> Bloqueia por segurança ou Passa com aviso?
-            # Por segurança, melhor pedir para verificar manualmente se não entendeu.
             print_colored(
                 "⚠️ Resposta da IA inconclusiva (sem [PASS]/[BLOCK]). Verifique o log acima.",
                 COLOR_YELLOW,

@@ -18,6 +18,9 @@ NC='\\033[0m' # No Color
 
 echo "running {hook_name} hook..."
 
+# Força o Python a não fazer buffer do output (print aparece na hora)
+export PYTHONUNBUFFERED=1
+
 # Define o caminho do script python relativo à raiz do git
 SCRIPT_PATH="scripts/security_check.py"
 if [ "{hook_name}" = "commit-msg" ]; then
