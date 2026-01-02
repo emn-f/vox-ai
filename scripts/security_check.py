@@ -140,15 +140,15 @@ VERSION: {meta['version']}
 BRANCH: {meta['branch']}
 COMMIT (HEAD): {meta['hash']}
 MESSAGE: {meta['message']}
------------------------------------------------------------------------------
-AI FEEDBACK:
+
+CODE REVIEWER FEEDBACK (Gemini):
 {ai_response.strip()}
 =============================================================================
 """
     try:
         with open(log_file, "a", encoding="utf-8") as f:
             f.write(entry)
-        print_colored(f"📝 Evento registrado em '{log_file}'", COLOR_BLUE)
+        # print_colored(f"📝 Evento registrado em '{log_file}'", COLOR_BLUE)
 
         # Se for um Bloqueio, tenta abrir o log automaticamente para o usuário ver
         if "BLOCK" in event_type:
@@ -477,15 +477,12 @@ def run_ai_code_review(diff_text: str) -> bool:
                     print_colored(
                         "✅ IA Aprovou com sugestões de melhoria.", COLOR_GREEN
                     )
-                    print(f"\n💡 Sugestões da IA:\n{content_body}\n")
                     log_ai_event("PASS (With Suggestions)", review_text)
                 else:
                     print_colored("✅ IA Aprovou (Limpo).", COLOR_GREEN)
 
                 return True
 
-            # Fallback (sem tag clara) -> Bloqueia por segurança ou Passa com aviso?
-            # Por segurança, melhor pedir para verificar manualmente se não entendeu.
             print_colored(
                 "⚠️ Resposta da IA inconclusiva (sem [PASS]/[BLOCK]). Verifique o log acima.",
                 COLOR_YELLOW,
