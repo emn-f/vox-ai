@@ -41,7 +41,7 @@ tags:
 O **Vox AI** é um chatbot de apoio e informação a comunidade LGBTQIA+. Nossa missão é ser um ponto de apoio digital seguro, oferecendo informações confiáveis, orientação e acolhimento para a comunidade e seus aliados. O Vox AI usa tecnologia para combater a desinformação e promover cidadania, respeito e dignidade.
 
 ## 📋 Sumário
-* [📊 Stats](#-stats)
+* [📊 Métricas e Status](#-métricas-e-status)
 * [✨ Funcionalidades](#-funcionalidades)
 * [💻 Tecnologias Utilizadas](#-tecnologias-utilizadas)
 * [🤖 Automação e CI/CD](#-automação-e-cicd)
