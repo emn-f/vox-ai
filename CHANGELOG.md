@@ -1,6 +1,7 @@
 # Changelog do Vox AI
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
+Arquivo gerado automaticamente via `git-cliff`.
 
 ## v3.2.16 - 02/01/2026
 
@@ -12,13 +13,9 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 ### 🐛 Correções
 
-* Corrigido nome da função que busca versão atual do Voxpara registro de log
-
+* Corrigido nome da função que busca versão atual do Vox para registro de log
 
 ### 📚 Documentação
-
-* Visual do README atualizado
-
 * README atualizado de acordo com o status atual do projeto
 
 
@@ -44,11 +41,6 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 ### 🧪 Testes Unitários e de Integração
 
 * Implementa testes automatizados para o fluxo de code review da IA
-
-# Changelog do Vox AI
-
-Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
-Arquivo gerado automaticamente via `git-cliff`.
 
 ## v3.2.14 - 30/12/2025
 
@@ -203,10 +195,6 @@ Arquivo gerado automaticamente via `git-cliff`.
 * Adiciona .agent ao .gitignore.
 
 ## v3.1.32 - 28/12/2025
-
-### revert
-
-* Remove code review por IA (abordagem errada e push equivocado)
 
 ### 🎨 Estilo e Formatação
 
