@@ -1,6 +1,47 @@
 # Changelog do Vox AI
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
+
+## v3.2.15 - 02/01/2026
+
+### 🐛 Correções
+
+* Corrigido nome da função que busca versão atual do Voxpara registro de log
+
+
+### 📚 Documentação
+
+* Visual do README atualizado
+
+* README atualizado de acordo com o status atual do projeto
+
+
+### 📦 Build & Dependências
+
+* Remoção de libs que não são mais utilizadas
+
+
+### 🔧 Tarefas Internas
+
+* Adição de arquivos do pytest no .gitginore
+
+
+### 🤖 CI/CD & Automação
+
+* Adiciona log automatico de bloqueios e sugestões do Code Reviewer
+
+* Melhorias na mensagem exibida pelo Code Reviewer
+
+* Tenta abrir o arquivo de log do code reviewer automaticamente
+
+
+### 🧪 Testes Unitários e de Integração
+
+* Implementa testes automatizados para o fluxo de code review da IA
+
+# Changelog do Vox AI
+
+Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 Arquivo gerado automaticamente via `git-cliff`.
 
 ## v3.2.14 - 30/12/2025
