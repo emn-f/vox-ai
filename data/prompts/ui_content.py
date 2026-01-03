@@ -1,4 +1,15 @@
-from src.external_links import *
+from src.external_links import (
+    INSTAGRAM_VOX,
+    INSTAGRAM_MARIELLE,
+    FORM_AVALIACAO,
+    LINKTREE_VOX,
+    LINKEDIN_VOX,
+    EMAIL_CONTATO,
+    GITHUB,
+    HUGGING_FACE_SPACE,
+    TERMS_OF_USE,
+    POLICY_PRIVACY,
+)
 from src.utils import git_version
 
 SAUDACAO = """
