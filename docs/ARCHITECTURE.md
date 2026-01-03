@@ -1,74 +1,150 @@
-# 🏗️ Arquitetura de Dados e RAG - Vox AI
+# 🏗️ Arquitetura de Dados e RAG no Vox AI
 
-Este documento detalha a arquitetura técnica do **Vox AI**, com foco no fluxo de dados, esquema do banco de dados vetorial e estratégia de recuperação de informação (RAG).
+Este documento detalha a arquitetura técnica do Vox AI, com foco no fluxo de dados, esquema do banco de dados (Supabase) e na estratégia de recuperação de informação (RAG) inteligente.
 
-## 🔄 Fluxo de Dados (Data Flow)
+## 🔄 Fluxo de Execução (Runtime Flow)
 
-O diagrama abaixo ilustra o ciclo de vida de uma interação do usuário, desde a entrada do prompt até a geração da resposta enriquecida pelo contexto.
+O diagrama abaixo ilustra o ciclo de vida de uma interação do usuário, desde a entrada do prompt até a geração da resposta e o log assíncrono.
 
 ```mermaid
-graph TD
-    A("👤 Usuário") -->|Prompt| B("🖥️ Streamlit Frontend")
-    B -->|Texto| C("⚙️ Embeddings")
-    C -->|API| D("Google Gemini")
-    D -->|Vetor| E[("🗄️ Supabase DB")]
+flowchart TD
+    User([👤 Usuário]) -->|Texto ou Áudio| UI[🖥️ Streamlit Interface]
     
-    subgraph Retrieval [Retrieval - Busca Semântica]
-        E -->|RPC| F("Busca Vetorial")
-        F -->|Threshold| G("Filtro de Tópicos")
-        G -->|Lógica RAG| H("Recuperação Chunks")
+    subgraph Core Logic
+        UI -->| Dados de entrada processados | Embed[⚙️ Gerador de Embeddings]
+        Embed -->| Geração de Vetor| GeminiAPI[☁️ Google Gemini API]
+        GeminiAPI -->|Valor do Vetor| Search[🔍 Busca Semântica]
     end
+
+    subgraph RAG Strategy
+        Search -->|pgvector / RPC| DB
+        DB[(🗄️ Database Postgres)]  --> Logic{⚖️ Análise de Tópicos}
+        Logic -->|Disperso| TopK[Recupera Top-K Chunks]
+        Logic -->|Concentrado| Expand[Recupera Tópico Completo]
+        TopK & Expand --> Context[📝 Montagem do Contexto]
+    end
+
+    Context -->|Prompt + Contexto| LLM[🤖 Gemini Flash]
+    LLM -->|Resposta Gerada| UI
+    UI -->|Exibe| User
     
-    H -->|Contexto| I("🤖 LLM: Gemini 1.5")
-    I -->|Resposta| B
-    B -.->|Exibir| A
+    
+    %% Fluxo de Log
+    LLM -.->|Async Save| LogDB[(📝 Log de Chat)]
+    LLM -.->|Retorno pro Usuário| ChatUser[(🖥️ Streamlit Interface)]
 ```
 
-## 🗄️ Database Schema (Supabase/PostgreSQL)
+## 🧠 Lógica de Recuperação Inteligente (Smart RAG)
 
-O Vox utiliza o PostgreSQL com a extensão `pgvector` gerenciado pelo Supabase. Abaixo estão as principais tabelas e suas funções arquiteturais.
+O Vox utiliza o PostgreSQL com a extensão `pgvector` gerenciado pelo Supabase.
 
-### 1. Knowledge Base (`knowledge_base`)
-Armazena os fragmentos de informação curada para o RAG.
+Abaixo estão as principais funções arquiteturais.
 
-| Coluna | Tipo | Descrição |
-| :--- | :--- | :--- |
-| `kb_id` | `text` (PK) | Identificador único (ex: `vox-kb-0001`). |
-| `topico` | `text` | Categoria macro para agrupamento lógico. |
-| `descricao` | `text` | O conteúdo textual real (Chunk) usado no contexto. |
-| `embedding` | `vector(768)` | Vetor gerado pelo modelo `text-embedding-004`. |
-| `modificado_em` | `timestamp` | Controle de versão do dado. |
+```mermaid
+flowchart LR
+    Start((Início)) --> Query[Vetor do Usuário]
+    Query --> Fetch[Busca 10 Chunks mais similares]
+    Fetch --> Count{Tópico aparece<br/>3x ou mais?}
+    
+    Count -- Sim --> Strategy1[🚀 Estratégia: Contexto Expandido]
+    Strategy1 --> Action1[Busca TODOS os chunks do Tópico Vencedor]
+    
+    Count -- Não --> Strategy2[🔍 Estratégia: Tópicos Mistos]
+    Strategy2 --> Action2[Utiliza apenas os 5 melhores resultados]
+    
+    Action1 & Action2 --> Final[Contexto Final para o LLM]
+```
 
-> **Nota Técnica:** Utilizamos índices HNSW (`hnsw`) na coluna de embedding para garantir performance em buscas de alta dimensionalidade, sacrificando um pouco de precisão por velocidade em escala.
+## 🗄️ Database Schema (ER Diagram)
+O sistema utiliza Supabase (PostgreSQL) com as extensões `vector` e `pg_graphql`.
+Abaixo, o diagrama de Entidade-Relacionamento das tabelas principais.
 
-### 2. Logs de Chat (`chat_logs` & `chat_logs_kb`)
-Permitem rastreabilidade e auditoria das respostas da IA.
+```mermaid
+erDiagram
+    SESSIONS ||--o{ CHAT_LOGS : "referencia"
+    SESSIONS ||--o{ ERROR_LOGS : "referencia"
+    SESSIONS ||--o{ USER_REPORTS : "referencia"
+    CHAT_LOGS ||--o{ CHAT_LOGS_KB : "referencia"
+    KNOWLEDGE_BASE ||--o{ CHAT_LOGS_KB : "referencia"
+    REPORT_CATEGORIES ||--o{ USER_REPORTS : "referencia"
 
-- **`chat_logs`**: Armazena o prompt do usuário, a resposta da IA e a versão do código (`git_version`) no momento da resposta.
-- **`chat_logs_kb`**: Tabela de junção que registra exatamente quais fragmentos (`kb_id`) foram usados para compor aquela resposta específica. Isso é crucial para debugar alucinações.
 
-## 🧠 Estratégia de RAG (Retrieval-Augmented Generation)
+    SESSIONS {
+        text session_id PK
+        timestamp created_at
+        int id  
+    }
 
-Nossa implementação de RAG foge do básico para garantir maior assertividade.
+    KNOWLEDGE_BASE {
+        text kb_id PK
+        text topico
+        text eixo_tematico
+        text descricao
+        text referencias
+        _text tags
+        text autor
+        timestampz created_at
+        int kb_count
+        vector embedding
+        timestampz modificado_em
+    }
 
-### 1. Modelo de Embedding
-Utilizamos o **Google text-embedding-004**, que gera vetores de 768 dimensões. Escolhemos este modelo pelo equilíbrio entre custo e performance semântica em língua portuguesa.
+    CHAT_LOGS {
+        bigint chat_id PK
+        text session_id
+        text prompt
+        text response
+        text git_version
+        timestampz created_at
+    }
 
-### 2. Recuperação de Contexto Inteligente
-Não fazemos apenas uma busca "burra" pelos Top-K resultados. Implementamos uma lógica de densidade de tópicos no arquivo `src/core/database.py`:
+    CHAT_LOGS_KB {
+        bigint chat_id FK
+        int chat_log_kb_id PK
+        text kb_id FK
+        float similarity
+        timestamptz created_at
+    }
 
-1.  **Busca Inicial**: Recuperamos os 10 chunks mais similares (Threshold 0.5).
-2.  **Análise de Tópico**: O algoritmo conta a frequência dos tópicos retornados.
-3.  **Expansão de Contexto**: Se um tópico aparece mais de 3 vezes na busca inicial (indicando alta relevância), o sistema descarta os chunks isolados e busca o contexto completo daquele tópico.
-    *   *Objetivo*: Fornecer ao LLM o contexto completo de um assunto (ex: "Protocolo PrEP") em vez de frases soltas.
+    USER_REPORTS {
+        bigint id PK
+        text session_id
+        bigint category_id FK
+        text comment
+        text git_version
+        text chat_history
+        timestamptz created_at
+    }
 
-## 3. Stack Tecnológica
+    REPORT_CATEGORIES {
+        int id PK
+        text label
+        text description
+        timestamptz created_at
+    }   
 
-- **Orquestração**: Python 3.11 + Streamlit
-- **Vector Store**: Supabase (`pgvector`)
-- **LLM & Embeddings**: Google Gemini API
-- **CI/CD**: GitHub Actions (Deploy automático de Migrations)
+    ERROR_LOGS {
+        int id PK
+        text error_id
+        text error_message
+        text session_id FK
+        text git_version
+        timestamptz created_at
+    }
 
-<div align="center">
-<p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p>
-</div>
+```
+
+### Detalhe das Tabelas Principais
+* `knowledge_base`: O núcleo do conhecimento. Utilizamos índices HNSW na coluna de embedding para performance em escala. Inclui a coluna `kb_count` incrementada via Trigger para métricas de utilidade.
+
+* `chat_logs_kb`: Tabela pivot fundamental para auditoria. Ela conecta uma resposta da IA (`chat_logs`) aos fragmentos exatos de conhecimento (`kb_id`) que foram usados para gerá-la, permitindo rastrear a fonte de possíveis alucinações.
+
+* `user_reports`: Conectada à tabela `report_categories`, permite que usuários classifiquem erros (ex: "Alucinação", "Ofensivo") para posterior análise da curadoria.
+
+### Stack Tecnológica
+* ***Orquestração***: Python 3.11 + Streamlit
+* ***Vector Store***: Supabase (`pgvector`)
+* ***LLM & Embeddings***: Google Gemini API (`gemini-1.5-flash` e `text-embedding-004`)
+* ***CI/C***D: GitHub Actions (Deploy automático de Migrations e Code Review)
+
+<div align="center"> <p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p> </div>
