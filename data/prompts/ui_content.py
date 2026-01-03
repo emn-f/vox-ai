@@ -84,12 +84,10 @@ SIDEBAR_FOOTER = f"""
                 </a>
             </div>
             <div class="footer-section" style="text-align:center; margin-top: 1em;">
+                <a href="{TERMS_OF_USE}" target="_blank" style="text-decoration: none;"
+                    class="legal-link">Termos de Uso</a></br>
                 <a href="{POLICY_PRIVACY}" target="_blank" style="text-decoration: none;"
-                    class="legal-link">Política de Privacidade</a><br>
-                <a href="{CODE_OF_CONDUCT}" target="_blank" style="text-decoration: none;"
-                    class="legal-link">Código de Conduta</a><br>
-                <a href="{POLICY_SECURITY}" target="_blank" style="text-decoration: none;"
-                    class="legal-link">Segurança</a>
+                    class="legal-link">Política de Privacidade</a>
             </div>
             <div class="copyright" style="text-align:center; color:#666; font-size:0.8em; margin-top:1.5em;">
                 Copyright © 2025 Vox AI

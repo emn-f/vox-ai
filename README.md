@@ -126,3 +126,8 @@ O Projeto Vox AI tem uma parceria oficial com a **Casa de Cultura Marielle Franc
 * **E-mail:** [assistentedeapoiolgbtvox@gmail.com](mailto:assistentedeapoiolgbtvox@gmail.com)
 * **Instagram:** [@projetovoxai](https://www.instagram.com/projetovoxai/)
 * **Linktree:** [linktr.ee/vox_ai](https://linktr.ee/vox_ai)
+
+
+<div align="center">
+<p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p>
+</div>
