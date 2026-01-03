@@ -1,0 +1,34 @@
+cloud-architecture-diagram
+
+title Vox AI CI/CD Pipeline
+
+Dev [icon: user, label: "Dev", color: blue]
+GitHub [icon: github, label: "GitHub (PR Master)", color: black]
+
+Group PR_Checks [icon: github-actions, label: "Workflow: Security Review (No PR)", color: red] {
+SecCheck [icon: lock, label: "Security Script"]
+AIReview [icon: robot, label: "AI Code Review"]
+Gemini [icon: google-gemini, label: "Gemini (Code Review)", color: purple]
+}
+
+Group Prod_Pipeline [icon: github-actions, label: "Workflow: Production (Push master)", color: blue] {
+4. Inicio do Deploy [icon: upload-cloud]
+Deploy Mirror (deploy_hugging_face.yml)[icon: github-actions]
+Streamlit [color: red, label: Streamlit Cloud, icon: streamlit]
+HuggingFace [icon: hugging-face, label: "Hugging Face (Prod)", color: orange]
+DeployDB [icon: database, label: "Deploy Migrations (deploy_db.yml)"]
+Supabase [icon: supabase, label: "Supabase (DB)", color: green]
+}
+
+Dev > GitHub: 1. Abre Pull Request
+GitHub > SecCheck: 2. Dispara Scan
+SecCheck > AIReview: Se aprovado
+AIReview > Gemini: Envia Diff
+Gemini > GitHub: Comenta no PR (Aprova/Reprova)
+
+4. Inicio do Deploy  > Streamlit: Auto-Deploy (Webhook)
+GitHub > 4. Inicio do Deploy: 3. Push pra master
+4. Inicio do Deploy > DeployDB: Paralelo ao app
+DeployDB > Supabase: Aplica SQL
+4. Inicio do Deploy > Deploy Mirror (deploy_hugging_face.yml)
+Deploy Mirror (deploy_hugging_face.yml) > HuggingFace: Atualiza space

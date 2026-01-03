@@ -1,0 +1,23 @@
+sequence-diagram
+
+title Arquitetura Legada (Sheets + Processamento Local)
+
+User [icon: user, label: "Usuário", color: blue]
+Front [icon: streamlit, label: "App (Streamlit)", color: orange]
+Gemini [icon: google-gemini, label: "Gemini API", color: purple]
+
+JSON [icon: file, label: "JSON (Local)", color: grey]
+Sheets [icon: google-sheets, label: "Google Sheets (Fonte)", color: green]
+Action [icon: github, label: "GitHub Action (Sync)", color: black]
+
+User > Front: 1. Pergunta
+Front < JSON: 2. Carrega tudo na RAM
+Front > Front: 3. Sentence Transformers (Local)
+Front > Gemini: 4. Prompt + Contexto
+Gemini > Front: 5. Resposta Gerada
+Front > User: 6. Exibe Resposta
+Front > Sheets: 7. Grava log anônimo
+
+Action > Sheets: A. Verifica Mudanças
+Sheets > Action: B. Dados Novos
+Action > JSON: C. Commit/Atualiza Arquivo

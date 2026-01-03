@@ -1,0 +1,18 @@
+sequence-diagram
+
+title Arquitetura Atual (Supabase + RAG)
+
+User [icon: user, label: "Usuário", color: blue]
+Front [icon: streamlit, label: "Interface", color: orange]
+Supabase [icon: supabase, label: "Supabase (pgvector)", color: green]
+Gemini [icon: google-gemini, label: "Gemini API (LLM)", color: purple]
+
+User > Front: 1. Envia prompt
+Front > Supabase: 2. Busca Semântica (RPC)
+Supabase > Supabase: Processa busca vetorial (pgvector)
+Supabase > Front: 3. Retorna Chunks
+Front > Gemini: 4. Prompt + Contexto
+Gemini > Front: 5. Resposta Gerada
+Front > User: 6. Exibe Resposta
+
+Front -> Supabase: 7. Salva Log Anônimo
