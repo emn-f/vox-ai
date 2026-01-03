@@ -51,3 +51,8 @@ Se você tiver qualquer dúvida sobre esta Política de Privacidade ou sobre o p
 * **GitHub do Projeto:** [github.com/emn-f/vox-ai](https://github.com/emn-f/vox-ai)
 
 Agradecemos pela sua confiança e por nos ajudar a construir uma ferramenta cada vez melhor. :)
+
+
+<div align="center">
+<p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p>
+</div>
