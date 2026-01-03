@@ -3,6 +3,26 @@
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.2.17 - 03/01/2026
+
+### ♻️ Refatoração & Melhorias
+
+* Atualização do diretório das docs
+
+
+### 📚 Documentação
+
+* Reorganização de documentações do projeto
+
+* Criação de Termos de Uso do Vo AI
+
+* Cria arquivo ARCHITECTURE.md com desenho do sistema e fluxo RAG
+
+
+### 🔧 Tarefas Internas
+
+* Atualiza o cabeçalho do CHANGELOG para incluir nota sobre geração automática
+
 ## v3.2.16 - 02/01/2026
 
 ### ♻️ Refatoração & Melhorias
