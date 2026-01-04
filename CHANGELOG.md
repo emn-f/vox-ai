@@ -3,6 +3,12 @@
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.2.22 - 04/01/2026
+
+### 🔧 Tarefas Internas
+
+* Exclude docs/imgs from hf deploy to avoid binary errors
+
 ## v3.2.21 - 04/01/2026
 
 ### 🐛 Correções
