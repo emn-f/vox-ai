@@ -2,5 +2,4 @@
 runOnSave = true
 
 [theme]
-base = "dark"
 font = "sans serif"  
