@@ -620,3 +620,9 @@ Arquivo gerado automaticamente via `git-cliff`.
 * Adição de informações relacionadas ao projeto.
 * Configuração da API no GenAI.
 * Exibição e alerta de status da API.
+
+---
+
+<div align="center">
+    <p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p>
+</div>
