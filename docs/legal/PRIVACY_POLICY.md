@@ -1,58 +1,94 @@
 # Política de Privacidade do Vox AI
 
-### 1. Apresentação
+Última atualização: 3 de janeiro de 2026
 
-O Vox AI é um projeto de extensão da Universidade Católica do Salvador (UCSal) criado para ser um assistente de apoio e informação para a comunidade LGBTQIA+. Sua privacidade, segurança e confiança são fundamentais para nós. Esta política explica de forma transparente quais dados coletamos, por que coletamos e como eles são utilizados, sempre de forma anônima e segura.
+**Visão geral**
 
-### 2. Quais dados coletamos?
+O Vox AI é um assistente de apoio e informação voltado para a comunidade LGBTQIA+. Respeitamos sua privacidade e explicamos abaixo, de forma clara e objetiva, quais dados tratamos, por que o fazemos e como protegemos essas informações. Quando mencionamos “dados” neste documento, referimo-nos principalmente às conversas (perguntas e respostas) trocadas com o assistente.
 
-Para aprimorar continuamente nosso assistente e garantir que ele seja o mais útil possível, coletamos e armazenamos as seguintes informações de cada conversa:
+**Escopo**
 
-* **Pergunta do usuário (prompt):** O texto exato da pergunta que você nos envia.
-* **Resposta do assistente:** O texto exato da resposta gerada pelo Vox AI.
-* **Código de Sessão:** Um identificador único e aleatório (ex: `a1b2c3d4-e5f6-7890-gh12-i3j4k5l6m7n8`) que agrupa uma conversa completa. Este código nos ajuda a entender o fluxo de um diálogo, mas não possui qualquer ligação com sua identidade.
+Esta política se aplica a todos os usuários do serviço Vox AI e a todos os dados gerados pelas interações no chat do assistente.
 
-### 3. O Que NÃO Coletamos?
+## 1. Dados coletados
 
-Reforçamos nosso compromisso com o seu anonimato. Nós **NUNCA** solicitamos, coletamos ou armazenamos:
+Coletamos apenas o mínimo necessário para melhorar a qualidade do serviço. Os itens coletados incluem:
 
-* Seu nome, e-mail, telefone ou qualquer outra informação de contato.
-* Seu endereço de IP.
-* Dados de localização (GPS).
-* Cookies ou qualquer outro tipo de rastreador de atividade fora do nosso chat.
+- Texto das interações: o prompt enviado pelo usuário e a resposta gerada pelo assistente.
+- Identificador de sessão anônimo: um código aleatório que agrupa mensagens de uma mesma conversa para análise de fluxo e contexto. Esse identificador não contém nem está vinculado a informações pessoais.
 
-**A interação com o Vox AI é e sempre será 100% anônima.**
+## 2. O que NÃO coletamos
 
-### 4. Por que coletamos esses dados?
+Nós não coletamos, nem armazenamos, nem solicitamos:
 
-Os dados coletados têm uma única finalidade: **melhorar o Vox AI**. Ao analisar as conversas de forma anônima e agregada, nossa equipe pode:
+- Nomes reais, e-mails, telefones ou outros dados de contato pessoais.
+- Endereços IP, coordenadas de GPS ou dados de localização.
+- Identificadores de dispositivos que possam ser usados para rastrear você fora do serviço.
 
-* **Corrigir imprecisões:** Identificar e consertar respostas incorretas ou incompletas.
-* **Entender as necessidades da comunidade:** Descobrir quais são as dúvidas e os temas mais recorrentes para aprimorar nossa base de conhecimento.
-* **Aprimorar a IA:** Usar os diálogos para treinar o modelo de inteligência artificial, tornando-o mais natural, empático e eficiente.
+Se você compartilhar voluntariamente dados pessoais nas mensagens (por exemplo, escrever seu e-mail dentro do chat), esses dados poderão ser armazenados nas conversas. Recomendamos não inserir informações pessoais nas interações.
 
-### 5. Base legal para o tratamento de dados
+## 3. Finalidades do tratamento
 
-A coleta e o tratamento dos dados mencionados são realizados com base no **legítimo interesse** (Art. 7º, IX da LGPD), visando a melhoria contínua de um serviço gratuito e de apoio comunitário. Ao utilizar o assistente, você concorda com esta prática, que é essencial para a evolução e manutenção do projeto.
+Utilizamos os dados coletados para:
 
-### 6. Compartilhamento e segurança dos dados
+- Melhorar a qualidade das respostas e corrigir erros.
+- Entender padrões de uso e as dúvidas mais frequentes da comunidade.
+- Treinar e ajustar modelos de IA de forma anônima e agregada.
 
-As conversas **anonimizadas** são armazenadas de forma segura em banco de dados protegido e criptografado (Supabase), acessíveis apenas à equipe de desenvolvimento e curadoria do projeto Vox AI. **Esses dados nunca serão vendidos ou compartilhados com terceiros para fins comerciais ou de publicidade.**
+Os dados não são usados para fins publicitários ou para venda a terceiros.
 
-### 7. Seus direitos
+## 4. Base legal
 
-Como a coleta é anônima, não é possível identificar os dados de um indivíduo específico. No entanto, você tem total liberdade para não utilizar o serviço se não concordar com esta política.
+O tratamento dos dados se baseia no legítimo interesse para a melhoria do serviço e suporte à comunidade, conforme o disposto na LGPD (Lei Geral de Proteção de Dados). Sempre buscamos equilibrar esse interesse com o direito à privacidade dos usuários.
 
-### 8. Contato
+## 5. Retenção e eliminação dos dados
 
-Se você tiver qualquer dúvida sobre esta Política de Privacidade ou sobre o projeto, entre em contato conosco.
+Mantemos as conversas e os registros de sessão por um período limitado para permitir análises e melhorias contínuas. Politicamente recomendamos reter esses dados por até 12 meses, salvo necessidade operacional diferente, após o qual serão eliminados ou agregados de forma irreversível.
 
-* **E-mail:** [assistentedeapoiolgbtvox@gmail.com](mailto:assistentedeapoiolgbtvox@gmail.com)
-* **GitHub do Projeto:** [github.com/emn-f/vox-ai](https://github.com/emn-f/vox-ai)
+Se você quiser solicitar a exclusão de registros associados a uma conversa específica, informe o código de sessão correspondente (quando disponível). Como as interações são anônimas por padrão, pode não ser possível identificar e excluir conversas sem esse identificador.
 
-Agradecemos pela sua confiança e por nos ajudar a construir uma ferramenta cada vez melhor. :)
+## 6. Segurança
 
+Adotamos medidas técnicas e administrativas para proteger os dados coletados, incluindo:
 
-<div align="center">
-<p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p>
-</div>
+- Criptografia em trânsito (TLS) e em repouso.
+- Controle de acesso restrito à equipe autorizada.
+- Backups e práticas de segurança do provedor de banco de dados (ex.: Supabase).
+
+Embora adotemos boas práticas, nenhum sistema é impenetrável; notificaremos os usuários e autoridades competentes caso ocorra um incidente relevante.
+
+## 7. Compartilhamento e terceiros
+
+Podemos utilizar provedores de serviços (processadores) para hospedagem, armazenamento e processamento — por exemplo, serviços de banco de dados e infraestrutura. Esses prestadores têm acesso apenas aos dados necessários para prestar o serviço e estão contratualmente obrigados a proteger as informações.
+
+Não vendemos dados dos usuários nem os compartilhamos para fins de publicidade direcionada.
+
+## 8. Usuários menores de idade
+
+O serviço não é destinado especificamente a menores de idade; incentivamos que responsáveis acompanhem o uso. Caso uma mensagem contenha dados pessoais de menores, trate-a com cautela e evite inserir informações sensíveis no chat.
+
+## 9. Direitos dos titulares
+
+Por tratar-se, em sua grande maioria, de dados anônimos, o exercício direto de alguns direitos (acesso, portabilidade, eliminação) pode ser limitado. Ainda assim, você pode:
+
+- Solicitar informações sobre esta política e seu cumprimento.
+- Pedir a exclusão de um registro específico informando o código de sessão quando disponível.
+
+Para solicitações relacionadas a dados, utilize o contato abaixo.
+
+## 10. Alterações desta política
+
+Podemos atualizar esta política periodicamente. Alterações relevantes serão comunicadas no repositório do projeto e, quando possível, dentro do próprio serviço. Recomendamos verificar a data de “Última atualização” no topo deste documento.
+
+## 11. Contato
+
+Para dúvidas, reclamações ou solicitações relacionadas a privacidade, entre em contato:
+
+- E‑mail: assistentedeapoiolgbtvox@gmail.com
+- Repositório do projeto: https://github.com/emn-f/vox-ai
+
+Obrigado por confiar no Vox AI. Trabalhamos para oferecer um ambiente seguro, respeitoso e útil para toda a comunidade.
+
+---
+
+© Projeto Vox 2026
