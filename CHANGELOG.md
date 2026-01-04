@@ -3,6 +3,29 @@
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.2.18 - 04/01/2026
+
+### ♻️ Refatoração & Melhorias
+
+* Substitui import * por imports explícitos em external_links
+
+
+### ✨ Funcionalidades
+
+* Criação dos diagramas dos fluxos da aplicação e esquema do banco de dados no Eraser.io
+
+
+### 📚 Documentação
+
+* Melhorias e revisão da Política de Privacidade
+
+* Definição de rodapé nas documentações do Vox
+
+
+### 📦 Build & Dependências
+
+* Remove configuração de tema base do arquivo config.toml
+
 ## v3.2.17 - 03/01/2026
 
 ### ♻️ Refatoração & Melhorias
