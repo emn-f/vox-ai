@@ -19,10 +19,6 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
       - name: Run Tests
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY_PROD }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: pytest
 
   release_prod:
