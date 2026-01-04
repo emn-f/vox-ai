@@ -13,9 +13,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          lfs: true
-
-      - name: Push to hub
+          
+      - name: Setup LFS and Push
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push --force https://emn-f:$HF_TOKEN@huggingface.co/spaces/emn-f/vox-ai master:main
+        run: |
+          git lfs install
+          git lfs fetch --all
+          git push --force https://emn-f:$HF_TOKEN@huggingface.co/spaces/emn-f/vox-ai master:main
