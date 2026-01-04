@@ -3,6 +3,36 @@
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.2.19 - 04/01/2026
+
+### 🎨 Estilo e Formatação
+
+* Padroniza o nome do projeto nas descrições
+
+* Corrige a formatação da seção de tema no config.toml
+
+
+### 📦 Build & Dependências
+
+* Adicionar suporte para arquivos de imagem no Git LFS
+
+
+### 🔧 Tarefas Internas
+
+* Upgrade python to 3.11 to fix tomllib dependency
+
+
+### 🤖 CI/CD & Automação
+
+* Code Reviwer deve ignorar commits do changelog.md
+
+* Adiciona job de teste ao pipeline de produção
+
+
+### 🧪 Testes Unitários e de Integração
+
+* Remover variáveis ​​de ambiente sensíveis do pipeline de testes e melhora utilização do mocking para a API do Gemini
+
 ## v3.2.18 - 04/01/2026
 
 ### ♻️ Refatoração & Melhorias
