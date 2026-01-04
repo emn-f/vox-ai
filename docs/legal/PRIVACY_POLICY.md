@@ -90,5 +90,4 @@ Para dúvidas, reclamações ou solicitações relacionadas a privacidade, entre
 Obrigado por confiar no Vox AI. Trabalhamos para oferecer um ambiente seguro, respeitoso e útil para toda a comunidade.
 
 ---
-
-© Projeto Vox 2026
+© 2026 Projeto Vox

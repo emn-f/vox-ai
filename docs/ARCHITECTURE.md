@@ -147,4 +147,8 @@ erDiagram
 * ***LLM & Embeddings***: Google Gemini API (`gemini-1.5-flash` e `text-embedding-004`)
 * ***CI/C***D: GitHub Actions (Deploy automático de Migrations e Code Review)
 
-<div align="center"> <p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p> </div>
+---
+
+<div align="center">
+    <p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p>
+</div>
