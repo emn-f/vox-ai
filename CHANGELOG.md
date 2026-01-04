@@ -3,6 +3,12 @@
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.2.20 - 04/01/2026
+
+### 🔧 Tarefas Internas
+
+* Upgrade checkout action to v4 to fix git lfs issues
+
 ## v3.2.19 - 04/01/2026
 
 ### 🎨 Estilo e Formatação
