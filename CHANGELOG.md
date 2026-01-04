@@ -3,6 +3,17 @@
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.2.21 - 04/01/2026
+
+### 🐛 Correções
+
+* Remove duplicate key in yaml
+
+
+### 🔧 Tarefas Internas
+
+* Fix hf deploy lfs sync by manual fetching
+
 ## v3.2.20 - 04/01/2026
 
 ### 🔧 Tarefas Internas
