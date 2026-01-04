@@ -1,24 +1,14 @@
 # Changelog do Vox AI
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
+
 Arquivo gerado automaticamente via `git-cliff`.
 
-## v3.2.21 - 04/01/2026
+## v3.2.23 - 04/01/2026
 
 ### 🐛 Correções
 
-* Remove duplicate key in yaml
-
-
-### 🔧 Tarefas Internas
-
-* Fix hf deploy lfs sync by manual fetching
-
-## v3.2.20 - 04/01/2026
-
-### 🔧 Tarefas Internas
-
-* Upgrade checkout action to v4 to fix git lfs issues
+* (ci) Usa snapshot raso no deploy hf e remove docs/imgs para corrigir erros de binários
 
 ## v3.2.19 - 04/01/2026
 
@@ -36,7 +26,7 @@ Arquivo gerado automaticamente via `git-cliff`.
 
 ### 🔧 Tarefas Internas
 
-* Upgrade python to 3.11 to fix tomllib dependency
+* Atualiza o Python para a versão 3.11 para corrigir a dependência do tomllib
 
 
 ### 🤖 CI/CD & Automação
@@ -695,4 +685,5 @@ Arquivo gerado automaticamente via `git-cliff`.
 
 <div align="center">
     <p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p>
+    <p>© 2026 Projeto Vox</p>
 </div>
