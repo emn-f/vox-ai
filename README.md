@@ -113,7 +113,7 @@ Licenciado sob a **Licença GNU GPLv3**. Veja o arquivo [LICENSE](LICENSE).
 
 ## 🤝 Parceria com a Casa de Cultura Marielle Franco
 
-O Projeto Vox AI tem uma parceria oficial com a **Casa de Cultura Marielle Franco**, instituição de acolhimento independente em Salvador (BA). A Casa atua como ponto de escuta e validação de nossos conteúdos, garantindo que a tecnologia esteja alinhada com as reais necessidades da comunidade.
+O Projeto Vox tem uma parceria oficial com a **Casa de Cultura Marielle Franco**, instituição de acolhimento independente em Salvador (BA). A Casa atua como ponto de escuta e validação de nossos conteúdos, garantindo que a tecnologia esteja alinhada com as reais necessidades da comunidade.
 
 ## 👥 Equipe
 

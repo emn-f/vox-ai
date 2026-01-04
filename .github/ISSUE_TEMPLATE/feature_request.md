@@ -1,6 +1,6 @@
 ---
 name: � Sugerir Funcionalidade
-about: Sugira uma ideia para melhorar o projeto Vox AI
+about: Sugira uma ideia para melhorar o Vox AI
 title: "[FEAT] "
 labels: enhancement
 assignees: ''

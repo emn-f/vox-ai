@@ -429,7 +429,7 @@ def run_ai_code_review(diff_text: str) -> bool:
 
         prompt = (
             "ATENÇÃO: Você é um Gatekeeper de Segurança.\n"
-            "Analise o git diff abaixo do projeto Vox AI.\n"
+            "Analise o git diff abaixo do Projeto Vox.\n"
             "Regras:\n"
             "1. Se encontrar VULNERABILIDADE CRÍTICA (senha exposta, SQLi, chave de API) -> Inicie a resposta com '[BLOCK]' e explique o erro.\n"
             "2. Se encontrar BUG DE PRODUÇÃO (loop infinito, crash certo) -> Inicie a resposta com '[BLOCK]' e explique.\n"

@@ -23,27 +23,39 @@ class TestSanitizeDiff:
 @patch("security_check.log_ai_event")
 @patch("security_check.load_secrets")
 class TestAICodeReview:
-    
+
     @pytest.fixture(autouse=True)
     def setup_genai(self):
-        """Mocka o módulo google.generativeai já que ele é importado localmente."""
-        self.mock_genai = MagicMock()
-        with patch.dict(sys.modules, {'google.generativeai': self.mock_genai}):
-            yield
+
+        self.patcher = patch("google.generativeai.GenerativeModel")
+        self.mock_model_cls = self.patcher.start()
+        self.mock_model_instance = MagicMock()
+        self.mock_model_cls.return_value = self.mock_model_instance
+        yield
+        self.patcher.stop()
+
+    @property
+    def mock_genai(self):
+        # Compatibility helper to keep existing test code working
+        # The existing tests access self.mock_genai.GenerativeModel
+        # So we return an object that has GenerativeModel as our mock class
+        m = MagicMock()
+        m.GenerativeModel = self.mock_model_cls
+        return m
 
     def test_missing_api_key(self, mock_load, mock_log):
         # Configuração: Sem chave de API
         mock_load.return_value = {}
         with patch.dict(os.environ, {}, clear=True):
-             result = security_check.run_ai_code_review("diff content")
-        
+            result = security_check.run_ai_code_review("diff content")
+
         assert result is True
         self.mock_genai.GenerativeModel.assert_not_called()
 
     def test_block_keyword_in_response(self, mock_load, mock_log):
         # Configuração: Chave presente, palavra proibida na resposta
         mock_load.return_value = {"GEMINI_API_KEY": "fake-key"}
-        
+
         mock_response = MagicMock()
         mock_response.text = "[PASS] Approved, but I found a password exposed in the logs."
         self.mock_genai.GenerativeModel.return_value.generate_content.return_value = mock_response
@@ -58,7 +70,7 @@ class TestAICodeReview:
     def test_explicit_block(self, mock_load, mock_log):
         # Configuração: Resposta com [BLOCK]
         mock_load.return_value = {"GEMINI_API_KEY": "fake-key"}
-        
+
         mock_response = MagicMock()
         mock_response.text = "[BLOCK] Critical issue found."
         self.mock_genai.GenerativeModel.return_value.generate_content.return_value = mock_response
@@ -73,7 +85,7 @@ class TestAICodeReview:
     def test_pass_clean(self, mock_load, mock_log):
         # Configuração: Resposta limpa [PASS]
         mock_load.return_value = {"GEMINI_API_KEY": "fake-key"}
-        
+
         mock_response = MagicMock()
         mock_response.text = "[PASS] Aprovado."
         self.mock_genai.GenerativeModel.return_value.generate_content.return_value = mock_response
@@ -88,7 +100,7 @@ class TestAICodeReview:
     def test_pass_with_suggestions(self, mock_load, mock_log):
         # Configuração: [PASS] com sugestões
         mock_load.return_value = {"GEMINI_API_KEY": "fake-key"}
-        
+
         mock_response = MagicMock()
         mock_response.text = "[PASS] Aprovado.\nSugestão: Melhore a variável X."
         self.mock_genai.GenerativeModel.return_value.generate_content.return_value = mock_response
