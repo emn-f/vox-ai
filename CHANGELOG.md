@@ -3,6 +3,12 @@
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.2.23 - 04/01/2026
+
+### 🔧 Tarefas Internas
+
+* Switch to clean snapshot deploy strategy to fix hf error
+
 ## v3.2.22 - 04/01/2026
 
 ### 🔧 Tarefas Internas
