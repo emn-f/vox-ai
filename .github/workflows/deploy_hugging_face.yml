@@ -12,20 +12,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-      - name: Filter binaries and Push
+          fetch-depth: 1
+
+      - name: Filter binaries and Push Snapshot
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          # Configurar Git para commit temporário
+          # Configurar Git
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
 
-          # Remover binários de documentação para evitar erro de LFS/Xet
+          # Criar branch orfã (sem histórico) para o deploy
+          git checkout --orphan release-branch
+
+          # Remover binários de documentação
           if [ -d "docs/imgs" ]; then
             git rm -rf docs/imgs
-            git commit -m "chore(deploy): remove heavy binary docs [skip ci]"
           fi
 
-          # Push to hub (usando HEAD para pegar o estado atual limpo)
-          git push --force https://emn-f:$HF_TOKEN@huggingface.co/spaces/emn-f/vox-ai HEAD:main
+          # Commit apenas do estado atual (Snapshot)
+          git commit -m "chore(deploy): snapshot release [skip ci]"
+
+          # Push forçado para a main do Hugging Face
+          git push --force https://emn-f:$HF_TOKEN@huggingface.co/spaces/emn-f/vox-ai release-branch:main
