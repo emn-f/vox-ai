@@ -50,6 +50,8 @@ Use estes verbos no início do nome para categorizar o tipo de mudança:
 > `supabase db diff --use-migra -f <nome_padrao>`
 
 
+---
+
 <div align="center">
-<p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p>
+    <p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p>
 </div>

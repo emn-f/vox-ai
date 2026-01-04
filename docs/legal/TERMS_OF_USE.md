@@ -1,6 +1,6 @@
 # Termos de Uso do Vox AI
 
-**Última atualização:** 02 de janeiro de 2026
+**Última atualização:** 2 de janeiro de 2026
 
 Bem-vindo ao **Vox AI**. Ao utilizar nosso assistente virtual, você concorda com os termos descritos abaixo. Se você não concordar com qualquer parte destes termos, recomendamos que não utilize o serviço.
 
@@ -51,9 +51,7 @@ Podemos atualizar estes Termos de Uso periodicamente para refletir mudanças na 
 
 ## 8. Contato
 
-Para dúvidas sobre estes termos, suporte ou denúncias, entre em contato através do e-mail:
-📧 **assistentedeapoiolgbtvox@gmail.com**
+Para dúvidas sobre estes termos, suporte ou denúncias, entre em contato através do e-mail: **assistentedeapoiolgbtvox@gmail.com**
 
-<div align="center">
-<p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p>
-</div>
+---
+© 2026 Projeto Vox

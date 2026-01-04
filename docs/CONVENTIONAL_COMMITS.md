@@ -48,6 +48,8 @@ Se a mudança **quebra compatibilidade** (ex: o usuário precisa atualizar algo 
     BREAKING CHANGE: A tabela 'users' foi renomeada para 'profiles'.
     ```
 
+---
+
 <div align="center">
-<p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p>
+    <p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p>
 </div>

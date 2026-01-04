@@ -19,3 +19,9 @@ Em vez disso, pedimos que siga este processo:
 * **Correção:** Assim que a correção for aplicada, notificaremos você. Daremos o devido crédito pela descoberta nas notas da versão :).
 
 Obrigado por ajudar a comunidade e tornar o Vox mais seguro para todos! 💛
+
+---
+
+<div align="center">
+    <p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p>
+</div>
