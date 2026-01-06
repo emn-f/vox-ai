@@ -4,6 +4,17 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.2.25 - 06/01/2026
+
+### 🐛 Correções
+
+* Corrige o fluxo de atualização do ambiente de homologação
+
+
+### 🔧 Tarefas Internas
+
+* Refatora projeto para renomeação das branches (master->main)
+
 ## v3.2.24 - 06/01/2026
 
 ### ✨ Funcionalidades
