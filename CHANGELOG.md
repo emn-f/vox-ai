@@ -4,6 +4,22 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.2.24 - 06/01/2026
+
+### ✨ Funcionalidades
+
+* Adiciona workflow para atualizar o ambiente de homologação
+
+
+### 📚 Documentação
+
+* Revisão do CHANGELOG.md
+
+
+### 🔧 Tarefas Internas
+
+* Adicionar nova linha no cabeçalho do changelog
+
 ## v3.2.23 - 04/01/2026
 
 ### 🐛 Correções
