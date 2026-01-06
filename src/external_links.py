@@ -8,7 +8,7 @@ LINKTREE_VOX = "https://linktr.ee/vox_ai"
 EMAIL_CONTATO = "mailto:assistentedeapoiolgbtvox@gmail.com"
 
 # Plataformas
-STREAMLIT = "https://assistentevox.streamlit.app/"
+STREAMLIT = "https://vox-ai.streamlit.app/"
 GITHUB = "https://github.com/emn-f/vox-ai"
 HUGGING_FACE_SPACE = "https://huggingface.co/spaces/emn-f/vox-ai"
 
