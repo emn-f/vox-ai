@@ -34,7 +34,7 @@ tags:
 ![Supabase](https://img.shields.io/badge/DB-Supabase-3ECF8E?logo=supabase&style=flat-square)
 ![Gemini](https://img.shields.io/badge/AI-Gemini-8E75B2?logo=google&style=flat-square)
 
-### [Acesse aqui o Vox AI](https://assistentevox.streamlit.app/) | [Dashboard no GitPages](https://emn-f.github.io/vox-ai/)
+### [Acesse aqui o Vox AI](https://vox-ai.streamlit.app/) | [Dashboard no GitPages](https://emn-f.github.io/vox-ai/)
 
 </div>
 

@@ -405,7 +405,7 @@ Arquivo gerado automaticamente via `git-cliff`.
 - Deploy do Git Pages será feito sempre que o CHANGELOG for alterado.
 - Melhorias no formato do changelog
 - Renomeação estrutural dos workflows para maior clareza.
-- Atualização dos gatilhos (`workflow_run`) no Deploy do GitPages e do Hugging Face para escutarem corretamente o `🚀 Production Pipeline`.
+- Atualização dos gatilhos (`workflow_run`) no Deploy do GitPages e do Hugging Face para escutarem corretamente o `🚀 Main Pipeline`.
 
 ### 🔧 Tarefas Internas
 - Limpeza de comentários antigos e ajustes na mensagem de commit do changelog.
