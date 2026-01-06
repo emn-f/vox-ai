@@ -74,11 +74,11 @@ Se você quer rodar o projeto localmente para testar mudanças:
 
 Utilizamos um fluxo simples baseado em branches:
 
-* **`master`**: Código em produção (estável). Não é possível comitar diretamente aqui.
-* **`dev`**: Branch principal de desenvolvimento. **Suas PRs devem apontar para cá.**
+* **`main`**: Código em produção (estável). Não é possível comitar diretamente aqui.
+* **`develop`**: Branch principal de desenvolvimento. **Suas PRs devem apontar para cá.**
 
 **Para nova feature ou correção:**
-1.  Crie uma branch a partir de `dev`:
+1.  Crie uma branch a partir de `develop`:
     ```bash
     git checkout -b feat/minha-nova-feature
     ```
@@ -126,7 +126,7 @@ A base de conhecimento é gerida internamente.
 
 1.  Certifique-se de que seu código está rodando sem erros.
 2.  Faça o Push da sua branch para o seu fork.
-3.  Abra um Pull Request para a branch **`dev`** do repositório original.
+3.  Abra um Pull Request para a branch **`develop`** do repositório original.
 4.  Na descrição do PR, explique o que foi feito e vincule a issue relacionada (se houver).
 5.  Aguarde a revisão da equipe! 💜
 

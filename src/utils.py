@@ -12,7 +12,7 @@ def get_current_branch():
     try:
         branch = subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"]).decode("utf-8").strip()
 
-        if branch in ["master", "main"]:
+        if branch in ["main", "main"]:
             return 1
         else:
             return 0

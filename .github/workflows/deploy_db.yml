@@ -3,7 +3,7 @@ name: 🎲 Deploy Database Changes
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'supabase/migrations/**'
   workflow_dispatch:

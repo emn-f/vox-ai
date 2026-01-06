@@ -19,9 +19,10 @@ jobs:
 
             - name: Pull changes from dev to homo
               run: |
-                  git checkout homo
-                  git pull origin dev
+                    git checkout homo
+                    git fetch origin dev
+                    git merge origin/dev --no-edit
 
             - name: Push changes to homo
               run: |
-                  git push origin homo
+                    git push origin homo

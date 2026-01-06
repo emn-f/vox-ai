@@ -436,7 +436,7 @@ Arquivo gerado automaticamente via `git-cliff`.
 ## v3.0.1 - 06/12/2025
 
 ### 🤖 CI/CD & Automação
-- Correção na `Sync Changelog from Master to Dev`.
+- Correção na `Sync Changelog from main to develop`.
 
 ## v3.0.0 - 06/12/2025
 
@@ -447,7 +447,7 @@ Arquivo gerado automaticamente via `git-cliff`.
 - Dashboard do GitPages exibe até 10 atualizações recentes.
 
 ### 🤖 CI/CD & Automação
-- Ajuste no comando de push para `master` na action `tag_prod.yml`.
+- Ajuste no comando de push para `main` na action `tag_prod.yml`.
 - Criada action para incremento manual de tags.
 - Correção de bug da `sync_changelog`.
 
@@ -477,7 +477,7 @@ Arquivo gerado automaticamente via `git-cliff`.
 - Ajustes no `CONTRIBUTING.md`.
 
 ### 🤖 CI/CD & Automação
-- Adição de action para sinc do `CHANGELOG.md` da branch `master` para a `dev`.
+- Adição de action para sinc do `CHANGELOG.md` da branch `main` para a `develop`.
 
 ## v2.7.7 - 26/11/2025
 
@@ -548,7 +548,7 @@ Arquivo gerado automaticamente via `git-cliff`.
 ## v2.6.3 - 21/11/2025
 
 ### 🤖 CI/CD & Automação
-- O deploy no Hugging Face olha para a branch `master`.
+- O deploy no Hugging Face olha para a branch `main`.
 
 ## v2.6.1 - 21/11/2025
 
@@ -557,7 +557,7 @@ Arquivo gerado automaticamente via `git-cliff`.
 
 ### 🤖 CI/CD & Automação
 - Correções na action geradora do `CHANGELOG.md`.
-- O deploy no Hugging Face olha para a branch `master`.
+- O deploy no Hugging Face olha para a branch `main`.
 
 ## v1.0.25 - 14/11/2025
 
