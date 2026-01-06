@@ -4,13 +4,17 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 Arquivo gerado automaticamente via `git-cliff`.
 
-## v3.2.26 - 06/01/2026
+## v3.2.27 - 06/01/2026
+
+### ♻️ Refatoração & Melhorias
+
+* Atualiza URLs para refletir a nova estrutura do projeto e corrige gatilhos de workflow
+
 ## v3.2.25 - 06/01/2026
 
 ### 🐛 Correções
 
 * Corrige o fluxo de atualização do ambiente de homologação
-
 
 ### 🔧 Tarefas Internas
 
@@ -22,11 +26,9 @@ Arquivo gerado automaticamente via `git-cliff`.
 
 * Adiciona workflow para atualizar o ambiente de homologação
 
-
 ### 📚 Documentação
 
 * Revisão do CHANGELOG.md
-
 
 ### 🔧 Tarefas Internas
 
