@@ -3,6 +3,7 @@ header = """
 # Changelog do Vox AI
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
+
 Arquivo gerado automaticamente via `git-cliff`.
 
 """
