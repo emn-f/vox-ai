@@ -1,7 +1,7 @@
 name: 🚀 Production Pipeline
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths-ignore:
       - "CHANGELOG.md"
 permissions:
@@ -75,6 +75,6 @@ jobs:
 
           git remote set-url origin https://emn-f:${{ secrets.TOKEN_DEPLOY_VOX }}@github.com/${{ github.repository }}.git
           
-          git push origin master --tags
+          git push origin main --tags
 
           echo "✅ Versão Oficial ${NEW_TAG} lançada!"

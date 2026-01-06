@@ -2,12 +2,12 @@ name: 🔒 Gatekeep Security & Code Review
 
 on:
   push:
-    branches: [ "dev", "master" ]
+    branches: [ "develop", "main" ]
     paths-ignore:
       - '**.md'
       - 'CHANGELOG.md'
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
     paths-ignore:
       - '**.md'
       - 'CHANGELOG.md'

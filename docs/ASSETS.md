@@ -33,7 +33,7 @@ Links técnicos de acesso à aplicação e código-fonte.
 
 ## ⚖️ Documentação Legal e Governança
 
-Links diretos para os arquivos markdown de governança no repositório (Branch `master`).
+Links diretos para os arquivos markdown de governança no repositório (Branch `main`).
 | Arquivo | Definição | Descrição |
 | :--- | :--- | :--- |
 | **[CONTRIBUTING.md](../CONTRIBUTING.md)** | **Como Contribuir** | Guia para contribuidores. |
