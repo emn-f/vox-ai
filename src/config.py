@@ -1,4 +1,40 @@
 import os
+import logging
+import streamlit as st
+
+# Configuração de Logging Centralizado
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+    handlers=[logging.StreamHandler()],
+)
+
+# Logger principal
+logger = logging.getLogger("Vox AI")
+
+
+def get_secret(key: str, default: str = "") -> str:
+    """
+    Busca um segredo primeiro no st.secrets (Streamlit Cloud),
+    depois nas variáveis de ambiente (Local/Docker).
+    """
+    try:
+        if key in st.secrets:
+            return st.secrets[key]
+        if "." in key:
+            parts = key.split(".")
+            val = st.secrets
+            for p in parts:
+                if p in val:
+                    val = val[p]
+                else:
+                    return os.environ.get(key.replace(".", "_").upper(), default)
+            return val
+    except FileNotFoundError:
+        pass
+    return os.environ.get(key, default)
+
 
 # Caminhos
 CSS_PATH = "static/css/style.css"

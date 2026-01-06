@@ -1,0 +1,28 @@
+name: 📋 Updating the homologation environment
+on:
+    workflow_dispatch:
+permissions:
+    contents: write
+
+jobs:
+    update_homo:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Update Homo
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+            - name: Configurar Git User
+              run: |
+                  git config --global user.name "github-actions[bot]"
+                  git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+            - name: Pull changes from dev to homo
+              run: |
+                    git checkout homo
+                    git fetch origin dev
+                    git merge origin/dev --no-edit
+
+            - name: Push changes to homo
+              run: |
+                    git push origin homo

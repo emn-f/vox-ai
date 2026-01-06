@@ -25,5 +25,11 @@ Se você precisa de apoio emocional ou jurídico imediato:
 *   **Disque 100** (Direitos Humanos)
 *   Procure a **Casa Marielle Franco** ou grupos de apoio locais.
 
----
+
 *Agradecemos por fazer parte da nossa comunidade!* 💜
+
+---
+
+<div align="center">
+    <p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p>
+</div>

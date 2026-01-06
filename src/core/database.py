@@ -5,15 +5,20 @@ import uuid
 import google.generativeai as genai
 import streamlit as st
 
-from src.config import LIMITE_TEMAS, MAX_CHUNCK, SEMANTICA_THRESHOLD
+from src.config import LIMITE_TEMAS, MAX_CHUNCK, SEMANTICA_THRESHOLD, get_secret, logger
 from supabase import Client, create_client
 
 
 @st.cache_resource
 def get_db_client() -> Client:
     try:
-        url = st.secrets["supabase"]["url"]
-        key = st.secrets["supabase"]["key"]
+        url = get_secret("supabase.url")
+        key = get_secret("supabase.key")
+
+        if not url or not key:
+            logger.error("Credenciais do Supabase não encontradas.")
+            return None
+
         return create_client(url, key)
     except Exception as e:
         st.error(f"Erro ao conectar no banco de dados: {e}")
@@ -23,13 +28,13 @@ def get_db_client() -> Client:
 def salvar_sessao(session_id):
     client = get_db_client()
     if not client:
-        print("Não foi possível conectar com o banco de dados.")
+        logger.error("Não foi possível conectar com o banco de dados.")
         return
     try:
         registro_sessao = {"session_id": session_id}
         client.table("sessions").insert(registro_sessao).execute()
     except Exception as e:
-        print(f"⚠️ Erro ao tentar registrar sessão no banco de dados: {e}")
+        logger.error(f"⚠️ Erro ao tentar registrar sessão no banco de dados: {e}")
 
 
 def salvar_log_chat(
@@ -38,7 +43,7 @@ def salvar_log_chat(
 
     client = get_db_client()
     if not client:
-        print("❌ Não foi possível conectar com o banco de dados.")
+        logger.error("❌ Não foi possível conectar com o banco de dados.")
         return
 
     try:
@@ -52,7 +57,7 @@ def salvar_log_chat(
         res = client.table("chat_logs").insert(data_log).execute()
 
         if not res.data:
-            print("⚠️ Erro: Log salvo mas sem retorno de ID.")
+            logger.warning("⚠️ Erro: Log salvo mas sem retorno de ID.")
             return
 
         novo_log_id = res.data[0]["chat_id"]
@@ -83,23 +88,25 @@ def salvar_log_chat(
                         client.table("chat_logs_kb").insert(dados_relacao).execute()
                     )
                 except Exception as e_kb:
-                    print(f"❌ ERRO ao inserir em chat_logs_kb: {e_kb}")
-                    print(f"❌ Dados tentados: {dados_relacao}")
+                    logger.error(f"❌ ERRO ao inserir em chat_logs_kb: {e_kb}")
+                    logger.error(f"❌ Dados tentados: {dados_relacao}")
             else:
-                print("⚠️ Nenhuma relação válida para inserir.")
+                logger.info("⚠️ Nenhuma relação válida para inserir.")
         else:
             pass
 
     except Exception as e:
-        print(f"❌ ERRO ao salvar log: {type(e).__name__}")
-        print(f"❌ Mensagem de erro: {e}")
-        print(f"❌ Traceback completo:")
-        traceback.print_exc()
+        logger.error(f"❌ ERRO ao salvar log: {type(e).__name__}")
+        logger.error(f"❌ Mensagem de erro: {e}", exc_info=True)
 
 
 def salvar_erro(session_id, git_version, error_msg):
+    # 1. Log imediato no sistema (Console/Arquivo) com Traceback
+    logger.error(f"🔥 Exceção capturada e registrada: {error_msg}", exc_info=True)
+
     client = get_db_client()
     if not client:
+        logger.error("Falha ao obter cliente DB para salvar log de erro.")
         return "ERRO-DB"
     try:
         error_id = str(uuid.uuid4())[:8]
@@ -113,27 +120,41 @@ def salvar_erro(session_id, git_version, error_msg):
         client.table("error_logs").insert(data).execute()
         return error_id
     except Exception as e:
-        print(f"⚠️ Erro ao salvar exceção: {e}")
+        logger.error(f"⚠️ CRÍTICO: Falha ao salvar o erro no Supabase: {e}")
         return "N/A"
 
 
-def salvar_report(session_id, git_version, history_text):
+def salvar_report(session_id, git_version, history_text, category_id, comment):
     client = get_db_client()
 
-    if not client:
-        return False
-
     try:
+        if not client:
+            return False
         data = {
             "session_id": session_id,
             "git_version": git_version,
             "chat_history": history_text,
+            "category_id": category_id,
+            "comment": comment,
         }
         client.table("user_reports").insert(data).execute()
         return True
     except Exception as e:
-        print(f"⚠️ Erro ao salvar report: {e}")
+        logger.error(f"⚠️ Erro ao salvar report: {e}")
         return False
+
+
+def get_categorias_erro():
+    client = get_db_client()
+    try:
+        if not client:
+            return False
+        response = client.table("report_categories").select("id", "label").execute()
+        return response.data if response.data else []
+
+    except Exception as e:
+        logger.error(f"⚠️ Erro ao buscar categorias: {e}")
+        return []
 
 
 def add_conhecimento_db(tema, descricao, referencias, autor):
@@ -159,7 +180,7 @@ def add_conhecimento_db(tema, descricao, referencias, autor):
         return True
 
     except Exception as e:
-        print(f"⚠️ Erro ao adicionar na base de conhecimento: {e}")
+        logger.error(f"⚠️ Erro ao adicionar na base de conhecimento: {e}")
         return False
 
 
@@ -171,11 +192,11 @@ def buscar_referencias_db(
 ):
     client = get_db_client()
     if not client:
-        print("⚠️ Erro: Cliente Supabase não inicializado.")
+        logger.error("⚠️ Erro: Cliente Supabase não inicializado.")
         return []
     try:
         if len(vector_embedding) != 768:
-            print(
+            logger.error(
                 f"⚠️ Erro de Dimensão: O vetor gerado tem {len(vector_embedding)} dimensões, mas o banco espera 768."
             )
             return []
@@ -192,11 +213,11 @@ def buscar_referencias_db(
         if response.data:
             return response.data
         else:
-            print("⚠️ Nenhum match encontrado na base com esse threshold.")
+            logger.info("⚠️ Nenhum match encontrado na base com esse threshold.")
         return []
 
     except Exception as e:
-        print(f"❌ Erro CRÍTICO na busca vetorial (Supabase): {e}")
+        logger.critical(f"❌ Erro CRÍTICO na busca vetorial (Supabase): {e}")
         return []
 
 
@@ -214,14 +235,14 @@ def buscar_chunks_por_topico(topico_alvo, limit=30):
         )
         return response.data if response.data else []
     except Exception as e:
-        print(f"❌ Erro ao buscar tópico completo: {e}")
+        logger.error(f"❌ Erro ao buscar tópico completo: {e}")
         return []
 
 
 def recuperar_contexto_inteligente(vector_embedding):
     client = get_db_client()
     if not client:
-        print("⚠️ Erro: Cliente Supabase não inicializado.")
+        logger.error("⚠️ Erro: Cliente Supabase não inicializado.")
         return [], "Erro DB", []
     resultados_iniciais = buscar_referencias_db(
         vector_embedding, SEMANTICA_THRESHOLD, LIMITE_TEMAS, None
@@ -247,7 +268,6 @@ def recuperar_contexto_inteligente(vector_embedding):
     if not contagem_topicos:
         top_5 = resultados_iniciais[:5]
         contexto_final = [item["descricao"] for item in top_5]
-        # Tenta pegar kb_id ou id, e remove Nones
         for item in top_5:
             kid = item.get("kb_id") or item.get("id")
             if kid:
@@ -261,7 +281,9 @@ def recuperar_contexto_inteligente(vector_embedding):
     votos = contagem_topicos[topico_vencedor]
 
     if votos >= 3:
-        print(f"🚀 Estratégia: Contexto Expandido para o tópico '{topico_vencedor}'")
+        logger.info(
+            f"🚀 Estratégia: Contexto Expandido para o tópico '{topico_vencedor}'"
+        )
         try:
             dados = buscar_chunks_por_topico(topico_vencedor, limit=MAX_CHUNCK)
 
@@ -274,7 +296,7 @@ def recuperar_contexto_inteligente(vector_embedding):
             fonte_origem = f"Contexto Completo: {topico_vencedor}"
 
         except Exception as e:
-            print(f"⚠️ Erro ao expandir contexto: {e}. Usando fallback.")
+            logger.warning(f"⚠️ Erro ao expandir contexto: {e}. Usando fallback.")
             top_5 = resultados_iniciais[:5]
             contexto_final = [item["descricao"] for item in top_5]
 
@@ -286,7 +308,9 @@ def recuperar_contexto_inteligente(vector_embedding):
                     )
 
     else:
-        print(f"🔍 Estratégia: Tópicos mistos (Vencedor '{topico_vencedor}')")
+        logger.info(f"🔍 Estratégia: Tópicos mistos (Vencedor '{topico_vencedor}')")
+        fonte_origem = f"Tópicos mistos (Vencedor: {topico_vencedor})"
+
         top_5 = resultados_iniciais[:5]
         contexto_final = [item["descricao"] for item in top_5]
 

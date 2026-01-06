@@ -5,23 +5,24 @@ import streamlit as st
 
 from data.prompts.system_prompt import INSTRUCOES
 from src.app.ui import stream_resposta
-from src.config import GEMINI_MODEL_NAME
+from src.config import GEMINI_MODEL_NAME, get_secret, logger
 
 
+@st.cache_resource
 def configurar_api_gemini():
     try:
-        api_key = st.secrets.get("GEMINI_API_KEY", "") or os.environ.get(
-            "GEMINI_API_KEY", ""
-        )
+        api_key = get_secret("GEMINI_API_KEY")
         if not api_key:
-            st.error(
-                "Chave da API não localizada. Verifique as configurações do Streamlit ou as variáveis de ambiente."
-            )
+            msg = "Chave da API (GEMINI_API_KEY) não encontrada."
+            logger.error(msg)
+            st.error(msg)
             st.stop()
         else:
             genai.configure(api_key=api_key)
+            logger.info("API Gemini configurada com sucesso.")
         return api_key
     except Exception as e:
+        logger.error(f"Erro ao configurar a API do Gemini: {e}")
         st.error(f"Erro ao configurar a API do Gemini: {e}")
         st.stop()
         return None

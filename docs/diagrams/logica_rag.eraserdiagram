@@ -1,0 +1,19 @@
+sequence-diagram
+
+title Vox AI RAG Logic (Detail)
+
+User [icon: user, label: "Usuário", color: blue]
+App [icon: streamlit, label: "Orquestrador (Python)", color: orange]
+LLM [icon: google-gemini, label: "Gemini (Geração)", color: purple]
+
+DB [icon: supabase, label: "Supabase Vector Store", color: green]
+Embedder [icon: google-gemini, label: "Google Embeddings API", color: purple]
+
+User > App: "O que é PREP?"
+App > Embedder: 1. Gera Embedding da Pergunta
+Embedder > App: 2. Retorna Vetor [0.1, 0.5, ...]
+App > DB: 3. RPC: match_documents(vetor)
+DB > App: 4. Retorna Texto Relevante
+App > LLM: 5. Monta Prompt + Contexto
+LLM > App: 6. Resposta Fundamentada
+App > User: Exibe Resposta

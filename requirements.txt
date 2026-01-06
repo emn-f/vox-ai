@@ -1,16 +1,9 @@
---extra-index-url https://download.pytorch.org/whl/cpu
-torch>=2.0.0
-transformers>=4.40.0
-sentence_transformers>=3.0.0
-
 streamlit>=1.40.0
 google-generativeai
-huggingface_hub[hf_xet]
 
-gspread
-google-auth-oauthlib
-google-api-python-client
 gtts
 
 supabase
 python-dotenv
+
+pytest

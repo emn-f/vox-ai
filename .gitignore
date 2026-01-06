@@ -1,30 +1,88 @@
-# --- Python & Virtual Env ---
+# ==============================================================================
+# Python & Virtual Environments
+# ==============================================================================
 __pycache__/
-*.pyc
-.venv/
-.env
-vox
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
-# --- IDEs & Editors ---
+# Virtual Envs
+.env
+.venv/
+env/
+venv/
+ENV/
+
+# ==============================================================================
+# IDEs & Editors
+# ==============================================================================
+# JetBrains
 .idea/
+*.iws
+*.iml
+*.ipr
+
+# VS Code
 .vscode/
 
-# --- Streamlit ---
+# General
+*.swp
+*.swo
+.agent
+
+# ==============================================================================
+# Operating System Files
+# ==============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# ==============================================================================
+# Streamlit
+# ==============================================================================
 # Ignore secrets, keep config.toml
 .streamlit/secrets.toml
 scripts/.streamlit
 
-# --- Project Data & Media ---
+# ==============================================================================
+# Project Data & Media (Vox AI)
+# ==============================================================================
 media/
 data/fontes_dados/
 .old/
+.prompts
+vox
 
-# --- Specific Scripts & Files ---
-scripts/migrate_to_supabase.py
-scripts/testa_conexao.py
-CONVENTIONAL_COMMITS.md
+# ==============================================================================
+# Specific Scripts & Ignores
+# ==============================================================================
 scripts/gerar_embedding.py
+ai_gatekeeper.log
 
-# --- OS Files ---
-.DS_Store
-Thumbs.db
+# ==============================================================================
+# Arquivos do PyTest
+# ==============================================================================
+.pytest_cache

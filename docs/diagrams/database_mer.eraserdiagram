@@ -1,0 +1,74 @@
+entity-relationship-diagram
+
+title MER (Supabase Schema)
+
+
+sessions [icon: user, color: blue] {
+session_id text [pk]
+created_at timestamp
+id integer
+}
+
+chat_logs [icon: message-square, color: blue] {
+chat_id bigint [pk, increment]
+session_id text
+prompt text
+response text
+git_version text
+created_at timestamp
+}
+
+chat_logs_kb [icon: link, color: purple] {
+chat_log_kb_id bigint [pk]
+chat_id bigint
+kb_id text
+similarity float
+created_at timestamp
+}
+
+knowledge_base [icon: database, color: green] {
+kb_id text [pk]
+topico text
+eixo_tematico text
+descricao text
+referencias text
+tags text[]
+autor text
+kb_count numeric
+embedding vector(768)
+created_at timestamp
+modificado_em timestamp
+}
+
+error_logs [icon: alert-triangle, color: red] {
+id bigint [pk]
+error_id text
+error_message text
+session_id text
+git_version text
+created_at timestamp
+}
+
+user_reports [icon: flag, color: orange] {
+id bigint [pk]
+session_id text
+category_id integer
+comment text
+chat_history text
+created_at timestamp
+git_version text
+}
+
+report_categories [icon: list, color: orange] {
+id integer [pk]
+label text
+description text
+created_at timestamp
+}
+
+sessions.session_id < chat_logs.session_id
+sessions.session_id < error_logs.session_id
+sessions.session_id < user_reports.session_id
+chat_logs.chat_id < chat_logs_kb.chat_id
+knowledge_base.kb_id <> chat_logs_kb.kb_id
+report_categories.id < user_reports.category_id

@@ -8,7 +8,21 @@ permissions:
   contents: write
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+      - name: Run Tests
+        run: pytest
+
   release_prod:
+    needs: test
     runs-on: ubuntu-latest
 
     steps:

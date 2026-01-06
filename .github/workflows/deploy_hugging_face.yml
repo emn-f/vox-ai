@@ -10,12 +10,28 @@ jobs:
   sync-to-hub:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          lfs: true
+          fetch-depth: 1
 
-      - name: Push to hub
+      - name: Filter binaries and Push Snapshot
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push --force https://emn-f:$HF_TOKEN@huggingface.co/spaces/emn-f/vox-ai master:main --tags
+        run: |
+          # Configurar Git
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+
+          # Criar branch orfã (sem histórico) para o deploy
+          git checkout --orphan release-branch
+
+          # Remover binários de documentação
+          if [ -d "docs/imgs" ]; then
+            git rm -rf docs/imgs
+          fi
+
+          # Commit apenas do estado atual (Snapshot)
+          git commit -m "chore(deploy): snapshot release [skip ci]"
+
+          # Push forçado para a main do Hugging Face
+          git push --force https://emn-f:$HF_TOKEN@huggingface.co/spaces/emn-f/vox-ai release-branch:main

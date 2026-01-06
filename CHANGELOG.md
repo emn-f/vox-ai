@@ -2,6 +2,336 @@
 
 Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
+Arquivo gerado automaticamente via `git-cliff`.
+
+## v3.2.23 - 04/01/2026
+
+### 🐛 Correções
+
+* (ci) Usa snapshot raso no deploy hf e remove docs/imgs para corrigir erros de binários
+
+## v3.2.19 - 04/01/2026
+
+### 🎨 Estilo e Formatação
+
+* Padroniza o nome do projeto nas descrições
+
+* Corrige a formatação da seção de tema no config.toml
+
+
+### 📦 Build & Dependências
+
+* Adicionar suporte para arquivos de imagem no Git LFS
+
+
+### 🔧 Tarefas Internas
+
+* Atualiza o Python para a versão 3.11 para corrigir a dependência do tomllib
+
+
+### 🤖 CI/CD & Automação
+
+* Code Reviwer deve ignorar commits do changelog.md
+
+* Adiciona job de teste ao pipeline de produção
+
+
+### 🧪 Testes Unitários e de Integração
+
+* Remover variáveis ​​de ambiente sensíveis do pipeline de testes e melhora utilização do mocking para a API do Gemini
+
+## v3.2.18 - 04/01/2026
+
+### ♻️ Refatoração & Melhorias
+
+* Substitui import * por imports explícitos em external_links
+
+
+### ✨ Funcionalidades
+
+* Criação dos diagramas dos fluxos da aplicação e esquema do banco de dados no Eraser.io
+
+
+### 📚 Documentação
+
+* Melhorias e revisão da Política de Privacidade
+
+* Definição de rodapé nas documentações do Vox
+
+
+### 📦 Build & Dependências
+
+* Remove configuração de tema base do arquivo config.toml
+
+## v3.2.17 - 03/01/2026
+
+### ♻️ Refatoração & Melhorias
+
+* Atualização do diretório das docs
+
+
+### 📚 Documentação
+
+* Reorganização de documentações do projeto
+
+* Criação de Termos de Uso do Vo AI
+
+* Cria arquivo ARCHITECTURE.md com desenho do sistema e fluxo RAG
+
+
+### 🔧 Tarefas Internas
+
+* Atualiza o cabeçalho do CHANGELOG para incluir nota sobre geração automática
+
+## v3.2.16 - 02/01/2026
+
+### ♻️ Refatoração & Melhorias
+
+* Correção de erro no sumário
+
+## v3.2.15 - 02/01/2026
+
+### 🐛 Correções
+
+* Corrigido nome da função que busca versão atual do Vox para registro de log
+
+### 📚 Documentação
+* README atualizado de acordo com o status atual do projeto
+
+
+### 📦 Build & Dependências
+
+* Remoção de libs que não são mais utilizadas
+
+
+### 🔧 Tarefas Internas
+
+* Adição de arquivos do pytest no .gitginore
+
+
+### 🤖 CI/CD & Automação
+
+* Adiciona log automatico de bloqueios e sugestões do Code Reviewer
+
+* Melhorias na mensagem exibida pelo Code Reviewer
+
+* Tenta abrir o arquivo de log do code reviewer automaticamente
+
+
+### 🧪 Testes Unitários e de Integração
+
+* Implementa testes automatizados para o fluxo de code review da IA
+
+## v3.2.14 - 30/12/2025
+
+### 🐛 Correções
+
+* Adiciona tags obrigatórias no README.md para deploy no HF
+
+* (gatekeeper) Refina keywords para evitar falsos positivos em XSS e RCE
+
+* Implementa verificação via regex boundaries (\b) para evitar falsos positivos
+
+* (sidebar) Corrige erro que fazia fluxo de report fechar sozinho em telas menores
+
+### ✨ Funcionalidades
+
+* Não executa code review se os arquivos modificados forem markdown
+
+* Melhorias na organização da Sidebar organizada
+
+### ♻️ Refatoração & Melhorias
+* Corrige nome do Vox AI na exibição do log
+
+### 📚 Documentação
+
+* Documentações atualizadas para melhor clareza
+
+ ### 🤖 CI/CD & Automação
+
+* (fix) Remove push de tags para evitar erro de metadata em commits antigos
+
+### 🧪 Testes Unitários e de Integração
+
+* Implementação de testes unitários e de integração utilizando `pytest`
+
+### 🔧 Tarefas Internas
+
+* Utilizaçao de @st.cache_resource para previnir execução redundante da configuração da key do Gemini
+
+* Atualiza as dependências do projeto.
+
+* Padroniza geração de changelog de testes
+
+* (startup_patch) Adição de comentário explicando necessidade do arquivo
+
+* Padroniza utilização de `logger` para exibição de logs no terminal
+
+## v3.2.5 - 30/12/2025
+
+### ♻️ Refatoração & Melhorias
+
+* Centraliza configuração de secrets principais e aplica logging
+
+### 🤖 CI/CD & Automação
+
+* Adiciona paths-ignore para ignorar arquivos .md no fluxo de revisão de segurança
+
+
+## v3.2.1 - 30/12/2025
+
+### ♻️ Refatoração & Melhorias
+
+* Melhorias na formatação de `security_check`
+
+### ✨ Funcionalidades
+
+* Implementa fluxo completo de denúncia com seleção de categorias e campo de comentário
+
+
+### 📚 Documentação
+
+* Adiciona guias de convenção para commits e migrations (`CONVENTIONAL_COMMITS.md` e `CONVETIONAL_MIGRATIONS.md`)
+
+* Adiciona instalação de Git Hooks, diretrizes de migração e referência para commits convencionais nas instruções de contribuição
+
+* Altera licença de MIT para GNU GPLv3
+
+* Atualiza guia de contribuição com fluxo de hooks e migrations
+
+
+### 🔧 Tarefas Internas
+
+* Configura git hook para validar mensagens de commit
+
+
+### 🤖 CI/CD & Automação
+
+* Adiciona trava de segurança para migrations de banco de dados
+
+* Ativa cache do pip e utiliza novo requirements-gatekeep para acelerar code review
+### 🧪 Testes
+
+* Adiciona scripts de teste de conexão e banco de dados
+
+## v3.1.37 - 29/12/2025
+
+### ✨ Funcionalidades
+
+* Adiciona política RLS para leitura da tabela `knowledge_base` utilizando key anon.
+
+
+### 🐛 Correções
+
+* Ajustes no prompt de segurança
+
+* Corrige erro de conexão com supabase do hugging face
+
+
+## v3.1.36 - 29/12/2025
+
+### 🐛 Correções
+
+* Correção no nome do secret do supabase.
+
+## v3.1.35 - 29/12/2025
+
+### ✨ Funcionalidades
+
+* Melhorias no code reviewer
+
+### 🐛 Correções
+
+* Correção na forma como que a key do Gemini é buscada
+
+* Correções na lógica de bloqueio da IA e ajustes no prompt de segurança
+
+## v3.1.34 - 28/12/2025
+
+### ♻️ Refatoração & Melhorias
+
+* Chave anon do supabase é utilizada por padrão quando necessário
+
+### ✨ Funcionalidades
+
+* Code review vai ignorar valores que começam com _ (underline)
+
+* Adiciona scripts de teste locais ao .gitignore.
+
+* Adiciona script de verificação de segurança com detecção de segredos e revisão de código por IA para hooks Git.
+
+### 🐛 Correções
+
+* Correção no nome do secret
+
+### 🤖 CI/CD & Automação
+
+* Corrige nome incorreto de secrets de deploy no Git Pages
+
+## v3.1.33 - 28/12/2025
+
+### ✨ Funcionalidades
+
+* Adiciona .agent ao .gitignore.
+
+## v3.1.32 - 28/12/2025
+
+### 🎨 Estilo e Formatação
+
+* Melhor formatação do .gitignore
+* 
+## v3.1.22 - 28/12/2025
+
+### 🐛 Correções
+
+* Fix (dashboard): Versão da Base de Conhecimento agora é exibida corretamente.
+
+## v3.1.21 - 27/12/2025
+
+### ✨ Funcionalidades
+
+* Adicionar coluna 'modificado_em' na tabela knowledge_base.
+
+### 🐛 Correções
+
+* Fix (dashboard): Versão da KB agora é exibida corretamente.
+
+## v3.1.20 - 27/12/2025
+
+### 🐛 Correções
+
+* Fix (dashboard): Versão da KB agora é exibida corretamente.
+
+## v3.1.19 - 27/12/2025
+
+### ✨ Funcionalidades
+
+* Feat (database): nova trigger que conta quantas vezes a kb foi utilizada.
+
+## v3.1.18 - 27/12/2025
+
+### ✨ Funcionalidades
+
+* Feat (database): estrutura do banco de dados atualizada.
+
+## v3.1.16 - 27/12/2025
+
+### ♻️ Refatoração & Melhorias
+
+* Refatoração do código.
+
+* Remoção de exibição de logs desnecessários no console.
+
+### ✨ Funcionalidades
+
+* Feat (database): melhoria na estrutura da knowledge_base; Vox agora utiliza um contexto expandido durante busca semântica.
+
+* Criação de testes para validar funcionamento de funções semanticas e de registro de log
+
+### 📚 Documentação
+
+* Revisão e melhorias na documentação.
+
 ## v3.1.15 - 19/12/2025
 ### ✨ Funcionalidades
 * Adiciona `id` sequencial na tabela `sessions`.
@@ -350,3 +680,10 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 * Adição de informações relacionadas ao projeto.
 * Configuração da API no GenAI.
 * Exibição e alerta de status da API.
+
+---
+
+<div align="center">
+    <p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p>
+    <p>© 2026 Projeto Vox</p>
+</div>
