@@ -5,7 +5,7 @@ colorFrom: purple
 colorTo: red
 sdk: streamlit
 sdk_version: 1.52.2
-python_version: 3.11
+python_version: 3.13
 app_file: vox_ai.py
 pinned: false
 license: gpl-3.0
@@ -28,7 +28,7 @@ tags:
 ![Dev Version](https://img.shields.io/github/v/tag/emn-f/vox-ai?include_prereleases&label=develop&color=orange&style=flat-square)
 ![License](https://img.shields.io/github/license/emn-f/vox-ai?style=flat-square&color=blue)
 
-![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&style=flat-square)
+![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&style=flat-square)
 ![Streamlit](https://img.shields.io/badge/Deploy-Streamlit-FF4B4B?logo=streamlit&style=flat-square)
 ![Hugging Face](https://img.shields.io/badge/Mirror-Hugging%20Face-FFD21E?logo=huggingface&style=flat-square&logoColor=black)
 ![Supabase](https://img.shields.io/badge/DB-Supabase-3ECF8E?logo=supabase&style=flat-square)
@@ -85,7 +85,7 @@ O **Vox AI** é um chatbot de apoio e informação a comunidade LGBTQIA+. Nossa 
 * **IA:** Google Gemini Flash (modelo `gemini-flash-latest`).
 * **RAG:** Google Generative AI Embeddings (`models/text-embedding-004`).
 * **Dados:** Supabase (Banco Relacional, Vetorial e Logs).
-* **DevOps:** GitHub Actions (CI/CD), Git Cliff (Changelog), Hugging Face (Deploy).
+* **DevOps:** GitHub Actions (CI/CD), Git Cliff (Changelog), Hugging Face (Deploy), uv (Gestão de Dependências).
 
 ## 🤖 Automação e CI/CD
 

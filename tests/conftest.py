@@ -65,47 +65,39 @@ def mock_supabase_global():
 @pytest.fixture(autouse=True)
 def mock_gemini_global():
     """
-    Mock global para o Google Generative AI (Gemini).
-    Intercepta 'google.generativeai' para evitar chamadas reais à API.
+    Mock global para o Google Gen AI (Gemini - Novo SDK).
+    Intercepta 'google.genai.Client' para evitar chamadas reais à API.
     """
-    with patch("google.generativeai.configure") as mock_config, patch(
-        "google.generativeai.GenerativeModel"
-    ) as mock_model_cls, patch("google.generativeai.list_models") as mock_list, patch(
-        "google.generativeai.embed_content"
-    ) as mock_embed:
+    # Se estivemos rodando testes de integração que precisam da API real,
+    # idealmente deveríamos desabilitar o mock.
+    # Mas como o fixture é autouse, ele roda.
+    # O teste de integração pode precisar fazer 'reload' ou patch manual se quiser burlar.
 
-        # Mock do modelo e resposta
-        mock_instance = MagicMock()
-        mock_model_cls.return_value = mock_instance
+    # Porém, aqui vamos mockar a CLASSE Client.
+    with patch("google.genai.Client") as mock_client_cls:
 
+        # Instância do cliente mockado
+        mock_client = MagicMock()
+        mock_client_cls.return_value = mock_client
+
+        # Mock de models.generate_content
         mock_response = MagicMock()
         mock_response.text = "Mocked AI Response [PASS]"
-        mock_instance.generate_content.return_value = mock_response
 
-        # Mock de list_models
-        mock_list_models = [
-            MagicMock(
-                name="models/gemini-pro",
-                supported_generation_methods=["generateContent"],
-            ),
-            MagicMock(
-                name="models/gemini-1.5-flash",
-                supported_generation_methods=["generateContent"],
-            ),
+        # Hierarquia: client.models.generate_content(...)
+        mock_client.models.generate_content.return_value = mock_response
+
+        # Mock de chats.create(...)
+        mock_chat = MagicMock()
+        mock_client.chats.create.return_value = mock_chat
+        mock_chat.send_message_stream.return_value = [
+            MagicMock(text="Mocked Stream Chunk 1"),
+            MagicMock(text="Mocked Stream Chunk 2"),
         ]
-        # Atribuir o nome como string para simular o objeto real do SDK
-        mock_list_models[0].name = "models/gemini-pro"
-        mock_list_models[1].name = "models/gemini-1.5-flash"
-
-        mock_list.return_value = mock_list_models
-
-        # Mock de embed_content
-        mock_embed.return_value = {"embedding": [0.1] * 768}
 
         yield {
-            "config": mock_config,
-            "model_class": mock_model_cls,
-            "model_instance": mock_instance,
-            "list_models": mock_list,
-            "embed_content": mock_embed,
+            "client_cls": mock_client_cls,
+            "client_instance": mock_client,
+            "models": mock_client.models,
+            "chats": mock_client.chats,
         }
