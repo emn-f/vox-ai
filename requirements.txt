@@ -1,5 +1,5 @@
 streamlit>=1.40.0
-google-generativeai
+google-genai
 
 gtts
 

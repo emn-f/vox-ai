@@ -4,8 +4,18 @@ import re
 import argparse
 import subprocess
 import datetime
+import os
+import re
 import shutil
-from typing import List, Optional, Any
+import subprocess
+import sys
+from typing import Any, List, Optional
+
+# Adiciona o diretório raiz ao path ANTES de importar src
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from google import genai
+from src.config import get_secret
 
 # =============================================================================
 # CONFIGURAÇÃO DE IMPORTS (TOML)
@@ -360,7 +370,7 @@ def check_supabase_connection() -> bool:
     print_colored("🔌 Testando conexão com Supabase...", COLOR_BLUE)
 
     try:
-        from supabase import create_client, Client
+        from supabase import Client, create_client
     except ImportError:
         print_colored("⚠️ Biblioteca 'supabase' ausente.", COLOR_YELLOW)
         return False
@@ -417,11 +427,6 @@ def run_ai_code_review(diff_text: str) -> bool:
         return True
 
     try:
-        import google.generativeai as genai
-
-        genai.configure(api_key=gemini_key)
-        model_name = "gemini-2.5-flash"
-        model = genai.GenerativeModel(model_name)
 
         safe_diff = sanitize_diff_for_ai(diff_text)
         if len(safe_diff) > 20000:
@@ -439,7 +444,11 @@ def run_ai_code_review(diff_text: str) -> bool:
             f"{safe_diff}"
         )
 
-        response = model.generate_content(prompt)
+        client = genai.Client(api_key=get_secret("GEMINI_API_KEY"))
+        response = client.models.generate_content(
+            model="gemini-2.5-flash", contents=prompt
+        )
+
         review_text = response.text
 
         if review_text:
