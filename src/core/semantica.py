@@ -1,27 +1,34 @@
-import os
-
-import google.generativeai as genai
 import streamlit as st
+from google import genai
+from google.genai import types
 
 from src.config import MODELO_SEMANTICO_NOME
 from src.core.database import recuperar_contexto_inteligente
-
-
-def _configurar_api():
-    api_key = st.secrets.get("GEMINI_API_KEY") or os.environ.get("GEMINI_API_KEY")
-    if api_key:
-        genai.configure(api_key=api_key)
-    else:
-        print("GEMINI_API_KEY não encontrada nas variáveis de ambiente.")
+from src.core.genai import configurar_api_gemini
 
 
 def semantica(prompt):
-    _configurar_api()
+    """
+    Gera o embedding do prompt e busca contexto relevante no banco de dados.
+    """
     try:
-        result = genai.embed_content(
-            model=MODELO_SEMANTICO_NOME, content=prompt, task_type="retrieval_query"
+        # Reutiliza o cliente já configurado (com cache e nova Key)
+        client = configurar_api_gemini()
+
+        if not client:
+            print("Client Gemini não disponível para semântica.")
+            return None, None, None
+
+        # Chamada V1 para Embeddings
+        # Note que task_type agora vai dentro de config (opcional, mas recomendado para retrieval)
+        response = client.models.embed_content(
+            model=MODELO_SEMANTICO_NOME,
+            contents=prompt,
+            config=types.EmbedContentConfig(task_type="RETRIEVAL_QUERY"),
         )
-        vetor_prompt = result["embedding"]
+
+        # A resposta na V1 geralmente vem em response.embeddings[0].values
+        vetor_prompt = response.embeddings[0].values
 
         texto_contexto, fonte_identificaadora, lista_ids = (
             recuperar_contexto_inteligente(vetor_prompt)
