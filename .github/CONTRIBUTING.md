@@ -31,17 +31,21 @@ Se você quer rodar o projeto localmente para testar mudanças:
     git clone https://github.com/SEU-USUARIO/vox-ai.git
     cd vox-ai
     ```
-3.  **Crie um ambiente virtual** (Recomendado Python 3.11+):
+3.  **Instale o uv** (Gerenciador de pacote):
     ```bash
-    python -m venv .venv
-    .venv\Scripts\activate     # Windows
-    # ou
-    source .venv/bin/activate  # Linux/Mac
+    # Windows
+    powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+    # Mac/Linux
+    curl -LsSf https://astral.sh/uv/install.sh | sh
     ```
 4.  **Instale as dependências:**
     ```bash
-    pip install -r requirements.txt
+    uv sync
     ```
+    > **Nota:** Para adicionar novas bibliotecas, use `uv add [NOME_DA_LIB]`.
+    > O arquivo `requirements.txt` é gerado automaticamente para deploy.
+    > Para atualizá-lo: `uv export --no-hashes > requirements.txt`
 5.  **Configure as Variáveis de Ambiente:**
     Crie um arquivo `.streamlit/secrets.toml` na raiz do projeto.
     O arquivo deve seguir este formato:
@@ -67,18 +71,18 @@ Se você quer rodar o projeto localmente para testar mudanças:
 
 7.  **Execute o projeto:**
     ```bash
-    streamlit run vox_ai.py
+    uv run streamlit run vox_ai.py
     ```
 
 ## 🔄 Fluxo de Desenvolvimento
 
 Utilizamos um fluxo simples baseado em branches:
 
-* **`master`**: Código em produção (estável). Não é possível comitar diretamente aqui.
-* **`dev`**: Branch principal de desenvolvimento. **Suas PRs devem apontar para cá.**
+* **`main`**: Código em produção (estável). Não é possível comitar diretamente aqui.
+* **`develop`**: Branch principal de desenvolvimento. **Suas PRs devem apontar para cá.**
 
 **Para nova feature ou correção:**
-1.  Crie uma branch a partir de `dev`:
+1.  Crie uma branch a partir de `develop`:
     ```bash
     git checkout -b feat/minha-nova-feature
     ```
@@ -126,7 +130,7 @@ A base de conhecimento é gerida internamente.
 
 1.  Certifique-se de que seu código está rodando sem erros.
 2.  Faça o Push da sua branch para o seu fork.
-3.  Abra um Pull Request para a branch **`dev`** do repositório original.
+3.  Abra um Pull Request para a branch **`develop`** do repositório original.
 4.  Na descrição do PR, explique o que foi feito e vincule a issue relacionada (se houver).
 5.  Aguarde a revisão da equipe! 💜
 

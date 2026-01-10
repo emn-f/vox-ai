@@ -5,7 +5,7 @@ colorFrom: purple
 colorTo: red
 sdk: streamlit
 sdk_version: 1.52.2
-python_version: 3.11
+python_version: 3.13
 app_file: vox_ai.py
 pinned: false
 license: gpl-3.0
@@ -23,18 +23,18 @@ tags:
 # 🏳️‍🌈 Vox AI: Assistente de Apoio e Informação LGBTQIA+
 
 
-![Build Status](https://img.shields.io/github/actions/workflow/status/emn-f/vox-ai/production_pipeline.yml?branch=master&label=Build&logo=github&style=flat-square)
+![Build Status](https://img.shields.io/github/actions/workflow/status/emn-f/vox-ai/production_pipeline.yml?branch=main&label=Build&logo=github&style=flat-square)
 ![Prod Version](https://img.shields.io/github/v/release/emn-f/vox-ai?label=Prod&color=2ea44f&style=flat-square)
-![Dev Version](https://img.shields.io/github/v/tag/emn-f/vox-ai?include_prereleases&label=Dev&color=orange&style=flat-square)
+![Dev Version](https://img.shields.io/github/v/tag/emn-f/vox-ai?include_prereleases&label=develop&color=orange&style=flat-square)
 ![License](https://img.shields.io/github/license/emn-f/vox-ai?style=flat-square&color=blue)
 
-![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&style=flat-square)
+![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&style=flat-square)
 ![Streamlit](https://img.shields.io/badge/Deploy-Streamlit-FF4B4B?logo=streamlit&style=flat-square)
 ![Hugging Face](https://img.shields.io/badge/Mirror-Hugging%20Face-FFD21E?logo=huggingface&style=flat-square&logoColor=black)
 ![Supabase](https://img.shields.io/badge/DB-Supabase-3ECF8E?logo=supabase&style=flat-square)
 ![Gemini](https://img.shields.io/badge/AI-Gemini-8E75B2?logo=google&style=flat-square)
 
-### [Acesse aqui o Vox AI](https://assistentevox.streamlit.app/) | [Dashboard no GitPages](https://emn-f.github.io/vox-ai/)
+### [Acesse aqui o Vox AI](https://vox-ai.streamlit.app/) | [Dashboard no GitPages](https://emn-f.github.io/vox-ai/)
 
 </div>
 
@@ -56,10 +56,10 @@ O **Vox AI** é um chatbot de apoio e informação a comunidade LGBTQIA+. Nossa 
 
 ### Qualidade e Automação
 ![Tests](https://img.shields.io/badge/Tests-Pytest%20%7C%20Unit%20%26%20Integration-34D058?style=flat-square&logo=pytest)
-![Security Review](https://img.shields.io/github/actions/workflow/status/emn-f/vox-ai/security_review.yml?branch=master&style=flat-square&logo=githubcheck&label=Code%20Review)
-![HF Mirror](https://img.shields.io/github/actions/workflow/status/emn-f/vox-ai/deploy_hugging_face.yml?branch=master&style=flat-square&logo=huggingface&label=HF%20Mirror)
-![DB Sync](https://img.shields.io/github/actions/workflow/status/emn-f/vox-ai/deploy_db.yml?branch=master&style=flat-square&logo=supabase&label=DB%20Last%20Sync)
-![Last Update](https://img.shields.io/github/last-commit/emn-f/vox-ai/master?style=flat-square&logo=github&label=Last%20Update)
+![Security Review](https://img.shields.io/github/actions/workflow/status/emn-f/vox-ai/security_review.yml?branch=main&style=flat-square&logo=githubcheck&label=Code%20Review)
+![HF Mirror](https://img.shields.io/github/actions/workflow/status/emn-f/vox-ai/deploy_hugging_face.yml?branch=main&style=flat-square&logo=huggingface&label=HF%20Mirror)
+![DB Sync](https://img.shields.io/github/actions/workflow/status/emn-f/vox-ai/deploy_db.yml?branch=main&style=flat-square&logo=supabase&label=DB%20Last%20Sync)
+![Last Update](https://img.shields.io/github/last-commit/emn-f/vox-ai/main?style=flat-square&logo=github&label=Last%20Update)
 
 ### Atividade e Evolução
 ![Commits Last Release](https://img.shields.io/github/commits-since/emn-f/vox-ai/v3.2.14?style=flat-square&logo=git&label=Commits%20since%20last%20release&color=007acc)
@@ -81,11 +81,11 @@ O **Vox AI** é um chatbot de apoio e informação a comunidade LGBTQIA+. Nossa 
 
 ## 💻 Tecnologias Utilizadas
 
-* **Core:** Python 3.11, Streamlit.
+* **Core:** Python 3.13, Streamlit.
 * **IA:** Google Gemini Flash (modelo `gemini-flash-latest`).
-* **RAG:** Google Generative AI Embeddings (`models/text-embedding-004`).
+* **RAG:** Google GenAI Embeddings (`models/text-embedding-004`).
 * **Dados:** Supabase (Banco Relacional, Vetorial e Logs).
-* **DevOps:** GitHub Actions (CI/CD), Git Cliff (Changelog), Hugging Face (Deploy).
+* **DevOps:** GitHub Actions (CI/CD), Git Cliff (Changelog), Hugging Face (Deploy), uv (Gestão de Dependências).
 
 ## 🤖 Automação e CI/CD
 
@@ -96,7 +96,7 @@ O **Vox AI** é um chatbot de apoio e informação a comunidade LGBTQIA+. Nossa 
 
 ## 🤝 Como Contribuir
 
-Contribuições são bem-vindas! Consulte nosso [**Guia de Contribuição**](CONTRIBUTING.md) para detalhes sobre padrões de commit, setup e fluxo de desenvolvimento.
+Contribuições são bem-vindas! Consulte nosso [**Guia de Contribuição**](.github\CONTRIBUTING.md) para detalhes sobre padrões de commit, setup e fluxo de desenvolvimento.
 
 
 ## ⚖️ Governança e Ética

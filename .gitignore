@@ -86,3 +86,4 @@ ai_gatekeeper.log
 # Arquivos do PyTest
 # ==============================================================================
 .pytest_cache
+scripts/debug_models.py

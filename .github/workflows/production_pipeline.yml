@@ -1,7 +1,7 @@
 name: 🚀 Production Pipeline
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths-ignore:
       - "CHANGELOG.md"
 permissions:
@@ -16,8 +16,10 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
       - name: Install Dependencies
-        run: pip install -r requirements.txt
+        run: uv pip install -r requirements.txt --system
       - name: Run Tests
         run: pytest
 
@@ -75,6 +77,6 @@ jobs:
 
           git remote set-url origin https://emn-f:${{ secrets.TOKEN_DEPLOY_VOX }}@github.com/${{ github.repository }}.git
           
-          git push origin master --tags
+          git push origin main --tags
 
           echo "✅ Versão Oficial ${NEW_TAG} lançada!"

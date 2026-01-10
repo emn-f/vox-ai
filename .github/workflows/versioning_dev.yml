@@ -1,8 +1,8 @@
-name: 🚧 Versioning the Dev branch
+name: 🚧 Versioning the Develop branch
 on:
   push:
     branches:
-      - dev
+      - develop
 permissions:
   contents: write
 
@@ -21,7 +21,7 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-    - name: Calcular Próxima Versão Dev
+    - name: Calcular Próxima Versão Develop
       id: calc_version
       run: |
         LAST_TAG=$(git tag --list "dev-v*" --sort=-v:refname | head -n 1)
@@ -36,7 +36,7 @@ jobs:
         PATCH=$((PATCH + 1))
         NEW_TAG="dev-v${MAJOR}.${MINOR}.${PATCH}"
         
-        echo "Nova versão Dev: $NEW_TAG"
+        echo "Nova versão Develop: $NEW_TAG"
         echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
 
     - name: Criar Tag e Push (Sem Changelog)

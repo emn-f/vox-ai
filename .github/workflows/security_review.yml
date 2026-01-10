@@ -2,12 +2,12 @@ name: 🔒 Gatekeep Security & Code Review
 
 on:
   push:
-    branches: [ "dev", "master" ]
+    branches: [ "develop", "main" ]
     paths-ignore:
       - '**.md'
       - 'CHANGELOG.md'
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
     paths-ignore:
       - '**.md'
       - 'CHANGELOG.md'
@@ -26,9 +26,11 @@ jobs:
           python-version: "3.10"
           cache: 'pip'
 
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
       - name: Install Dependencies
         run: |
-          pip install -r requirements-gatekeep.txt
+          uv pip install -r gatekeep/requirements-gatekeep.txt --system
 
       - name: Run Security & AI Review
         env:
@@ -37,4 +39,4 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          python scripts/security_check.py --mode pre-push
+          python gatekeep/security_check.py --mode pre-push

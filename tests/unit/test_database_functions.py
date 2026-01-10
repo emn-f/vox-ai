@@ -6,7 +6,6 @@ from src.core.database import (
     salvar_erro,
     salvar_report,
     get_categorias_erro,
-    add_conhecimento_db,
     buscar_referencias_db,
     buscar_chunks_por_topico,
     recuperar_contexto_inteligente,
@@ -68,18 +67,6 @@ def test_salvar_report(mock_db_client):
     assert sucesso is True
     mock_db_client.table.assert_called_with("user_reports")
     mock_db_client.table("user_reports").insert.assert_called()
-
-
-def test_add_conhecimento_db(mock_db_client):
-    # Precisamos mockar o genai.embed_content também, pois o add_conhecimento chama ele
-    with patch("src.core.database.genai.embed_content") as mock_embed:
-        mock_embed.return_value = {"embedding": [0.1] * 768}
-
-        sucesso = add_conhecimento_db("Tema", "Desc", "Ref", "Autor")
-
-        assert sucesso is True
-        mock_db_client.table.assert_called_with("knowledge_base")
-        mock_db_client.table("knowledge_base").insert.assert_called()
 
 
 # ==========================================

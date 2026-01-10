@@ -134,9 +134,7 @@ if "key_api" in st.session_state:
             st.rerun()
 
         except Exception as e:
-            error_id = salvar_erro(
-                st.session_state.session_id, st.session_state.git_version_str, e
-            )
+            error_id = salvar_erro(st.session_state.session_id, git_version(), e)
 
             st.error(
                 f"""
