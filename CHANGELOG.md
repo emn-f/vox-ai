@@ -4,6 +4,54 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.2.28 - 10/01/2026
+
+### ♻️ Refatoração & Melhorias
+
+* Migra SDK do Google AI para `google-genai` v1.0
+
+* Move função para inserir conhecimento na base de dados para um script separado
+
+* Altera SDK do Google AI para `google-genai`
+
+* Melhoria na execução da lógica
+
+* Altera SDK do Google AI para `google-genai`
+
+
+### ✨ Funcionalidades
+
+* Exibe erro detalhado caso o prompt não possa ser respondido
+
+
+### 🐛 Correções
+
+* Corrige erro de chamada de função para salvar versão do git em error_logs
+
+
+### 📚 Documentação
+
+* Atualiza CHANGELOG.md com novas entradas
+
+
+### 📦 Build & Dependências
+
+* Migra gerenciamento de dependencias para uv
+
+
+### 🔧 Tarefas Internas
+
+* Adiciona scripts/debug_models.py ao .gitignore
+
+
+### 🧪 Testes Unitários e de Integração
+
+* Corrige testes de integração
+
+* Testes unitários atualizados para usar lib `google.genai`
+
+* Remove importação que não existe
+
 ## v3.2.27 - 06/01/2026
 
 ### ♻️ Refatoração & Melhorias
