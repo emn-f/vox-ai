@@ -1,15 +1,16 @@
-import google.genai as genai
+from google import genai
 
 from src.config import logger
 from src.core.database import get_db_client
-
+from src.core.genai import configurar_api_gemini
 
 def add_conhecimento_db(tema, descricao, referencias, autor):
     client = get_db_client()
     if not client:
         return False
     try:
-        result = genai.embed_content(
+        gemini_client = configurar_api_gemini()
+        result = gemini_client.models.embed_content(
             model="models/text-embedding-004",
             content=f"{tema}: {descricao}",
             task_type="retrieval_document",
