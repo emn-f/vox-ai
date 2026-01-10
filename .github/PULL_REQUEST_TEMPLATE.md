@@ -7,6 +7,7 @@
 ## ✅ Checklist de Qualidade
 Por favor, verifique se você cumpriu os itens abaixo:
 
+- [ ] **Executei o script de gatekeep localmente (gatekeep/security_check.py) e ele não encontrou problemas.**
 - [ ] Testei minhas alterações localmente (o projeto roda sem erros).
 - [ ] Atualizei a documentação (se necessário).
 - [ ] Minhas mudanças respeitam o [Código de Conduta](../CODE_OF_CONDUCT.md) e a [Política de Privacidade](../PRIVACY_POLICY.md).
