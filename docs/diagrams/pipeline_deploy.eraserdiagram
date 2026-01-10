@@ -2,7 +2,7 @@ cloud-architecture-diagram
 
 title Vox AI CI/CD Pipeline
 
- [icon: user, label: "", color: blue]
+[icon: user, label: "Dev", color: blue]
 GitHub [icon: github, label: "GitHub (PR main)", color: black]
 
 Group PR_Checks [icon: github-actions, label: "Workflow: Security Review (No PR)", color: red] {

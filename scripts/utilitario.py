@@ -1,8 +1,10 @@
 from google import genai
+from google.genai import types
 
 from src.config import logger
 from src.core.database import get_db_client
 from src.core.genai import configurar_api_gemini
+
 
 def add_conhecimento_db(tema, descricao, referencias, autor):
     client = get_db_client()
@@ -11,11 +13,13 @@ def add_conhecimento_db(tema, descricao, referencias, autor):
     try:
         gemini_client = configurar_api_gemini()
         result = gemini_client.models.embed_content(
-            model="models/text-embedding-004",
-            content=f"{tema}: {descricao}",
-            task_type="retrieval_document",
+            model="text-embedding-004",
+            contents=f"{tema}: {descricao}",
+            config=types.EmbedContentConfig(
+                task_type="RETRIEVAL_DOCUMENT", title="Vox - Knowledge Base"
+            ),
         )
-        vector_embedding = result["embedding"]
+        vector_embedding = result.embeddings[0].values
 
         data = {
             "tema": tema,
