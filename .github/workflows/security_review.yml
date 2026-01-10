@@ -30,7 +30,7 @@ jobs:
         uses: astral-sh/setup-uv@v3
       - name: Install Dependencies
         run: |
-          uv pip install -r requirements-gatekeep.txt --system
+          uv pip install -r gatekeep/requirements-gatekeep.txt --system
 
       - name: Run Security & AI Review
         env:
@@ -39,4 +39,4 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          python scripts/security_check.py --mode pre-push
+          python gatekeep/security_check.py --mode pre-push
