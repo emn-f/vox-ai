@@ -4,6 +4,27 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.2.29 - 10/01/2026
+
+### ♻️ Refatoração & Melhorias
+
+* Centraliza scripts de code reviee em gatekeep/
+
+
+### ✨ Funcionalidades
+
+* Adiciona item de verificação para execução do script de gatekeep no template de criação de PR
+
+
+### 🐛 Correções
+
+* Corrige caminho do 'gatekeep' para permitir a importação do security_check
+
+
+### 📚 Documentação
+
+* Corrige versão do Python para 3.13 e corrige caminho do Guia de Contribuição
+
 ## v3.2.28 - 10/01/2026
 
 ### ♻️ Refatoração & Melhorias
