@@ -26,14 +26,14 @@ Canais de contato oficiais e de divulgação do Projeto Vox.
 Links técnicos de acesso à aplicação e código-fonte.
 | Ambiente | URL | Status |
 | :--- | :--- | :--- |
-| **Streamlit Cloud** | [assistentevox.streamlit.app](https://assistentevox.streamlit.app/) | ✅ Produção (Principal) |
+| **Streamlit Cloud** | [vox-ai.streamlit.app](https://vox-ai.streamlit.app/) | ✅ Produção (Principal) |
 | **Hugging Face** | [huggingface.co/spaces/emn-f/vox-ai](https://huggingface.co/spaces/emn-f/vox-ai) | 🤗 Deploy espelhado |
 | **Repositório GitHub** | [github.com/emn-f/vox-ai](https://github.com/emn-f/vox-ai) | 💻 Código Fonte |
-| **Dashboard no Git Pages** | [https://emn-f.github.io/vox-ai/](https://assistentevox.streamlit.app/) | 📊 Painel Administrativo |
+| **Dashboard no Git Pages** | [https://emn-f.github.io/vox-ai/](https://vox-ai.streamlit.app/) | 📊 Painel Administrativo |
 
 ## ⚖️ Documentação Legal e Governança
 
-Links diretos para os arquivos markdown de governança no repositório (Branch `master`).
+Links diretos para os arquivos markdown de governança no repositório (Branch `main`).
 | Arquivo | Definição | Descrição |
 | :--- | :--- | :--- |
 | **[CONTRIBUTING.md](../CONTRIBUTING.md)** | **Como Contribuir** | Guia para contribuidores. |

@@ -2,13 +2,13 @@ name: 🌐 Deploy to GitHub Pages
 
 on:
   workflow_run:
-    workflows: ["🚀 Production Pipeline"]
+    workflows: ["🚀 Main Pipeline"]
     types:
       - completed
   workflow_dispatch:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'CHANGELOG.md'
 

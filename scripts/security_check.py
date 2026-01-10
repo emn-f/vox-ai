@@ -310,7 +310,7 @@ def check_database_migrations(files: List[str], mode: str) -> bool:
         cmd = ["git", "diff", "-w", "--cached", "--", target_file]
     else:
         # Pre-push
-        cmd = ["git", "diff", "-w", "origin/master..HEAD", "--", target_file]
+        cmd = ["git", "diff", "-w", "origin/main..HEAD", "--", target_file]
 
     try:
         # O diff pode falhar se o arquivo for novo ou deletado, mas tratamos com try
@@ -523,14 +523,14 @@ def get_git_files(mode: str) -> List[str]:
     if mode == "pre-commit":
         cmd = ["git", "diff", "--name-only", "--cached"]
     else:  # pre-push
-        # Tenta detectar origin/master, se falhar, usa apenas staged/local changes como fallback
-        cmd = ["git", "diff", "--name-only", "origin/master..HEAD"]
+        # Tenta detectar origin/main, se falhar, usa apenas staged/local changes como fallback
+        cmd = ["git", "diff", "--name-only", "origin/main..HEAD"]
 
     try:
         output = subprocess.check_output(cmd, stderr=subprocess.DEVNULL).decode()
         return [f.strip() for f in output.splitlines() if f.strip()]
     except subprocess.CalledProcessError:
-        # Fallback para diff cached se origin/master não existir (primeiro push de branch nova)
+        # Fallback para diff cached se origin/main não existir (primeiro push de branch nova)
         try:
             return (
                 subprocess.check_output(["git", "diff", "--name-only", "--cached"])
@@ -547,7 +547,7 @@ def get_git_diff_content(mode: str) -> str:
     if mode == "pre-commit":
         cmd = ["git", "diff", "--cached"]
     else:
-        cmd = ["git", "diff", "origin/master..HEAD"]
+        cmd = ["git", "diff", "origin/main..HEAD"]
 
     try:
         return subprocess.check_output(cmd, stderr=subprocess.DEVNULL).decode()

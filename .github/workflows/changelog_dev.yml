@@ -1,9 +1,9 @@
-name: 🔄 Dev Changelog Update
+name: 🔄 Develop Changelog Update
 
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'CHANGELOG.md'
   workflow_dispatch:
@@ -12,10 +12,10 @@ jobs:
   sync-changelog:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Dev Branch
+      - name: Checkout Develop Branch
         uses: actions/checkout@v4
         with:
-          ref: dev
+          ref: develop
           fetch-depth: 0
           token: ${{ secrets.TOKEN_DEPLOY_VOX }}
 
@@ -24,18 +24,18 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-      - name: Fetch Master
-        run: git fetch origin master
+      - name: Fetch main
+        run: git fetch origin main
 
-      - name: Checkout Changelog from Master
-        run: git checkout origin/master -- CHANGELOG.md
+      - name: Checkout Changelog from main
+        run: git checkout origin/main -- CHANGELOG.md
 
       - name: Commit and Push Changes
         run: |
           if [[ -n $(git status -s CHANGELOG.md) ]]; then
             git add CHANGELOG.md
-            git commit -m "chore: sync CHANGELOG.md from master"
-            git push origin dev
+            git commit -m "chore: sync CHANGELOG.md from main"
+            git push origin develop
           else
             echo "No changes to sync."
           fi
