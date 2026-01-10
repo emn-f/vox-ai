@@ -1,8 +1,4 @@
-import os
-import sys
-import re
 import argparse
-import subprocess
 import datetime
 import os
 import re
@@ -15,13 +11,10 @@ from typing import Any, List, Optional
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from google import genai
-from src.config import get_secret
 
 # =============================================================================
 # CONFIGURAÇÃO DE IMPORTS (TOML)
 # =============================================================================
-# Tenta importar bibliotecas TOML com fallback elegante.
-# Prioridade: tomllib (Py 3.11+ stdlib) -> tomli (Moderno) -> toml (Legado)
 try:
     import tomllib as toml
 except ImportError:
@@ -37,7 +30,6 @@ except ImportError:
 # CONSTANTES E CONFIGURAÇÕES
 # =============================================================================
 
-# Constantes de Cores para Terminal
 COLOR_RED = "\033[91m"
 COLOR_GREEN = "\033[92m"
 COLOR_YELLOW = "\033[93m"
@@ -46,7 +38,6 @@ COLOR_RESET = "\033[0m"
 
 
 def print_colored(msg: str, color: str = COLOR_RESET):
-    """Imprime mensagem colorida se o terminal suportar."""
     if sys.stdout.isatty():
         print(f"{color}{msg}{COLOR_RESET}")
     else:
@@ -69,7 +60,6 @@ SECRETS_PATTERNS = [
     ),
 ]
 
-# Palavras-chave específicas que indicam problemas reais.
 BLOCK_KEYWORDS = [
     "password exposed",
     "senha exposta",
@@ -82,23 +72,20 @@ BLOCK_KEYWORDS = [
     "chave exposta",
 ]
 
-
 def get_git_metadata():
     """Coleta metadados básicos do estado atual do git para o log."""
     try:
-        # Hash Curto
         commit_hash = (
             subprocess.check_output(["git", "rev-parse", "--short", "HEAD"])
             .decode()
             .strip()
         )
-        # Branch Atual
         branch = (
             subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"])
             .decode()
             .strip()
         )
-        # Tenta pegar a tag mais próxima, se houver
+
         try:
             version = (
                 subprocess.check_output(["git", "describe", "--tags", "--abbrev=0"])
@@ -106,12 +93,8 @@ def get_git_metadata():
                 .strip()
             )
         except Exception:
-            version = "No Tag"
+            version = "No Tag"  # Correção: bloco duplicado removido
 
-        except Exception:
-            version = "No Tag"
-
-        # Mensagem do Commit (HEAD)
         try:
             msg = (
                 subprocess.check_output(["git", "log", "-1", "--pretty=%B"])
@@ -137,7 +120,6 @@ def get_git_metadata():
 
 
 def log_ai_event(event_type: str, ai_response: str):
-    """Grava o evento em um arquivo de log persistente."""
     log_file = "ai_gatekeeper.log"
     meta = get_git_metadata()
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -158,7 +140,7 @@ CODE REVIEWER FEEDBACK (Gemini):
     try:
         with open(log_file, "a", encoding="utf-8") as f:
             f.write(entry)
-        # Se for um Bloqueio, tenta abrir o log automaticamente para o usuário ver
+
         if "BLOCK" in event_type:
             try:
                 # Conta linhas para tentar posicionar o cursor no final
@@ -180,7 +162,6 @@ CODE REVIEWER FEEDBACK (Gemini):
                         subprocess.Popen(["xdg-open", log_file])
             except Exception:
                 pass  # Falha silenciosa se não conseguir abrir
-
     except Exception as e:
         print_colored(f"⚠️ Falha ao gravar log: {e}", COLOR_YELLOW)
 
@@ -188,27 +169,21 @@ CODE REVIEWER FEEDBACK (Gemini):
 def load_secrets() -> dict:
     """Carrega segredos do arquivo .streamlit/secrets.toml de forma segura."""
     secrets_path = os.path.join(os.getcwd(), ".streamlit", "secrets.toml")
-
     if not os.path.exists(secrets_path):
         return {}
 
     data = {}
     if not toml:
-        # Tenta carregar mesmo sem biblioteca TOML via parseamento manual simples para chaves criticas
-        # Mas idealmente avisa
         print_colored(
             "⚠️ Aviso: Nenhuma biblioteca TOML (tomllib/tomli) encontrada.", COLOR_YELLOW
         )
 
     try:
-        # Tenta abrir como binário primeiro (tomllib/tomli)
         with open(secrets_path, "rb") as f:
             if toml and hasattr(toml, "load"):
                 data = toml.load(f)
-            else:
-                raise ImportError("TOML lib falhou ou ausente")
     except Exception:
-        # Fallback: Tenta ler como texto ou parse manual básico
+        # Fallback manual mantido
         try:
             with open(secrets_path, "r", encoding="utf-8") as f:
                 if toml:
@@ -397,7 +372,6 @@ def check_supabase_connection() -> bool:
 
 
 def sanitize_diff_for_ai(diff_text: str) -> str:
-    """Remove linhas adicionadas que possam conter segredos antes de enviar para a IA."""
     sanitized_lines = []
     for line in diff_text.splitlines():
         if line.startswith("+") and any(
@@ -417,7 +391,7 @@ def run_ai_code_review(diff_text: str) -> bool:
         return True
 
     secrets = load_secrets()
-    # Tenta achar a chave do Gemini em vários lugares comuns
+    # Usa a chave carregada localmente, mais seguro para scripts CLI
     gemini_key = secrets.get("GEMINI_API_KEY") or os.environ.get("GEMINI_API_KEY")
 
     if not gemini_key:
@@ -427,7 +401,6 @@ def run_ai_code_review(diff_text: str) -> bool:
         return True
 
     try:
-
         safe_diff = sanitize_diff_for_ai(diff_text)
         if len(safe_diff) > 20000:
             safe_diff = safe_diff[:20000] + "\n... (truncated)"
@@ -439,12 +412,15 @@ def run_ai_code_review(diff_text: str) -> bool:
             "1. Se encontrar VULNERABILIDADE CRÍTICA (senha exposta, SQLi, chave de API) -> Inicie a resposta com '[BLOCK]' e explique o erro.\n"
             "2. Se encontrar BUG DE PRODUÇÃO (loop infinito, crash certo) -> Inicie a resposta com '[BLOCK]' e explique.\n"
             "3. Se for seguro (mesmo com débitos técnicos leves) -> Responda ESTRITAMENTE: '[PASS] Aprovado.' Só fale algo a mais se voce tiver alguma melhoria para sugerir.\n"
-            "   NÃO escreva resumos, NÃO elogie, NÃO explique nada se for aprovar. Seja mudo em caso de sucesso.\n\n"
+            "  NÃO escreva resumos, NÃO elogie, NÃO explique nada se for aprovar. Seja mudo em caso de sucesso.\n\n"
             "DIFF DO CÓDIGO:\n"
             f"{safe_diff}"
         )
 
-        client = genai.Client(api_key=get_secret("GEMINI_API_KEY"))
+        # Correção: Usando a chave resolvida localmente
+        client = genai.Client(api_key=gemini_key)
+
+        # Chamada V1 correta
         response = client.models.generate_content(
             model="gemini-2.5-flash", contents=prompt
         )
@@ -454,8 +430,7 @@ def run_ai_code_review(diff_text: str) -> bool:
         if review_text:
             print(f"\n📝 Relatório Gemini:\n{review_text}\n")
 
-            # 1. Verifica keywords críticas em QUALQUER lugar do texto (soberano sobre [PASS])
-            # Isso garante que se a IA citar "password exposed" no meio do texto, bloqueia.
+            # (Lógica de verificação de keywords e [BLOCK] mantida igual ao original...)
             lower_review = review_text.lower()
             for k in BLOCK_KEYWORDS:
                 # Usa regex boundaries (\b) para evitar falsos positivos como 'foorce' maping para 'rce'
@@ -495,14 +470,7 @@ def run_ai_code_review(diff_text: str) -> bool:
                     log_ai_event("PASS (With Suggestions)", review_text)
                 else:
                     print_colored("✅ IA Aprovou (Limpo).", COLOR_GREEN)
-
                 return True
-
-            print_colored(
-                "⚠️ Resposta da IA inconclusiva (sem [PASS]/[BLOCK]). Verifique o log acima.",
-                COLOR_YELLOW,
-            )
-            return True  # Deixa passar se não detectou perigo explícito (keywords já filtraram)
 
     except Exception as e:
         print_colored(f"⚠️ Erro ao consultar Gemini: {e}", COLOR_YELLOW)
@@ -510,8 +478,6 @@ def run_ai_code_review(diff_text: str) -> bool:
 
     print_colored("✅ Revisão IA finalizada (Aprovado).", COLOR_GREEN)
     return True
-
-
 # =============================================================================
 # GIT UTILS
 # =============================================================================
