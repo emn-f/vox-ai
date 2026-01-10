@@ -1,7 +1,7 @@
 name: 🤗 Deploy no Hugging Face
 on:
   workflow_run:
-    workflows:  ["🚀 Main Pipeline"]
+    workflows:  ["🚀 Production Pipeline"]
     types:
       - completed
   workflow_dispatch:
