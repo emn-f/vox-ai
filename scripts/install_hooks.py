@@ -22,9 +22,9 @@ echo "running {hook_name} hook..."
 export PYTHONUNBUFFERED=1
 
 # Define o caminho do script python relativo à raiz do git
-SCRIPT_PATH="scripts/security_check.py"
+SCRIPT_PATH="gatekeep/security_check.py"
 if [ "{hook_name}" = "commit-msg" ]; then
-    SCRIPT_PATH="scripts/validate_commit_msg.py"
+    SCRIPT_PATH="gatekeep/validate_commit_msg.py"
 fi
 
 # Verifica se estamos na raiz (onde scripts/ existe)
