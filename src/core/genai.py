@@ -68,7 +68,11 @@ def gerar_resposta(chat, prompt, info_adicional):
 
             msg_placeholder.write_stream(stream_resposta(resposta))
             return resposta
-
+        except genai.types.BlockedReason as e:
+            msg_placeholder.empty()
+            st.error("⚠️ Essa pergunta não pode ser respondida pelo Vox.")
+            st.exception(e)
+            st.stop()
         except Exception as e:
             msg_placeholder.empty()
             st.exception(e)
