@@ -96,7 +96,7 @@ O **Vox AI** é um chatbot de apoio e informação a comunidade LGBTQIA+. Nossa 
 
 ## 🤝 Como Contribuir
 
-Contribuições são bem-vindas! Consulte nosso [**Guia de Contribuição**](.github\CONTRIBUTING.md) para detalhes sobre padrões de commit, setup e fluxo de desenvolvimento.
+Contribuições são bem-vindas! Consulte nosso [**Guia de Contribuição**](https://github.com/emn-f/vox-ai/blob/main/.github/CONTRIBUTING.md) para detalhes sobre padrões de commit, setup e fluxo de desenvolvimento.
 
 
 ## ⚖️ Governança e Ética
