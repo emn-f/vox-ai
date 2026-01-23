@@ -4,6 +4,19 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.2.30 - 10/01/2026
+
+### ♻️ Refatoração & Melhorias
+
+* Atualiza versão e descrição do projeto no pyproject.toml
+
+
+### 🐛 Correções
+
+* Corrige nome do workflow para 'Production Pipeline' e atualiza diagrama de arquitetura
+
+* Corrige parâmetros de chamada da função embed_content e ajusta importação do types
+
 ## v3.2.29 - 10/01/2026
 
 ### ♻️ Refatoração & Melhorias
