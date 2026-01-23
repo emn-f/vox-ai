@@ -24,8 +24,7 @@ tags:
 
 
 ![Build Status](https://img.shields.io/github/actions/workflow/status/emn-f/vox-ai/production_pipeline.yml?branch=main&label=Build&logo=github&style=flat-square)
-![Prod Version](https://img.shields.io/github/v/release/emn-f/vox-ai?label=Prod&color=2ea44f&style=flat-square)
-![Dev Version](https://img.shields.io/github/v/tag/emn-f/vox-ai?include_prereleases&label=develop&color=orange&style=flat-square)
+![Prod Version](https://img.shields.io/github/v/release/emn-f/vox-ai?include_prereleases&label=main&color=2ea44f&style=flat-square)
 ![License](https://img.shields.io/github/license/emn-f/vox-ai?style=flat-square&color=blue)
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&style=flat-square)
