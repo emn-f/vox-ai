@@ -1,5 +1,6 @@
-import os
 import logging
+import os
+
 import streamlit as st
 
 # Configuração de Logging Centralizado
@@ -41,7 +42,7 @@ CSS_PATH = "static/css/style.css"
 
 # Configurações de IA
 MODELO_SEMANTICO_NOME = "models/text-embedding-004"
-GEMINI_MODEL_NAME = 'gemini-flash-latest'
+GEMINI_MODEL_NAME = "gemini-2.5-flash-lite  "
 
 # Config da KB
 SEMANTICA_THRESHOLD = 0.5
