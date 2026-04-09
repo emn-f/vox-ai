@@ -41,11 +41,11 @@ def get_secret(key: str, default: str = "") -> str:
 CSS_PATH = "static/css/style.css"
 
 # Configurações de IA
-MODELO_SEMANTICO_NOME = "models/text-embedding-004"
-GEMINI_MODEL_NAME = "gemini-2.5-flash-lite"
+MODELO_SEMANTICO_NOME = "gemini-embedding-001"
+GEMINI_MODEL_NAME = "gemini-3-flash-preview"
 
 # Config da KB
-SEMANTICA_THRESHOLD = 0.5
+SEMANTICA_THRESHOLD = 0.65
 LIMITE_TEMAS = 10
 MAX_CHUNCK = 25
 
