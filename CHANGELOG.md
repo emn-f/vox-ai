@@ -4,6 +4,17 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.2.31 - 23/01/2026
+
+### ✨ Funcionalidades
+
+* Cliff só irá gerar changelog de commits relevantes #228
+
+
+### 🐛 Correções
+
+* Corrige nome do workflow para 'Production Pipeline' no arquivo deploy_pages.yml
+
 ## v3.2.30 - 10/01/2026
 
 ### ♻️ Refatoração & Melhorias
