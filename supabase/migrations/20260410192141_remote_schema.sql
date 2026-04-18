@@ -15,6 +15,8 @@ SET row_security = off;
 
 COMMENT ON SCHEMA "public" IS 'standard public schema';
 
+
+
 CREATE EXTENSION IF NOT EXISTS "pg_graphql" WITH SCHEMA "graphql";
 
 
@@ -57,6 +59,21 @@ CREATE EXTENSION IF NOT EXISTS "vector" WITH SCHEMA "public";
 
 
 
+CREATE OR REPLACE FUNCTION "public"."increment_kb_count"() RETURNS "trigger"
+    LANGUAGE "plpgsql"
+    AS $$
+begin
+  UPDATE knowledge_base
+  set kb_count = kb_count + 1
+  where kb_id = new.kb_id;
+  return new;
+end
+$$;
+
+
+ALTER FUNCTION "public"."increment_kb_count"() OWNER TO "postgres";
+
+
 CREATE OR REPLACE FUNCTION "public"."match_knowledge_base"("query_embedding" "public"."vector", "match_threshold" double precision, "match_count" integer, "filter_topic" "text" DEFAULT NULL::"text") RETURNS TABLE("id" "text", "topico" "text", "eixo_tematico" "text", "descricao" "text", "similarity" double precision)
     LANGUAGE "plpgsql"
     AS $$
@@ -78,6 +95,19 @@ CREATE OR REPLACE FUNCTION "public"."match_knowledge_base"("query_embedding" "pu
 
 
 ALTER FUNCTION "public"."match_knowledge_base"("query_embedding" "public"."vector", "match_threshold" double precision, "match_count" integer, "filter_topic" "text") OWNER TO "postgres";
+
+
+CREATE OR REPLACE FUNCTION "public"."update_modificado_em"() RETURNS "trigger"
+    LANGUAGE "plpgsql"
+    AS $$
+BEGIN
+    NEW.modificado_em = now();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION "public"."update_modificado_em"() OWNER TO "postgres";
 
 SET default_tablespace = '';
 
@@ -176,11 +206,61 @@ CREATE TABLE IF NOT EXISTS "public"."knowledge_base" (
     "autor" "text",
     "created_at" timestamp with time zone DEFAULT "now"(),
     "kb_count" numeric,
-    "embedding" "public"."vector"(768)
+    "embedding" "public"."vector"(768),
+    "modificado_em" timestamp with time zone DEFAULT "now"()
 );
 
 
 ALTER TABLE "public"."knowledge_base" OWNER TO "postgres";
+
+
+CREATE TABLE IF NOT EXISTS "public"."knowledge_base_etl" (
+    "kb_id" "text" DEFAULT ('vox-kb-'::"text" || "lpad"(("nextval"('"public"."kb_id_seq"'::"regclass"))::"text", 4, '0'::"text")) NOT NULL,
+    "topico" "text",
+    "eixo_tematico" "text",
+    "descricao" "text" NOT NULL,
+    "referencias" "text",
+    "tags" "text"[],
+    "autor" "text",
+    "created_at" timestamp with time zone DEFAULT "now"(),
+    "kb_count" numeric,
+    "embedding" "public"."vector",
+    "modificado_em" timestamp with time zone DEFAULT "now"()
+);
+
+
+ALTER TABLE "public"."knowledge_base_etl" OWNER TO "postgres";
+
+
+CREATE TABLE IF NOT EXISTS "public"."report_categories" (
+    "id" integer NOT NULL,
+    "label" "text",
+    "description" "text",
+    "created_at" timestamp with time zone DEFAULT "now"()
+);
+
+
+ALTER TABLE "public"."report_categories" OWNER TO "postgres";
+
+
+COMMENT ON TABLE "public"."report_categories" IS 'Tags para o erro que o usuário deseja reportar.';
+
+
+
+CREATE SEQUENCE IF NOT EXISTS "public"."report_categories_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE "public"."report_categories_id_seq" OWNER TO "postgres";
+
+
+ALTER SEQUENCE "public"."report_categories_id_seq" OWNED BY "public"."report_categories"."id";
+
 
 
 CREATE TABLE IF NOT EXISTS "public"."sessions" (
@@ -209,7 +289,9 @@ CREATE TABLE IF NOT EXISTS "public"."user_reports" (
     "session_id" "text",
     "git_version" "text",
     "chat_history" "text",
-    "created_at" timestamp with time zone DEFAULT "now"()
+    "created_at" timestamp with time zone DEFAULT "now"(),
+    "category_id" bigint,
+    "comment" "text"
 );
 
 
@@ -224,6 +306,10 @@ ALTER TABLE "public"."user_reports" ALTER COLUMN "id" ADD GENERATED ALWAYS AS ID
     NO MAXVALUE
     CACHE 1
 );
+
+
+
+ALTER TABLE ONLY "public"."report_categories" ALTER COLUMN "id" SET DEFAULT "nextval"('"public"."report_categories_id_seq"'::"regclass");
 
 
 
@@ -247,8 +333,18 @@ ALTER TABLE ONLY "public"."error_logs"
 
 
 
+ALTER TABLE ONLY "public"."knowledge_base_etl"
+    ADD CONSTRAINT "knowledge_base_etl_pkey" PRIMARY KEY ("kb_id");
+
+
+
 ALTER TABLE ONLY "public"."knowledge_base"
     ADD CONSTRAINT "knowledge_base_pkey" PRIMARY KEY ("kb_id");
+
+
+
+ALTER TABLE ONLY "public"."report_categories"
+    ADD CONSTRAINT "report_categories_pkey" PRIMARY KEY ("id");
 
 
 
@@ -295,6 +391,18 @@ CREATE INDEX "idx_user_reports_session_id" ON "public"."user_reports" USING "btr
 
 
 
+CREATE OR REPLACE TRIGGER "tg_update_kb_usage" AFTER INSERT ON "public"."chat_logs_kb" FOR EACH ROW EXECUTE FUNCTION "public"."increment_kb_count"();
+
+
+
+CREATE OR REPLACE TRIGGER "update_kb_etl_modificado_em" BEFORE UPDATE ON "public"."knowledge_base_etl" FOR EACH ROW EXECUTE FUNCTION "public"."update_modificado_em"();
+
+
+
+CREATE OR REPLACE TRIGGER "update_kb_modificado_em" BEFORE UPDATE ON "public"."knowledge_base" FOR EACH ROW EXECUTE FUNCTION "public"."update_modificado_em"();
+
+
+
 ALTER TABLE ONLY "public"."chat_logs_kb"
     ADD CONSTRAINT "chat_log_kb_chat_id_fkey" FOREIGN KEY ("chat_id") REFERENCES "public"."chat_logs"("chat_id") ON UPDATE CASCADE;
 
@@ -316,7 +424,16 @@ ALTER TABLE ONLY "public"."error_logs"
 
 
 ALTER TABLE ONLY "public"."user_reports"
+    ADD CONSTRAINT "user_reports_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "public"."report_categories"("id") ON UPDATE CASCADE;
+
+
+
+ALTER TABLE ONLY "public"."user_reports"
     ADD CONSTRAINT "user_reports_session_id_fkey" FOREIGN KEY ("session_id") REFERENCES "public"."sessions"("session_id") ON DELETE RESTRICT;
+
+
+
+CREATE POLICY "Permitir leitura pública da KB" ON "public"."knowledge_base" FOR SELECT TO "anon" USING (true);
 
 
 
@@ -330,6 +447,12 @@ ALTER TABLE "public"."error_logs" ENABLE ROW LEVEL SECURITY;
 
 
 ALTER TABLE "public"."knowledge_base" ENABLE ROW LEVEL SECURITY;
+
+
+ALTER TABLE "public"."knowledge_base_etl" ENABLE ROW LEVEL SECURITY;
+
+
+ALTER TABLE "public"."report_categories" ENABLE ROW LEVEL SECURITY;
 
 
 ALTER TABLE "public"."sessions" ENABLE ROW LEVEL SECURITY;
@@ -955,6 +1078,12 @@ GRANT ALL ON FUNCTION "public"."hnswhandler"("internal") TO "service_role";
 
 
 
+GRANT ALL ON FUNCTION "public"."increment_kb_count"() TO "anon";
+GRANT ALL ON FUNCTION "public"."increment_kb_count"() TO "authenticated";
+GRANT ALL ON FUNCTION "public"."increment_kb_count"() TO "service_role";
+
+
+
 GRANT ALL ON FUNCTION "public"."inner_product"("public"."halfvec", "public"."halfvec") TO "postgres";
 GRANT ALL ON FUNCTION "public"."inner_product"("public"."halfvec", "public"."halfvec") TO "anon";
 GRANT ALL ON FUNCTION "public"."inner_product"("public"."halfvec", "public"."halfvec") TO "authenticated";
@@ -1161,6 +1290,12 @@ GRANT ALL ON FUNCTION "public"."subvector"("public"."vector", integer, integer) 
 GRANT ALL ON FUNCTION "public"."subvector"("public"."vector", integer, integer) TO "anon";
 GRANT ALL ON FUNCTION "public"."subvector"("public"."vector", integer, integer) TO "authenticated";
 GRANT ALL ON FUNCTION "public"."subvector"("public"."vector", integer, integer) TO "service_role";
+
+
+
+GRANT ALL ON FUNCTION "public"."update_modificado_em"() TO "anon";
+GRANT ALL ON FUNCTION "public"."update_modificado_em"() TO "authenticated";
+GRANT ALL ON FUNCTION "public"."update_modificado_em"() TO "service_role";
 
 
 
@@ -1392,6 +1527,24 @@ GRANT ALL ON SEQUENCE "public"."kb_id_seq" TO "service_role";
 GRANT ALL ON TABLE "public"."knowledge_base" TO "anon";
 GRANT ALL ON TABLE "public"."knowledge_base" TO "authenticated";
 GRANT ALL ON TABLE "public"."knowledge_base" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."knowledge_base_etl" TO "anon";
+GRANT ALL ON TABLE "public"."knowledge_base_etl" TO "authenticated";
+GRANT ALL ON TABLE "public"."knowledge_base_etl" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."report_categories" TO "anon";
+GRANT ALL ON TABLE "public"."report_categories" TO "authenticated";
+GRANT ALL ON TABLE "public"."report_categories" TO "service_role";
+
+
+
+GRANT ALL ON SEQUENCE "public"."report_categories_id_seq" TO "anon";
+GRANT ALL ON SEQUENCE "public"."report_categories_id_seq" TO "authenticated";
+GRANT ALL ON SEQUENCE "public"."report_categories_id_seq" TO "service_role";
 
 
 

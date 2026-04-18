@@ -1,5 +1,6 @@
-import os
 import logging
+import os
+
 import streamlit as st
 
 # Configuração de Logging Centralizado
@@ -40,8 +41,10 @@ def get_secret(key: str, default: str = "") -> str:
 CSS_PATH = "static/css/style.css"
 
 # Configurações de IA
-MODELO_SEMANTICO_NOME = "models/text-embedding-004"
-GEMINI_MODEL_NAME = 'gemini-flash-latest'
+GEMINI_MODEL_NAME = "gemini-3-flash-preview"
+
+MODELO_SEMANTICO_NOME = "gemini-embedding-001"
+TAMANHO_VETOR_SEMANTICO = 1536
 
 # Config da KB
 SEMANTICA_THRESHOLD = 0.5

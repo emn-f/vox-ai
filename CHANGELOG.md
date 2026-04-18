@@ -4,6 +4,58 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.3.4 - 10/04/2026
+## v3.3.3 - 10/04/2026
+
+### 📚 Documentação
+
+* Update CHANGELOG
+
+## v3.2.31 - 23/01/2026
+
+### ✨ Funcionalidades
+
+* Cliff só irá gerar changelog de commits relevantes #228
+
+
+### 🐛 Correções
+
+* Corrige nome do workflow para 'Production Pipeline' no arquivo deploy_pages.yml
+
+## v3.2.30 - 10/01/2026
+
+### ♻️ Refatoração & Melhorias
+
+* Atualiza versão e descrição do projeto no pyproject.toml
+
+
+### 🐛 Correções
+
+* Corrige nome do workflow para 'Production Pipeline' e atualiza diagrama de arquitetura
+
+* Corrige parâmetros de chamada da função embed_content e ajusta importação do types
+
+## v3.2.29 - 10/01/2026
+
+### ♻️ Refatoração & Melhorias
+
+* Centraliza scripts de code reviee em gatekeep/
+
+
+### ✨ Funcionalidades
+
+* Adiciona item de verificação para execução do script de gatekeep no template de criação de PR
+
+
+### 🐛 Correções
+
+* Corrige caminho do 'gatekeep' para permitir a importação do security_check
+
+
+### 📚 Documentação
+
+* Corrige versão do Python para 3.13 e corrige caminho do Guia de Contribuição
+
 ## v3.2.28 - 10/01/2026
 
 ### ♻️ Refatoração & Melhorias

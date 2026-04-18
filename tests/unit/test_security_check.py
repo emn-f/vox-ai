@@ -3,10 +3,10 @@ import sys
 import os
 from unittest.mock import MagicMock, patch
 
-# Garante que 'scripts' esteja no path para permitir a importação do security_check
-scripts_path = os.path.join(os.getcwd(), 'scripts')
-if scripts_path not in sys.path:
-    sys.path.append(scripts_path)
+# Garante que 'gatekeep' esteja no path para permitir a importação do security_check
+gatekeep_path = os.path.join(os.getcwd(), "gatekeep")
+if gatekeep_path not in sys.path:
+    sys.path.append(gatekeep_path)
 
 import security_check
 

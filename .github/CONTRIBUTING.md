@@ -93,7 +93,7 @@ Utilizamos um fluxo simples baseado em branches:
 
 Utilizamos a especificação **Conventional Commits**. Isso é **obrigatório**, pois nosso Changelog é gerado automaticamente. Nossos hooks bloquearão seu commit se ele estiver fora do padrão.
 
-Consulte o nosso arquivo **[CONVENTIONAL_COMMITS.md](CONVENTIONAL_COMMITS.md)** para ver a lista completa de tipos, escopos aceitos e exemplos específicos do projeto.
+Consulte o nosso arquivo **[CONVENTIONAL_COMMITS.md](..\docs\CONVENTIONAL_COMMITS.md)** para ver a lista completa de tipos, escopos aceitos e exemplos específicos do projeto.
 
 **Tipos aceitos:**
 
