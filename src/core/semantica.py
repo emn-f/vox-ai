@@ -22,7 +22,7 @@ def semantica(prompt):
             model=MODELO_SEMANTICO_NOME,
             contents=prompt,
             config=types.EmbedContentConfig(
-                task_type="RETRIEVAL_QUERY",
+                task_type="RETRIEVAL_DOCUMENT",
                 output_dimensionality=TAMANHO_VETOR_SEMANTICO,
             ),
         )

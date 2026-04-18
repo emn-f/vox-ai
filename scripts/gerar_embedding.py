@@ -30,8 +30,13 @@ def reindexar():
         print(f"❌ Erro de conexão. Verifique suas chaves. Detalhes: {e}")
         return
     print("🔍 Buscando registros na tabela 'knowledge_base' sem embedding...")
-    
-    response = supabase.table('knowledge_base').select('kb_id, topico, descricao').execute()
+
+    response = (
+        supabase.table("knowledge_base")
+        .select("kb_id, topico, descricao")
+        .is_("embedding", "null")
+        .execute()
+    )
     registros = response.data
 
     total = len(registros)
@@ -49,30 +54,30 @@ def reindexar():
     for i, row in enumerate(registros):
         kb_id = row['kb_id']
         descricao = row.get('descricao', '') or ''
-        
+
         texto_para_embeddar = f"{descricao}"
-        
+
         try:
             print(f"[{i+1}/{total}] Processando {kb_id}...", end=" ")
-            
+
             result = client.models.embed_content(
                 model=MODELO_SEMANTICO_NOME,
                 contents=texto_para_embeddar,
                 config=types.EmbedContentConfig(
-                task_type="RETRIEVAL_QUERY",
-                output_dimensionality=TAMANHO_VETOR_SEMANTICO,
-            ),
+                    task_type="RETRIEVAL_DOCUMENT",
+                    output_dimensionality=TAMANHO_VETOR_SEMANTICO,
+                ),
             )
             vetor = result.embeddings[0].values
-            
+
             data_update = {"embedding": vetor}
-            
+
             # Preenche o campo 'embedding' apenas se ele for nulo, para evitar sobrescrever embeddings existentes
             supabase.table('knowledge_base').update(data_update).eq('kb_id', kb_id).is_('embedding', 'null').execute()
-            
+
             print("✅ Salvo")
             sucessos += 1
-            
+
             time.sleep(0.5)
 
         except Exception as e:
