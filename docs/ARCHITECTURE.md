@@ -144,7 +144,7 @@ erDiagram
 ### Stack Tecnológica
 * ***Orquestração***: Python 3.11 + Streamlit
 * ***Vector Store***: Supabase (`pgvector`)
-* ***LLM & Embeddings***: Google Gemini API (`gemini-1.5-flash` e `text-embedding-004`)
+* ***LLM & Embeddings***: Google Gemini API (`gemini-3-flash-preview` e `gemini-embedding-001`)
 * ***CI/C***D: GitHub Actions (Deploy automático de Migrations e Code Review)
 
 ---

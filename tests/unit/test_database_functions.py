@@ -1,14 +1,17 @@
-import pytest
 from unittest.mock import MagicMock, patch
+
+import pytest
+
+from config import SEMANTICA_THRESHOLD, TAMANHO_VETOR_SEMANTICO
 from src.core.database import (
-    salvar_sessao,
-    salvar_log_chat,
-    salvar_erro,
-    salvar_report,
-    get_categorias_erro,
-    buscar_referencias_db,
     buscar_chunks_por_topico,
+    buscar_referencias_db,
+    get_categorias_erro,
     recuperar_contexto_inteligente,
+    salvar_erro,
+    salvar_log_chat,
+    salvar_report,
+    salvar_sessao,
 )
 
 
@@ -89,7 +92,7 @@ def test_get_categorias_erro(mock_db_client):
 
 
 def test_buscar_referencias_db(mock_db_client):
-    vetor = [0.1] * 768
+    vetor = [0.1] * TAMANHO_VETOR_SEMANTICO
 
     res = buscar_referencias_db(vetor)
 
@@ -97,7 +100,7 @@ def test_buscar_referencias_db(mock_db_client):
         "match_knowledge_base",
         {
             "query_embedding": vetor,
-            "match_threshold": 0.5,
+            "match_threshold": SEMANTICA_THRESHOLD,
             "match_count": 10,
             "filter_topic": None,
         },
@@ -145,7 +148,7 @@ def test_recuperar_contexto_inteligente(mock_db_client):
     # O mock do RPC deve retornar isso
     mock_db_client.rpc.return_value.execute.return_value = mock_docs_iniciais
 
-    vetor = [0.1] * 768
+    vetor = [0.1] * TAMANHO_VETOR_SEMANTICO
     contexto, fonte, ids = recuperar_contexto_inteligente(vetor)
 
     assert "Desc A" in contexto
