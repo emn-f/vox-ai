@@ -4,6 +4,32 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.3.5 - 18/04/2026
+
+### ✨ Funcionalidades
+
+* Adiciona TAMANHO_VETOR_SEMANTICO
+
+* Adiciona script gerar_embedding para reindexação de embeddings na tabela `knowledge_base`
+
+* Adiciona .bat de migração automática para o Supabase
+
+* Realiza redefinição da variável SUPABASE_DB_PASSWORD após erro na geração da migration
+
+
+### 🐛 Correções
+
+* Corrige link para o arquivo CONVENTIONAL_COMMITS.md
+
+* Corrige tipo de tarefa para 'RETRIEVAL_QUERY' na função semantica
+
+* Corrige links para arquivos de convenções no Guia de Contribuição
+
+
+### 📚 Documentação
+
+* Correção do nome do modelo e de caminhos de outras docs
+
 ## v3.3.4 - 10/04/2026
 ## v3.3.3 - 10/04/2026
 
