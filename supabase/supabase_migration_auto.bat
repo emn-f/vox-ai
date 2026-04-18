@@ -52,10 +52,13 @@ echo.
 echo [INFO] Gerando Migration...
 supabase db diff --linked --use-migra -f "%desc%"
 if %errorlevel% neq 0 (
+     set "SUPABASE_DB_PASSWORD="
     echo 🚫 [ERRO] Ocorreu um problema ao gerar a migration.
     pause
     goto op2
 )
+
+set "SUPABASE_DB_PASSWORD="
 
 :: 4. Buscando o arquivo gerado
 echo.
