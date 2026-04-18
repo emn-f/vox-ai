@@ -55,7 +55,7 @@ O **Vox AI** é um chatbot de apoio e informação a comunidade LGBTQIA+. Nossa 
 
 ### Qualidade e Automação
 ![Tests](https://img.shields.io/badge/Tests-Pytest%20%7C%20Unit%20%26%20Integration-34D058?style=flat-square&logo=pytest)
-![Security Review](https://img.shields.io/github/actions/workflow/status/emn-f/vox-ai/security_review.yml?branch=main&style=flat-square&logo=githubcheck&label=Code%20Review)
+![Security Review](https://img.shields.io/github/actions/workflow/status/emn-f/vox-ai/security_review.yml?branch=develop&style=flat-square&logo=githubcheck&label=Code%20Review)
 ![HF Mirror](https://img.shields.io/github/actions/workflow/status/emn-f/vox-ai/deploy_hugging_face.yml?branch=main&style=flat-square&logo=huggingface&label=HF%20Mirror)
 ![DB Sync](https://img.shields.io/github/actions/workflow/status/emn-f/vox-ai/deploy_db.yml?branch=main&style=flat-square&logo=supabase&label=DB%20Last%20Sync)
 ![Last Update](https://img.shields.io/github/last-commit/emn-f/vox-ai/main?style=flat-square&logo=github&label=Last%20Update)
@@ -102,9 +102,10 @@ Contribuições são bem-vindas! Consulte nosso [**Guia de Contribuição**](htt
 
 Segurança e respeito são pilares do Vox. Consulte nossos documentos oficiais:
 
-* [**Código de Conduta**](CODE_OF_CONDUCT.md): Nossos pactos de convivência.
-* [**Política de Privacidade**](PRIVACY_POLICY.md): Como tratamos dados (100% anônimos).
-* [**Política de Segurança**](SECURITY.md): Como reportar vulnerabilidades.
+* [**Código de Conduta**](.github/CODE_OF_CONDUCT.md): Nossos pactos de convivência.
+* [**Política de Privacidade**](docs/legal/PRIVACY_POLICY.md): Como tratamos dados (100% anônimos).
+* [**Política de Segurança**](.github/SECURITY.md): Como reportar vulnerabilidades.
+* [**Termos de Uso**](docs\legal\TERMS_OF_USE.md): O que você precisa ter em mente ao utilizar o Vox AI.
 
 ## 📝 Licença
 
