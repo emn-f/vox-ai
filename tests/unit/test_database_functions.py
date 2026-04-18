@@ -2,14 +2,13 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from config import SEMANTICA_THRESHOLD, TAMANHO_VETOR_SEMANTICO
+from src.config import SEMANTICA_THRESHOLD, TAMANHO_VETOR_SEMANTICO
 from src.core.database import (
     buscar_chunks_por_topico,
     buscar_referencias_db,
     get_categorias_erro,
     recuperar_contexto_inteligente,
     salvar_erro,
-    salvar_log_chat,
     salvar_report,
     salvar_sessao,
 )
