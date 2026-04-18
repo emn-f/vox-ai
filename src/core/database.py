@@ -4,7 +4,14 @@ import uuid
 
 import streamlit as st
 
-from src.config import LIMITE_TEMAS, MAX_CHUNCK, SEMANTICA_THRESHOLD, get_secret, logger
+from src.config import (
+    LIMITE_TEMAS,
+    MAX_CHUNCK,
+    SEMANTICA_THRESHOLD,
+    TAMANHO_VETOR_SEMANTICO,
+    get_secret,
+    logger,
+)
 from supabase import Client, create_client
 
 
@@ -167,9 +174,9 @@ def buscar_referencias_db(
         logger.error("⚠️ Erro: Cliente Supabase não inicializado.")
         return []
     try:
-        if len(vector_embedding) != 768:
+        if len(vector_embedding) != TAMANHO_VETOR_SEMANTICO:
             logger.error(
-                f"⚠️ Erro de Dimensão: O vetor gerado tem {len(vector_embedding)} dimensões, mas o banco espera 768."
+                f"⚠️ Erro de Dimensão: O vetor gerado tem {len(vector_embedding)} dimensões, mas o banco espera {TAMANHO_VETOR_SEMANTICO}."
             )
             return []
 
