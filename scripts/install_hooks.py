@@ -39,7 +39,6 @@ elif [ -f "venv/Scripts/python.exe" ]; then
 elif [ -f "venv/bin/python" ]; then
     PYTHON_CMD="venv/bin/python"
 else
-    # Fallback para o python do sistema
     PYTHON_CMD="python"
 fi
 
@@ -63,7 +62,7 @@ exit 0
 
 
 def install_hooks():
-    print("🔧 Instalando Git Hooks (V2 - Portável)...")
+    print("🔧 Instalando Git Hooks")
 
     hooks_dir = os.path.join(".git", "hooks")
     if not os.path.exists(hooks_dir):
