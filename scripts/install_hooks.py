@@ -3,7 +3,7 @@ import sys
 import stat
 
 
-def generate_hook_script(hook_name):
+def generate_hook_script(hook_name: str) -> None:
     """Gera o script shell do hook de forma dinâmica."""
 
     # Script Shell cross-platform (Git Bash / Unix)
@@ -66,7 +66,7 @@ exit 0
     return script
 
 
-def install_hooks():
+def install_hooks() -> None:
     print("🔧 Instalando Git Hooks (V2 - Portável)...")
 
     hooks_dir = os.path.join(".git", "hooks")
@@ -83,7 +83,7 @@ def install_hooks():
         dest_path = os.path.join(hooks_dir, hook)
 
         try:
-            with open(dest_path, "w", newline="\n") as f:
+            with open(dest_path, "w", newline="\n", encoding="utf-8") as f:
                 f.write(content)
 
             # Tenta dar permissão de execução

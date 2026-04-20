@@ -21,7 +21,7 @@ from src.core.genai import configurar_api_gemini
 SUPABASE_URL = get_secret("supabase.url")
 SUPABASE_KEY = get_secret("supabase.key")
 
-def reindexar():
+def reindexar() -> None:
     print("🔌 Conectando aos serviços...")
     try:
         client = configurar_api_gemini()
