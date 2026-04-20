@@ -4,6 +4,14 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.3.6 - 20/04/2026
+
+### ✨ Funcionalidades
+
+* Adiciona codificação UTF-8 ao criar hooks
+
+* Code review será executando em PRs que aponta para `develop`. Remoção da execuçao no push para main, que estava causando execução extra desnecessária.
+
 ## v3.3.5 - 18/04/2026
 
 ### ✨ Funcionalidades
