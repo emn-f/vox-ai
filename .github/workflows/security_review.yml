@@ -1,13 +1,8 @@
 name: 🔒 Gatekeep Security & Code Review
 
 on:
-  push:
-    branches: [ "develop" ]
-    paths-ignore:
-      - '**.md'
-      - 'CHANGELOG.md'
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "develop" ]
     paths-ignore:
       - '**.md'
       - 'CHANGELOG.md'
@@ -23,7 +18,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: "3.13"
 
       - name: Install uv
         uses: astral-sh/setup-uv@v3
