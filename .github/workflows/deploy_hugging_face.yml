@@ -26,8 +26,8 @@ jobs:
           git checkout --orphan release-branch
 
           # Remover binários de documentação
-          if [ -d "docs/imgs" ]; then
-            git rm -rf docs/imgs
+          if [ -d "docs/architeture/imgs" ]; then
+            git rm -rf docs/architeture/imgs
           fi
 
           # Commit apenas do estado atual (Snapshot)
