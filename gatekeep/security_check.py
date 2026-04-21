@@ -5,6 +5,7 @@ import re
 import shutil
 import subprocess
 import sys
+import fnmatch
 from typing import List
 
 from google import genai
@@ -260,8 +261,16 @@ def check_database_migrations(files: List[str], mode: str) -> bool:
     Agora com heurística: Só trava se detectar adição de chaves em dicionários (novas colunas).
     """
     # 1. Filtra se database.py foi alterado
-    target_file = "src/core/database.py"
-    if not any(f.replace("\\", "/").endswith(target_file) for f in files):
+    target_files = (
+        "src/core/database.py",
+        "supabase/migrations/*.sql",
+        "supabase/config.toml",
+    )
+    if not any(
+        fnmatch.fnmatch(f.replace("\\", "/"), pattern)
+        for f in files
+        for pattern in target_files
+    ):
         return True
 
     print_colored(
