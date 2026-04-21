@@ -4,6 +4,32 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.3.8 - 21/04/2026
+
+### ♻️ Refatoração & Melhorias
+
+* Conexão com banco de dados é testada se houver modificações que afetem o database; redução de complexidade na função `run_ai_code_review`; revisão geral
+
+* Code Review utiliza modelo `gemini-2.5-flash` para atuar como gatekeep
+
+* Modelo do gemini trocado para
+
+
+### 🐛 Correções
+
+* Remove unused imports, fix shell=True, fix load_secrets fallback, fix step numbering
+
+* Corrigido erro que não exibia versão corretamente no Hugging Face
+
+* Correção no nome da branch
+
+* Correção no diretório que contém binários para serem removidos antes do push para HF
+
+
+### 🤖 CI/CD & Automação
+
+* Mais commits apareceram quando o changelog for gerado automaticamente
+
 ## v3.3.7 - 21/04/2026
 
 ### 📚 Documentação
