@@ -2,6 +2,7 @@ import time
 
 import streamlit as st
 
+from collections.abc import Iterator
 from src.config import CSS_PATH
 from src.core.database import salvar_report, get_categorias_erro, salvar_erro
 
@@ -114,7 +115,7 @@ def carregar_sidebar(sidebar_content: str, sidebar_footer: str) -> None:
         st.markdown(sidebar_footer, unsafe_allow_html=True)
 
 
-def stream_resposta(resposta: str) -> any:
+def stream_resposta(resposta: str) -> Iterator[str]:
     for letra in resposta:
         yield letra
         time.sleep(0.009)

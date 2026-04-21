@@ -3,7 +3,7 @@ import sys
 import stat
 
 
-def generate_hook_script(hook_name: str) -> None:
+def generate_hook_script(hook_name: str) -> str:
     """Gera o script shell do hook de forma dinâmica."""
 
     # Script Shell cross-platform (Git Bash / Unix)

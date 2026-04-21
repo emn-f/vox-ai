@@ -20,7 +20,7 @@ def get_current_branch() -> int:
         return 0
 
 
-def get_version_from_changelog():
+def get_version_from_changelog() -> str:
     try:
         changelog_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "CHANGELOG.md")
         with open(changelog_path, "r", encoding="utf-8") as f:
