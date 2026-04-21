@@ -35,12 +35,12 @@ commit_parsers = [
     { message = "^doc", group = "📚 Documentação" },
     { message = "^perf", group = "⚡ Performance" },
 
-    { message = "^refactor", group = "♻️ Refatoração & Melhorias", skip = true },
-    { message = "^style", group = "🎨 Estilo e Formatação", skip = true },
-    { message = "^ci", group = "🤖 CI/CD & Automação", skip = true },
-    { message = "^build", group = "📦 Build & Dependências", skip = true },
-    { message = "^chore", group = "🔧 Tarefas Internas", skip = true },
-    { message = "^test", group = "🧪 Testes Unitários e de Integração", skip = true },
+    { message = "^refactor", group = "♻️ Refatoração & Melhorias"},
+    { message = "^style", group = "🎨 Estilo e Formatação"},
+    { message = "^ci", group = "🤖 CI/CD & Automação"},
+    { message = "^build", group = "📦 Build & Dependências"},
+    { message = "^chore", group = "🔧 Tarefas Internas"},
+    { message = "^test", group = "🧪 Testes Unitários e de Integração"},
 ]
 
 filter_commits = false
