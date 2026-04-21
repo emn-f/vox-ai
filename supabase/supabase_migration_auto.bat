@@ -43,6 +43,7 @@ echo.
 echo [INFO] Linkando no Supabase...
 supabase link --project-ref baolyrgupanfceyuzhkj
 if %errorlevel% neq 0 (
+    set "SUPABASE_DB_PASSWORD="
     echo 🚫 [ERRO] Falha ao linkar com o Supabase. Verifique se o projeto na nuvem esta pausado.
     pause
     goto op2
@@ -52,7 +53,7 @@ echo.
 echo [INFO] Gerando Migration...
 supabase db diff --linked --use-migra -f "%desc%"
 if %errorlevel% neq 0 (
-     set "SUPABASE_DB_PASSWORD="
+    set "SUPABASE_DB_PASSWORD="
     echo 🚫 [ERRO] Ocorreu um problema ao gerar a migration.
     pause
     goto op2

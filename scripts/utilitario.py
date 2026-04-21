@@ -6,7 +6,7 @@ from src.core.database import get_db_client
 from src.core.genai import configurar_api_gemini
 
 
-def add_conhecimento_db(tema, descricao, referencias, autor):
+def add_conhecimento_db(tema: str, descricao: str, referencias: str, autor: str) -> bool:
     client = get_db_client()
     if not client:
         return False

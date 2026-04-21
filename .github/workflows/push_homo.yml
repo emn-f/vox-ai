@@ -17,11 +17,11 @@ jobs:
                   git config --global user.name "github-actions[bot]"
                   git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-            - name: Pull changes from dev to homo
+            - name: Pull changes from develop to homo
               run: |
                     git checkout homo
-                    git fetch origin dev
-                    git merge origin/dev --no-edit
+                    git fetch origin develop
+                    git merge origin/develop --no-edit
 
             - name: Push changes to homo
               run: |

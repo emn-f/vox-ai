@@ -4,12 +4,46 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 Arquivo gerado automaticamente via `git-cliff`.
 
-## v3.3.4 - 10/04/2026
-## v3.3.3 - 10/04/2026
+## v3.3.7 - 21/04/2026
 
 ### 📚 Documentação
 
-* Update CHANGELOG
+* Reorganização das documentações do projeto
+
+## v3.3.6 - 20/04/2026
+
+### ✨ Funcionalidades
+
+* Adiciona codificação UTF-8 ao criar hooks
+
+* Code review será executando em PRs que aponta para `develop`. Remoção da execuçao no push para main, que estava causando execução extra desnecessária.
+
+## v3.3.5 - 18/04/2026
+
+### ✨ Funcionalidades
+
+
+* Adiciona script `gerar_embedding` para reindexação de embeddings na tabela `knowledge_base`
+
+
+### 🐛 Correções
+
+* Corrige tipo de tarefa para 'RETRIEVAL_QUERY' na função semantica
+
+### 🤖 CI/CD & Automação
+* Adiciona .bat de migração automática para o Supabase
+* Realiza redefinição da variável SUPABASE_DB_PASSWORD após erro na geração da migration
+
+### 📚 Documentação
+* Corrige links para arquivos de convenções no Guia de Contribuição
+* Corrige link para o arquivo CONVENTIONAL_COMMITS.md
+* Correção do nome do modelo e de caminhos de outras docs
+
+## v3.3.4 - 10/04/2026
+
+### ✨ Funcionalidades
+**BREAKING CHANGE:** Altera modelo de RAG para `gemini-embedding-001`
+
 
 ## v3.2.31 - 23/01/2026
 
@@ -26,20 +60,20 @@ Arquivo gerado automaticamente via `git-cliff`.
 
 ### ♻️ Refatoração & Melhorias
 
-* Atualiza versão e descrição do projeto no pyproject.toml
+* Atualiza versão e descrição do projeto no `pyproject.toml`
 
 
 ### 🐛 Correções
 
 * Corrige nome do workflow para 'Production Pipeline' e atualiza diagrama de arquitetura
 
-* Corrige parâmetros de chamada da função embed_content e ajusta importação do types
+* Corrige parâmetros de chamada da função `embed_content` e ajusta importação do types
 
 ## v3.2.29 - 10/01/2026
 
 ### ♻️ Refatoração & Melhorias
 
-* Centraliza scripts de code reviee em gatekeep/
+* Centraliza scripts de code reviee em `gatekeep/`
 
 
 ### ✨ Funcionalidades
@@ -49,7 +83,7 @@ Arquivo gerado automaticamente via `git-cliff`.
 
 ### 🐛 Correções
 
-* Corrige caminho do 'gatekeep' para permitir a importação do security_check
+* Corrige caminho do `gatekeep` para permitir a importação do `security_check`
 
 
 ### 📚 Documentação
@@ -60,15 +94,9 @@ Arquivo gerado automaticamente via `git-cliff`.
 
 ### ♻️ Refatoração & Melhorias
 
-* Migra SDK do Google AI para `google-genai` v1.0
+* Migra SDK do Google AI para `google-genai`
 
 * Move função para inserir conhecimento na base de dados para um script separado
-
-* Altera SDK do Google AI para `google-genai`
-
-* Melhoria na execução da lógica
-
-* Altera SDK do Google AI para `google-genai`
 
 
 ### ✨ Funcionalidades

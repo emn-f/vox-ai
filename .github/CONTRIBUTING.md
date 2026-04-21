@@ -93,7 +93,7 @@ Utilizamos um fluxo simples baseado em branches:
 
 Utilizamos a especificação **Conventional Commits**. Isso é **obrigatório**, pois nosso Changelog é gerado automaticamente. Nossos hooks bloquearão seu commit se ele estiver fora do padrão.
 
-Consulte o nosso arquivo **[CONVENTIONAL_COMMITS.md](..\docs\CONVENTIONAL_COMMITS.md)** para ver a lista completa de tipos, escopos aceitos e exemplos específicos do projeto.
+Consulte o nosso arquivo **[CONVENTIONAL_COMMITS.md](../docs/CONVENTIONAL_COMMITS.md)** para ver a lista completa de tipos, escopos aceitos e exemplos específicos do projeto.
 
 **Tipos aceitos:**
 
@@ -114,7 +114,7 @@ Consulte o nosso arquivo **[CONVENTIONAL_COMMITS.md](..\docs\CONVENTIONAL_COMMIT
 
 Se você alterar a estrutura do banco (tabelas, colunas), **é obrigatório incluir o arquivo de migração (.sql)** no commit. Nossos hooks bloquearão seu commit se detectarem mudanças no código de banco sem o respectivo SQL.
 
-Use nomes descritivos para suas migrations. Consulte **[CONVENTIONAL_MIGRATIONS.md](CONVENTIONAL_MIGRATIONS.md)** para o padrão de nomenclatura.
+Use nomes descritivos para suas migrations. Consulte **[CONVENTIONAL_MIGRATIONS.md](../docs/CONVENTIONAL_MIGRATIONS.md)** para o padrão de nomenclatura.
 
 
 ## 🧠 Base de Conhecimento (RAG)

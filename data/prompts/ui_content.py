@@ -62,7 +62,7 @@ SIDEBAR_BODY = f"""
         <div style="font-size: 0.85em; color: #888; margin-bottom: 0.8em; font-weight: bold;">Conecte-se</div>
         <div style="display: flex; gap: 12px; flex-wrap: wrap;">
             <a href="{LINKTREE_VOX}" target="_blank" title="Linktree (Todos os nossos links)">
-                <img src="https://img.icons8.com/?size=100&id=GfTOMrwiax2M&format=png&color=000000 alt="Linktree"
+                <img src="https://img.icons8.com/?size=100&id=GfTOMrwiax2M&format=png&color=000000" alt="Linktree"
                     style="height: 32px; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'"
                     onmouseout="this.style.transform='scale(1)'" />
             </a>
