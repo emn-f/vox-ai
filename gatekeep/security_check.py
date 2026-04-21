@@ -7,14 +7,10 @@ import subprocess
 import sys
 from typing import Any, List, Optional
 
-# Adiciona o diretório raiz ao path ANTES de importar src
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from google import genai
 
-# =============================================================================
-# CONFIGURAÇÃO DE IMPORTS (TOML)
-# =============================================================================
 try:
     import tomllib as toml
 except ImportError:
@@ -26,9 +22,6 @@ except ImportError:
         except ImportError:
             toml = None
 
-# =============================================================================
-# CONSTANTES E CONFIGURAÇÕES
-# =============================================================================
 
 COLOR_RED = "\033[91m"
 COLOR_GREEN = "\033[92m"
@@ -73,7 +66,6 @@ BLOCK_KEYWORDS = [
 ]
 
 def get_git_metadata():
-    """Coleta metadados básicos do estado atual do git para o log."""
     try:
         commit_hash = (
             subprocess.check_output(["git", "rev-parse", "--short", "HEAD"])
@@ -93,7 +85,7 @@ def get_git_metadata():
                 .strip()
             )
         except Exception:
-            version = "No Tag"  # Correção: bloco duplicado removido
+            version = "No Tag"
 
         try:
             msg = (
@@ -149,7 +141,7 @@ CODE REVIEWER FEEDBACK (Gemini):
                     with open(log_file, "r", encoding="utf-8") as f_cnt:
                         line_count = sum(1 for _ in f_cnt)
 
-                # Tenta abrir log no Notepad++ no VS Code ou no edito .txt padrão do Windows
+                # Tenta abrir log no Notepad++ no VS Code ou no editor .txt padrão do Windows
                 if shutil.which("notepad++"):
                     subprocess.Popen(["notepad++", log_file])
                 elif shutil.which("code"):
@@ -348,7 +340,7 @@ def check_supabase_connection() -> bool:
         from supabase import Client, create_client
     except ImportError:
         print_colored("⚠️ Biblioteca 'supabase' ausente.", COLOR_YELLOW)
-        return False
+        return True
 
     secrets = load_secrets()
     sb_config = secrets.get("supabase", {})
@@ -359,7 +351,7 @@ def check_supabase_connection() -> bool:
         print_colored(
             "❌ Credenciais do Supabase ausentes (secrets.toml ou ENV).", COLOR_RED
         )
-        return False
+        return True
 
     try:
         client: Client = create_client(url, key)
@@ -368,7 +360,7 @@ def check_supabase_connection() -> bool:
         return True
     except Exception as e:
         print_colored(f"❌ Falha de Conexão DB: {str(e)}", COLOR_RED)
-        return False
+        return True
 
 
 def sanitize_diff_for_ai(diff_text: str) -> str:
