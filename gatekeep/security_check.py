@@ -22,6 +22,7 @@ except ImportError:
         except ImportError:
             toml = None
 
+GEMINI_MODEL_GATEKEEP = "gemini-3.1-flash-lite-preview"
 
 COLOR_RED = "\033[91m"
 COLOR_GREEN = "\033[92m"
@@ -395,7 +396,7 @@ def run_ai_code_review(diff_text: str) -> bool:
         safe_diff = _prepare_diff_for_ai(diff_text)
         client = genai.Client(api_key=gemini_key)
         response = client.models.generate_content(
-            model="gemini-2.5-flash", contents=_create_ai_prompt(safe_diff)
+            model=GEMINI_MODEL_GATEKEEP, contents=_create_ai_prompt(safe_diff)
         )
 
         return _process_ai_response(response.text)
