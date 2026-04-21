@@ -1,6 +1,29 @@
-# Vox AI Changelog 
+# Vox AI Changelog
 
 > Arquivo gerado automaticamente via `git-cliff` 🤖
+
+## v3.3.9 - 21/04/2026
+
+### ✨ Funcionalidades
+
+* Verificação de conexão com o supabase será executa se houver mudanças em `supabase/migrations/*.sql` ou `supabase/config.toml`
+
+* Adição de novo colaborador @rodrigosantos-eng na sessão equipe
+
+
+### 🎨 Estilo e Formatação
+
+* Melhorias na organização do changelog
+
+
+### 🐛 Correções
+
+* Skip supabase connection test when credentials or library unavailable (fork PR context)
+
+
+### 📚 Documentação
+
+* Revise Vox AI Changelog for v3.3.8 updates
 
 ## v3.3.8 - 21/04/2026
 
