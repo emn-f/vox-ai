@@ -5,9 +5,7 @@ import re
 import shutil
 import subprocess
 import sys
-from pathlib import Path
-
-from typing import Any, List, Optional
+from typing import List
 
 from google import genai
 
@@ -149,7 +147,7 @@ def _open_log_file(log_file: str):
         if shutil.which("notepad++"):
             subprocess.Popen(["notepad++", log_file])
         elif shutil.which("code"):
-            subprocess.Popen(["code", "-g", log_file], shell=True)
+            subprocess.Popen(["code", "-g", log_file])
         elif sys.platform == "win32":
             os.startfile(log_file)
         else:
@@ -165,12 +163,14 @@ def load_secrets() -> dict:
         return {}
 
     data = {}
-    try:
-        with open(secrets_path, "rb") as f:
-            if toml and hasattr(toml, "load"):
-                data = toml.load(f)
-    except Exception:
+    if toml is None or not hasattr(toml, "load"):
         data = _manual_toml_parse(secrets_path)
+    else:
+        try:
+            with open(secrets_path, "rb") as f:
+                data = toml.load(f)
+        except Exception:
+            data = _manual_toml_parse(secrets_path)
 
     # Mapeamento legado para HF_TOKEN se necessário
     if "HF_TOKEN" in data:
@@ -538,7 +538,7 @@ def main():
     if not check_database_migrations(files, args.mode):
         sys.exit(1)
 
-    # 3. Verificações Avançadas (Apenas PRE-PUSH)
+    # 4. Verificações Avançadas (Apenas PRE-PUSH)
     # Evita latência no commit local, mas garante qualidade antes de subir.
     if args.mode == "pre-push":
         # Code Review IA
