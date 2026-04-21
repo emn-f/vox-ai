@@ -4,6 +4,12 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 Arquivo gerado automaticamente via `git-cliff`.
 
+## v3.3.7 - 21/04/2026
+
+### 📚 Documentação
+
+* Reorganização das documentações do projeto
+
 ## v3.3.6 - 20/04/2026
 
 ### ✨ Funcionalidades
