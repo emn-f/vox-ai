@@ -8,7 +8,7 @@ import streamlit as st
 from gtts import gTTS
 
 
-def get_current_branch():
+def get_current_branch() -> int:
     try:
         branch = subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"]).decode("utf-8").strip()
 
@@ -20,7 +20,7 @@ def get_current_branch():
         return 0
 
 
-def get_version_from_changelog():
+def get_version_from_changelog() -> str:
     try:
         changelog_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "CHANGELOG.md")
         with open(changelog_path, "r", encoding="utf-8") as f:
@@ -33,7 +33,7 @@ def get_version_from_changelog():
     return ""
 
 
-def git_version():
+def git_version() -> str:
     try:
         if get_current_branch() == 1:
             tag_pattern = "v*"
@@ -50,11 +50,11 @@ def git_version():
     
     return f"{last_tag}"
 
-def limpeza_texto(texto):
+def limpeza_texto(texto: str) -> str:
     texto_limpo = re.sub(r'[^\w\s,.:;!?áéíóúàèìòùâêîôûãõçÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÇ]', '', texto)
     return texto_limpo
 
-def texto_para_audio(texto):
+def texto_para_audio(texto: str) -> int:
     texto_tratado = limpeza_texto(texto)
 
     if not texto_tratado.strip():

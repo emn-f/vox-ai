@@ -3,7 +3,7 @@ import stat
 import sys
 
 
-def generate_hook_script(hook_name):
+def generate_hook_script(hook_name: str) -> str:
     """Gera o script shell do hook de forma dinâmica."""
     # Tenta usar o python do venv local se existir, senão usa o python do PATH.
     script = f"""#!/bin/sh
@@ -39,7 +39,6 @@ elif [ -f "venv/Scripts/python.exe" ]; then
 elif [ -f "venv/bin/python" ]; then
     PYTHON_CMD="venv/bin/python"
 else
-    # Fallback para o python do sistema
     PYTHON_CMD="python"
 fi
 
@@ -62,7 +61,7 @@ exit 0
     return script
 
 
-def install_hooks():
+def install_hooks() -> None:
     print("🔧 Instalando Git Hooks (V2 - Portável)...")
 
     hooks_dir = os.path.join(".git", "hooks")

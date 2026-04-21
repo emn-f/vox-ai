@@ -2,11 +2,12 @@ import time
 
 import streamlit as st
 
+from collections.abc import Iterator
 from src.config import CSS_PATH
 from src.core.database import salvar_report, get_categorias_erro, salvar_erro
 
 
-def configurar_pagina():
+def configurar_pagina() -> None:
     st.set_page_config(page_title="Vox AI", page_icon="🏳️‍🌈")
     st.markdown(
         """
@@ -19,13 +20,13 @@ def configurar_pagina():
     )
 
 
-def carregar_css(path=CSS_PATH):
+def carregar_css(path=CSS_PATH) -> None:
     with open(path) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
 @st.dialog("🚩 Reportar Problema")
-def dialog_reportar():
+def dialog_reportar() -> None:
     historico_conversa = st.session_state.get("hist_exibir", [])
 
     if len(historico_conversa) <= 1:
@@ -88,7 +89,7 @@ def dialog_reportar():
                     return
 
 
-def carregar_sidebar(sidebar_content, sidebar_footer):
+def carregar_sidebar(sidebar_content: str, sidebar_footer: str) -> None:
     with st.sidebar:
         # Body
         st.markdown(sidebar_content, unsafe_allow_html=True)
@@ -114,7 +115,7 @@ def carregar_sidebar(sidebar_content, sidebar_footer):
         st.markdown(sidebar_footer, unsafe_allow_html=True)
 
 
-def stream_resposta(resposta):
+def stream_resposta(resposta: str) -> Iterator[str]:
     for letra in resposta:
         yield letra
         time.sleep(0.009)
