@@ -1,59 +1,38 @@
-# Changelog do Vox AI
+# Vox AI Changelog 
 
-Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
-
-Arquivo gerado automaticamente via `git-cliff`.
+> Arquivo gerado automaticamente via `git-cliff` 🤖
 
 ## v3.3.8 - 21/04/2026
 
 ### ♻️ Refatoração & Melhorias
-
-* Conexão com banco de dados é testada se houver modificações que afetem o database; redução de complexidade na função `run_ai_code_review`; revisão geral
-
-* Code Review utiliza modelo `gemini-2.5-flash` para atuar como gatekeep
-
-* Modelo do gemini trocado para
-
+* Conexão com banco de dados é testada se houver modificações que afetem o database
+* Redução de complexidade na função `run_ai_code_review`
+* Code Review utiliza modelo `gemini-3.1-flash-lite-preview` para atuar como gatekeep
 
 ### 🐛 Correções
-
-* Remove unused imports, fix shell=True, fix load_secrets fallback, fix step numbering
-
 * Corrigido erro que não exibia versão corretamente no Hugging Face
-
-* Correção no nome da branch
-
 * Correção no diretório que contém binários para serem removidos antes do push para HF
-
-
-### 🤖 CI/CD & Automação
-
-* Mais commits apareceram quando o changelog for gerado automaticamente
 
 ## v3.3.7 - 21/04/2026
 
 ### 📚 Documentação
-
 * Reorganização das documentações do projeto
+
+### ♻️ Refatoração & Melhorias
+* Adiciona `type hints` nas funções do Python para melhor legibilidade (by [@rodrigosantos-eng](https://github.com/rodrigosantos-eng))
 
 ## v3.3.6 - 20/04/2026
 
 ### ✨ Funcionalidades
-
 * Adiciona codificação UTF-8 ao criar hooks
-
 * Code review será executando em PRs que aponta para `develop`. Remoção da execuçao no push para main, que estava causando execução extra desnecessária.
 
 ## v3.3.5 - 18/04/2026
 
 ### ✨ Funcionalidades
-
-
 * Adiciona script `gerar_embedding` para reindexação de embeddings na tabela `knowledge_base`
 
-
 ### 🐛 Correções
-
 * Corrige tipo de tarefa para 'RETRIEVAL_QUERY' na função semantica
 
 ### 🤖 CI/CD & Automação
