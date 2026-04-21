@@ -14,6 +14,9 @@
     --shadow-glow: 0 0 25px rgba(67, 97, 238, 0.2);
 }
 
+a {
+    text-decoration: none;
+}
 body {
     font-family: var(--font-primary);
     background-color: var(--bg-dark);
@@ -392,6 +395,7 @@ header {
     flex-wrap: wrap;
     gap: 0.8rem;
     margin-bottom: 2rem;
+    text-decoration: none;
 }
 
 .team-tag {
@@ -401,13 +405,20 @@ header {
     border-radius: 50px;
     font-size: 0.85rem;
     color: #e5e5e5;
+    text-decoration: none;
 }
 
 .team-tag.leader {
     border-color: var(--accent-color);
     color: var(--accent-color);
+    text-decoration: none;
 }
 
+.team-tag a {
+    opacity: 0.8;
+    cursor: pointer;
+    text-decoration: none;
+}
 
 .tech-stack-section {
     text-align: center;

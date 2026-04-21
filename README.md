@@ -33,7 +33,7 @@ tags:
 ![Supabase](https://img.shields.io/badge/DB-Supabase-3ECF8E?logo=supabase&style=flat-square)
 ![Gemini](https://img.shields.io/badge/AI-Gemini-8E75B2?logo=google&style=flat-square)
 
-### [Acesse aqui o Vox AI](https://vox-ai.streamlit.app/) | [Dashboard no GitPages](https://emn-f.github.io/vox-ai/)
+### [Acesse aqui o Vox AI](https://vox-ai.streamlit.app/) | [Dashboard](https://emn-f.github.io/vox-ai/) | [Documentação Técnica](https://emn-f.github.io/vox-ai-docs/)
 
 </div>
 
@@ -117,9 +117,11 @@ O Projeto Vox tem uma parceria oficial com a **Casa de Cultura Marielle Franco**
 
 ## 👥 Equipe
 
-**Liderança Técnica:** [Emanuel Ferreira](https://github.com/emn-f)
+**Tech Lead:** [Emanuel Ferreira](https://github.com/emn-f)
 
-**Colaboradores (Curadoria):** Alicia Batista, Brenda Pires, Fernanda Souza, Kauã Araujo, Lucca Pertigas, Marcio Ventura.
+**Developer:** [Rodrigo Santos](https://github.com/rodrigosantos-eng)
+
+**Outros colaboradores:** Alicia Batista, Brenda Pires, Fernanda Souza, Kauã Araujo, Lucca Pertigas, Marcio Ventura.
 
 ## 📬 Contato
 
