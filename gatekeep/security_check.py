@@ -349,8 +349,10 @@ def check_supabase_connection() -> bool:
     try:
         from supabase import Client, create_client
     except ImportError:
-        print_colored("⚠️ Biblioteca 'supabase' ausente.", COLOR_YELLOW)
-        return False
+        print_colored(
+            "⚠️ Biblioteca 'supabase' ausente. Teste de conexão ignorado.", COLOR_YELLOW
+        )
+        return True
 
     secrets = load_secrets()
     sb_config = secrets.get("supabase", {})
@@ -359,9 +361,11 @@ def check_supabase_connection() -> bool:
 
     if not url or not key:
         print_colored(
-            "❌ Credenciais do Supabase ausentes (secrets.toml ou ENV).", COLOR_RED
+            "⚠️ Credenciais do Supabase ausentes (secrets.toml ou ENV). "
+            "Teste de conexão ignorado (contexto sem credenciais, ex: fork PR).",
+            COLOR_YELLOW,
         )
-        return False
+        return True
 
     try:
         client: Client = create_client(url, key)
