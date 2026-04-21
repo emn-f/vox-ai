@@ -414,7 +414,7 @@ def run_ai_code_review(diff_text: str) -> bool:
 
         # Chamada V1 correta
         response = client.models.generate_content(
-            model="gemini-2.5-flash", contents=prompt
+            model="gemini-3-flash-preview", contents=prompt
         )
 
         review_text = response.text
