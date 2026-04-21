@@ -12,12 +12,6 @@ from typing import Any, List, Optional
 from google import genai
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-caminho_raiz = str(Path(__file__).resolve().parent.parent)
-
-if caminho_raiz not in sys.path:
-    sys.path.append(caminho_raiz)
-
-from src.config import GEMINI_MODEL_NAME
 
 try:
     import tomllib as toml
@@ -388,19 +382,22 @@ def run_ai_code_review(diff_text: str) -> bool:
     if not diff_text.strip():
         return True
 
-    gemini_key = load_secrets().get("GEMINI_API_KEY") or os.environ.get("GEMINI_API_KEY")
+    gemini_key = load_secrets().get("GEMINI_API_KEY") or os.environ.get(
+        "GEMINI_API_KEY"
+    )
     if not gemini_key:
-        print_colored("⚠️ GEMINI_API_KEY não encontrada. Revisão IA pulada.", COLOR_YELLOW)
+        print_colored(
+            "⚠️ GEMINI_API_KEY não encontrada. Revisão IA pulada.", COLOR_YELLOW
+        )
         return True
 
     try:
         safe_diff = _prepare_diff_for_ai(diff_text)
         client = genai.Client(api_key=gemini_key)
         response = client.models.generate_content(
-            model=GEMINI_MODEL_NAME, 
-            contents=_create_ai_prompt(safe_diff)
+            model="gemini-2.5-flash", contents=_create_ai_prompt(safe_diff)
         )
-        
+
         return _process_ai_response(response.text)
 
     except Exception as e:
@@ -441,20 +438,26 @@ def _process_ai_response(review_text: str) -> bool:
     # 1. Verifica palavras-chave proibidas
     for k in BLOCK_KEYWORDS:
         if re.search(r"\b" + re.escape(k) + r"\b", lower_review):
-            print_colored(f"⛔ Bloqueio: Palavra-chave crítica '{k}' encontrada.", COLOR_RED)
+            print_colored(
+                f"⛔ Bloqueio: Palavra-chave crítica '{k}' encontrada.", COLOR_RED
+            )
             log_ai_event("BLOCK (Keyword Trigger)", review_text)
             return False
 
     # 2. Verifica tag de bloqueio explícito
     clean_review = review_text.strip().upper()
     if clean_review.startswith("[BLOCK]"):
-        print_colored("⛔ Bloqueio: IA solicitou bloqueio explícito ([BLOCK]).", COLOR_RED)
+        print_colored(
+            "⛔ Bloqueio: IA solicitou bloqueio explícito ([BLOCK]).", COLOR_RED
+        )
         log_ai_event("BLOCK (AI Explicit)", review_text)
         return False
 
     # 3. Aprovação
     if clean_review.startswith("[PASS]"):
-        content_body = re.sub(r"^\[PASS\]\s*(Aprovado\.?)?", "", review_text, flags=re.IGNORECASE).strip()
+        content_body = re.sub(
+            r"^\[PASS\]\s*(Aprovado\.?)?", "", review_text, flags=re.IGNORECASE
+        ).strip()
         if len(content_body) > 10:
             print_colored("✅ IA Aprovou com sugestões de melhoria.", COLOR_GREEN)
             log_ai_event("PASS (With Suggestions)", review_text)
