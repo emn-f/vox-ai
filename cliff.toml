@@ -1,10 +1,8 @@
 [changelog]
 header = """
-# Changelog do Vox AI
+# Vox AI Changelog 
 
-Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
-
-Arquivo gerado automaticamente via `git-cliff`.
+> Arquivo gerado automaticamente via `git-cliff` 🤖
 
 """
 body = """
@@ -34,7 +32,6 @@ commit_parsers = [
     { message = "^fix", group = "🐛 Correções" },
     { message = "^doc", group = "📚 Documentação" },
     { message = "^perf", group = "⚡ Performance" },
-
     { message = "^refactor", group = "♻️ Refatoração & Melhorias"},
     { message = "^style", group = "🎨 Estilo e Formatação"},
     { message = "^ci", group = "🤖 CI/CD & Automação"},

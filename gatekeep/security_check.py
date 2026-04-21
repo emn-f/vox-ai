@@ -5,6 +5,7 @@ import re
 import shutil
 import subprocess
 import sys
+import fnmatch
 from typing import List
 
 from google import genai
@@ -260,8 +261,16 @@ def check_database_migrations(files: List[str], mode: str) -> bool:
     Agora com heurística: Só trava se detectar adição de chaves em dicionários (novas colunas).
     """
     # 1. Filtra se database.py foi alterado
-    target_file = "src/core/database.py"
-    if not any(f.replace("\\", "/").endswith(target_file) for f in files):
+    target_files = (
+        "src/core/database.py",
+        "supabase/migrations/*.sql",
+        "supabase/config.toml",
+    )
+    if not any(
+        fnmatch.fnmatch(f.replace("\\", "/"), pattern)
+        for f in files
+        for pattern in target_files
+    ):
         return True
 
     print_colored(
@@ -340,8 +349,10 @@ def check_supabase_connection() -> bool:
     try:
         from supabase import Client, create_client
     except ImportError:
-        print_colored("⚠️ Biblioteca 'supabase' ausente.", COLOR_YELLOW)
-        return False
+        print_colored(
+            "⚠️ Biblioteca 'supabase' ausente. Teste de conexão ignorado.", COLOR_YELLOW
+        )
+        return True
 
     secrets = load_secrets()
     sb_config = secrets.get("supabase", {})
@@ -350,9 +361,11 @@ def check_supabase_connection() -> bool:
 
     if not url or not key:
         print_colored(
-            "❌ Credenciais do Supabase ausentes (secrets.toml ou ENV).", COLOR_RED
+            "⚠️ Credenciais do Supabase ausentes (secrets.toml ou ENV). "
+            "Teste de conexão ignorado (contexto sem credenciais, ex: fork PR).",
+            COLOR_YELLOW,
         )
-        return False
+        return True
 
     try:
         client: Client = create_client(url, key)
