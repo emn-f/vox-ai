@@ -1,5 +1,11 @@
 import sys
+import os
 import re
+
+# Adiciona a raiz do projeto ao sys.path para permitir importações do pacote gatekeep
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from gatekeep.utils.ui import print_colored, COLOR_RED, COLOR_GREEN, COLOR_YELLOW
 
 # Regex para Conventional Commits
 # Formato: tipo(escopo?): descrição
@@ -9,19 +15,6 @@ import re
 CONVENTIONAL_COMMIT_REGEX = (
     r"^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.+\))?!?: .+$"
 )
-
-COLOR_RED = "\033[91m"
-COLOR_GREEN = "\033[92m"
-COLOR_YELLOW = "\033[93m"
-COLOR_RESET = "\033[0m"
-
-
-def print_colored(msg, color=COLOR_RESET):
-    if sys.stdout.isatty():
-        print(f"{color}{msg}{COLOR_RESET}")
-    else:
-        print(msg)
-
 
 def validate_commit_msg(msg_path):
     try:
