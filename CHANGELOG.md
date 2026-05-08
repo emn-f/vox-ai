@@ -2,6 +2,11 @@
 
 > Arquivo gerado automaticamente via `git-cliff` 🤖
 
+## v3.3.10 - 08/05/2026
+# Vox AI Changelog
+
+> Arquivo gerado automaticamente via `git-cliff` 🤖
+
 ## v3.3.9 - 21/04/2026
 
 ### ✨ Funcionalidades
