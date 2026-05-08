@@ -130,6 +130,7 @@ O Projeto Vox tem uma parceria oficial com a **Casa de Cultura Marielle Franco**
 * **Linktree:** [linktr.ee/vox_ai](https://linktr.ee/vox_ai)
 
 
+
 <div align="center">
 <p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p>
 </div>
