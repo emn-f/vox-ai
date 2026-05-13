@@ -2,6 +2,20 @@
 
 > Arquivo gerado automaticamente via `git-cliff` 🤖
 
+## v3.3.11 - 13/05/2026
+
+### 🐛 Correções
+
+* Corrige alinhamento do link @casamariellefrancobr na sidebar
+
+* Corrige tags não fechadas no index.html
+
+* Corrige bugs visuais na sidebar e no index.html
+
+# Vox AI Changelog
+
+> Arquivo gerado automaticamente via `git-cliff` 🤖
+
 ## v3.3.10 - 08/05/2026
 # Vox AI Changelog
 
