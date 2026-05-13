@@ -1,16 +1,25 @@
 [changelog]
 header = """
-# Vox AI Changelog 
+# 🤖 Vox AI - Changelog
 
-> Arquivo gerado automaticamente via `git-cliff` 🤖
+Todas as mudanças no Vox AI serão documentadas neste arquivo.
+
+O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/), 
+e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
+
+> _Arquivo gerado automaticamente via `git-cliff`._
 
 """
 body = """
+{% if version %}
 ## {{ version }} - {{ timestamp | date(format="%d/%m/%Y") }}
+{% else %}
+## Unreleased (Próxima Versão)
+{% endif %}
 {% for group, commits in commits | group_by(attribute="group") %}
 ### {{ group }}
 {% for commit in commits %}
-* {{ commit.message | upper_first }}
+* {{ commit.message | upper_first }} ([{{ commit.id | truncate(length=7, end="") }}](https://github.com/emn-f/vox-ai/commit/{{ commit.id }}))
 {% endfor %}
 {% endfor %}
 """
@@ -18,7 +27,7 @@ trim = true
 
 [git]
 conventional_commits = true
-filter_unconventional = false
+filter_unconventional = true
 split_commits = false
 
 tag_pattern = "^v[0-9].*"

@@ -1,34 +1,27 @@
-# Vox AI Changelog
+# 🤖 Vox AI - Changelog
 
-> Arquivo gerado automaticamente via `git-cliff` 🤖
+Todas as mudanças notáveis no projeto Vox AI serão documentadas neste arquivo.
+
+O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/), 
+e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
+
+> _Arquivo gerado automaticamente via `git-cliff`._
 
 ## v3.3.11 - 13/05/2026
 
-### 🐛 Correções
+### 🐛 Correções (por [@cfmiila](https://github.com/cfmiila))
 
 * Corrige alinhamento do link @casamariellefrancobr na sidebar
 
-* Corrige tags não fechadas no index.html
+* Corrige tags não fechadas no `index.html`
 
-* Corrige bugs visuais na sidebar e no index.html
-
-# Vox AI Changelog
-
-> Arquivo gerado automaticamente via `git-cliff` 🤖
-
-## v3.3.10 - 08/05/2026
-# Vox AI Changelog
-
-> Arquivo gerado automaticamente via `git-cliff` 🤖
+* Corrige bugs visuais na sidebar e no `index.html`
 
 ## v3.3.9 - 21/04/2026
 
 ### ✨ Funcionalidades
 
 * Verificação de conexão com o supabase será executa se houver mudanças em `supabase/migrations/*.sql` ou `supabase/config.toml`
-
-* Adição de novo colaborador @rodrigosantos-eng na sessão equipe
-
 
 ### 🎨 Estilo e Formatação
 
@@ -37,12 +30,9 @@
 
 ### 🐛 Correções
 
-* Skip supabase connection test when credentials or library unavailable (fork PR context)
+* Ignorar o teste de conexão do Supabase quando as credenciais ou a biblioteca não estiverem disponíveis (contexto de PR de fork)
 
 
-### 📚 Documentação
-
-* Revise Vox AI Changelog for v3.3.8 updates
 
 ## v3.3.8 - 21/04/2026
 
