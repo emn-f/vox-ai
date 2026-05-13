@@ -7,6 +7,16 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v3.3.13 - 13/05/2026
+
+
+### 🔧 Tarefas Internas
+
+* Clean up CHANGELOG.md by removing duplicates ([e51c1a8](https://github.com/emn-f/vox-ai/commit/e51c1a83d2b863755c559afdea58ed9f83b11631))
+
+* Remove quebra de linha desncessária ([b0b0210](https://github.com/emn-f/vox-ai/commit/b0b02105bc57c4a2ce5587f000e1ef28511caafd))
+
+
 ## v3.3.12 - 13/05/2026
 
 
