@@ -112,3 +112,8 @@
     color: #e0e0e0;
     text-decoration: underline;
 }
+
+.link-casa-marielle {
+    display: flex;
+    align-items: center;
+}

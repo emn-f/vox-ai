@@ -46,7 +46,7 @@ SIDEBAR_BODY = f"""
                     <a href="{INSTAGRAM_MARIELLE}" target="_blank"
                         class="link-casa-marielle">
                         <img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png" alt="Instagram"
-                            style="height:1.3em; vertical-align:middle; margin-right:5px;" />
+                             style="height:1.3em; vertical-align:middle; margin-right:5px;" />
                         @casamariellefrancobr
                     </a>
                 </li>
@@ -78,8 +78,8 @@ SIDEBAR_BODY = f"""
             </a>
         </div>
     </div>
-    <hr style="margin: 1em 0;">
-"""
+     <hr style="margin: 1em 0;">
+</div>"""
 SIDEBAR_FOOTER = f"""
     <div>
         <div>
