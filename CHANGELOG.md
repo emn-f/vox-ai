@@ -1,11 +1,37 @@
 # 🤖 Vox AI - Changelog
 
-Todas as mudanças notáveis no projeto Vox AI serão documentadas neste arquivo.
+Todas as mudanças no Vox AI serão documentadas neste arquivo.
 
-O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/), 
-e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
+O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/), e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
 > _Arquivo gerado automaticamente via `git-cliff`._
+
+
+## v3.3.12 - 13/05/2026
+
+
+### ♻️ Refatoração & Melhorias
+
+* Remove comentarios desnecessários ([ef1c50e](https://github.com/emn-f/vox-ai/commit/ef1c50ebb6a47e3474397b045ed1cc2f63cf7732))
+
+* Substitui atributos id por data-link para melhor organização e acessibilidade ([72c577a](https://github.com/emn-f/vox-ai/commit/72c577ab02bc0ecd1f29b9cc438cad5deb8f6923))
+
+
+### ✨ Funcionalidades
+
+* Atualiza modelo gemini para versão `gemini-3-flash-preview` ([d459560](https://github.com/emn-f/vox-ai/commit/d4595607a27e2041097ffde00d199559fc9e51ad))
+
+* Adiciona arquivo de configuração com links para recursos do projeto; adição de nova colaboradora @cfmiila na sessão equipe ([7c1acfe](https://github.com/emn-f/vox-ai/commit/7c1acfe4601b489bad46fbd29ad2d23184e89403))
+
+
+### 📚 Documentação
+
+* Changelog agora exibe id dos commits e autoria; melhorias no header e no body. ([8afa10f](https://github.com/emn-f/vox-ai/commit/8afa10f42e118c1d63c9f90eb98b1d02c3a5e48a))
+
+
+### 🔧 Tarefas Internas
+
+* Melhorias no header. ([91124f1](https://github.com/emn-f/vox-ai/commit/91124f1d6040db20f7bcbe9833f49328763794b3))
 
 ## v3.3.11 - 13/05/2026
 
