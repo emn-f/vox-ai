@@ -7,12 +7,18 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v3.3.13 - 13/05/2026
+
+
+### 🐛 Correções
+
+* Remoção de espaço extra no header do Git Cliff ([b0b0210](https://github.com/emn-f/vox-ai/commit/b0b02105bc57c4a2ce5587f000e1ef28511caafd))
+
+
 ## v3.3.12 - 13/05/2026
 
 
 ### ♻️ Refatoração & Melhorias
-
-* Remove comentarios desnecessários ([ef1c50e](https://github.com/emn-f/vox-ai/commit/ef1c50ebb6a47e3474397b045ed1cc2f63cf7732))
 
 * Substitui atributos id por data-link para melhor organização e acessibilidade ([72c577a](https://github.com/emn-f/vox-ai/commit/72c577ab02bc0ecd1f29b9cc438cad5deb8f6923))
 
@@ -27,7 +33,6 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 ### 📚 Documentação
 
 * Changelog agora exibe id dos commits e autoria; melhorias no header e no body. ([8afa10f](https://github.com/emn-f/vox-ai/commit/8afa10f42e118c1d63c9f90eb98b1d02c3a5e48a))
-
 
 ### 🔧 Tarefas Internas
 
@@ -53,12 +58,9 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 
 * Melhorias na organização do changelog
 
-
 ### 🐛 Correções
 
 * Ignorar o teste de conexão do Supabase quando as credenciais ou a biblioteca não estiverem disponíveis (contexto de PR de fork)
-
-
 
 ## v3.3.8 - 21/04/2026
 
@@ -106,13 +108,6 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 
 ### ✨ Funcionalidades
 **BREAKING CHANGE:** Altera modelo de RAG para `gemini-embedding-001`
-
-
-## v3.2.31 - 23/01/2026
-
-### ✨ Funcionalidades
-
-* Cliff só irá gerar changelog de commits relevantes #228
 
 
 ### 🐛 Correções
