@@ -13,9 +13,9 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 * Corrige alinhamento do link @casamariellefrancobr na sidebar
 
-* Corrige tags não fechadas no index.html
+* Corrige tags não fechadas no `index.html`
 
-* Corrige bugs visuais na sidebar e no index.html
+* Corrige bugs visuais na sidebar e no `index.html`
 
 ## v3.3.9 - 21/04/2026
 
