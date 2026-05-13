@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 const parts = contentRange.split('/');
                 if (parts.length > 1 && parts[1] !== '*') {
                     const el = document.getElementById('kb-count');
-                    // Subtrai 1 para desconsiderar o item "N/A"
                     if (el) el.innerText = Math.max(0, parseInt(parts[1]) - 1);
                     return;
                 }
@@ -35,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(r => r.json())
                 .then(data => {
                     const el = document.getElementById('kb-count');
-                    // Subtrai 1 para desconsiderar o item "N/A"
                     if (el) el.innerText = Math.max(0, (data.length || 0) - 1);
                 });
         })
