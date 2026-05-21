@@ -1,6 +1,9 @@
 ﻿# Guia de Contribuição do Vox AI
 
-Primeiramente, **obrigado** por seu interesse em contribuir com o Vox AI! 🎉
+> Último modificação em 21/05/2026
+
+Primeiramente,
+ **obrigado** por seu interesse em contribuir com o Vox AI! 🎉
 
 Somos um projeto de código aberto focado em tecnologia social e inclusão. Seja corrigindo um bug, melhorando a documentação, aprimorando nossa base de conhecimento ou propondo novas features, sua ajuda é essencial para tornarmos este assistente cada vez mais seguro e útil para a comunidade LGBTQIA+.
 
@@ -31,14 +34,24 @@ Se você quer rodar o projeto localmente para testar mudanças:
     git clone https://github.com/SEU-USUARIO/vox-ai.git
     cd vox-ai
     ```
-3.  **Instale o uv** (Gerenciador de pacote):
+3. Em seguida, crie e acesse um ambiente virtual no Python:
     ```bash
-    # Windows
-    powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+    # Criação
+    python -m venv .venv
 
-    # Mac/Linux
-    curl -LsSf https://astral.sh/uv/install.sh | sh
+    # Ativação
+    PS .\venv\Scripts\Activate.ps1
     ```
+
+4.  **Instale o uv** (Gerenciador de pacote):
+    ```bash
+    # macOS e Linux
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+
+    # Windows
+    powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+    ```
+    Após a instalação ser concluída, reinicie o terminal.
 4.  **Instale as dependências:**
     ```bash
     uv sync
@@ -54,8 +67,8 @@ Se você quer rodar o projeto localmente para testar mudanças:
     GEMINI_API_KEY = "SUA_CHAVE_AQUI"
     
     [supabase]
-    url = "SUA_URL_SUPABASE"
-    key = "SUA_CHAVE_ANON_SUPABASE"
+    url = "URL_SUPABASE_DEV"
+    key = "ANON_KEY_SUPABASE_DEV"
     ```
 
     > **🔒 Credenciais do Supabase (Interno):**
@@ -82,7 +95,7 @@ Utilizamos um fluxo simples baseado em branches:
 * **`develop`**: Branch principal de desenvolvimento. **Suas PRs devem apontar para cá.**
 
 **Para nova feature ou correção:**
-1.  Crie uma branch a partir de `develop`:
+1.  Crie uma branch a partir de `main`:
     ```bash
     git checkout -b feat/minha-nova-feature
     ```
@@ -114,8 +127,9 @@ Consulte o nosso arquivo **[CONVENTIONAL_COMMITS.md](../docs/CONVENTIONAL_COMMIT
 
 Se você alterar a estrutura do banco (tabelas, colunas), **é obrigatório incluir o arquivo de migração (.sql)** no commit. Nossos hooks bloquearão seu commit se detectarem mudanças no código de banco sem o respectivo SQL.
 
-Use nomes descritivos para suas migrations. Consulte **[CONVENTIONAL_MIGRATIONS.md](../docs/CONVENTIONAL_MIGRATIONS.md)** para o padrão de nomenclatura.
+Use nomes descritivos para suas migrations. Consulte **[CONVENTIONAL_MIGRATIONS.md](../docs/standards/CONVENTIONAL_MIGRATIONS.md)** para o padrão de nomenclatura.
 
+Para mais informações sobre o acesso ao banco no Supabase, consulte **[SUPABASE_ACCESS.md](../docs/standards/SUPABASE_ACCESS.md)** .
 
 ## 🧠 Base de Conhecimento (RAG)
 
