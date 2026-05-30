@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v3.3.14 - 30/05/2026
+
+
+### 📚 Documentação
+
+* Atualizar caminhos para arquivos de padrões de commits e migrações no guia de contribuição ([3cad7f3](https://github.com/emn-f/vox-ai/commit/3cad7f3e7c4dc0f5fb3f08b41dc086e6cad022d8))
+
+
 ## v3.3.13 - 13/05/2026
 
 
