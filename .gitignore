@@ -88,6 +88,7 @@ ai_gatekeeper.log
 scripts/debug_models.py
 
 # ==============================================================================
-# Antigravity AI reports
+# Antigravity CLI
 # ==============================================================================
 .antigravity/
+.agents/
