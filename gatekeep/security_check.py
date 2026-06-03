@@ -284,10 +284,10 @@ def check_database_migrations(files: List[str], mode: str) -> bool:
     # 2. Obtém o diff ignorando espaços em branco (-w) para evitar falsos positivos de formatação
     cmd = []
     if mode == "pre-commit":
-        cmd = ["git", "diff", "-w", "--cached", "--", target_file]
+        cmd = ["git", "diff", "-w", "--cached", "--", target_files]
     else:
         # Pre-push
-        cmd = ["git", "diff", "-w", "origin/main..HEAD", "--", target_file]
+        cmd = ["git", "diff", "-w", "origin/main..HEAD", "--", target_files]
 
     try:
         # O diff pode falhar se o arquivo for novo ou deletado, mas tratamos com try
