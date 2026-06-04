@@ -4,7 +4,7 @@ import streamlit as st
 
 from collections.abc import Iterator
 from src.config import CSS_PATH
-from src.core.database import salvar_report, get_categorias_erro, salvar_erro
+from src.core.database import salvar_report, get_categorias_erro, salvar_erro, excluir_dados_sessao
 
 
 def configurar_pagina() -> None:
@@ -64,10 +64,12 @@ def dialog_reportar() -> None:
                 cat_id = find_categorias[categoria]
 
                 try:
+                    # Minimização de dados (LGPD Art. 6, III): envia apenas os últimos 3 turnos de conversa (6 mensagens)
+                    historico_minimizado = historico_conversa[-6:] if len(historico_conversa) > 6 else historico_conversa
                     sucesso = salvar_report(
                         sess_id,
                         version,
-                        str(historico_conversa),
+                        str(historico_minimizado),
                         cat_id,
                         comentario,
                     )
@@ -105,13 +107,22 @@ def carregar_sidebar(sidebar_content: str, sidebar_footer: str) -> None:
         col1, col2 = st.columns(2)
         with col1:
             if st.button("🧹 Limpar conversa", use_container_width=True):
-                st.session_state.pop("hist", None)
                 st.session_state.pop("hist_exibir", None)
                 st.session_state.pop("chat", None)
                 st.rerun()
         with col2:
             if st.button("🚩 Reportar", use_container_width=True):
                 dialog_reportar()
+
+        if st.button("🗑️ Excluir meus dados desta sessão", use_container_width=True, type="secondary"):
+            with st.spinner("Excluindo dados do servidor..."):
+                excluir_dados_sessao(st.session_state.get("session_id", ""))
+                st.session_state.pop("session_id", None)
+                st.session_state.pop("hist_exibir", None)
+                st.session_state.pop("chat", None)
+                st.success("Dados excluídos com sucesso! 🛡️")
+                time.sleep(1.5)
+                st.rerun()
         st.markdown("---")
 
         # Footer
