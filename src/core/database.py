@@ -289,7 +289,8 @@ def recuperar_contexto_inteligente(vector_embedding):
 def excluir_dados_sessao(session_id: str) -> bool:
     """
     Exclui permanentemente todos os registros vinculados ao session_id 
-    nas tabelas chat_logs, user_reports e sessions para cumprir o Art. 18 da LGPD.
+    nas tabelas chat_logs_kb, chat_logs, user_reports, error_logs e sessions 
+    para cumprir o Art. 18 da LGPD.
     """
     client = get_db_client()
     if not client:
