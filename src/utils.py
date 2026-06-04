@@ -7,6 +7,8 @@ import subprocess
 import streamlit as st
 from gtts import gTTS
 
+from src.config import logger
+
 
 @st.cache_data
 def get_current_branch() -> str:
@@ -28,7 +30,7 @@ def get_version_from_changelog() -> str:
             if match:
                 return f"v{match.group(1)}"
     except Exception as e:
-        print(f"Erro ao ler CHANGELOG.md: {e}")
+        logger.error(f"Erro ao ler CHANGELOG.md: {e}")
     return ""
 
 
