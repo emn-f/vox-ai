@@ -127,5 +127,5 @@ class TestAICodeReview:
         result = security_check.run_ai_code_review("diff content")
 
         # Verifica
-        assert result is True # Falha aberta (permite continuar)
+        assert result is False # Falha fechada (bloqueia o push em caso de erro da API)
         mock_log.assert_not_called()

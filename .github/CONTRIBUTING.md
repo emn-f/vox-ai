@@ -57,8 +57,6 @@ Se você quer rodar o projeto localmente para testar mudanças:
     uv sync
     ```
     > **Nota:** Para adicionar novas bibliotecas, use `uv add [NOME_DA_LIB]`.
-    > O arquivo `requirements.txt` é gerado automaticamente para deploy.
-    > Para atualizá-lo: `uv export --no-hashes > requirements.txt`
 5.  **Configure as Variáveis de Ambiente:**
     Crie um arquivo `.streamlit/secrets.toml` na raiz do projeto.
     O arquivo deve seguir este formato:
