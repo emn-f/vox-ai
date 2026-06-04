@@ -141,11 +141,20 @@ erDiagram
 
 * `user_reports`: Conectada à tabela `report_categories`, permite que usuários classifiquem erros (ex: "Alucinação", "Ofensivo") para posterior análise da curadoria.
 
+## 🔒 Privacidade, Governança e LGPD
+
+O Vox AI foi desenhado seguindo princípios de *Privacy by Design* e em conformidade com a Lei Geral de Proteção de Dados (LGPD). As diretrizes arquiteturais implementadas são:
+
+1. **Row Level Security (RLS) Restrito (Art. 46):** Todas as tabelas transacionais de dados e logs (`chat_logs`, `sessions`, `error_logs`, `user_reports`) são blindadas. Não existem políticas públicas de leitura ou escrita concedidas à `anon_key` pública. A comunicação é realizada pelo backend Streamlit no servidor via chave `service_role` privada.
+2. **Minimização de Dados (Art. 6, III):** O envio de relatórios de denúncia restringe a captura do histórico de conversas a no máximo 6 mensagens (3 turnos), armazenando apenas o contexto imediato do incidente.
+3. **Descarte Automático e Retenção (Art. 15 e 16):** Um job automático configurado no PostgreSQL via `pg_cron` executa semanalmente a exclusão permanente de registros de logs de chat, erros e sessões com mais de 12 meses de criação.
+4. **Direito de Eliminação (Art. 18):** Disponibilizamos a opção de exclusão sob demanda na interface. O acionamento executa um comando de exclusão em cascata (`DELETE`) no banco de dados para todas as referências associadas ao `session_id` atual.
+
 ### Stack Tecnológica
 * ***Orquestração***: Python 3.11 + Streamlit
 * ***Vector Store***: Supabase (`pgvector`)
 * ***LLM & Embeddings***: Google Gemini API (`gemini-3-flash-preview` e `gemini-embedding-001`)
-* ***CI/C***D: GitHub Actions (Deploy automático de Migrations e Code Review)
+* ***CI/CD***: GitHub Actions (Deploy automático de Migrations e Code Review)
 
 ---
 

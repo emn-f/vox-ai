@@ -115,6 +115,7 @@ def carregar_sidebar(sidebar_content: str, sidebar_footer: str) -> None:
                 dialog_reportar()
 
         if st.button("🗑️ Excluir meus dados desta sessão", use_container_width=True, type="secondary"):
+            import time
             with st.spinner("Excluindo dados do servidor..."):
                 excluir_dados_sessao(st.session_state.get("session_id", ""))
                 st.session_state.pop("session_id", None)

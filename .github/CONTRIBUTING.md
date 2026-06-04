@@ -1,4 +1,4 @@
-﻿# Guia de Contribuição do Vox AI
+# Guia de Contribuição do Vox AI
 
 > Último modificação em 21/05/2026
 
@@ -134,6 +134,8 @@ Para mais informações sobre o acesso ao banco no Supabase, consulte **[SUPABAS
 ## 🧠 Base de Conhecimento (RAG)
 
 O Vox utiliza uma arquitetura RAG (Retrieval-Augmented Generation). Os dados são armazenados e consultados via **Supabase** (PostgreSQL com `pgvector`).
+
+> 🏳️‍🌈 **Não sabe programar?** Se você quer contribuir apenas criando, sugerindo ou revisando textos da base de conhecimento (como psicólogo, profissional de saúde ou ativista), criamos um guia especial para você: leia o **[Guia de Contribuição para Não-Devs](../docs/standards/CONTRIBUTING_NON_DEVS.md)**.
     
 ⚠️ **Atenção:**
 A base de conhecimento é gerida internamente.

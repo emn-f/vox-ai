@@ -57,11 +57,15 @@ Adotamos medidas técnicas e administrativas para proteger os dados coletados, i
 
 Embora adotemos boas práticas, nenhum sistema é impenetrável; notificaremos os usuários e autoridades competentes caso ocorra um incidente relevante.
 
-## 7. Compartilhamento e terceiros
+## 7. Compartilhamento, sub-processadores e transferência internacional
 
-Podemos utilizar provedores de serviços (processadores) para hospedagem, armazenamento e processamento — por exemplo, serviços de banco de dados e infraestrutura. Esses prestadores têm acesso apenas aos dados necessários para prestar o serviço e estão contratualmente obrigados a proteger as informações.
+Para prestar e melhorar o serviço, compartilhamos os dados estritamente necessários com provedores de infraestrutura e processadores de dados essenciais, todos contratualmente obrigados a manter o sigilo e a segurança das informações de acordo com a LGPD:
 
-Não vendemos dados dos usuários nem os compartilhamos para fins de publicidade direcionada.
+- **Google Gemini API (Google LLC):** Processamento do texto das mensagens para geração das respostas de Inteligência Artificial.
+- **Supabase (Supabase Inc.):** Hospedagem e armazenamento do banco de dados relacional e logs de auditoria.
+
+### Transferência Internacional de Dados (Art. 33 da LGPD)
+O uso das APIs de inteligência artificial (Google Gemini) e da infraestrutura de banco de dados (Supabase) envolve o processamento de dados em servidores localizados fora do território nacional (principalmente nos Estados Unidos). Ao utilizar o Vox AI, você declara estar ciente e concordar com a transferência internacional de suas mensagens para fins exclusivos de processamento e resposta da inteligência artificial, de acordo com as salvaguardas contratuais e práticas globais de segurança da informação exigidas.
 
 ## 8. Usuários menores de idade
 
