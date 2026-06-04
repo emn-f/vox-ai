@@ -16,3 +16,15 @@ dependencies = [
 dev = [
     "pytest>=9.0.2",
 ]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q --strict-markers"
+testpaths = [
+    "tests",
+]
+markers = [
+    "unit: marks tests as unit tests",
+    "integration: marks tests as integration tests (require external APIs)",
+]
+
