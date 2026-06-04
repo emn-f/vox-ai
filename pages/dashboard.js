@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const statsEl = document.getElementById('kb-health-stats');
             if (!statsEl) return;
 
-            if (data && data.length > 0) {
+            if (Array.isArray(data) && data.length > 0) {
                 const topicsCount = {};
                 let totalChunks = 0;
 
@@ -174,26 +174,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const sortedTopics = Object.entries(topicsCount).sort((a, b) => b[1] - a[1]);
 
-                let html = '<div class="kb-health-grid">';
-                sortedTopics.forEach(([topic, count]) => {
-                    const pct = totalChunks > 0 ? Math.round((count / totalChunks) * 100) : 0;
-                    html += `
-                        <div class="kb-topic-card">
-                            <div class="kb-topic-header">
-                                <h4 class="kb-topic-title">${escapeHtml(topic)}</h4>
-                                <span class="kb-topic-badge">${count} ${count === 1 ? 'chunk' : 'chunks'}</span>
-                            </div>
-                            <div>
-                                <div class="kb-topic-bar-container">
-                                    <div class="kb-topic-bar" style="width: ${pct}%"></div>
+                if (sortedTopics.length > 0) {
+                    let html = '<div class="kb-health-grid">';
+                    sortedTopics.forEach(([topic, count]) => {
+                        const pct = totalChunks > 0 ? Math.round((count / totalChunks) * 100) : 0;
+                        html += `
+                            <div class="kb-topic-card">
+                                <div class="kb-topic-header">
+                                    <h4 class="kb-topic-title">${escapeHtml(topic)}</h4>
+                                    <span class="kb-topic-badge">${count} ${count === 1 ? 'chunk' : 'chunks'}</span>
                                 </div>
-                                <div class="kb-topic-percentage">${pct}% do total</div>
+                                <div>
+                                    <div class="kb-topic-bar-container">
+                                        <div class="kb-topic-bar" style="width: ${pct}%"></div>
+                                    </div>
+                                    <div class="kb-topic-percentage">${pct}% do total</div>
+                                </div>
                             </div>
-                        </div>
-                    `;
-                });
-                html += '</div>';
-                statsEl.innerHTML = html;
+                        `;
+                    });
+                    html += '</div>';
+                    statsEl.innerHTML = html;
+                } else {
+                    statsEl.innerHTML = '<p style="color: var(--text-secondary);">Nenhum tema cadastrado na base de conhecimento.</p>';
+                }
             } else {
                 statsEl.innerHTML = '<p style="color: var(--text-secondary);">Nenhum tema cadastrado na base de conhecimento.</p>';
             }
