@@ -44,8 +44,8 @@ def test_gemini_connection_and_generation():
     """
     api_key = get_gemini_key()
 
-    if not api_key:
-        pytest.skip("⚠️ Chave do Gemini não encontrada. Pulando teste de integração.")
+    if not api_key or api_key.startswith("mock"):
+        pytest.skip("⚠️ Chave do Gemini real não configurada (está mockada ou vazia). Pulando teste de integração.")
 
     assert len(api_key) > 10, "❌ Chave do Gemini parece inválida ou curta demais."
 
