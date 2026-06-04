@@ -7,6 +7,16 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v3.3.15 - 30/05/2026
+
+
+### 📚 Documentação
+
+* Criação de doc para configuração do Supabase ([25519b1](https://github.com/emn-f/vox-ai/commit/25519b127b7993e1f5d57accd6b06246cf1939bf))
+
+* Atualizar caminhos para arquivos de padrões de commits e migrações no guia de contribuição ([1cbaa86](https://github.com/emn-f/vox-ai/commit/1cbaa8609502735840252b86ae40c6ad8c30325b))
+
+
 ## v3.3.14 - 30/05/2026
 
 
