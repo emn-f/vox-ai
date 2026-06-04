@@ -86,7 +86,6 @@ if "key_api" in st.session_state:
 
     if prompt_final:
         st.session_state.prompt = prompt_final
-        st.session_state.hist.append({"role": "user", "parts": [prompt_final]})
         st.session_state.hist_exibir.append({"role": "user", "parts": [prompt_final]})
 
         with st.chat_message("user", avatar="🧑‍💻"):
@@ -107,7 +106,6 @@ if "key_api" in st.session_state:
                     inicializar_chat_modelo(), prompt_final, info_adicional_contexto
                 )
 
-            st.session_state.hist.append({"role": "model", "parts": [resposta]})
             st.session_state.hist_exibir.append({"role": "model", "parts": [resposta]})
 
             try:
