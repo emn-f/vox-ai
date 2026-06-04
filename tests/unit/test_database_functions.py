@@ -21,7 +21,7 @@ def mock_db_client():
     """
     Mocka o cliente do database para todas as funções, simulando o cliente supabase.
     """
-    with patch("src.core.database.get_db_client") as mock_get:
+    with patch("src.core.db.client.get_db_client") as mock_get:
         mock_client = MagicMock()
         mock_get.return_value = mock_client
 
