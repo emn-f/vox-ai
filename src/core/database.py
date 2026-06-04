@@ -229,8 +229,17 @@ def recuperar_contexto_inteligente(vector_embedding):
     if not resultados_iniciais:
         return None, "Nenhuma referencia encontrada na base de conhecimento.", None
 
-    if not resultados_iniciais:
-        return None, "Nenhuma referencia encontrada na base de conhecimento.", None
+    def _gerar_fallback_top5():
+        top_5 = resultados_iniciais[:5]
+        contexto = [item["descricao"] for item in top_5]
+        ids_usados = []
+        for item in top_5:
+            kid = item.get("kb_id") or item.get("id")
+            if kid:
+                ids_usados.append(
+                    {"kb_id": kid, "similarity": item.get("similarity")}
+                )
+        return contexto, ids_usados
 
     contagem_topicos = {}
 
@@ -240,20 +249,11 @@ def recuperar_contexto_inteligente(vector_embedding):
             contagem_topicos[topico] = contagem_topicos.get(topico, 0) + 1
 
     contexto_final = []
-
     lista_ids_usados = []
-
     fonte_origem = "Busca por similaridade (Fragmentos)"
-    if not contagem_topicos:
-        top_5 = resultados_iniciais[:5]
-        contexto_final = [item["descricao"] for item in top_5]
-        for item in top_5:
-            kid = item.get("kb_id") or item.get("id")
-            if kid:
-                lista_ids_usados.append(
-                    {"kb_id": kid, "similarity": item.get("similarity")}
-                )
 
+    if not contagem_topicos:
+        contexto_final, lista_ids_usados = _gerar_fallback_top5()
         return "\n---\n".join(contexto_final), fonte_origem, lista_ids_usados
 
     topico_vencedor = max(contagem_topicos, key=contagem_topicos.get)
@@ -276,28 +276,11 @@ def recuperar_contexto_inteligente(vector_embedding):
 
         except Exception as e:
             logger.warning(f"⚠️ Erro ao expandir contexto: {e}. Usando fallback.")
-            top_5 = resultados_iniciais[:5]
-            contexto_final = [item["descricao"] for item in top_5]
-
-            for item in top_5:
-                kid = item.get("kb_id") or item.get("id")
-                if kid:
-                    lista_ids_usados.append(
-                        {"kb_id": kid, "similarity": item.get("similarity")}
-                    )
+            contexto_final, lista_ids_usados = _gerar_fallback_top5()
 
     else:
         logger.info(f"🔍 Estratégia: Tópicos mistos (Vencedor '{topico_vencedor}')")
         fonte_origem = f"Tópicos mistos (Vencedor: {topico_vencedor})"
-
-        top_5 = resultados_iniciais[:5]
-        contexto_final = [item["descricao"] for item in top_5]
-
-        for item in top_5:
-            kid = item.get("kb_id") or item.get("id")
-            if kid:
-                lista_ids_usados.append(
-                    {"kb_id": kid, "similarity": item.get("similarity")}
-                )
+        contexto_final, lista_ids_usados = _gerar_fallback_top5()
 
     return "\n---\n".join(contexto_final), fonte_origem, lista_ids_usados
