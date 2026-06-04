@@ -29,11 +29,16 @@ def set_dummy_env_vars():
 
 
 @pytest.fixture(autouse=True)
-def mock_supabase_global():
+def mock_supabase_global(request):
     """
     Mock global para o cliente Supabase.
     Intercepta qualquer chamada a 'supabase.create_client'.
+    Não aplica o mock se o teste for de integração real.
     """
+    if "integration" in request.node.keywords or "tests/integration" in str(request.node.fspath):
+        yield
+        return
+
     with patch("supabase.create_client") as mock_create:
         mock_client = MagicMock()
         mock_create.return_value = mock_client
@@ -63,15 +68,15 @@ def mock_supabase_global():
 
 
 @pytest.fixture(autouse=True)
-def mock_gemini_global():
+def mock_gemini_global(request):
     """
     Mock global para o Google Gen AI (Gemini - Novo SDK).
     Intercepta 'google.genai.Client' para evitar chamadas reais à API.
+    Não aplica o mock se o teste for de integração real.
     """
-    # Se estivemos rodando testes de integração que precisam da API real,
-    # idealmente deveríamos desabilitar o mock.
-    # Mas como o fixture é autouse, ele roda.
-    # O teste de integração pode precisar fazer 'reload' ou patch manual se quiser burlar.
+    if "integration" in request.node.keywords or "tests/integration" in str(request.node.fspath):
+        yield
+        return
 
     # Porém, aqui vamos mockar a CLASSE Client.
     with patch("google.genai.Client") as mock_client_cls:
