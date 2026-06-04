@@ -8,6 +8,9 @@ on:
       - 'supabase/migrations/**'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   deploy_migrations:
     runs-on: ubuntu-latest
