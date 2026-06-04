@@ -261,11 +261,11 @@ def check_database_migrations(files: List[str], mode: str) -> bool:
     Agora com heurística: Só trava se detectar adição de chaves em dicionários (novas colunas).
     """
     # 1. Filtra se database.py foi alterado
-    target_files = (
+    target_files = [
         "src/core/database.py",
         "supabase/migrations/*.sql",
         "supabase/config.toml",
-    )
+    ]
     if not any(
         fnmatch.fnmatch(f.replace("\\", "/"), pattern)
         for f in files
@@ -284,10 +284,10 @@ def check_database_migrations(files: List[str], mode: str) -> bool:
     # 2. Obtém o diff ignorando espaços em branco (-w) para evitar falsos positivos de formatação
     cmd = []
     if mode == "pre-commit":
-        cmd = ["git", "diff", "-w", "--cached", "--"] + list(target_files)
+        cmd = ["git", "diff", "-w", "--cached", "--"] + target_files
     else:
         # Pre-push
-        cmd = ["git", "diff", "-w", "origin/main..HEAD", "--"] + list(target_files)
+        cmd = ["git", "diff", "-w", "origin/main..HEAD", "--"] + target_files
 
     try:
         # O diff pode falhar se o arquivo for novo ou deletado, mas tratamos com try

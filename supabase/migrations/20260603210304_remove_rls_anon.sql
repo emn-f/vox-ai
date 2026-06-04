@@ -1,4 +1,4 @@
-drop policy "Permitir leitura pública da KB" on "public"."knowledge_base";
+drop policy if exists "Permitir leitura pública da KB" on "public"."knowledge_base";
 
 set check_function_bodies = off;
 
