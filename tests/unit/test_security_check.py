@@ -22,8 +22,8 @@ class TestSanitizeDiff:
         assert "sk-1234567890" not in sanitized
         assert "clean line" in sanitized
 
-@patch("security_check.log_ai_event")
-@patch("security_check.load_secrets")
+@patch("gatekeep.ai_review.log_ai_event")
+@patch("gatekeep.ai_review.load_secrets")
 class TestAICodeReview:
 
     @pytest.fixture(autouse=True)
