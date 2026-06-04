@@ -23,7 +23,7 @@ except ImportError:
         except ImportError:
             toml = None
 
-GEMINI_MODEL_GATEKEEP = "gemini-3-flash-preview"
+GEMINI_MODEL_GATEKEEP = "gemini-2.5-flash"
 
 COLOR_RED = "\033[91m"
 COLOR_GREEN = "\033[92m"
