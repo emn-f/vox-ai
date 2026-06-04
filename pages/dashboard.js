@@ -2,6 +2,16 @@
 const SUPABASE_URL_DEV = "__SUPABASE_URL_DEV__";
 const SUPABASE_ANON_KEY_DEV = "__SUPABASE_ANON_KEY_DEV__";
 
+function escapeHtml(unsafe) {
+    if (!unsafe) return '';
+    return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
     // Carregar changelog (sempre executa, independente do Supabase)
@@ -70,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     // Buscar contagem de registros da base de conhecimento
-    const urlCount = new URL(`${SUPABASE_URL_DEV}/rest/v1/knowledge_base`);
+    const urlCount = new URL(`${SUPABASE_URL_DEV}/rest/v1/knowledge_base_public_stats`);
     urlCount.searchParams.set('select', 'kb_id');
     urlCount.searchParams.set('limit', '1');
 
@@ -94,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             console.warn("Header Content-Range indisponível. Usando fallback de contagem manual.");
-            const urlFallback = new URL(`${SUPABASE_URL_DEV}/rest/v1/knowledge_base`);
+            const urlFallback = new URL(`${SUPABASE_URL_DEV}/rest/v1/knowledge_base_public_stats`);
             urlFallback.searchParams.set('select', 'kb_id');
             return fetch(urlFallback.toString(), { headers })
                 .then(r => r.json())
@@ -110,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
     // Buscar última versão da base de conhecimento
-    const urlVersion = new URL(`${SUPABASE_URL_DEV}/rest/v1/knowledge_base`);
+    const urlVersion = new URL(`${SUPABASE_URL_DEV}/rest/v1/knowledge_base_public_stats`);
     urlVersion.searchParams.set('select', 'modificado_em');
     urlVersion.searchParams.set('order', 'modificado_em.desc');
     urlVersion.searchParams.set('limit', '1');
@@ -139,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
     // Buscar distribuição dos temas na base de conhecimento (Observabilidade - Issue #303)
-    const urlTopics = new URL(`${SUPABASE_URL_DEV}/rest/v1/knowledge_base`);
+    const urlTopics = new URL(`${SUPABASE_URL_DEV}/rest/v1/knowledge_base_public_stats`);
     urlTopics.searchParams.set('select', 'tema');
 
     fetch(urlTopics.toString(), {
@@ -170,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     html += `
                         <div class="kb-topic-card">
                             <div class="kb-topic-header">
-                                <h4 class="kb-topic-title">${topic}</h4>
+                                <h4 class="kb-topic-title">${escapeHtml(topic)}</h4>
                                 <span class="kb-topic-badge">${count} ${count === 1 ? 'chunk' : 'chunks'}</span>
                             </div>
                             <div>

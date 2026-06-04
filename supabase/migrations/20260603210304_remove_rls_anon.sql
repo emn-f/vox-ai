@@ -1,5 +1,11 @@
 drop policy if exists "Permitir leitura pública da KB" on "public"."knowledge_base";
 
+-- Criação da view pública com dados agregados (Segurança / Portal de Transparência)
+create or replace view public.knowledge_base_public_stats as
+select kb_id, tema, modificado_em from public.knowledge_base;
+
+grant select on public.knowledge_base_public_stats to anon, authenticated;
+
 set check_function_bodies = off;
 
 CREATE OR REPLACE FUNCTION public.increment_kb_count()
