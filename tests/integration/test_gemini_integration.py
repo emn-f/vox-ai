@@ -34,6 +34,7 @@ def get_gemini_key():
     return os.environ.get("GEMINI_API_KEY")
 
 
+@pytest.mark.integration
 def test_gemini_connection_and_generation():
     """
     Teste de integração:
@@ -53,9 +54,11 @@ def test_gemini_connection_and_generation():
     try:
         client = google.genai.Client(api_key=api_key)
 
+        from src.config import GEMINI_MODEL_NAME
+
         # Teste de geração real
         response = client.models.generate_content(
-            model="gemini-1.5-flash", contents="Responda apenas 'OK'."
+            model=GEMINI_MODEL_NAME, contents="Responda apenas 'OK'."
         )
 
         assert response is not None, "❌ A resposta do modelo foi Nula."

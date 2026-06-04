@@ -7,6 +7,7 @@ import streamlit as st
 # Idealmente, testes de integração são separados de unitários, mas aqui vamos mantê-lo simples.
 
 
+@pytest.mark.integration
 def test_conexao_supabase_real():
     """
     Verifica se é possível conectar ao Supabase com as credenciais reais
