@@ -1,6 +1,8 @@
 import pytest
 import sys
 import os
+
+pytestmark = pytest.mark.unit
 from unittest.mock import MagicMock, patch
 
 # Garante que 'gatekeep' esteja no path para permitir a importação do security_check
