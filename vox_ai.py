@@ -14,7 +14,10 @@ from src.app.ui import (
     carregar_sidebar,
     configurar_pagina,
     stream_resposta,
+    exibir_historico_chat,
+    exibir_mensagem_erro,
 )
+from src.config import logger
 from src.core.database import salvar_erro, salvar_log_chat, salvar_sessao
 from src.core.genai import (
     configurar_api_gemini,
@@ -23,7 +26,7 @@ from src.core.genai import (
     transcrever_audio,
 )
 from src.core.semantica import semantica
-from src.utils import texto_para_audio, git_version
+from src.utils import git_version
 
 configurar_pagina()
 carregar_css()
@@ -38,19 +41,7 @@ st.session_state.key_api = configurar_api_gemini()
 
 inicializar_chat_modelo()
 
-for i, msg in enumerate(st.session_state.hist_exibir):
-    if msg["role"] == "model":
-        with st.chat_message("assistant", avatar="🤖"):
-            st.markdown(msg["parts"][0], unsafe_allow_html=True)
-
-            chave_botao = f"btn_audio_{i}"
-            if st.button("🔊 Ouvir", key=chave_botao):
-                audio_data = texto_para_audio(msg["parts"][0])
-                st.audio(audio_data, format="audio/mp3")
-
-    else:
-        with st.chat_message("user", avatar="🧑‍💻"):
-            st.markdown(msg["parts"][0])
+exibir_historico_chat(st.session_state.hist_exibir)
 
 if "key_api" in st.session_state:
     if "primeira_vez" not in st.session_state:
@@ -126,19 +117,10 @@ if "key_api" in st.session_state:
                 )
 
             except Exception as e_log:
-                print(f"⚠️ Falha silenciosa ao registrar log de conversa: {e_log}")
-                traceback.print_exc()
+                logger.error(f"Falha silenciosa ao registrar log de conversa: {e_log}", exc_info=True)
 
             st.rerun()
 
         except Exception as e:
             error_id = salvar_erro(st.session_state.session_id, git_version(), e)
-
-            st.error(
-                f"""
-            Putz, algo deu errado por aqui :/
-            
-            Por favor, reporte este erro para nossa equipe informando o código: **{error_id}**
-            """,
-                icon="🚫",
-            )
+            exibir_mensagem_erro(error_id)

@@ -134,3 +134,38 @@ def stream_resposta(resposta: str) -> Iterator[str]:
     for letra in resposta:
         yield letra
         time.sleep(0.009)
+
+
+def exibir_historico_chat(historico_conversa: list) -> None:
+    """
+    Exibe o histórico de conversa com o avatar e estilização apropriados.
+    Também adiciona o player de áudio para respostas da inteligência artificial.
+    """
+    from src.utils import texto_para_audio
+    
+    for i, msg in enumerate(historico_conversa):
+        if msg["role"] == "model":
+            with st.chat_message("assistant", avatar="🤖"):
+                st.markdown(msg["parts"][0], unsafe_allow_html=True)
+
+                chave_botao = f"btn_audio_{i}"
+                if st.button("🔊 Ouvir", key=chave_botao):
+                    audio_data = texto_para_audio(msg["parts"][0])
+                    st.audio(audio_data, format="audio/mp3")
+        else:
+            with st.chat_message("user", avatar="🧑‍💻"):
+                st.markdown(msg["parts"][0])
+
+
+def exibir_mensagem_erro(error_id: str) -> None:
+    """
+    Renderiza um painel de erro amigável instruindo o usuário a reportar o ID do erro.
+    """
+    st.error(
+        f"""
+        Putz, algo deu errado por aqui :/
+        
+        Por favor, reporte este erro para nossa equipe informando o código: **{error_id}**
+        """,
+        icon="🚫",
+    )
