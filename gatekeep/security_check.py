@@ -23,7 +23,7 @@ except ImportError:
         except ImportError:
             toml = None
 
-GEMINI_MODEL_GATEKEEP = "gemini-2.5-flash"
+GEMINI_MODEL_GATEKEEP = "gemini-3.1-flash-lite"
 
 COLOR_RED = "\033[91m"
 COLOR_GREEN = "\033[92m"
@@ -415,8 +415,14 @@ def run_ai_code_review(diff_text: str) -> bool:
         return _process_ai_response(response.text)
 
     except Exception as e:
-        print_colored(f"⚠️ Erro ao consultar Gemini: {e}", COLOR_YELLOW)
-        return True
+        print_colored(f"❌ Erro ao consultar Gemini: {e}", COLOR_RED)
+        print_colored(
+            "⛔ BLOQUEIO: A revisão de código por IA (Gemini) é obrigatória antes do push e falhou ou está indisponível.\n"
+            "   Tente novamente mais tarde quando o serviço for reestabelecido,\n"
+            "   ou use 'git push --no-verify' em caso de extrema necessidade.",
+            COLOR_YELLOW,
+        )
+        return False
 
 
 def _prepare_diff_for_ai(diff_text: str) -> str:
