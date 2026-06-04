@@ -58,6 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (elCount) elCount.innerHTML = '<span style="font-size:0.5em">Indisponível</span>';
         const elVersion = document.getElementById('kb-version');
         if (elVersion) elVersion.innerText = 'Indisponível';
+        const statsEl = document.getElementById('kb-health-stats');
+        if (statsEl) statsEl.innerHTML = '<p style="color: var(--text-secondary);">Métricas indisponíveis em ambiente local de desenvolvimento.</p>';
         return;
     }
 
@@ -134,5 +136,61 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error("Erro KB Version:", error);
             const el = document.getElementById('kb-version');
             if (el) el.innerText = 'Online';
+        });
+
+    // Buscar distribuição dos temas na base de conhecimento (Observabilidade - Issue #303)
+    const urlTopics = new URL(`${SUPABASE_URL_DEV}/rest/v1/knowledge_base`);
+    urlTopics.searchParams.set('select', 'tema');
+
+    fetch(urlTopics.toString(), {
+        method: 'GET',
+        headers: headers
+    })
+        .then(response => response.json())
+        .then(data => {
+            const statsEl = document.getElementById('kb-health-stats');
+            if (!statsEl) return;
+
+            if (data && data.length > 0) {
+                const topicsCount = {};
+                let totalChunks = 0;
+
+                data.forEach(item => {
+                    if (item.tema) {
+                        topicsCount[item.tema] = (topicsCount[item.tema] || 0) + 1;
+                        totalChunks++;
+                    }
+                });
+
+                const sortedTopics = Object.entries(topicsCount).sort((a, b) => b[1] - a[1]);
+
+                let html = '<div class="kb-health-grid">';
+                sortedTopics.forEach(([topic, count]) => {
+                    const pct = totalChunks > 0 ? Math.round((count / totalChunks) * 100) : 0;
+                    html += `
+                        <div class="kb-topic-card">
+                            <div class="kb-topic-header">
+                                <h4 class="kb-topic-title">${topic}</h4>
+                                <span class="kb-topic-badge">${count} ${count === 1 ? 'chunk' : 'chunks'}</span>
+                            </div>
+                            <div>
+                                <div class="kb-topic-bar-container">
+                                    <div class="kb-topic-bar" style="width: ${pct}%"></div>
+                                </div>
+                                <div class="kb-topic-percentage">${pct}% do total</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+                statsEl.innerHTML = html;
+            } else {
+                statsEl.innerHTML = '<p style="color: var(--text-secondary);">Nenhum tema cadastrado na base de conhecimento.</p>';
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao carregar distribuição da base de conhecimento:", error);
+            const statsEl = document.getElementById('kb-health-stats');
+            if (statsEl) statsEl.innerHTML = '<p style="color: #ef4444;">Falha ao carregar estatísticas da base.</p>';
         });
 });
