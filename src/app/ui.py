@@ -117,13 +117,15 @@ def carregar_sidebar(sidebar_content: str, sidebar_footer: str) -> None:
         if st.button("🗑️ Excluir meus dados desta sessão", use_container_width=True, type="secondary"):
             import time
             with st.spinner("Excluindo dados do servidor..."):
-                excluir_dados_sessao(st.session_state.get("session_id", ""))
-                st.session_state.pop("session_id", None)
-                st.session_state.pop("hist_exibir", None)
-                st.session_state.pop("chat", None)
-                st.success("Dados excluídos com sucesso! 🛡️")
-                time.sleep(1.5)
-                st.rerun()
+                if excluir_dados_sessao(st.session_state.get("session_id", "")):
+                    st.session_state.pop("session_id", None)
+                    st.session_state.pop("hist_exibir", None)
+                    st.session_state.pop("chat", None)
+                    st.success("Dados excluídos com sucesso! 🛡️")
+                    time.sleep(1.5)
+                    st.rerun()
+                else:
+                    st.error("❌ Falha ao excluir dados. Por favor, tente novamente.")
         st.markdown("---")
 
         # Footer
@@ -146,7 +148,7 @@ def exibir_historico_chat(historico_conversa: list) -> None:
     for i, msg in enumerate(historico_conversa):
         if msg["role"] == "model":
             with st.chat_message("assistant", avatar="🤖"):
-                st.markdown(msg["parts"][0], unsafe_allow_html=True)
+                st.markdown(msg["parts"][0], unsafe_allow_html=False)
 
                 chave_botao = f"btn_audio_{i}"
                 if st.button("🔊 Ouvir", key=chave_botao):
