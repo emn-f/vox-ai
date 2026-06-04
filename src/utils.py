@@ -8,16 +8,15 @@ import streamlit as st
 from gtts import gTTS
 
 
-def get_current_branch() -> int:
+@st.cache_data
+def get_current_branch() -> str:
+    """
+    Retorna o nome da branch Git atual de forma segura.
+    """
     try:
-        branch = subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"]).decode("utf-8").strip()
-
-        if branch in ["main", "main"]:
-            return 1
-        else:
-            return 0
+        return subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"]).decode("utf-8").strip()
     except (subprocess.CalledProcessError, FileNotFoundError):
-        return 0
+        return "unknown"
 
 
 def get_version_from_changelog() -> str:
@@ -33,9 +32,15 @@ def get_version_from_changelog() -> str:
     return ""
 
 
+@st.cache_data
 def git_version() -> str:
+    """
+    Obtém a versão atual do git baseada em tags ou no CHANGELOG.
+    O resultado é cacheado para evitar chamadas de subprocesso repetitivas.
+    """
     try:
-        if get_current_branch() == 1:
+        current_branch = get_current_branch()
+        if current_branch == "main":
             tag_pattern = "v*"
         else:
             tag_pattern = "dev-v*"
