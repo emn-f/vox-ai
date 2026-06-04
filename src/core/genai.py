@@ -26,8 +26,6 @@ def configurar_api_gemini():
 
 def inicializar_chat_modelo():
 
-    if "hist" not in st.session_state:
-        st.session_state.hist = [{"role": "user", "parts": [INSTRUCOES]}]
     if "hist_exibir" not in st.session_state:
         st.session_state.hist_exibir = []
 

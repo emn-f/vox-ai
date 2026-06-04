@@ -23,7 +23,7 @@ except ImportError:
         except ImportError:
             toml = None
 
-GEMINI_MODEL_GATEKEEP = "gemini-3-flash-preview"
+GEMINI_MODEL_GATEKEEP = "gemini-3.1-flash-lite"
 
 COLOR_RED = "\033[91m"
 COLOR_GREEN = "\033[92m"
@@ -261,11 +261,11 @@ def check_database_migrations(files: List[str], mode: str) -> bool:
     Agora com heurística: Só trava se detectar adição de chaves em dicionários (novas colunas).
     """
     # 1. Filtra se database.py foi alterado
-    target_files = (
+    target_files = [
         "src/core/database.py",
         "supabase/migrations/*.sql",
         "supabase/config.toml",
-    )
+    ]
     if not any(
         fnmatch.fnmatch(f.replace("\\", "/"), pattern)
         for f in files
@@ -284,10 +284,10 @@ def check_database_migrations(files: List[str], mode: str) -> bool:
     # 2. Obtém o diff ignorando espaços em branco (-w) para evitar falsos positivos de formatação
     cmd = []
     if mode == "pre-commit":
-        cmd = ["git", "diff", "-w", "--cached", "--", target_file]
+        cmd = ["git", "diff", "-w", "--cached", "--"] + target_files
     else:
         # Pre-push
-        cmd = ["git", "diff", "-w", "origin/main..HEAD", "--", target_file]
+        cmd = ["git", "diff", "-w", "origin/main..HEAD", "--"] + target_files
 
     try:
         # O diff pode falhar se o arquivo for novo ou deletado, mas tratamos com try
@@ -415,8 +415,14 @@ def run_ai_code_review(diff_text: str) -> bool:
         return _process_ai_response(response.text)
 
     except Exception as e:
-        print_colored(f"⚠️ Erro ao consultar Gemini: {e}", COLOR_YELLOW)
-        return True
+        print_colored(f"❌ Erro ao consultar Gemini: {e}", COLOR_RED)
+        print_colored(
+            "⛔ BLOQUEIO: A revisão de código por IA (Gemini) é obrigatória antes do push e falhou ou está indisponível.\n"
+            "   Tente novamente mais tarde quando o serviço for reestabelecido,\n"
+            "   ou use 'git push --no-verify' em caso de extrema necessidade.",
+            COLOR_YELLOW,
+        )
+        return False
 
 
 def _prepare_diff_for_ai(diff_text: str) -> str:

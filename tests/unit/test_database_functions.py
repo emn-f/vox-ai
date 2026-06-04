@@ -2,6 +2,8 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
+pytestmark = pytest.mark.unit
+
 from src.config import SEMANTICA_THRESHOLD, TAMANHO_VETOR_SEMANTICO
 from src.core.database import (
     buscar_chunks_por_topico,

@@ -2,12 +2,12 @@ import streamlit as st
 from google import genai
 from google.genai import types
 
-from src.config import MODELO_SEMANTICO_NOME, TAMANHO_VETOR_SEMANTICO
+from src.config import MODELO_SEMANTICO_NOME, TAMANHO_VETOR_SEMANTICO, logger
 from src.core.database import recuperar_contexto_inteligente
 from src.core.genai import configurar_api_gemini
 
 
-def semantica(prompt):
+def semantica(prompt: str) -> tuple[str | None, str | None, list[int] | None]:
     """
     Gera o embedding do prompt e busca contexto relevante no banco de dados.
     """
@@ -15,7 +15,7 @@ def semantica(prompt):
         client = configurar_api_gemini()
 
         if not client:
-            print("Client Gemini não disponível para semântica.")
+            logger.warning("Client Gemini não disponível para semântica.")
             return None, None, None
 
         response = client.models.embed_content(
@@ -39,5 +39,5 @@ def semantica(prompt):
         return None, None, None
 
     except Exception as e:
-        print(f"Erro na geração do embedding semântico: {e}")
+        logger.error(f"Erro na geração do embedding semântico: {e}")
         return None, None, None

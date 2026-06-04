@@ -20,6 +20,7 @@
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏳️‍🌈</text></svg>">
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -168,6 +169,14 @@
                     <a data-link="security" href="#" target="_blank" class="card-link">Ver
                         Política &rarr;</a>
                 </div>
+            </div>
+        </div>
+
+        <div class="card-fullwidth" id="kb-health-card">
+            <h2>Saúde da Base de Conhecimento</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">Métricas de cobertura e distribuição dos temas cadastrados na base de dados.</p>
+            <div id="kb-health-stats">
+                <p class="loading">Carregando estatísticas da base...</p>
             </div>
         </div>
 

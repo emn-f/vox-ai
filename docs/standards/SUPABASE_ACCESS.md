@@ -115,20 +115,20 @@ Se a conexão estiver correta, os avisos de banco desaparecem do terminal e o RA
 
 ## 🔍 O que você pode fazer com a anon key
 
-A `anon key` representa o role `anon` do PostgreSQL. O que ela pode ou não fazer é controlado pelas nossas políticas de RLS (Row Level Security). Resumindo:
+A `anon key` representa o role `anon` do PostgreSQL. O que ela pode ou não fazer é estritamente controlado pelas nossas políticas de RLS (Row Level Security) em conformidade com a LGPD. Resumindo:
 
-| Tabela | Leitura (`anon`) | Escrita (`anon`) |
-| :--- | :---: | :---: |
-| `sessions` | ✅ | ✅ |
-| `chat_logs` | ✅ | ✅ |
-| `chat_logs_kb` | ✅ | ✅ |
-| `error_logs` | ✅ | ✅ |
-| `user_reports` | ✅ | ✅ |
-| `knowledge_base` | ❌ | ❌ |
-| `knowledge_base_etl` | ❌ | ❌ |
-| `report_categories` | ✅ | ❌ |
+| Tabela | Leitura (`anon`) | Escrita (`anon`) | Finalidade da RLS |
+| :--- | :---: | :---: | :--- |
+| `sessions` | ❌ | ❌ | Protegido. Gravado via `service_role` pelo backend. |
+| `chat_logs` | ❌ | ❌ | Protegido. Gravado via `service_role` pelo backend. |
+| `chat_logs_kb` | ❌ | ❌ | Protegido. Gravado via `service_role` pelo backend. |
+| `error_logs` | ❌ | ❌ | Protegido. Gravado via `service_role` pelo backend. |
+| `user_reports` | ❌ | ❌ | Protegido. Gravado via `service_role` pelo backend. |
+| `knowledge_base` | ✅ | ❌ | Leitura pública liberada para estatísticas e metadados no Dashboard. |
+| `knowledge_base_etl` | ❌ | ❌ | Tabela de controle de ETL. Totalmente protegida. |
+| `report_categories` | ✅ | ❌ | Leitura pública para listar as categorias de denúncia no app e Dashboard. |
 
-Toda escrita que a aplicação faz (logs, sessões, reports) usa a `service_role_key` internamente via SDK Python — você não precisa dela para rodar o projeto normalmente. Se sua feature exigir, solicite à equipe e explique o motivo.
+Toda escrita e leitura de logs e dados sensíveis que a aplicação faz usa a `service_role` do Supabase internamente do lado do servidor (backend Python/Streamlit). Isso blinda o banco de dados contra qualquer tentativa de leitura ou inserção pública vinda de agentes externos maliciosos usando a `anon_key` pública.
 
 
 ## 🗃️ Trabalhando com Migrations

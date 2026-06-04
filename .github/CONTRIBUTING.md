@@ -1,4 +1,4 @@
-﻿# Guia de Contribuição do Vox AI
+# Guia de Contribuição do Vox AI
 
 > Último modificação em 21/05/2026
 
@@ -57,8 +57,6 @@ Se você quer rodar o projeto localmente para testar mudanças:
     uv sync
     ```
     > **Nota:** Para adicionar novas bibliotecas, use `uv add [NOME_DA_LIB]`.
-    > O arquivo `requirements.txt` é gerado automaticamente para deploy.
-    > Para atualizá-lo: `uv export --no-hashes > requirements.txt`
 5.  **Configure as Variáveis de Ambiente:**
     Crie um arquivo `.streamlit/secrets.toml` na raiz do projeto.
     O arquivo deve seguir este formato:
@@ -134,6 +132,8 @@ Para mais informações sobre o acesso ao banco no Supabase, consulte **[SUPABAS
 ## 🧠 Base de Conhecimento (RAG)
 
 O Vox utiliza uma arquitetura RAG (Retrieval-Augmented Generation). Os dados são armazenados e consultados via **Supabase** (PostgreSQL com `pgvector`).
+
+> 🏳️‍🌈 **Não sabe programar?** Se você quer contribuir apenas criando, sugerindo ou revisando textos da base de conhecimento (como psicólogo, profissional de saúde ou ativista), criamos um guia especial para você: leia o **[Guia de Contribuição para Não-Devs](../docs/standards/CONTRIBUTING_NON_DEVS.md)**.
     
 ⚠️ **Atenção:**
 A base de conhecimento é gerida internamente.

@@ -529,6 +529,84 @@ footer {
 }
 
 
+/* Saúde da Base de Conhecimento */
+.kb-health-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.kb-topic-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.2rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.kb-topic-card:hover {
+    border-color: var(--card-hover-border);
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.kb-topic-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.kb-topic-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.kb-topic-badge {
+    background: rgba(67, 97, 238, 0.15);
+    color: #4cc9f0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    border: 1px solid rgba(67, 97, 238, 0.3);
+    white-space: nowrap;
+}
+
+.kb-topic-bar-container {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.kb-topic-bar {
+    height: 100%;
+    background: var(--gradient-vox);
+    background-size: 200% 100%;
+    border-radius: 10px;
+    width: 0%; /* Animado pelo JavaScript */
+    transition: width 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    animation: gradient-flow 4s ease infinite;
+}
+
+.kb-topic-percentage {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-align: right;
+}
+
+
 @media (max-width: 1200px) {
     .info-grid {
 

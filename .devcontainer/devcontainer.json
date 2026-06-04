@@ -17,7 +17,7 @@
       ]
     }
   },
-  "updateContentCommand": "[ -f packages.txt ] && sudo apt update && sudo apt upgrade -y && sudo xargs apt install -y <packages.txt; [ -f requirements.txt ] && pip3 install --user -r requirements.txt; pip3 install --user streamlit; echo '✅ Packages installed and Requirements met'",
+  "updateContentCommand": "[ -f packages.txt ] && sudo apt update && sudo apt upgrade -y && sudo xargs apt install -y <packages.txt; pip3 install --user uv && uv sync; echo '✅ Packages installed and Requirements met'",
   "postAttachCommand": {
     "server": "streamlit run vox_ai.py --server.enableCORS false --server.enableXsrfProtection false"
   },

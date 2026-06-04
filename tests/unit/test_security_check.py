@@ -1,6 +1,8 @@
 import pytest
 import sys
 import os
+
+pytestmark = pytest.mark.unit
 from unittest.mock import MagicMock, patch
 
 # Garante que 'gatekeep' esteja no path para permitir a importação do security_check
@@ -125,5 +127,5 @@ class TestAICodeReview:
         result = security_check.run_ai_code_review("diff content")
 
         # Verifica
-        assert result is True # Falha aberta (permite continuar)
+        assert result is False # Falha fechada (bloqueia o push em caso de erro da API)
         mock_log.assert_not_called()
