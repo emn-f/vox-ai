@@ -1,3 +1,5 @@
+from typing import Any
+
 import streamlit as st
 from google import genai
 from google.genai import types
@@ -7,7 +9,7 @@ from src.core.database import recuperar_contexto_inteligente
 from src.core.genai import configurar_api_gemini
 
 
-def semantica(prompt: str) -> tuple[str | None, str | None, list[int] | None]:
+def semantica(prompt: str) -> tuple[str | None, str | None, list[dict[str, Any]] | None]:
     """
     Gera o embedding do prompt e busca contexto relevante no banco de dados.
     """
