@@ -78,7 +78,9 @@ def dialog_reportar() -> None:
 
                 except Exception as e:
                     error_id = salvar_erro(
-                        st.session_state.session_id, st.session_state.git_version_str, e
+                        st.session_state.get("session_id", "Unknown"),
+                        st.session_state.get("git_version_str", "Unknown"),
+                        e
                     )
 
                     st.error(
@@ -105,6 +107,7 @@ def carregar_sidebar(sidebar_content: str, sidebar_footer: str) -> None:
             if st.button("🧹 Limpar conversa", use_container_width=True):
                 st.session_state.pop("hist", None)
                 st.session_state.pop("hist_exibir", None)
+                st.session_state.pop("chat", None)
                 st.rerun()
         with col2:
             if st.button("🚩 Reportar", use_container_width=True):
