@@ -7,6 +7,47 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v3.3.17 - 05/06/2026
+
+
+### ♻️ Refatoração & Melhorias
+
+* Corrigir type hint de retorno para lista de dicts ([9057e7d](https://github.com/emn-f/vox-ai/commit/9057e7d5179bab3d22471fbef4d618f60626feef))
+
+* Modularizar security_check em submódulos focados ([c98185e](https://github.com/emn-f/vox-ai/commit/c98185eaf3fe547edfc4f2d4c15459dac6aee08e))
+
+* Modularizar queries e operações em submódulos focados no pacote src.core.db ([417ad4f](https://github.com/emn-f/vox-ai/commit/417ad4fa566751b556f1e2344840721308f4e6ba))
+
+
+### 🐛 Correções
+
+* Sanitizar exibição de temas e usar view pública de estatísticas da KB ([8c6629a](https://github.com/emn-f/vox-ai/commit/8c6629aae98f273253c75e3ab0c0fbbf6ab54758))
+
+* Validar exclusão de dados e desativar HTML inseguro em mensagens ([aec50ec](https://github.com/emn-f/vox-ai/commit/aec50ec2d7cf91c122fdb65c5f598598be751406))
+
+* Ajustar ordem de exclusão no cron e incluir tabelas ausentes ([199358b](https://github.com/emn-f/vox-ai/commit/199358bb91909924fbd0443aa23c9386808c139c))
+
+* Reverter alterações em migrations antigas e criar nova migração para melhorias ([1b71721](https://github.com/emn-f/vox-ai/commit/1b7172116caa76dd5405b06b0557d5bd6f36b235))
+
+* Limitar permissões do GITHUB_TOKEN para leitura nas actions ([11dfb66](https://github.com/emn-f/vox-ai/commit/11dfb66d5fc2adf64db68e99a078f781beeba086))
+
+* Garantir validação robusta de array e lista de temas ([ded2e03](https://github.com/emn-f/vox-ai/commit/ded2e032860decfbfbd4ba34c270388347ec1024))
+
+* Remover exibição parcial do token do Gemini nos logs do console ([395819a](https://github.com/emn-f/vox-ai/commit/395819a6e037c1c076d9df8af30db190b4688f6b))
+
+* Aplica correcoes apontadas no PR 327 e Code Scanning ([79e9c9f](https://github.com/emn-f/vox-ai/commit/79e9c9f064d525eb05a1f672e9f1b097dabb8c00))
+
+
+### 📚 Documentação
+
+* Corrigir docstring de excluir_dados_sessao com tabelas afetadas ([96c5855](https://github.com/emn-f/vox-ai/commit/96c5855bd33dea4ff2d7c47c0eb1758cdad8c27c))
+
+
+### 🧪 Testes Unitários e de Integração
+
+* Normalizar chave e checar valores mock explicitamente ([effc05c](https://github.com/emn-f/vox-ai/commit/effc05c9ee970d85e69e3276a35cfb8456a69d77))
+
+
 ## v3.3.16 - 04/06/2026
 
 
