@@ -7,6 +7,88 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v3.3.16 - 04/06/2026
+
+
+### ♻️ Refatoração & Melhorias
+
+* Remover condicional duplicada e extrair logica de fallback de semantica ([0855038](https://github.com/emn-f/vox-ai/commit/0855038ac96555f52b9bacd243322c92ae940abe))
+
+* Remover historico duplicado inutil do estado de sessao ([c76428e](https://github.com/emn-f/vox-ai/commit/c76428e3cc02bfd98adada747c083e857bd4e043))
+
+* Modularizar historico de chat e erros de vox_ai.py para ui.py ([123f164](https://github.com/emn-f/vox-ai/commit/123f1645723e08f56acbf7a16d4e433178b2c14a))
+
+
+### ⚡ Performance
+
+* Cachear checagens de git e melhorar tipagem de get_current_branch ([c96b969](https://github.com/emn-f/vox-ai/commit/c96b969c6febaef0b42e03ca8539cd1e55c71257))
+
+
+### ✨ Funcionalidades
+
+* Remove acesso anon a KB do Vox para implementação futura de fluxo mais adequado ([f29c933](https://github.com/emn-f/vox-ai/commit/f29c93379831d8c3c2692e90c0d52bdd7b5ad13b))
+
+* Implementar exclusao fisica de dados, minimizacao de logs e descarte automatico via pg_cron ([5408138](https://github.com/emn-f/vox-ai/commit/540813863ead5e76896f14a6c307ed2b87e9b7a1))
+
+* Adicionar observabilidade e saude da base de conhecimento ([dc3b49e](https://github.com/emn-f/vox-ai/commit/dc3b49ef14f6cb25e79288451947cb3b990c486a))
+
+
+### 🐛 Correções
+
+* Corrigir variável de arquivo alvo para múltiplos arquivos na verificação de migrações de banco de dados ([0f85957](https://github.com/emn-f/vox-ai/commit/0f85957089e7c31541f50d72a1649e5435f74cf5))
+
+* Corrigir conversao de tupla para lista de arquivos no diff do git ([28cb4db](https://github.com/emn-f/vox-ai/commit/28cb4dbae2a7e26a5b7582d69ebd4fedfc7a4df2))
+
+* Corrigir checagem do diff e adicionar IF EXISTS no DROP POLICY ([863cd3e](https://github.com/emn-f/vox-ai/commit/863cd3ee4b845ae527e53a9e00c8f70f01317856))
+
+* Corrigir AttributeError ao reportar e resetar sessao do chat Gemini ([9b17085](https://github.com/emn-f/vox-ai/commit/9b17085093a4871722fb431def07540966994793))
+
+* Mitigar XSS/SQLi no dashboard e remover utilitario.py morto ([8fcb361](https://github.com/emn-f/vox-ai/commit/8fcb3616eb419d46ac6611a9b7d0aa39acf88d05))
+
+* Padronizar uso do logger em semantica.py e utils.py ([a75f849](https://github.com/emn-f/vox-ai/commit/a75f849f13c6a515ab51b7297fa328db1edea23c))
+
+* Resolver alertas de requirements.txt redundante na raiz e ajustar assercao nos testes ([688d24d](https://github.com/emn-f/vox-ai/commit/688d24db88283c44c017bba72967e4617a7f608d))
+
+* Corrigir comandos de instalacao e testes no pipeline de producao ([d6f203a](https://github.com/emn-f/vox-ai/commit/d6f203a2b5bce44cf97ae6a9b3a4e9072bdd8217))
+
+* Pular teste de integracao do Gemini na CI se a chave for mockada ([3400ec9](https://github.com/emn-f/vox-ai/commit/3400ec9a735ccae197be79eb7bd07bb5cbb2f85f))
+
+
+### 📚 Documentação
+
+* Atualizar arquitetura, politica de privacidade, acessos do Supabase e criar guia para nao-devs ([b987d43](https://github.com/emn-f/vox-ai/commit/b987d439b23a42ad80149ac5129638a162e281ac))
+
+
+### 🔧 Tarefas Internas
+
+* Ignore .antigravity/ directory in gitignore ([54be022](https://github.com/emn-f/vox-ai/commit/54be022f6b7828ac7af8d3111535246da7113d14))
+
+* Renomear seção de relatórios do Antigravity para CLI e adicionar diretório .agents ao .gitignore ([1567aae](https://github.com/emn-f/vox-ai/commit/1567aaec87829b27b1b0e8549474e3270b1c8450))
+
+* Adicionar .queries ao .gitignore para evitar rastreamento de arquivos de consulta ([889eb19](https://github.com/emn-f/vox-ai/commit/889eb1918ded209f68b691eb86092c7dc4ae1e1d))
+
+* Registrar marcadores unit e integration no pyproject.toml ([fa1b9c6](https://github.com/emn-f/vox-ai/commit/fa1b9c6864496abde4f4da506892be7b2237b8df))
+
+* Silenciar warnings e enxugar traceback no console ([79c5368](https://github.com/emn-f/vox-ai/commit/79c5368faa5f6ea4adfbc4856963d2d345ed4c68))
+
+* Habilitar modo verbose para exibir nomes dos testes no terminal ([b3bafa2](https://github.com/emn-f/vox-ai/commit/b3bafa2952660b92953c49ce507998817bd70e02))
+
+* Atualizar dependencias com uv lock para corrigir alertas do dependabot ([1528608](https://github.com/emn-f/vox-ai/commit/1528608d44b561b41f5111730e56226b402a4f25))
+
+* Atualizar modelo do Gemini para gemini-2.5-flash ([076fc4d](https://github.com/emn-f/vox-ai/commit/076fc4d100f32c921d1f3a0af8e835a280af5d1f))
+
+* Usar gemini-3.1-flash-lite e travar push em falha da API ([136c52a](https://github.com/emn-f/vox-ai/commit/136c52af3f6a198b56414e4b874c879f7e6c59b7))
+
+
+### 🧪 Testes Unitários e de Integração
+
+* Evitar interceptacao de mocks globais em testes de integracao ([05b836a](https://github.com/emn-f/vox-ai/commit/05b836a54190251e64ebee12675487aa934a6c76))
+
+* Aplicar marcadores e usar constante de modelo do projeto no teste do Gemini ([e952120](https://github.com/emn-f/vox-ai/commit/e9521203ab439c73551ff265954b3f2688331c20))
+
+* Categorizar testes de unidade com marcacao pytestmark no escopo de modulo ([ac1567b](https://github.com/emn-f/vox-ai/commit/ac1567b318ad8e2839df4df4dd71be56a6dae71e))
+
+
 ## v3.3.15 - 30/05/2026
 
 
