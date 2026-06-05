@@ -32,7 +32,7 @@ def get_categorias_erro() -> list[dict[str, Any]]:
     try:
         if not client:
             return []
-        response = client.table("report_categories").select("id", "label").execute()
+        response = client.table("report_categories").select("id, label").execute()
         return response.data if response.data else []
 
     except Exception as e:

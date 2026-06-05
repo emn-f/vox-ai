@@ -51,7 +51,7 @@ def test_gemini_connection_and_generation():
 
     assert len(api_key) > 10, "❌ Chave do Gemini parece inválida ou curta demais."
 
-    print("🔑 Chave encontrada no ambiente.")
+    # Removido print para evitar falso-positivo no CodeQL
 
     try:
         client = google.genai.Client(api_key=api_key)

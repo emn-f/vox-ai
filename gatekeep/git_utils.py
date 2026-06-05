@@ -64,7 +64,7 @@ def get_git_files(mode: str) -> List[str]:
                 .decode()
                 .splitlines()
             )
-        except:
+        except Exception:
             return []
 
 def get_git_diff_content(mode: str) -> str:
@@ -77,5 +77,5 @@ def get_git_diff_content(mode: str) -> str:
 
     try:
         return subprocess.check_output(cmd, stderr=subprocess.DEVNULL).decode()
-    except:
+    except Exception:
         return ""

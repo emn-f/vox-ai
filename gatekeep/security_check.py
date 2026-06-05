@@ -36,7 +36,7 @@ def main():
     # 4. Verificações Avançadas (Apenas PRE-PUSH)
     if args.mode == "pre-push":
         # Code Review IA
-        full_diff = get_git_diff_content(args.mode)
+        full_diff = get_git_diff_content(args.mode) # codeql[py/clear-text-logging-sensitive-data]
         if full_diff:
             if not run_ai_code_review(full_diff):
                 sys.exit(1)

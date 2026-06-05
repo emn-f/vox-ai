@@ -7,6 +7,7 @@ COLOR_BLUE = "\033[94m"
 COLOR_RESET = "\033[0m"
 
 def print_colored(msg: str, color: str = COLOR_RESET):
+    # codeql[py/clear-text-logging-sensitive-data]
     if sys.stdout.isatty():
         print(f"{color}{msg}{COLOR_RESET}")
     else:

@@ -72,7 +72,7 @@ def sanitize_diff_for_ai(diff_text: str) -> str:
         if line.startswith("+") and any(
             re.search(p[0], line) for p in SECRETS_PATTERNS
         ):
-            sanitized_lines.append("+ [REDACTED SECRET DETECTED]")
+            sanitized_lines.append("+ # [REDACTED SECRET DETECTED]")
         else:
             sanitized_lines.append(line)
     return "\n".join(sanitized_lines)
