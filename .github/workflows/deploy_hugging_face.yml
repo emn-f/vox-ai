@@ -6,6 +6,9 @@ on:
       - completed
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   sync-to-hub:
     runs-on: ubuntu-latest
