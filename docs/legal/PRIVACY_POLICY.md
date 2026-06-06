@@ -1,10 +1,12 @@
 # Política de Privacidade do Vox AI
 
-Última atualização: 3 de janeiro de 2026
+Última atualização: 6 de junho de 2026
 
-**Visão geral**
+**Visão geral e Conformidade com a LGPD**
 
-O Vox AI é um assistente de apoio e informação voltado para a comunidade LGBTQIA+. Respeitamos sua privacidade e explicamos abaixo, de forma clara e objetiva, quais dados tratamos, por que o fazemos e como protegemos essas informações. Quando mencionamos “dados” neste documento, referimo-nos principalmente às conversas (perguntas e respostas) trocadas com o assistente.
+O Vox AI é um assistente de apoio e informação voltado para a comunidade LGBTQIA+. Temos o compromisso de proteger a sua privacidade e de processar quaisquer dados em conformidade com a **Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018)**. 
+
+Esta Política de Privacidade explica de forma clara e objetiva quais dados tratamos, por que o fazemos, quais bases legais justificam esse tratamento e quais as medidas técnicas e administrativas adotadas para assegurar a proteção de suas informações. Quando mencionamos “dados” neste documento, referimo-nos principalmente aos logs de conversas (perguntas e respostas) e relatórios de feedback.
 
 **Escopo**
 
@@ -37,9 +39,12 @@ Utilizamos os dados coletados para:
 
 Os dados não são usados para fins publicitários ou para venda a terceiros.
 
-## 4. Base legal
+## 4. Base legal para o Tratamento (Art. 7º da LGPD)
 
-O tratamento dos dados se baseia no legítimo interesse para a melhoria do serviço e suporte à comunidade, conforme o disposto na LGPD (Lei Geral de Proteção de Dados). Sempre buscamos equilibrar esse interesse com o direito à privacidade dos usuários.
+Em conformidade com a LGPD, o tratamento dos dados no Vox AI justifica-se pelas seguintes bases legais:
+
+- **Legítimo Interesse (Art. 7º, IX, LGPD):** Para a melhoria contínua das respostas do assistente, suporte à comunidade e garantia do funcionamento técnico adequado do serviço. Sempre equilibramos este legítimo interesse com a expectativa legítima de privacidade do usuário, garantindo que as interações sejam desassociadas de dados pessoais identificáveis.
+- **Execução do Serviço / Consentimento (Art. 7º, I, LGPD):** Para o processamento das mensagens enviadas pelo usuário em tempo real no chat, viabilizando a resposta do assistente (e a transferência internacional necessária descrita na Seção 7).
 
 ## 5. Retenção e eliminação dos dados
 
@@ -47,15 +52,18 @@ Mantemos as conversas e os registros de sessão por um período limitado para pe
 
 Se você quiser solicitar a exclusão de registros associados a uma conversa específica, informe o código de sessão correspondente (quando disponível). Como as interações são anônimas por padrão, pode não ser possível identificar e excluir conversas sem esse identificador.
 
-## 6. Segurança
+## 6. Medidas de Segurança e Proteção de Dados (Art. 46 da LGPD)
 
-Adotamos medidas técnicas e administrativas para proteger os dados coletados, incluindo:
+Para manter a segurança das interações e a privacidade dos usuários, adotamos medidas técnicas, organizacionais e administrativas em conformidade com o Art. 46 da LGPD:
 
-- Criptografia em trânsito (TLS) e em repouso.
-- Controle de acesso restrito à equipe autorizada.
-- Backups e práticas de segurança do provedor de banco de dados (ex.: Supabase).
-
-Embora adotemos boas práticas, nenhum sistema é impenetrável; notificaremos os usuários e autoridades competentes caso ocorra um incidente relevante.
+- **Privacidade por Padrão (Privacy by Design):** O sistema foi projetado para operar sem necessidade de cadastro, autenticação ou identificação do usuário. A arquitetura minimiza ativamente a coleta de informações pessoais.
+- **Criptografia e Proteção de Dados:** 
+  - Toda transmissão de dados entre o navegador do usuário e nossos servidores é criptografada em trânsito utilizando protocolos TLS/HTTPS.
+  - Os logs armazenados no banco de dados (Supabase) utilizam criptografia em repouso (AES-256).
+- **Anonimização de Denúncias e Feedbacks:** O sistema de relatórios de erros ou respostas inadequadas (`user_reports`) armazena apenas o texto reportado e a categoria do problema, sem vincular a identidade do relator.
+- **Controle e Restrição de Acesso:** Apenas membros autorizados da equipe de desenvolvimento do Vox AI têm acesso às credenciais administrativas do banco de dados para auditoria e manutenção técnica. As credenciais de produção são estritamente protegidas e separadas do código público.
+- **Prevenção de Coleta de Dados Sensíveis:** Instruímos e desaconselhamos ativamente os usuários a não inserirem dados pessoais sensíveis (como nome completo, CPF, e-mail ou telefone) no chat de conversas.
+- **Plano de Resposta a Incidentes:** Caso seja detectado qualquer vazamento ou incidente de segurança envolvendo dados de interações, a equipe do Vox AI notificará prontamente os canais oficiais do projeto e os órgãos competentes (como a Autoridade Nacional de Proteção de Dados - ANPD), conforme exigido pela LGPD.
 
 ## 7. Compartilhamento, sub-processadores e transferência internacional
 
