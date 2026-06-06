@@ -34,16 +34,7 @@ Se você quer rodar o projeto localmente para testar mudanças:
     git clone https://github.com/SEU-USUARIO/vox-ai.git
     cd vox-ai
     ```
-3. Em seguida, crie e acesse um ambiente virtual no Python:
-    ```bash
-    # Criação
-    python -m venv .venv
-
-    # Ativação
-    PS .\venv\Scripts\Activate.ps1
-    ```
-
-4.  **Instale o uv** (Gerenciador de pacote):
+3.  **Instale o uv** (Gerenciador de pacotes rápido do Python):
     ```bash
     # macOS e Linux
     curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -52,12 +43,35 @@ Se você quer rodar o projeto localmente para testar mudanças:
     powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
     ```
     Após a instalação ser concluída, reinicie o terminal.
-4.  **Instale as dependências:**
+4.  **Crie e ative o ambiente virtual (Python >= 3.13):**
+    
+    * **Criando o ambiente virtual (.venv):**
+      ```bash
+      uv venv
+      # ou usando o Python diretamente:
+      python -m venv .venv
+      ```
+    
+    * **Ativando no Linux/macOS:**
+      ```bash
+      source .venv/bin/activate
+      ```
+    
+    * **Ativando no Windows (PowerShell):**
+      ```powershell
+      .venv\Scripts\Activate.ps1
+      ```
+    
+    * **Ativando no Windows (Prompt de Comando - CMD):**
+      ```cmd
+      .venv\Scripts\activate.bat
+      ```
+5.  **Instale as dependências:**
     ```bash
     uv sync
     ```
-    > **Nota:** Para adicionar novas bibliotecas, use `uv add [NOME_DA_LIB]`.
-5.  **Configure as Variáveis de Ambiente:**
+    > **Nota:** Para adicionar novas dependências do projeto, use `uv add [NOME_DA_LIB]`. Se for uma dependência de desenvolvimento (como ferramentas de teste), use `uv add --dev [NOME_DA_LIB]`.
+6.  **Configure as Variáveis de Ambiente:**
     Crie um arquivo `.streamlit/secrets.toml` na raiz do projeto.
     O arquivo deve seguir este formato:
 
@@ -74,16 +88,36 @@ Se você quer rodar o projeto localmente para testar mudanças:
     > 
     > * **Sem credenciais:** <u>O projeto rodará sem conexão com a base de dados do projeto usando apenas a resposta da IA</u>. Você verá avisos de conexão no terminal, o que é esperado.
     > * **Precisa de acesso ao banco?** Se a feature que você deseja implementar depende estritamente do acesso ao banco de dados, envie um e-mail para a equipe. Podemos fornecer credenciais temporárias ou um ambiente de sandbox.
-6.  **Instale os Git Hooks (Segurança):**
+7.  **Instale os Git Hooks (Segurança):**
     Para garantir que nenhum segredo seja commitado, que o banco de dados esteja consistente e que as **mensagens de commit estejam no padrão**, instale os hooks de pré-commit:
     ```bash
     python scripts/install_hooks.py
     ```
 
-7.  **Execute o projeto:**
+8.  **Execute o projeto:**
     ```bash
     uv run streamlit run vox_ai.py
     ```
+
+## 🧪 Executando Testes
+
+O Vox AI possui testes unitários e de integração estruturados com `pytest`. Para executá-los, certifique-se de estar com o ambiente virtual ativado e execute:
+
+* **Executar todos os testes:**
+  ```bash
+  uv run pytest
+  ```
+
+* **Executar apenas testes unitários:**
+  ```bash
+  uv run pytest -m unit
+  ```
+
+* **Executar apenas testes de integração (requer chaves/APIs externas):**
+  ```bash
+  uv run pytest -m integration
+  ```
+
 
 ## 🔄 Fluxo de Desenvolvimento
 
@@ -117,9 +151,9 @@ Consulte o nosso arquivo **[CONVENTIONAL_COMMITS.md](../docs/standards/CONVENTIO
 | **refactor** | Refatoração de código (sem mudar funcionalidade) | `refactor: simplifica função de busca semântica` |
 | **perf** | Melhoria de performance | `perf: otimiza carregamento do JSON` |
 | **test** | Adição ou correção de testes | `test: adiciona teste unitário para utils.py` |
-| **chore** | Tarefas de build, configs, auxiliares | `chore: atualiza dependências do requirements.txt` |
+| **chore** | Tarefas de build, configs, auxiliares | `chore: atualiza dependências no pyproject.toml` |
 | **ci** | Alterações em arquivos de CI/CD (GitHub Actions) | `ci: ajusta workflow de deploy no hugging face` |
-| **build** | Alterações no sistema de build ou dependências externas. | `build: atualiza versão do streamlit no requirements.txt`
+| **build** | Alterações no sistema de build ou dependências externas. | `build: atualiza versão do streamlit no pyproject.toml` |
 
 ### Migrations e Alterações de Schema
 
