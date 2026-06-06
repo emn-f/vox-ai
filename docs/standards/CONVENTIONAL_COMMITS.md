@@ -20,7 +20,7 @@
 * **`test`**: Adição ou correção de testes automatizados.
   * *Exemplo:* `test: adiciona testes unitários para a função de busca`
 * **`build`**: Alterações no sistema de build ou dependências externas.
-  * *Exemplo:* `build: atualiza versão do streamlit no requirements.txt`
+  * *Exemplo:* `build: atualiza versão do streamlit no pyproject.toml`
 * **`ci`**: Alterações nos arquivos de configuração de CI/CD.
   * *Exemplo:* `ci: corrige script de deploy para o Hugging Face`
 * **`chore`**: Outras alterações menores que não modificam arquivos de código ou teste.
