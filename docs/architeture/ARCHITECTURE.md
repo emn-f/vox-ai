@@ -151,7 +151,7 @@ O Vox AI foi desenhado seguindo princípios de *Privacy by Design* e em conformi
 4. **Direito de Eliminação (Art. 18):** Disponibilizamos a opção de exclusão sob demanda na interface. O acionamento executa um comando de exclusão em cascata (`DELETE`) no banco de dados para todas as referências associadas ao `session_id` atual.
 
 ### Stack Tecnológica
-* ***Orquestração***: Python 3.11 + Streamlit
+* ***Orquestração***: Python 3.13 + Streamlit
 * ***Vector Store***: Supabase (`pgvector`)
 * ***LLM & Embeddings***: Google Gemini API (`gemini-3-flash-preview` e `gemini-embedding-001`)
 * ***CI/CD***: GitHub Actions (Deploy automático de Migrations e Code Review)
