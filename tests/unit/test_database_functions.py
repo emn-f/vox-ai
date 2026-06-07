@@ -5,15 +5,7 @@ import pytest
 pytestmark = pytest.mark.unit
 
 from src.config import SEMANTICA_THRESHOLD, TAMANHO_VETOR_SEMANTICO
-from src.core.database import (
-    buscar_chunks_por_topico,
-    buscar_referencias_db,
-    get_categorias_erro,
-    recuperar_contexto_inteligente,
-    salvar_erro,
-    salvar_report,
-    salvar_sessao,
-)
+from src.core.database import (buscar_chunks_por_topico, buscar_referencias_db, get_categorias_erro, recuperar_contexto_inteligente, salvar_erro, salvar_report, salvar_sessao)
 
 
 @pytest.fixture
@@ -28,15 +20,9 @@ def mock_db_client():
         mock_execute_return = MagicMock()
         mock_execute_return.data = [{"id": "mock_id", "chat_id": 123}]
 
-        mock_client.table.return_value.insert.return_value.execute.return_value = (
-            mock_execute_return
-        )
-        mock_client.table.return_value.select.return_value.eq.return_value.limit.return_value.execute.return_value = (
-            mock_execute_return
-        )
-        mock_client.table.return_value.select.return_value.execute.return_value = (
-            mock_execute_return
-        )
+        mock_client.table.return_value.insert.return_value.execute.return_value = (mock_execute_return)
+        mock_client.table.return_value.select.return_value.eq.return_value.limit.return_value.execute.return_value = (mock_execute_return)
+        mock_client.table.return_value.select.return_value.execute.return_value = (mock_execute_return)
         mock_client.rpc.return_value.execute.return_value = mock_execute_return
 
         yield mock_client
@@ -113,7 +99,6 @@ def test_buscar_chunks_por_topico(mock_db_client):
     res = buscar_chunks_por_topico("Topico Teste")
 
     mock_db_client.table.assert_called_with("knowledge_base")
-    # Devido à complexidade dos mocks encadeados, verificamos apenas se não quebrou e se retornou a lista mockada
     assert isinstance(res, list)
 
 
@@ -125,12 +110,9 @@ def test_buscar_chunks_por_topico(mock_db_client):
 def test_recuperar_contexto_inteligente(mock_db_client):
     """
     Testa a lógica de recuperação de contexto.
-    Depende internamente de buscar_referencias_db e buscar_chunks_por_topico.
     """
 
-    # 1. Simula retorno inicial da busca vetorial (buscar_referencias_db)
     mock_docs_iniciais = MagicMock()
-    # Cria lista de matches falsos
     # Para ativar a "Estratégia Mista", retornamos tópicos variados (menos de 3 votos no mesmo)
     mock_docs_iniciais.data = [
         {

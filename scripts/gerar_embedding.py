@@ -22,6 +22,10 @@ SUPABASE_URL = get_secret("supabase.url")
 SUPABASE_KEY = get_secret("supabase.key")
 
 def reindexar() -> None:
+    """
+    Busca registros da tabela 'knowledge_base' que estão sem embedding (nulo) 
+    e calcula/atualiza os mesmos usando o modelo Gemini Embedding.
+    """
     print("🔌 Conectando aos serviços...")
     try:
         client = configurar_api_gemini()

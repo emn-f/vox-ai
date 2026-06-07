@@ -30,7 +30,7 @@ def get_gemini_key():
         except:
             pass
 
-    # Por fim, tenta variável de ambiente
+    # Tenta variável de ambiente
     return os.environ.get("GEMINI_API_KEY")
 
 
@@ -39,7 +39,7 @@ def test_gemini_connection_and_generation():
     """
     Teste de integração:
     1. Verifica se a chave de API existe.
-    2. Conecta no Gemini (novo SDK).
+    2. Conecta no Gemini.
     3. Tenta gerar uma resposta simples ('OK').
     """
     api_key = get_gemini_key()
@@ -51,14 +51,13 @@ def test_gemini_connection_and_generation():
 
     assert len(api_key) > 10, "❌ Chave do Gemini parece inválida ou curta demais."
 
-    # Removido print para evitar falso-positivo no CodeQL
 
     try:
         client = google.genai.Client(api_key=api_key)
 
         from src.config import GEMINI_MODEL_NAME
 
-        # Teste de geração real
+        # Teste de geração
         response = client.models.generate_content(
             model=GEMINI_MODEL_NAME, contents="Responda apenas 'OK'."
         )

@@ -3,14 +3,18 @@ from typing import Any
 from src.config import logger
 import src.core.db.client as db_client
 
-def salvar_log_chat(
-    session_id: str,
-    git_version: str,
-    prompt: str,
-    response: str,
-    fonte_info: str,
-    lista_kb_ids: list | None = None,
-) -> None:
+def salvar_log_chat( session_id: str, git_version: str, prompt: str, response: str, lista_kb_ids: list | None = None, ) -> None:
+    """
+    Grava o log da interação do usuário com o chat (prompt, resposta e metadados) 
+    e vincula os fragmentos (chunks) da base de conhecimento consultados.
+
+    Args:
+        session_id (str): Identificador único da sessão.
+        git_version (str): Versão do commit do Git correspondente.
+        prompt (str): Texto enviado pelo usuário.
+        response (str): Resposta gerada pelo modelo de linguagem.
+        lista_kb_ids (list | None): Lista de dicionários ou strings contendo IDs dos chunks de KB utilizados.
+    """
     client = db_client.get_db_client()
     if not client:
         logger.error("❌ Não foi possível conectar com o banco de dados.")
@@ -54,9 +58,7 @@ def salvar_log_chat(
 
             if dados_relacao:
                 try:
-                    res_kb = (
-                        client.table("chat_logs_kb").insert(dados_relacao).execute()
-                    )
+                    client.table("chat_logs_kb").insert(dados_relacao).execute()
                 except Exception as e_kb:
                     logger.error(f"❌ ERRO ao inserir em chat_logs_kb: {e_kb}")
                     logger.error(f"❌ Dados tentados: {dados_relacao}")
@@ -70,6 +72,17 @@ def salvar_log_chat(
         logger.error(f"❌ Mensagem de erro: {e}", exc_info=True)
 
 def salvar_erro(session_id: str, git_version: str, error_msg: Any) -> str:
+    """
+    Registra um log de erro/exceção capturada no banco de dados e retorna o identificador único do erro.
+
+    Args:
+        session_id (str): Identificador único da sessão ativa.
+        git_version (str): Versão do commit do Git correspondente.
+        error_msg (Any): A exceção ou mensagem de erro capturada.
+
+    Returns:
+        str: Um ID curto exclusivo de erro (UUID de 8 caracteres) para exibição ao usuário final.
+    """
     logger.error(f"🔥 Exceção capturada e registrada: {error_msg}", exc_info=True)
 
     client = db_client.get_db_client()

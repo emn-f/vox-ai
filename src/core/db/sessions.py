@@ -2,6 +2,12 @@ from src.config import logger
 import src.core.db.client as db_client
 
 def salvar_sessao(session_id: str) -> None:
+    """
+    Registra um novo ID de sessão na tabela 'sessions' do banco de dados.
+
+    Args:
+        session_id (str): Identificador único da sessão (UUID).
+    """
     client = db_client.get_db_client()
     if not client:
         logger.error("Não foi possível conectar com o banco de dados.")

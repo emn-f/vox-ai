@@ -6,10 +6,8 @@ import subprocess
 import sys
 from google import genai
 from gatekeep.colors import print_colored, COLOR_BLUE, COLOR_GREEN, COLOR_RED, COLOR_YELLOW
-from gatekeep.config_loader import load_secrets
+from gatekeep.config_gatekeep import load_secrets, GEMINI_MODEL_GATEKEEP
 from gatekeep.git_utils import get_git_metadata
-
-GEMINI_MODEL_GATEKEEP = "gemini-3.1-flash-lite"
 
 BLOCK_KEYWORDS = [
     "password exposed",
@@ -66,6 +64,16 @@ def _open_log_file(log_file: str):
         pass
 
 def sanitize_diff_for_ai(diff_text: str) -> str:
+    """
+    Sanitiza o diff de modificações, ofuscando chaves de API e segredos identificados 
+    antes de enviar o texto para servidores de inteligência artificial de terceiros (compliance).
+
+    Args:
+        diff_text (str): O diff git em texto bruto.
+
+    Returns:
+        str: O diff higienizado e seguro.
+    """
     from gatekeep.secrets_check import SECRETS_PATTERNS
     sanitized_lines = []
     for line in diff_text.splitlines():
@@ -113,12 +121,31 @@ def run_ai_code_review(diff_text: str) -> bool:
         return False
 
 def _prepare_diff_for_ai(diff_text: str) -> str:
+    """
+    Limpa o diff e limita o seu tamanho máximo (truncando se necessário) para evitar 
+    estouros de contexto de tokens na API do Gemini.
+
+    Args:
+        diff_text (str): Texto bruto do diff.
+
+    Returns:
+        str: Texto do diff higienizado e truncado em tamanho seguro.
+    """
     safe_diff = sanitize_diff_for_ai(diff_text)
     if len(safe_diff) > 20000:
         return safe_diff[:20000] + "\n... (truncated)"
     return safe_diff
 
 def _create_ai_prompt(diff_content: str) -> str:
+    """
+    Gera as instruções do prompt do sistema para direcionar o Code Reviewer do Gemini.
+
+    Args:
+        diff_content (str): Texto estruturado do git diff.
+
+    Returns:
+        str: O prompt formatado.
+    """
     return (
         "ATENÇÃO: Você é um Gatekeeper de Segurança.\n"
         "Analise o git diff abaixo do Projeto Vox.\n"
@@ -132,6 +159,16 @@ def _create_ai_prompt(diff_content: str) -> str:
     )
 
 def _process_ai_response(review_text: str) -> bool:
+    """
+    Analisa sintaticamente o parecer retornado pela IA. Verifica a presença de 
+    pedidos de bloqueio explícitos ('[BLOCK]') ou palavras-chave de segurança críticas.
+
+    Args:
+        review_text (str): O texto de retorno do Gemini.
+
+    Returns:
+        bool: True se o código foi aprovado no review de segurança, False se foi reprovado/bloqueado.
+    """
     if not review_text:
         return True
 

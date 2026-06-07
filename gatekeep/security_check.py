@@ -10,9 +10,14 @@ from gatekeep.git_utils import get_git_files, get_git_diff_content
 from gatekeep.secrets_check import check_secrets_in_files
 from gatekeep.db_check import check_database_migrations
 from gatekeep.ai_review import run_ai_code_review, sanitize_diff_for_ai, log_ai_event
-from gatekeep.config_loader import load_secrets
+from gatekeep.config_gatekeep import load_secrets
 
-def main():
+def main() -> None:
+    """
+    Função principal do validador de push e commit do Vox AI (Gatekeeper).
+    Orquestra a checagem de vazamento de segredos locais, consistência do banco de dados 
+    e submissão do diff de código para revisão por IA através do Gemini.
+    """
     parser = argparse.ArgumentParser(description="Vox AI Security & Code Review Tool")
     parser.add_argument("--mode", choices=["pre-commit", "pre-push"], required=True)
     args = parser.parse_args()

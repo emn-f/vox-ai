@@ -1,11 +1,5 @@
 import pytest
 from supabase import create_client, Client
-import streamlit as st
-
-# Nota: Este é um teste de INTEGRAÇÃO real.
-# Ele vai tentar conectar na internet. Se falhar, o teste falha.
-# Idealmente, testes de integração são separados de unitários, mas aqui vamos mantê-lo simples.
-
 
 @pytest.mark.integration
 def test_conexao_supabase_real():

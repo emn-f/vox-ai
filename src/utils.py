@@ -22,6 +22,12 @@ def get_current_branch() -> str:
 
 
 def get_version_from_changelog() -> str:
+    """
+    Lê o arquivo CHANGELOG.md e extrai a última versão registrada.
+
+    Returns:
+        str: String da versão (ex: 'v3.3.18'), ou string vazia em caso de falha.
+    """
     try:
         changelog_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "CHANGELOG.md")
         with open(changelog_path, "r", encoding="utf-8") as f:
@@ -58,10 +64,30 @@ def git_version() -> str:
     return f"{last_tag}"
 
 def limpeza_texto(texto: str) -> str:
+    """
+    Sanitiza uma string de texto removendo caracteres especiais e símbolos,
+    preservando apenas letras, números, pontuação comum e acentuação da língua portuguesa.
+    Essencial para evitar falhas no gerador de áudio gTTS.
+
+    Args:
+        texto (str): Texto a ser sanitizado.
+
+    Returns:
+        str: Texto sanitizado e limpo.
+    """
     texto_limpo = re.sub(r'[^\w\s,.:;!?áéíóúàèìòùâêîôûãõçÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÇ]', '', texto)
     return texto_limpo
 
-def texto_para_audio(texto: str) -> int:
+def texto_para_audio(texto: str) -> io.BytesIO:
+    """
+    Converte um bloco de texto escrito em um áudio falado utilizando gTTS (Google Text-to-Speech).
+
+    Args:
+        texto (str): O texto que será falado.
+
+    Returns:
+        io.BytesIO: Um buffer em memória contendo o arquivo de áudio gerado (MP3).
+    """
     texto_tratado = limpeza_texto(texto)
 
     if not texto_tratado.strip():

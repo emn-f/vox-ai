@@ -4,10 +4,17 @@ import fnmatch
 import subprocess
 from typing import List
 from gatekeep.colors import print_colored, COLOR_BLUE, COLOR_GREEN, COLOR_RED, COLOR_YELLOW
-from gatekeep.config_loader import load_secrets
+from gatekeep.config_gatekeep import load_secrets
 
 def check_supabase_connection() -> bool:
-    """Verifica se é possível conectar ao Supabase com as credenciais atuais."""
+    """
+    Testa de forma síncrona a conectividade com a API de banco do Supabase,
+    executando uma chamada trivial na tabela 'chat_logs'.
+
+    Returns:
+        bool: True se a conexão obteve sucesso ou se o teste foi ignorado (sem chaves),
+              False se a conexão falhou explicitamente.
+    """
     print_colored("🔌 Testando conexão com Supabase...", COLOR_BLUE)
 
     try:
@@ -42,8 +49,16 @@ def check_supabase_connection() -> bool:
 
 def check_database_migrations(files: List[str], mode: str) -> bool:
     """
-    Verifica se alterações em arquivos chave de banco de dados (ex: database.py)
-    estão acompanhadas de um arquivo de migração (.sql).
+    Verifica se alterações nos arquivos chave de banco de dados de produção do projeto
+    (como queries e mapeamentos em database.py) vieram acompanhadas da respectiva migração SQL (.sql).
+    Bloqueia commits que adicionam colunas ou tabelas sem o arquivo de migração.
+
+    Args:
+        files (List[str]): Lista de arquivos modificados obtida do git log/diff.
+        mode (str): Modo de execução do hook (ex: 'pre-commit', 'pre-push').
+
+    Returns:
+        bool: True se o commit estiver consistente, False se houver alteração de banco sem SQL.
     """
     from gatekeep.ai_review import log_ai_event
 
@@ -100,7 +115,7 @@ def check_database_migrations(files: List[str], mode: str) -> bool:
         print_colored(
             "   O sistema detectou uma adição de campo (ex: 'chave': valor) no código,\n"
             "   mas nenhum arquivo .sql foi encontrado no commit.\n"
-            "   - Por favor, adicione o script de migração do Supabase.\n"
+            "   - Por favor, gere o script de migração do Supabase.\n"
             "   - Se for um falso positivo, use 'git commit --no-verify'.",
             COLOR_YELLOW,
         )

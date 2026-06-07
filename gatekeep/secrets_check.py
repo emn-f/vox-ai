@@ -20,7 +20,16 @@ SECRETS_PATTERNS = [
 ]
 
 def check_secrets_in_files(files: List[str]) -> bool:
-    """Varre arquivos em busca de padrões de segredos."""
+    """
+    Varre os conteúdos dos arquivos alterados no commit/push em busca de padrões
+    conhecidos de segredos expostos (como chaves OpenAI, GitHub tokens, chaves Google e JWTs).
+
+    Args:
+        files (List[str]): Lista de arquivos modificados.
+
+    Returns:
+        bool: True se nenhum segredo foi encontrado (seguro), False caso contrário (bloqueado).
+    """
     from gatekeep.ai_review import log_ai_event
     print_colored("🔒 Iniciando verificação de segredos...", COLOR_BLUE)
     found_secrets = False

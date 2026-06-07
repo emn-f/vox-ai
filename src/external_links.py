@@ -1,4 +1,6 @@
-# Arquivo para centralizar TODAS as URLs externas do projeto.
+"""
+Arquivo que centraliza TODAS as URLs externas do projeto.
+"""
 
 # Contas e Redes Sociais
 INSTAGRAM_VOX = "https://www.instagram.com/projetovoxai/"
