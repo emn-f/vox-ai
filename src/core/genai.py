@@ -69,12 +69,17 @@ def gerar_resposta(chat, prompt, info_adicional):
         except Exception as e:
             msg_placeholder.empty()
             sess_id = st.session_state.get("session_id", "Unknown")
-            
+            git_ver = st.session_state.get("git_version_str", "Unknown")
+
             # Evita circular imports importando no escopo do handler
-            from src.utils import git_version
+            try:
+                from src.utils import git_version
+                git_ver = git_version() or git_ver
+            except Exception:
+                pass
+
             from src.core.db.logs import salvar_erro
-            
-            error_id = salvar_erro(sess_id, git_version(), e)
+            error_id = salvar_erro(sess_id, git_ver, e)
             
             err_msg = str(e).lower()
             if "safety" in err_msg or "blocked" in err_msg:
