@@ -163,6 +163,30 @@ Use nomes descritivos para suas migrations. Consulte **[CONVENTIONAL_MIGRATIONS.
 
 Para mais informações sobre o acesso ao banco no Supabase, consulte **[SUPABASE_ACCESS.md](../docs/standards/SUPABASE_ACCESS.md)** .
 
+### Documentação de Funções (Docstrings e Tipagem)
+
+Para garantir que o código continue legível e de fácil manutenção por toda a comunidade, **toda nova função criada deve conter uma docstring explicativa** de acordo com o padrão **PEP 257** e anotações de tipos (*Type Hints*) corretas.
+
+A docstring deve descrever resumidamente:
+1. O objetivo geral da função.
+2. Os parâmetros aceitos (`Args`) com descrição e tipo.
+3. O valor retornado (`Returns`) e seu significado.
+
+**Exemplo recomendado:**
+```python
+def texto_para_audio(texto: str) -> io.BytesIO:
+    """
+    Converte um bloco de texto escrito em um áudio falado utilizando gTTS.
+
+    Args:
+        texto (str): O texto que será falado.
+
+    Returns:
+        io.BytesIO: Um buffer em memória contendo o arquivo de áudio gerado (MP3).
+    """
+    # Lógica da função...
+```
+
 ## 🧠 Base de Conhecimento (RAG)
 
 O Vox utiliza uma arquitetura RAG (Retrieval-Augmented Generation). Os dados são armazenados e consultados via **Supabase** (PostgreSQL com `pgvector`).

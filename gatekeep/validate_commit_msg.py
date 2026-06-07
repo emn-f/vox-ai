@@ -16,14 +16,33 @@ COLOR_YELLOW = "\033[93m"
 COLOR_RESET = "\033[0m"
 
 
-def print_colored(msg, color=COLOR_RESET):
+def print_colored(msg, color=COLOR_RESET) -> None:
+    """
+    Imprime mensagens formatadas com cores no console.
+
+    Args:
+        msg (str): A mensagem textual.
+        color (str): Código de escape ANSI de cor.
+    """
     if sys.stdout.isatty():
         print(f"{color}{msg}{COLOR_RESET}")
     else:
         print(msg)
 
 
-def validate_commit_msg(msg_path):
+def validate_commit_msg(msg_path) -> bool:
+    """
+    Valida a mensagem de commit especificada no arquivo temporário, testando-a 
+    contra as regras da especificação Conventional Commits. Merges e Reverts automáticos 
+    são ignorados de forma segura.
+
+    Args:
+        msg_path (str): Caminho físico para o arquivo contendo a mensagem de commit gerada.
+
+    Returns:
+        bool: True se a mensagem estiver no padrão ou se for permitida de forma geral,
+              False se a mensagem falhar no check do regex do Conventional Commits.
+    """
     try:
         with open(msg_path, "r", encoding="utf-8") as f:
             lines = f.readlines()
@@ -54,7 +73,7 @@ def validate_commit_msg(msg_path):
 
     except Exception as e:
         print(f"⚠️ Erro ao validar mensagem: {e}")
-        return True  # Falha aberta para não bloquear em caso de erro de script
+        return False
 
 
 if __name__ == "__main__":

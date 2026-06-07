@@ -1,19 +1,20 @@
 from typing import Any
-from src.config import (
-    LIMITE_TEMAS,
-    MAX_CHUNCK,
-    SEMANTICA_THRESHOLD,
-    TAMANHO_VETOR_SEMANTICO,
-    logger,
-)
+from src.config import (LIMITE_TEMAS, MAX_CHUNCK, SEMANTICA_THRESHOLD, TAMANHO_VETOR_SEMANTICO, logger)
 import src.core.db.client as db_client
 
-def buscar_referencias_db(
-    vector_embedding: list[float],
-    threshold: float = SEMANTICA_THRESHOLD,
-    limit: int = LIMITE_TEMAS,
-    filter_topic: str | None = None,
-) -> list[dict[str, Any]]:
+def buscar_referencias_db(vector_embedding: list[float], threshold: float = SEMANTICA_THRESHOLD, limit: int = LIMITE_TEMAS, filter_topic: str | None = None, ) -> list[dict[str, Any]]:
+    """
+    Busca correspondências por similaridade de cosseno na tabela 'knowledge_base' do Supabase.
+
+    Args:
+        vector_embedding (list[float]): Vetor numérico correspondente ao embedding da query.
+        threshold (float): Limite de similaridade mínima desejado.
+        limit (int): Número máximo de resultados a retornar.
+        filter_topic (str | None): Filtro opcional por nome do tópico.
+
+    Returns:
+        list[dict[str, Any]]: Lista de dicionários contendo os dados dos chunks encontrados.
+    """
     client = db_client.get_db_client()
     if not client:
         logger.error("⚠️ Erro: Cliente Supabase não inicializado.")
@@ -45,6 +46,16 @@ def buscar_referencias_db(
         return []
 
 def buscar_chunks_por_topico(topico_alvo: str, limit: int = 30) -> list[dict[str, Any]]:
+    """
+    Recupera todos os chunks de texto associados a um determinado tópico cadastrado.
+
+    Args:
+        topico_alvo (str): Nome do tópico que se deseja filtrar.
+        limit (int): Número máximo de registros a obter.
+
+    Returns:
+        list[dict[str, Any]]: Lista contendo IDs e descrições dos chunks do tópico.
+    """
     client = db_client.get_db_client()
     if not client:
         return []
@@ -61,16 +72,28 @@ def buscar_chunks_por_topico(topico_alvo: str, limit: int = 30) -> list[dict[str
         logger.error(f"❌ Erro ao buscar tópico completo: {e}")
         return []
 
-def recuperar_contexto_inteligente(
-    vector_embedding: list[float],
-) -> tuple[str | None, str, list[dict[str, Any]] | None]:
+def recuperar_contexto_inteligente(vector_embedding: list[float]) -> tuple[str | None, str, list[dict[str, Any]] | None]:
+    """
+    Decide estrategicamente e executa a melhor busca de contexto no banco de dados.
+    Caso um tópico apareça 3x ou mais nos top-K chunks similares, expande a busca para recuperar
+    todos os chunks daquele tópico (estratégia vencedora). Caso contrário, faz um fallback dos top-5 chunks.
+
+    Args:
+        vector_embedding (list[float]): Vetor numérico do embedding da query.
+
+    Returns:
+        tuple[str | None, str, list[dict[str, Any]] | None]:
+            - O nome do tópico ou a estratégia de similaridade adotada.
+            - O bloco consolidado de texto de contexto para instruir o modelo.
+            - A lista de dicionários mapeando IDs e a similaridade dos chunks utilizados.
+    """
     client = db_client.get_db_client()
     if not client:
         logger.error("⚠️ Erro: Cliente Supabase não inicializado.")
         return None, "Erro DB", None
-    resultados_iniciais = buscar_referencias_db(
-        vector_embedding, SEMANTICA_THRESHOLD, LIMITE_TEMAS, None
-    )
+    
+    resultados_iniciais = buscar_referencias_db(vector_embedding, SEMANTICA_THRESHOLD, LIMITE_TEMAS, None)
+    
     if not resultados_iniciais:
         return None, "Nenhuma referencia encontrada na base de conhecimento.", None
 
@@ -78,12 +101,12 @@ def recuperar_contexto_inteligente(
         top_5 = resultados_iniciais[:5]
         contexto = [item["descricao"] for item in top_5]
         ids_usados = []
+        
         for item in top_5:
             kid = item.get("kb_id") or item.get("id")
             if kid:
-                ids_usados.append(
-                    {"kb_id": kid, "similarity": item.get("similarity")}
-                )
+                ids_usados.append({"kb_id": kid, "similarity": item.get("similarity")})
+        
         return contexto, ids_usados
 
     contagem_topicos = {}
@@ -105,9 +128,8 @@ def recuperar_contexto_inteligente(
     votos = contagem_topicos[topico_vencedor]
 
     if votos >= 3:
-        logger.info(
-            f"🚀 Estratégia: Contexto Expandido para o tópico '{topico_vencedor}'"
-        )
+        logger.info(f"🚀 Estratégia: Contexto Expandido para o tópico '{topico_vencedor}'")
+        
         try:
             dados = buscar_chunks_por_topico(topico_vencedor, limit=MAX_CHUNCK)
 

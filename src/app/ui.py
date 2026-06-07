@@ -8,6 +8,10 @@ from src.core.database import salvar_report, get_categorias_erro, salvar_erro, e
 
 
 def configurar_pagina() -> None:
+    """
+    Configura as propriedades básicas da página web (título, ícone) no Streamlit 
+    e renderiza o cabeçalho estilizado da aplicação.
+    """
     st.set_page_config(page_title="Vox AI", page_icon="🏳️‍🌈")
     st.markdown(
         """
@@ -21,12 +25,22 @@ def configurar_pagina() -> None:
 
 
 def carregar_css(path=CSS_PATH) -> None:
+    """
+    Carrega e injeta arquivos CSS estáticos na página para customização visual do Streamlit.
+
+    Args:
+        path (str): Caminho local do arquivo CSS.
+    """
     with open(path) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
 @st.dialog("🚩 Reportar Problema")
 def dialog_reportar() -> None:
+    """
+    Exibe um modal/diálogo interativo para o usuário reportar comportamentos inadequados da IA,
+    com formulário de categorização e minimização automática do histórico (LGPD Art. 6).
+    """
     historico_conversa = st.session_state.get("hist_exibir", [])
 
     if len(historico_conversa) <= 1:
@@ -94,8 +108,15 @@ def dialog_reportar() -> None:
 
 
 def carregar_sidebar(sidebar_content: str, sidebar_footer: str) -> None:
+    """
+    Renderiza os elementos da barra lateral (sidebar), incluindo links de redes sociais,
+    contatos, botão de limpeza de histórico, denúncias e o botão de exclusão de dados (LGPD).
+
+    Args:
+        sidebar_content (str): Código HTML/Markdown do conteúdo principal da barra lateral.
+        sidebar_footer (str): Código HTML/Markdown do rodapé da barra lateral.
+    """
     with st.sidebar:
-        # Body
         st.markdown(sidebar_content, unsafe_allow_html=True)
 
         st.link_button(
@@ -133,6 +154,15 @@ def carregar_sidebar(sidebar_content: str, sidebar_footer: str) -> None:
 
 
 def stream_resposta(resposta: str) -> Iterator[str]:
+    """
+    Gera um efeito de digitação ('typewriter') letra por letra na exibição da resposta do chat.
+
+    Args:
+        resposta (str): A resposta em string a ser transmitida.
+
+    Yields:
+        Iterator[str]: Caracteres da resposta um a um.
+    """
     for letra in resposta:
         yield letra
         time.sleep(0.009)

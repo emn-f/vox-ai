@@ -4,6 +4,13 @@ from src.config import get_secret, logger
 
 @st.cache_resource
 def get_db_client() -> Client | None:
+    """
+    Retorna a instância singleton do cliente Supabase, configurado com as chaves do projeto.
+    O recurso é cacheado para otimizar conexões.
+
+    Returns:
+        Client | None: O cliente Supabase configurado, ou None se ocorrer um erro de conexão/credenciais.
+    """
     try:
         url = get_secret("supabase.url")
         key = get_secret("supabase.key")

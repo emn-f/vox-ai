@@ -4,7 +4,16 @@ import sys
 
 
 def generate_hook_script(hook_name: str) -> str:
-    """Gera o script shell do hook de forma dinâmica."""
+    """
+    Gera o código em shell script correspondente ao hook do git de forma dinâmica,
+    mapeando caminhos locais do ambiente virtual (venv) para execução dos scripts python.
+
+    Args:
+        hook_name (str): Nome do git hook (ex: 'pre-commit', 'pre-push', 'commit-msg').
+
+    Returns:
+        str: Conteúdo do script shell do hook correspondente.
+    """
     # Tenta usar o python do venv local se existir, senão usa o python do PATH.
     script = f"""#!/bin/sh
 # Vox AI Git Hook: {hook_name}
@@ -62,6 +71,10 @@ exit 0
 
 
 def install_hooks() -> None:
+    """
+    Instala os git hooks do projeto (pre-commit, pre-push, commit-msg) escrevendo 
+    os scripts na pasta '.git/hooks' do repositório local e concedendo permissões de execução.
+    """
     print("🔧 Instalando Git Hooks (V2 - Portável)...")
 
     hooks_dir = os.path.join(".git", "hooks")
