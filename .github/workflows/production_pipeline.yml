@@ -80,3 +80,20 @@ jobs:
           git push origin main --tags
 
           echo "✅ Versão Oficial ${NEW_TAG} lançada!"
+
+      - name: Verificar se o último deploy do banco falhou e re-executar
+        env:
+          GH_TOKEN: ${{ secrets.TOKEN_DEPLOY_VOX }}
+        run: |
+          STATUS=$(gh run list --workflow deploy_db.yml --limit 1 --json status --jq '.[0].status' 2>/dev/null || echo "")
+          CONCLUSION=$(gh run list --workflow deploy_db.yml --limit 1 --json conclusion --jq '.[0].conclusion' 2>/dev/null || echo "")
+          
+          echo "Último status do deploy_db: $STATUS"
+          echo "Última conclusão do deploy_db: $CONCLUSION"
+          
+          if [ "$STATUS" = "completed" ] && { [ "$CONCLUSION" = "failure" ] || [ "$CONCLUSION" = "cancelled" ] || [ "$CONCLUSION" = "timed_out" ]; }; then
+            echo "⚠️ O último deploy do banco falhou ou foi cancelado. Disparando deploy_db.yml novamente..."
+            gh workflow run deploy_db.yml --ref main
+          else
+            echo "✅ Nenhuma ação necessária para o deploy do banco."
+          fi
