@@ -31,33 +31,11 @@ AS $function$
 $function$
 ;
 
-grant delete on table "public"."system_settings" to "anon";
-
-grant insert on table "public"."system_settings" to "anon";
-
-grant references on table "public"."system_settings" to "anon";
 
 grant select on table "public"."system_settings" to "anon";
 
-grant trigger on table "public"."system_settings" to "anon";
-
-grant truncate on table "public"."system_settings" to "anon";
-
-grant update on table "public"."system_settings" to "anon";
-
-grant delete on table "public"."system_settings" to "authenticated";
-
-grant insert on table "public"."system_settings" to "authenticated";
-
-grant references on table "public"."system_settings" to "authenticated";
 
 grant select on table "public"."system_settings" to "authenticated";
-
-grant trigger on table "public"."system_settings" to "authenticated";
-
-grant truncate on table "public"."system_settings" to "authenticated";
-
-grant update on table "public"."system_settings" to "authenticated";
 
 grant delete on table "public"."system_settings" to "service_role";
 
