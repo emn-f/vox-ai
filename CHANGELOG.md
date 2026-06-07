@@ -7,6 +7,40 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v3.3.18 - 07/06/2026
+
+
+### ♻️ Refatoração & Melhorias
+
+* Remove redundant grants for anon and authenticated on system_settings ([bafcd74](https://github.com/emn-f/vox-ai/commit/bafcd7461fdd6b0c02c39124968cda61a2748518))
+
+* Remove código redundante no mock_streamlit ([745e5dc](https://github.com/emn-f/vox-ai/commit/745e5dcf0e7467abea5979c33e0441c763572288))
+
+
+### ✨ Funcionalidades
+
+* Add friendly error handling for 429/503 and fix safety blocks testing ([bcd50e6](https://github.com/emn-f/vox-ai/commit/bcd50e6e4c1eebbc10c99d33aa897b5539a39886))
+
+* Atualiza diretrizes de comportamento para respostas mais precisas e transparentes ([26e44a1](https://github.com/emn-f/vox-ai/commit/26e44a188475b75c06a1965d30eb5a55ee63ad4d))
+
+* Cria tabela system_settings e adiciona colunas à knowledge_base com políticas de segurança ([1b22cc3](https://github.com/emn-f/vox-ai/commit/1b22cc3f7813888737c34976d6ee869dc70d52e5))
+
+* Corrige formatação e clareza nas diretrizes de comportamento ([45840fc](https://github.com/emn-f/vox-ai/commit/45840fc36fc2b5166a59f4d63fb6af18423e19b2))
+
+* Atualiza diretrizes de comportamento para maior clareza e precisão nas respostas ([e43f8bb](https://github.com/emn-f/vox-ai/commit/e43f8bbf3dc1383c23e946387d5a3aca30e33298))
+
+
+### 📚 Documentação
+
+* Adiciona ativação de venv no linux/mac e suporte ao pytest ([0bad7d8](https://github.com/emn-f/vox-ai/commit/0bad7d8e147c974fb75767d1e2fc97e2a8de7f88))
+
+* Altera referências de requirements.txt para pyproject.toml ([7a1d3ba](https://github.com/emn-f/vox-ai/commit/7a1d3bacf56864db10fb37273b0551fe3daa2aa3))
+
+* Atualiza versão do Python de 3.11 para 3.13 ([e209063](https://github.com/emn-f/vox-ai/commit/e2090630e5941ff293f652a6b47a2838a83f2d78))
+
+* Explicita conformidade e medidas de segurança com a LGPD ([9b4bde3](https://github.com/emn-f/vox-ai/commit/9b4bde3676e98df097404d807184eac5d9028447))
+
+
 ## v3.3.17 - 05/06/2026
 
 
