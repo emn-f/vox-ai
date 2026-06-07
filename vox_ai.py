@@ -1,13 +1,28 @@
-import io
-import os
-import re
-import unicodedata
+"""
+Inicializa e orquestra a interface web do Vox AI construída com Streamlit.
+
+Gerencia o fluxo de interação com o usuário (chat), incluindo suporte a entrada por
+texto e áudio (com transcrição via IA), inicializa a sessão do usuário, realiza a busca
+semântica de contexto (RAG) no banco de dados Supabase e chama o modelo Gemini para gerar
+a resposta final de maneira assistida e personalizada.
+
+Fluxo de Execução Principal:
+1. Configuração inicial da página e carregamento do estilo CSS personalizado.
+2. Inicialização de identificadores únicos de sessão.
+3. Carregamento da barra lateral (sidebar) contendo informações e créditos do projeto.
+4. Conexão/Autenticação com a API do Google GenAI.
+5. Captura de entrada do usuário (campo de chat ou gravação de voz).
+6. Processamento semântico de contexto relevante para o prompt.
+7. Solicitação de resposta do modelo e exibição em fluxo contínuo (streaming).
+8. Persistência de logs da conversa e tratamento centralizado de erros no banco de dados.
+"""
+
 import uuid
-import traceback
 
 import streamlit as st
 
 import startup_patch
+
 from data.prompts.ui_content import SAUDACAO, SIDEBAR_BODY, SIDEBAR_FOOTER
 from src.app.ui import (
     carregar_css,
