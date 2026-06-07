@@ -4,7 +4,7 @@ import fnmatch
 import subprocess
 from typing import List
 from gatekeep.colors import print_colored, COLOR_BLUE, COLOR_GREEN, COLOR_RED, COLOR_YELLOW
-from gatekeep.config_loader import load_secrets
+from gatekeep.config_gatekeep import load_secrets
 
 def check_supabase_connection() -> bool:
     """

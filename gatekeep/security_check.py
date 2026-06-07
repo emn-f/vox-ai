@@ -10,7 +10,7 @@ from gatekeep.git_utils import get_git_files, get_git_diff_content
 from gatekeep.secrets_check import check_secrets_in_files
 from gatekeep.db_check import check_database_migrations
 from gatekeep.ai_review import run_ai_code_review, sanitize_diff_for_ai, log_ai_event
-from gatekeep.config_loader import load_secrets
+from gatekeep.config_gatekeep import load_secrets
 
 def main() -> None:
     """

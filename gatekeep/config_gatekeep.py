@@ -1,13 +1,14 @@
 """
-Carregador de Configurações e Segredos do Gatekeeper.
-
-Este módulo é responsável por carregar de forma resiliente as chaves de acesso
-e configurações contidas no arquivo '.streamlit/secrets.toml'. Como o projeto
-utiliza Python 3.13, faz uso direto da biblioteca padrão 'tomllib'.
+Configurações e Segredos do Gatekeeper.
+Carrega as chaves de acesso e configurações do arquivo '.streamlit/secrets.toml'.
+Define o modelo de IA utilizado na revisão de segurança do Gatekeeper
 """
 
 import os
 import tomllib
+
+# Modelo de IA utilizado na revisão de segurança do Gatekeeper
+GEMINI_MODEL_GATEKEEP = "gemini-3.1-flash-lite"
 
 def load_secrets() -> dict:
     """
@@ -58,4 +59,3 @@ def _manual_toml_parse(path: str) -> dict:
     except Exception:
         pass
     return data
-

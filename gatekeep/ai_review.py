@@ -6,10 +6,8 @@ import subprocess
 import sys
 from google import genai
 from gatekeep.colors import print_colored, COLOR_BLUE, COLOR_GREEN, COLOR_RED, COLOR_YELLOW
-from gatekeep.config_loader import load_secrets
+from gatekeep.config_gatekeep import load_secrets, GEMINI_MODEL_GATEKEEP
 from gatekeep.git_utils import get_git_metadata
-
-from src.config import GEMINI_MODEL_GATEKEEP
 
 BLOCK_KEYWORDS = [
     "password exposed",

@@ -15,6 +15,24 @@ logging.basicConfig(
 logger = logging.getLogger("Vox AI")
 
 
+# Caminhos
+CSS_PATH = "static/css/style.css"
+
+# Configurações de IA
+GEMINI_MODEL_NAME = "gemini-3.5-flash"
+GEMINI_MODEL_GATEKEEP = "gemini-3.1-flash-lite"
+MODELO_SEMANTICO_NOME = "gemini-embedding-001"
+TAMANHO_VETOR_SEMANTICO = 1536
+
+# Config da KB
+SEMANTICA_THRESHOLD = 0.5
+LIMITE_TEMAS = 10
+MAX_CHUNCK = 25
+
+# Configurações de UI
+PAGE_TITLE = 'Vox AI'
+PAGE_ICON = '🏳️‍🌈'
+
 def get_secret(key: str, default: str = "") -> str:
     """
     Busca um segredo no st.secrets (Streamlit Cloud/Local secrets.toml)
@@ -46,23 +64,3 @@ def get_secret(key: str, default: str = "") -> str:
 
     # Como último recurso, tenta buscar a chave literal (ex: supabase.url)
     return os.environ.get(key, default)
-
-
-
-# Caminhos
-CSS_PATH = "static/css/style.css"
-
-# Configurações de IA
-GEMINI_MODEL_NAME = "gemini-3.5-flash"
-GEMINI_MODEL_GATEKEEP = "gemini-3.1-flash-lite"
-MODELO_SEMANTICO_NOME = "gemini-embedding-001"
-TAMANHO_VETOR_SEMANTICO = 1536
-
-# Config da KB
-SEMANTICA_THRESHOLD = 0.5
-LIMITE_TEMAS = 10
-MAX_CHUNCK = 25
-
-# Configurações de UI
-PAGE_TITLE = 'Vox AI'
-PAGE_ICON = '🏳️‍🌈'
