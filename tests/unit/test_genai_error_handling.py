@@ -19,11 +19,6 @@ def mock_streamlit():
         mock_placeholder = MagicMock()
         mock_empty.return_value = mock_placeholder
         yield {"empty": mock_empty, "placeholder": mock_placeholder, "error": mock_error, "stop": mock_stop}
-            "empty": mock_empty,
-            "placeholder": mock_placeholder,
-            "error": mock_error,
-            "stop": mock_stop
-        }
 
 @pytest.mark.unit
 @patch("src.core.db.logs.salvar_erro")
