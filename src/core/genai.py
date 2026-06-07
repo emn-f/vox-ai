@@ -66,14 +66,41 @@ def gerar_resposta(chat, prompt, info_adicional):
 
             msg_placeholder.write_stream(stream_resposta(resposta))
             return resposta
-        except genai.types.BlockedReason as e:
-            msg_placeholder.empty()
-            st.error("⚠️ Essa pergunta não pode ser respondida pelo Vox.")
-            st.exception(e)
-            st.stop()
         except Exception as e:
             msg_placeholder.empty()
-            st.exception(e)
+            sess_id = st.session_state.get("session_id", "Unknown")
+            
+            # Evita circular imports importando no escopo do handler
+            from src.utils import git_version
+            from src.core.db.logs import salvar_erro
+            
+            error_id = salvar_erro(sess_id, git_version(), e)
+            
+            err_msg = str(e).lower()
+            if "safety" in err_msg or "blocked" in err_msg:
+                st.error(
+                    f"⚠️ **Essa pergunta não pode ser respondida pelo Vox.**\n\n"
+                    f"Por razões de segurança e acolhimento, sua mensagem ativou nossas diretrizes de proteção e não pôde ser processada.\n\n"
+                    f"*(Código do Erro: **{error_id}**)*",
+                    icon="🚫"
+                )
+            elif "resourceexhausted" in err_msg or "429" in err_msg or "quota" in err_msg:
+                st.error(
+                    f"Olá! O Vox está recebendo muitas mensagens de carinho e dúvidas no momento, e atingimos nosso limite de processamento temporário da API do Google. "
+                    f"Por favor, aguarde cerca de um minutinho e tente enviar sua mensagem novamente! 💜\n\n"
+                    f"*(Código do Erro: **{error_id}**)*",
+                    icon="⚠️"
+                )
+            elif "503" in err_msg or "serviceunavailable" in err_msg or "overloaded" in err_msg:
+                st.error(
+                    f"Ops! Os servidores da inteligência artificial estão com uma demanda muito alta agora e temporariamente instáveis. "
+                    f"Que tal respirar fundo, tomar uma água e tentar de novo em alguns instantes? Estarei aqui esperando! 🏳️‍🌈\n\n"
+                    f"*(Código do Erro: **{error_id}**)*",
+                    icon="⏳"
+                )
+            else:
+                from src.app.ui import exibir_mensagem_erro
+                exibir_mensagem_erro(error_id)
             st.stop()
 
 def transcrever_audio(audio_file):

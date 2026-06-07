@@ -66,6 +66,7 @@ Desktop.ini
 # Ignore secrets, keep config.toml
 .streamlit/secrets.toml
 scripts/.streamlit
+old.toml
 
 # ==============================================================================
 # Project Data & Media (Vox AI)
@@ -75,7 +76,7 @@ data/fontes_dados/
 .old/
 .prompts
 vox
-
+scripts/old
 # ==============================================================================
 # Specific Scripts & Ignores
 # ==============================================================================
@@ -92,3 +93,4 @@ scripts/debug_models.py
 # ==============================================================================
 .antigravity/
 .agents/
+gerar_conteudo_kb.py
