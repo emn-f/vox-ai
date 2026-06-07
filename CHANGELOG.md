@@ -7,6 +7,54 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v4.0.1 - 07/06/2026
+
+
+### revert
+
+* Removendo arquivo de draf de PR ([7814646](https://github.com/emn-f/vox-ai/commit/78146462db8bd932d6f80413406aeca52eb80da5))
+
+
+### ♻️ Refatoração & Melhorias
+
+* Robustecer get_secret e simplificar imports do TOML ([669035d](https://github.com/emn-f/vox-ai/commit/669035d3354d9d98653a71ec5c5943d73bc26579))
+
+* Tratar APIError de forma estruturada no Gemini ([be627c5](https://github.com/emn-f/vox-ai/commit/be627c5ccbdbaa054f4605cf17e8a6c97a93ad71))
+
+* Remover parametros de logs inativos e organizar testes ([eb0cb2e](https://github.com/emn-f/vox-ai/commit/eb0cb2ee2efae76d5eef4f80d486b25acd09db36))
+
+* Renomear config_loader para config_gatekeep e isolar dependencias da CI ([c930979](https://github.com/emn-f/vox-ai/commit/c930979db062c261de4288109eb99a6245635c49))
+
+
+### ✨ Funcionalidades
+
+* Remove view legada; adiciona filtro que considera se o kb está ativo no momento do match semantico ([7cfb492](https://github.com/emn-f/vox-ai/commit/7cfb492cc6e6202a02c89b2d9426a89f022622f1))
+
+
+### 🐛 Correções
+
+* Corrigir type hint de retorno para texto_para_audio ([0a7363c](https://github.com/emn-f/vox-ai/commit/0a7363c66a5074e0bda768878f3722ccfa101b93))
+
+* Instrui vox a recusar conteúdo inadequado sem linguagem jurídica ([31fc15a](https://github.com/emn-f/vox-ai/commit/31fc15aa4531f758555d7b1fd8a5f1aa9d45e06e))
+
+
+### 📚 Documentação
+
+* Adicionar e aprimorar docstrings PEP 257 em multiplos arquivos ([898fd55](https://github.com/emn-f/vox-ai/commit/898fd55cb464ca620694484706e5711fe54ec4b4))
+
+* Adicionar docstrings e limpar imports inativos no vox_ai.py ([8d08b24](https://github.com/emn-f/vox-ai/commit/8d08b2427ec1b26542dfc23327680dd7ad838d81))
+
+
+### 🤖 CI/CD & Automação
+
+* Dispara deploy do banco se a ultima execucao falhou ([1740500](https://github.com/emn-f/vox-ai/commit/17405007c893b86788ab71eccf09cd202cd28c83))
+
+
+### 🧪 Testes Unitários e de Integração
+
+* Pula variaveis de ambiente ficticias em testes de integracao ([9c60ff3](https://github.com/emn-f/vox-ai/commit/9c60ff3a136aacc383ed1b6a07c4ca618b6b7720))
+
+
 ## v3.3.19 - 07/06/2026
 
 
