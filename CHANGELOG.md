@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v3.3.19 - 07/06/2026
+
+
+### ✨ Funcionalidades
+
+* Adiciona estatísticas e filtros interativos para tópicos da base de conhecimento ([c36a5a6](https://github.com/emn-f/vox-ai/commit/c36a5a677fa24f8d8ff861cd3b6c84150f12b726))
+
+
 ## v3.3.18 - 07/06/2026
 
 
