@@ -8,11 +8,16 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 
 @pytest.fixture(autouse=True)
-def set_dummy_env_vars():
+def set_dummy_env_vars(request):
     """
     Define variáveis de ambiente fictícias para evitar erros de 'chave faltando'
     antes mesmo de chegar nos mocks de cliente.
+    Não aplica o patch se o teste for de integração real.
     """
+    if "integration" in request.node.keywords or "tests/integration" in str(request.node.fspath):
+        yield
+        return
+
     with patch.dict(
         os.environ,
         {
