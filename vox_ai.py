@@ -105,14 +105,11 @@ if "key_api" in st.session_state:
                 else:
                     resposta_log = str(resposta)
 
-                desc_log = str(descricao_match) if descricao_match else "N/A"
-
                 salvar_log_chat(
                     st.session_state.session_id,
                     git_version(),
                     prompt_final,
                     resposta_log,
-                    tema_match,
                     ids_referencia,
                 )
 

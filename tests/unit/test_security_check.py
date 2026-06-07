@@ -10,7 +10,7 @@ gatekeep_path = os.path.join(os.getcwd(), "gatekeep")
 if gatekeep_path not in sys.path:
     sys.path.append(gatekeep_path)
 
-import security_check
+import gatekeep.security_check as security_check
 
 class TestSanitizeDiff:
     def test_sanitize_secrets(self):
@@ -28,14 +28,12 @@ class TestAICodeReview:
 
     @pytest.fixture(autouse=True)
     def setup_genai(self):
-        # Mocking the new google.genai.Client
         self.patcher_client = patch("google.genai.Client")
         self.mock_client_cls = self.patcher_client.start()
 
         self.mock_client_instance = MagicMock()
         self.mock_client_cls.return_value = self.mock_client_instance
 
-        # Setup hierarchy: client.models.generate_content
         self.mock_models = MagicMock()
         self.mock_client_instance.models = self.mock_models
 
@@ -53,7 +51,6 @@ class TestAICodeReview:
             result = security_check.run_ai_code_review("diff content")
 
         assert result is True
-        # Ensure client was not initialized if no key found
         self.mock_client_cls.assert_not_called()
 
     def test_block_keyword_in_response(self, mock_load, mock_log):
@@ -63,7 +60,6 @@ class TestAICodeReview:
         mock_response = MagicMock()
         mock_response.text = "[PASS] Approved, but I found a password exposed in the logs."
 
-        # Mocking generate_content response
         self.mock_models.generate_content.return_value = mock_response
 
         # Executa
