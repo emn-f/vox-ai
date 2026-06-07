@@ -17,9 +17,10 @@ logger = logging.getLogger("Vox AI")
 
 def get_secret(key: str, default: str = "") -> str:
     """
-    Busca um segredo primeiro no st.secrets (Streamlit Cloud),
-    depois nas variáveis de ambiente (Local/Docker).
+    Busca um segredo no st.secrets (Streamlit Cloud/Local secrets.toml)
+    ou nas variáveis de ambiente (Docker/Cloud env vars).
     """
+    # 1. Tenta buscar no Streamlit Secrets (Cloud ou Local secrets.toml)
     try:
         if key in st.secrets:
             return st.secrets[key]
@@ -30,19 +31,30 @@ def get_secret(key: str, default: str = "") -> str:
                 if p in val:
                     val = val[p]
                 else:
-                    return os.environ.get(key.replace(".", "_").upper(), default)
-            return val
-    except FileNotFoundError:
+                    break
+            else:
+                return val
+    except Exception:
+        # Silencia qualquer exceção ao acessar st.secrets fora do contexto do Streamlit
         pass
+
+    # 2. Fallback para Variáveis de Ambiente
+    # Tenta primeiro a chave no formato padrão de variáveis de ambiente (ex: SUPABASE_URL)
+    env_key = key.replace(".", "_").upper()
+    if env_key in os.environ:
+        return os.environ[env_key]
+
+    # Como último recurso, tenta buscar a chave literal (ex: supabase.url)
     return os.environ.get(key, default)
+
 
 
 # Caminhos
 CSS_PATH = "static/css/style.css"
 
 # Configurações de IA
-GEMINI_MODEL_NAME = "gemini-3-flash-preview"
-
+GEMINI_MODEL_NAME = "gemini-3.5-flash"
+GEMINI_MODEL_GATEKEEP = "gemini-3.1-flash-lite"
 MODELO_SEMANTICO_NOME = "gemini-embedding-001"
 TAMANHO_VETOR_SEMANTICO = 1536
 
@@ -54,8 +66,3 @@ MAX_CHUNCK = 25
 # Configurações de UI
 PAGE_TITLE = 'Vox AI'
 PAGE_ICON = '🏳️‍🌈'
-
-class StatusConhecimento:
-    PENDENTE = -1
-    REJEITADO = 0
-    APROVADO = 1

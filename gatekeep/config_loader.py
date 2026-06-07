@@ -1,31 +1,32 @@
-import os
+"""
+Carregador de Configurações e Segredos do Gatekeeper.
 
-try:
-    import tomllib as toml
-except ImportError:
-    try:
-        import tomli as toml
-    except ImportError:
-        try:
-            import toml
-        except ImportError:
-            toml = None
+Este módulo é responsável por carregar de forma resiliente as chaves de acesso
+e configurações contidas no arquivo '.streamlit/secrets.toml'. Como o projeto
+utiliza Python 3.13, faz uso direto da biblioteca padrão 'tomllib'.
+"""
+
+import os
+import tomllib
 
 def load_secrets() -> dict:
-    """Carrega segredos do arquivo .streamlit/secrets.toml de forma segura."""
+    """
+    Carrega chaves e segredos de configuração do arquivo '.streamlit/secrets.toml'
+    de forma segura, tratando falhas de parser.
+
+    Returns:
+        dict: Dicionário contendo os segredos mapeados do arquivo TOML.
+    """
     secrets_path = os.path.join(os.getcwd(), ".streamlit", "secrets.toml")
     if not os.path.exists(secrets_path):
         return {}
 
-    data = {}
-    if toml is None or not hasattr(toml, "load"):
+    try:
+        with open(secrets_path, "rb") as f:
+            data = tomllib.load(f)
+    except Exception:
+        # Fallback para parsing manual caso o arquivo esteja com erros de sintaxe TOML
         data = _manual_toml_parse(secrets_path)
-    else:
-        try:
-            with open(secrets_path, "rb") as f:
-                data = toml.load(f)
-        except Exception:
-            data = _manual_toml_parse(secrets_path)
 
     # Mapeamento legado para HF_TOKEN se necessário
     if "HF_TOKEN" in data:
@@ -36,7 +37,16 @@ def load_secrets() -> dict:
     return data
 
 def _manual_toml_parse(path: str) -> dict:
-    """Parse manual de emergência para chaves simples (key = value)."""
+    """
+    Realiza o parse manual do arquivo TOML em caso de falha de parser do tomllib,
+    processando atribuições básicas chave-valor de forma sequencial.
+
+    Args:
+        path (str): Caminho físico do arquivo TOML.
+
+    Returns:
+        dict: Chaves e valores de configuração parseados.
+    """
     data = {}
     try:
         with open(path, "r", encoding="utf-8") as f:
@@ -48,3 +58,4 @@ def _manual_toml_parse(path: str) -> dict:
     except Exception:
         pass
     return data
+
