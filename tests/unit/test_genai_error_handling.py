@@ -1,4 +1,5 @@
 import pytest
+from contextlib import nullcontext
 from unittest.mock import MagicMock, patch
 import streamlit as st
 
@@ -8,21 +9,16 @@ class StopException(Exception):
 
 @pytest.fixture
 def mock_streamlit():
-    """
-    Mock de funções chaves do Streamlit utilizadas no fluxo de geração e erro.
-    """
-    with patch("streamlit.empty") as mock_empty, \
+    """Mock de funções chaves do Streamlit utilizadas no fluxo de geração e erro."""
+    with patch("streamlit.spinner", return_value=nullcontext()), \
+         patch("streamlit.empty") as mock_empty, \
          patch("streamlit.error") as mock_error, \
          patch("streamlit.stop", side_effect=StopException) as mock_stop:
-        
-        # Simula o session_state com chaves necessárias
-        st.session_state.session_id = "test-session-id"
-        st.session_state.git_version_str = "test-git-version"
-        
+        st.session_state["session_id"] = "test-session-id"
+        st.session_state["git_version_str"] = "test-git-version"
         mock_placeholder = MagicMock()
         mock_empty.return_value = mock_placeholder
-        
-        yield {
+        yield {"empty": mock_empty, "placeholder": mock_placeholder, "error": mock_error, "stop": mock_stop}
             "empty": mock_empty,
             "placeholder": mock_placeholder,
             "error": mock_error,
