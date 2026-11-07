@@ -1,0 +1,23 @@
+[
+  {
+    "topico": "História do 17 de Maio de 1990 - Despatologização pela OMS",
+    "eixo_tematico": "História e Memória do Movimento LGBTQIA+",
+    "descricao": "No dia 17 de maio de 1990, a Assembleia Geral da Organização Mundial da Saúde (OMS) aprovou a exclusão oficial da homossexualidade da Classificação Internacional de Doenças (CID). Com essa decisão pioneira, a homossexualidade deixou de ser classificada como doença mental, desvio ou perversão perante a medicina internacional, consolidando-se como uma variação natural e legítima da sexualidade humana.",
+    "referencias": "Organização Mundial da Saúde (OMS); 43ª Assembleia Mundial da Saúde (17 de maio de 1990); Resolução WHA43.24.",
+    "tags": ["17 de maio", "oms", "despatologizacao", "historia lgbt", "saude mental", "cid", "direitos humanos"]
+  },
+  {
+    "topico": "Origem do IDAHOBIT - Dia Internacional de Luta contra a LGBTfobia",
+    "eixo_tematico": "História e Memória do Movimento LGBTQIA+",
+    "descricao": "Em comemoração histórica à retirada da homossexualidade da CID pela OMS em 17 de maio de 1990, instituiu-se mundialmente o Dia Internacional de Combate à Homofobia, Transfobia e Bifobia (IDAHOBIT). A data é símbolo de mobilização global pelos direitos humanos, celebração da diversidade e denúncia das violências e preconceitos sofridos pela população LGBTQIA+.",
+    "referencias": "Comitê IDAHO / IDAHOBIT; Resoluções da ONU sobre Orientação Sexual e Identidade de Gênero.",
+    "tags": ["17 de maio", "idahobit", "combate a homofobia", "transfobia", "bifobia", "mobilizacao", "onu"]
+  },
+  {
+    "topico": "Despatologização das Identidades Trans na CID-11",
+    "eixo_tematico": "História e Memória do Movimento LGBTQIA+",
+    "descricao": "Dando continuidade ao processo de despatologização iniciado em 1990, a OMS publicou a 11ª revisão da Classificação Internacional de Doenças (CID-11), aprovada em 2019 e em vigor desde 2022, na qual as identidades trans foram integralmente retiradas do capítulo de transtornos mentais. O termo foi reclassificado como 'Incongruência de Gênero' dentro do capítulo de Condições Relacionadas à Saúde Sexual, assegurando o acesso a cuidados de saúde e processo transexualizador sem estigma psiquiátrico.",
+    "referencias": "Organização Mundial da Saúde (OMS) - CID-11 (Classificação Internacional de Doenças 11ª Revisão, 2019/2022).",
+    "tags": ["cid-11", "oms", "trans", "despatologizacao", "incongruencia de genero", "saude trans", "direitos trans"]
+  }
+]
