@@ -40,13 +40,18 @@ def configurar_api_gemini() -> Optional[genai.Client]:
         return None
 
 
-def inicializar_chat_modelo(client: Optional[genai.Client] = None, model: Optional[str] = None) -> Any:
+def inicializar_chat_modelo(
+    client: Optional[genai.Client] = None,
+    history: Optional[list[Any]] = None,
+    model: Optional[str] = None,
+) -> Any:
     """
     Inicializa uma nova sessão de chat conversacional com o modelo Gemini, definindo
     as diretrizes de comportamento do assistente.
 
     Args:
         client (Optional[genai.Client]): Cliente Gemini. Se omitido, utiliza a instância global.
+        history (Optional[list[Any]]): Histórico de mensagens prévias (opcional).
         model (Optional[str]): Nome do modelo Gemini. Se omitido, utiliza GEMINI_MODEL_NAME.
 
     Returns:
@@ -65,7 +70,7 @@ def inicializar_chat_modelo(client: Optional[genai.Client] = None, model: Option
     return client_ativo.chats.create(
         model=modelo_alvo,
         config=sys_config,
-        history=[],
+        history=history if history is not None else [],
     )
 
 

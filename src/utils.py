@@ -4,13 +4,28 @@ import os
 import re
 import subprocess
 
-import streamlit as st
+from functools import lru_cache
+
+try:
+    import streamlit as st
+    from streamlit.runtime import exists as _runtime_exists
+
+    def safe_cache(func):
+        if _runtime_exists():
+            return st.cache_data(func)
+        return lru_cache(maxsize=32)(func)
+except Exception:
+    st = None
+
+    def safe_cache(func):
+        return lru_cache(maxsize=32)(func)
+
 from gtts import gTTS
 
 from src.config import logger
 
 
-@st.cache_data
+@safe_cache
 def get_current_branch() -> str:
     """
     Retorna o nome da branch Git atual de forma segura.
@@ -40,7 +55,7 @@ def get_version_from_changelog() -> str:
     return ""
 
 
-@st.cache_data
+@safe_cache
 def git_version() -> str:
     """
     Obtém a versão atual do git baseada em tags ou no CHANGELOG.
