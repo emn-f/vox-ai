@@ -1,0 +1,23 @@
+[
+  {
+    "topico": "Nome Social na Educação Básica - Resolução CNE/CP 01/2018",
+    "eixo_tematico": "Educação e Cidadania",
+    "descricao": "A Resolução CNE/CP nº 01/2018 assegura o uso do nome social de estudantes travestis e transexuais em todos os registros escolares da educação básica no Brasil. Estabelece que o nome social deve ser utilizado nas listas de chamada diárias, diários de classe, boletins, cadastros acadêmicos e comunicações internas. Para estudantes maiores de 18 anos, basta a autodeclaração; para menores de 18 anos, o requerimento deve ser apresentado pelos responsáveis legais.",
+    "referencias": "Resolução CNE/CP nº 01, de 19 de janeiro de 2018; Lei de Diretrizes e Bases da Educação Nacional (LDB).",
+    "tags": ["educacao", "nome social", "escola", "chamada", "mec", "cne", "trans"]
+  },
+  {
+    "topico": "Nome Social no Ensino Superior e Rede Federal - Portaria MEC 33/2018",
+    "eixo_tematico": "Educação e Cidadania",
+    "descricao": "A Portaria MEC nº 33/2018 regulamenta o uso e inclusão do nome social de estudantes, professores e servidores travestis e transexuais no âmbito do Ministério da Educação e das instituições federais de ensino superior e técnico. Determina que documentos de circulação interna, carteiras de estudante, e-mails institucionais, certificados e declarações devem constar com destaque o nome social escolhido pela pessoa.",
+    "referencias": "Portaria MEC nº 33, de 17 de janeiro de 2018.",
+    "tags": ["ensino superior", "universidade", "nome social", "mec", "documentos", "trans"]
+  },
+  {
+    "topico": "Emissão e Reemissão de Diplomas com Nome Retificado",
+    "eixo_tematico": "Educação e Cidadania",
+    "descricao": "Estudantes e egressos que realizaram a retificação de nome e gênero no registro civil têm direito garantido à reemissão de seus diplomas de graduação, pós-graduação e ensino médio com o novo nome. O Parecer CNE/CP nº 14/2017 e diretrizes do MEC vedam qualquer menção constrangedora, anotações vexatórias ou indicação do nome anterior no documento reemitido. As instituições de ensino não podem cobrar taxas abusivas ou impor obstáculos burocráticos para a reemissão.",
+    "referencias": "Parecer CNE/CP nº 14/2017; Portaria Normativa MEC nº 22/2016; Provimento nº 73/2018 do CNJ.",
+    "tags": ["diploma", "retificacao", "universidade", "graduacao", "mec", "nome civil", "trans"]
+  }
+]
