@@ -5,9 +5,6 @@ on:
     # Executa a cada 3 dias às 06:00 UTC (evita a pausa de 7 dias de inatividade do Free Tier)
     - cron: '0 6 */3 * *'
   workflow_dispatch: # Permite disparo manual
-  push:
-    branches:
-      - infra/supabase-maintenance-and-backup
 
 jobs:
   keep_alive:
