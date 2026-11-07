@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bannerBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E091B"/>
+      <stop offset="40%" stop-color="#140F27"/>
+      <stop offset="100%" stop-color="#080511"/>
+    </linearGradient>
+
+    <!-- Inclusive Pride Rainbow Gradients -->
+    <linearGradient id="prideWave" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF1E56"/>
+      <stop offset="18%" stop-color="#FF7A00"/>
+      <stop offset="38%" stop-color="#FFD600"/>
+      <stop offset="58%" stop-color="#05DF9D"/>
+      <stop offset="78%" stop-color="#00B4D8"/>
+      <stop offset="100%" stop-color="#7209B7"/>
+    </linearGradient>
+
+    <linearGradient id="glowRibbon" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7209B7" stop-opacity="0.35"/>
+      <stop offset="50%" stop-color="#F72585" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#00B4D8" stop-opacity="0.1"/>
+    </linearGradient>
+
+    <radialGradient id="centerAura" cx="35%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7209B7" stop-opacity="0.3"/>
+      <stop offset="60%" stop-color="#F72585" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#0E091B" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Filters -->
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Base Canvas -->
+  <rect width="1200" height="480" fill="url(#bannerBg)"/>
+
+  <!-- Ambient Light Orbs -->
+  <circle cx="360" cy="240" r="320" fill="url(#centerAura)"/>
+  <circle cx="1080" cy="80" r="240" fill="#00B4D8" opacity="0.08" filter="url(#softGlow)"/>
+
+  <!-- Dynamic Curved Pride Ribbon Across Background -->
+  <path d="M-50,420 C300,480 600,320 900,380 C1050,410 1180,360 1250,330 L1250,480 L-50,480 Z"
+        fill="url(#glowRibbon)"/>
+  <path d="M-50,430 C300,490 600,330 900,390 C1050,420 1180,370 1250,340"
+        fill="none" stroke="url(#prideWave)" stroke-width="4" opacity="0.7" filter="url(#softGlow)"/>
+
+  <!-- Left Icon Mark -->
+  <g transform="translate(100, 110)">
+    <!-- Main Chat Bubble Shell -->
+    <path d="M130,20 C68,20 18,68 18,128 C18,162 36,192 64,212 L50,254 L98,237 C108,241 119,244 130,244 C192,244 242,196 242,136 C242,76 192,20 130,20 Z"
+          fill="#161226"
+          stroke="url(#prideWave)"
+          stroke-width="9"
+          stroke-linejoin="round"
+          stroke-linecap="round"
+          filter="url(#softGlow)"/>
+
+    <!-- Dynamic Audio Spectrum Waves -->
+    <rect x="76" y="118" width="11" height="34" rx="5.5" fill="#FF1E56"/>
+    <rect x="96" y="98" width="11" height="74" rx="5.5" fill="#FF7A00"/>
+    <rect x="116" y="78" width="11" height="114" rx="5.5" fill="#FFD600"/>
+    <rect x="136" y="86" width="11" height="98" rx="5.5" fill="#05DF9D"/>
+    <rect x="156" y="104" width="11" height="62" rx="5.5" fill="#00B4D8"/>
+    <rect x="176" y="122" width="11" height="26" rx="5.5" fill="#B5179E"/>
+
+    <!-- Affirmative Sparkle -->
+    <path d="M198,52 Q198,66 212,66 Q198,66 198,80 Q198,66 184,66 Q198,66 198,52 Z"
+          fill="#FFFFFF" opacity="0.95"/>
+    <circle cx="230" cy="46" r="4" fill="#FFD600"/>
+  </g>
+
+  <!-- Typography & Messaging -->
+  <g transform="translate(400, 130)">
+    <!-- Header: Vox AI -->
+    <text x="0" y="80"
+          font-family="system-ui, -apple-system, 'Plus Jakarta Sans', 'Inter', sans-serif"
+          font-size="84"
+          font-weight="900"
+          letter-spacing="-2px"
+          fill="#FFFFFF">Vox</text>
+
+    <!-- AI Badge -->
+    <g transform="translate(180, 18)">
+      <rect x="0" y="0" width="84" height="46" rx="14" fill="#1C1630" stroke="url(#prideWave)" stroke-width="2.5"/>
+      <text x="42" y="32"
+            font-family="system-ui, -apple-system, 'Plus Jakarta Sans', 'Inter', sans-serif"
+            font-size="26"
+            font-weight="800"
+            text-anchor="middle"
+            fill="url(#prideWave)"
+            letter-spacing="1px">AI</text>
+    </g>
+
+    <!-- Rainbow Underline Accent -->
+    <rect x="0" y="102" width="620" height="4" rx="2" fill="url(#prideWave)"/>
+
+    <!-- Tagline -->
+    <text x="0" y="142"
+          font-family="system-ui, -apple-system, 'Inter', 'Segoe UI', sans-serif"
+          font-size="24"
+          font-weight="600"
+          letter-spacing="0.2px"
+          fill="#E2E8F0">Assistente de Apoio, Acolhimento e Informação LGBTQIA+</text>
+
+    <text x="0" y="174"
+          font-family="system-ui, -apple-system, 'Inter', 'Segoe UI', sans-serif"
+          font-size="16"
+          font-weight="400"
+          fill="#94A3B8">Inteligência Artificial aberta, empática e segura para a comunidade brasileira.</text>
+
+    <!-- Feature Pill Badges -->
+    <g transform="translate(0, 208)">
+      <!-- Badge 1: Canais -->
+      <g transform="translate(0, 0)">
+        <rect width="200" height="36" rx="18" fill="#1B172E" stroke="#372E54" stroke-width="1.2"/>
+        <text x="100" y="23" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#38BDF8" text-anchor="middle">💬 Web • Telegram • WhatsApp</text>
+      </g>
+      <!-- Badge 2: RAG Jurídico/Saúde -->
+      <g transform="translate(212, 0)">
+        <rect width="180" height="36" rx="18" fill="#1B172E" stroke="#372E54" stroke-width="1.2"/>
+        <text x="90" y="23" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#4ADE80" text-anchor="middle">⚖️ RAG Jurídico &amp; Saúde</text>
+      </g>
+      <!-- Badge 3: LGPD & Privacidade -->
+      <g transform="translate(404, 0)">
+        <rect width="180" height="36" rx="18" fill="#1B172E" stroke="#372E54" stroke-width="1.2"/>
+        <text x="90" y="23" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#F472B6" text-anchor="middle">🛡️ Privacidade &amp; LGPD</text>
+      </g>
+    </g>
+  </g>
+</svg>

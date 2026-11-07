@@ -145,6 +145,15 @@ def dialog_reportar() -> None:
                     return
 
 
+@st.dialog("🤝 Rede de Apoio e Acolhimento", width="large")
+def dialog_rede_apoio() -> None:
+    """
+    Exibe o diretório da Rede de Apoio e Acolhimento em modal interativo.
+    """
+    from src.app.pages.rede_apoio import render_rede_apoio
+    render_rede_apoio()
+
+
 def carregar_sidebar(sidebar_content: str, sidebar_footer: str) -> None:
     """
     Renderiza os elementos da barra lateral (sidebar), incluindo links de redes sociais,
@@ -162,6 +171,9 @@ def carregar_sidebar(sidebar_content: str, sidebar_footer: str) -> None:
             url=f"{CONTRIBUTING}",
             use_container_width=True,
         )
+
+        if st.button("🤝 Rede de Apoio & Acolhimento", use_container_width=True):
+            dialog_rede_apoio()
 
         col1, col2 = st.columns(2)
         with col1:

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#140E26"/>
+      <stop offset="50%" stop-color="#0F0C1B"/>
+      <stop offset="100%" stop-color="#07050D"/>
+    </linearGradient>
+
+    <!-- Inclusive Pride Rainbow Gradients -->
+    <linearGradient id="prideWave" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF1E56"/>
+      <stop offset="20%" stop-color="#FF7A00"/>
+      <stop offset="40%" stop-color="#FFD600"/>
+      <stop offset="60%" stop-color="#05DF9D"/>
+      <stop offset="80%" stop-color="#00B4D8"/>
+      <stop offset="100%" stop-color="#7209B7"/>
+    </linearGradient>
+
+    <linearGradient id="violetPinkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F72585"/>
+      <stop offset="50%" stop-color="#B5179E"/>
+      <stop offset="100%" stop-color="#7209B7"/>
+    </linearGradient>
+
+    <linearGradient id="neonGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF1E56" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#00B4D8" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#7209B7" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Subtle Drop Shadow -->
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#000000" flood-opacity="0.65"/>
+    </filter>
+  </defs>
+
+  <!-- App Icon Squircle Background -->
+  <rect x="24" y="24" width="464" height="464" rx="112" ry="112" fill="url(#bgGrad)" filter="url(#cardShadow)"/>
+  <rect x="24" y="24" width="464" height="464" rx="112" ry="112" fill="none" stroke="url(#neonGlow)" stroke-width="3" opacity="0.4"/>
+
+  <!-- Subtle Radial Ambient Light Behind Mark -->
+  <circle cx="256" cy="240" r="160" fill="url(#violetPinkGrad)" opacity="0.18" filter="url(#softGlow)"/>
+
+  <!-- Main Symbol: Modern Pride Speech Heart & Audio Waves -->
+  <g transform="translate(0, -6)">
+    <!-- Main Chat Bubble Shell -->
+    <path d="M256,104 C172,104 104,166 104,244 C104,286 124,324 156,350 L140,404 L202,382 C219,388 237,392 256,392 C340,392 408,330 408,252 C408,174 340,104 256,104 Z"
+          fill="#1C1630"
+          stroke="url(#prideWave)"
+          stroke-width="12"
+          stroke-linejoin="round"
+          stroke-linecap="round"
+          filter="url(#softGlow)"/>
+
+    <!-- Dynamic Audio Spectrum Waves (Voice/Acolhimento) with Pride Palette -->
+    <!-- Bar 1: Pink/Red -->
+    <rect x="180" y="224" width="14" height="48" rx="7" fill="#FF1E56"/>
+    <!-- Bar 2: Orange -->
+    <rect x="208" y="196" width="14" height="104" rx="7" fill="#FF7A00"/>
+    <!-- Bar 3: Yellow/Center Left -->
+    <rect x="236" y="172" width="14" height="152" rx="7" fill="#FFD600"/>
+    <!-- Bar 4: Green/Center Right -->
+    <rect x="264" y="184" width="14" height="128" rx="7" fill="#05DF9D"/>
+    <!-- Bar 5: Cyan/Blue -->
+    <rect x="292" y="206" width="14" height="84" rx="7" fill="#00B4D8"/>
+    <!-- Bar 6: Purple/Violet -->
+    <rect x="320" y="228" width="14" height="40" rx="7" fill="#B5179E"/>
+
+    <!-- Sparkling Affirmative Star / Sparkle in Top-Right -->
+    <path d="M352,148 Q352,166 370,166 Q352,166 352,184 Q352,166 334,166 Q352,166 352,148 Z"
+          fill="#FFFFFF"
+          opacity="0.95"/>
+    <circle cx="378" cy="142" r="3.5" fill="#FFD600"/>
+  </g>
+</svg>

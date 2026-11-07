@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" width="100%" height="100%">
+  <defs>
+    <!-- Inclusive Pride Rainbow Gradients -->
+    <linearGradient id="prideWave" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF1E56"/>
+      <stop offset="20%" stop-color="#FF7A00"/>
+      <stop offset="40%" stop-color="#FFD600"/>
+      <stop offset="60%" stop-color="#05DF9D"/>
+      <stop offset="80%" stop-color="#00B4D8"/>
+      <stop offset="100%" stop-color="#7209B7"/>
+    </linearGradient>
+
+    <linearGradient id="textPride" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#F1F3F9"/>
+      <stop offset="100%" stop-color="#D4DCF7"/>
+    </linearGradient>
+
+    <linearGradient id="aiBadgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF1E56"/>
+      <stop offset="50%" stop-color="#7209B7"/>
+      <stop offset="100%" stop-color="#00B4D8"/>
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Left Icon Mark -->
+  <g transform="translate(40, 20)">
+    <!-- Main Chat Bubble Shell -->
+    <path d="M100,20 C54,20 16,56 16,102 C16,128 29,151 50,166 L40,198 L76,185 C84,188 92,190 100,190 C146,190 184,154 184,108 C184,62 146,20 100,20 Z"
+          fill="#161226"
+          stroke="url(#prideWave)"
+          stroke-width="7"
+          stroke-linejoin="round"
+          stroke-linecap="round"
+          filter="url(#softGlow)"/>
+
+    <!-- Dynamic Audio Spectrum Waves (Voice/Acolhimento) -->
+    <rect x="62" y="94" width="8" height="24" rx="4" fill="#FF1E56"/>
+    <rect x="76" y="80" width="8" height="52" rx="4" fill="#FF7A00"/>
+    <rect x="90" y="66" width="8" height="80" rx="4" fill="#FFD600"/>
+    <rect x="104" y="72" width="8" height="68" rx="4" fill="#05DF9D"/>
+    <rect x="118" y="84" width="8" height="44" rx="4" fill="#00B4D8"/>
+    <rect x="132" y="96" width="8" height="20" rx="4" fill="#B5179E"/>
+
+    <!-- Sparkle Star -->
+    <path d="M152,48 Q152,58 162,58 Q152,58 152,68 Q152,58 142,58 Q152,58 152,48 Z"
+          fill="#FFFFFF"
+          opacity="0.9"/>
+  </g>
+
+  <!-- Right Typography Section -->
+  <g transform="translate(260, 40)">
+    <!-- Brand Name "Vox" -->
+    <text x="0" y="95"
+          font-family="system-ui, -apple-system, 'Plus Jakarta Sans', 'Inter', sans-serif"
+          font-size="96"
+          font-weight="900"
+          letter-spacing="-2px"
+          fill="url(#textPride)">Vox</text>
+
+    <!-- AI Pill Badge -->
+    <g transform="translate(200, 24)">
+      <rect x="0" y="0" width="82" height="44" rx="14" fill="#1C1630" stroke="url(#aiBadgeGrad)" stroke-width="2.5"/>
+      <text x="41" y="30"
+            font-family="system-ui, -apple-system, 'Plus Jakarta Sans', 'Inter', sans-serif"
+            font-size="24"
+            font-weight="800"
+            text-anchor="middle"
+            fill="url(#prideWave)"
+            letter-spacing="1px">AI</text>
+    </g>
+
+    <!-- Rainbow Underline Accent Ribbon -->
+    <rect x="2" y="114" width="480" height="4" rx="2" fill="url(#prideWave)"/>
+
+    <!-- Slogan & Descriptor -->
+    <text x="2" y="148"
+          font-family="system-ui, -apple-system, 'Inter', 'Segoe UI', sans-serif"
+          font-size="19"
+          font-weight="500"
+          letter-spacing="0.3px"
+          fill="#A4B3CD">Acolhimento, Apoio e Informação LGBTQIA+</text>
+  </g>
+</svg>

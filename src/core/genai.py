@@ -106,12 +106,14 @@ def gerar_resposta(chat: Any, prompt: str, info_adicional: str) -> str:
     return "".join(list(gerar_resposta_stream(chat, prompt, info_adicional)))
 
 
-def transcrever_audio(audio_file: Any) -> Optional[str]:
+def transcrever_audio(audio_file: Any, mime_type: Optional[str] = None) -> Optional[str]:
     """
     Realiza a transcrição de um arquivo de áudio de voz para texto utilizando o modelo Gemini.
 
     Args:
         audio_file (Any): Arquivo ou buffer contendo o áudio gravado.
+        mime_type (Optional[str]): MIME type do áudio (ex: 'audio/mp3', 'audio/ogg', 'audio/wav').
+            Se omitido, tenta inferir a partir do nome ou extensão do arquivo.
 
     Returns:
         Optional[str]: O texto transcrito ou None em caso de erro na API de áudio.
@@ -123,11 +125,22 @@ def transcrever_audio(audio_file: Any) -> Optional[str]:
 
     try:
         audio_bytes = audio_file.read() if hasattr(audio_file, "read") else audio_file
+        if not mime_type:
+            file_name = getattr(audio_file, "name", "").lower()
+            if file_name.endswith((".ogg", ".oga")):
+                mime_type = "audio/ogg"
+            elif file_name.endswith(".wav"):
+                mime_type = "audio/wav"
+            elif file_name.endswith(".m4a"):
+                mime_type = "audio/mp4"
+            else:
+                mime_type = "audio/mp3"
+
         response = client.models.generate_content(
             model=GEMINI_MODEL_NAME,
             contents=[
                 "Transcreva este áudio para português do Brasil. Retorne apenas o texto transcrito.",
-                types.Part.from_bytes(data=audio_bytes, mime_type="audio/mp3"),
+                types.Part.from_bytes(data=audio_bytes, mime_type=mime_type),
             ],
         )
         return response.text
