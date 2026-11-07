@@ -1,0 +1,30 @@
+[
+  {
+    "topico": "DECRADI Salvador - Delegacia de Combate à Discriminação",
+    "eixo_tematico": "Segurança Pública e Direitos Humanos",
+    "descricao": "A Delegacia Especial de Crimes de Discriminação e Intolerância (DECRADI) de Salvador/BA é a unidade policial especializada na apuração de crimes motivados por homofobia, transfobia, racismo, intolerância religiosa e preconceito social. Localizada no Complexo Policial dos Barris (Vale dos Barris, s/n, Salvador - BA), presta atendimento humanizado às vítimas e encaminhamento para a rede de acolhimento social e jurídico.",
+    "referencias": "Polícia Civil do Estado da Bahia (PCBA); DECRADI Salvador; Complexo dos Barris.",
+    "tags": ["decradi", "salvador", "denuncia", "homofobia", "transfobia", "delegacia", "bahia", "policia civil"]
+  },
+  {
+    "topico": "CPDD-LGBT e Casarão da Diversidade - Salvador",
+    "eixo_tematico": "Rede de Acolhimento e Cidadania",
+    "descricao": "O Centro de Promoção e Defesa dos Direitos LGBT da Bahia (CPDD-LGBT), sediado no Casarão da Diversidade (Rua do Tijolo, nº 8, Centro Histórico / Pelourinho, Salvador - BA), oferece suporte gratuito nas áreas de atendimento psicológico, assistência social e assessoria jurídica para retificação de prenome e gênero, além de enfrentamento à LGBTfobia e violação de direitos.",
+    "referencias": "Secretaria de Justiça e Direitos Humanos da Bahia (SJDH); Casarão da Diversidade Salvador.",
+    "tags": ["casarao da diversidade", "cpdd-lgbt", "salvador", "acolhimento", "apoio juridico", "psicologia", "bahia"]
+  },
+  {
+    "topico": "Casa Marielle Franco e Acolhimento em Salvador e RMS",
+    "eixo_tematico": "Rede de Acolhimento e Cidadania",
+    "descricao": "A Casa Marielle Franco e centros parceiros da Região Metropolitana de Salvador (RMS) oferecem abrigo e proteção temporária para jovens e adultos LGBTQIA+ em situação de extrema vulnerabilidade social, expulsão do núcleo familiar ou ameaça física. O acesso se dá através de triagem socioassistencial articulada com centros de referência e movimentos sociais da Grande Salvador.",
+    "referencias": "Rede de Proteção e Acolhimento LGBTQIA+ da Bahia; Movimento de Mulheres e Pessoas Negras e LGBT.",
+    "tags": ["casa marielle franco", "acolhimento", "abrigo", "salvador", "camacari", "rms", "vulnerabilidade"]
+  },
+  {
+    "topico": "Rede de Proteção Social e Apoio LGBT em Camaçari",
+    "eixo_tematico": "Rede de Acolhimento e Cidadania",
+    "descricao": "No município de Camaçari/BA, o atendimento à população LGBTQIA+ em situação de violência ou vulnerabilidade é realizado prioritariamente pelos Centros de Referência Especializados de Assistência Social (CREAS) e pelo CRAS local vinculados à Secretaria do Desenvolvimento Social e Cidadania (SEDES Camaçari). Em casos de crimes de intolerância, a 18ª Delegacia Territorial de Camaçari e a DECRADI Salvador atuam na recepção das ocorrências.",
+    "referencias": "SEDES Camaçari; CREAS Camaçari; 18ª Delegacia Territorial de Camaçari.",
+    "tags": ["camacari", "creas", "assistencia social", "acolhimento", "delegacia", "apoio local", "bahia"]
+  }
+]
