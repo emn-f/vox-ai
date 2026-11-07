@@ -5,6 +5,9 @@
 -- 3. Diretrizes trabalhistas sobre sanitários corporativos por pessoas trans - MTE/OIT/TST (Issue #347)
 -- 4. História do 17 de Maio de 1990 e despatologização da homossexualidade e identidades trans na OMS (Issue #321)
 
+-- Sincroniza a sequence com o maior ID existente para evitar conflito de chave primária
+SELECT setval('public.kb_id_seq', (SELECT COALESCE(MAX(SUBSTRING(kb_id FROM 8)::integer), 1) FROM public.knowledge_base), true);
+
 INSERT INTO public.knowledge_base (topico, eixo_tematico, descricao, referencias, tags, autor, kb_count)
 VALUES
 (

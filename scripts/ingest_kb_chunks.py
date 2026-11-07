@@ -168,6 +168,33 @@ def verificar_registro_existente(
         raise RuntimeError(f"Falha na consulta ao banco de dados: {e}") from e
 
 
+def obter_proximo_kb_id(supabase_client: Any) -> Optional[str]:
+    """
+    Obtém o próximo identificador sequencial (ex: vox-kb-0343) baseado no maior ID existente.
+    Evita colisões quando a sequence do PostgreSQL (kb_id_seq) estiver defasada.
+    """
+    try:
+        import re
+
+        resp = (
+            supabase_client.table("knowledge_base")
+            .select("kb_id")
+            .order("kb_id", desc=True)
+            .limit(20)
+            .execute()
+        )
+        if resp.data:
+            numeros = [
+                int(m.group(1))
+                for r in resp.data
+                if (m := re.search(r"(\d+)", str(r.get("kb_id", ""))))
+            ]
+            if numeros:
+                return f"vox-kb-{max(numeros) + 1:04d}"
+    except Exception as e:
+        logger.warning(f"⚠️ Não foi possível determinar próximo kb_id dinâmico: {e}")
+    return None
+
 
 def ingerir_chunk(
     chunk: Dict[str, Any],
@@ -288,9 +315,13 @@ def ingerir_chunk(
         "embedding": vetor,
     }
 
+    proximo_kb_id = obter_proximo_kb_id(client_db)
+    if proximo_kb_id:
+        payload["kb_id"] = proximo_kb_id
+
     try:
         resp = client_db.table("knowledge_base").insert(payload).execute()
-        novo_id = resp.data[0].get("kb_id") if resp.data else "novo"
+        novo_id = resp.data[0].get("kb_id") if resp.data else (proximo_kb_id or "novo")
         return "inserted", {"kb_id": novo_id, "topico": topico}
     except Exception as e:
         return "error", {"topico": topico, "erro": str(e)}
