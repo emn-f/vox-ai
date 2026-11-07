@@ -1,0 +1,36 @@
+name: 💓 Supabase Keep-Alive
+
+on:
+  schedule:
+    # Executa a cada 3 dias às 06:00 UTC (evita a pausa de 7 dias de inatividade do Free Tier)
+    - cron: '0 6 */3 * *'
+  workflow_dispatch: # Permite disparo manual
+
+jobs:
+  keep_alive:
+    name: Ping PostgREST Database
+    runs-on: ubuntu-latest
+    steps:
+      - name: Executar consulta leve na tabela report_categories
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL || secrets.SUPABASE_URL_DEV }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY || secrets.SUPABASE_ANON_KEY_DEV || secrets.SUPABASE_KEY_PROD }}
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
+            echo "⚠️ AVISO: SUPABASE_URL ou SUPABASE_ANON_KEY não estão configurados nos Secrets do GitHub."
+            echo "Por favor configure em Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X GET "${SUPABASE_URL}/rest/v1/report_categories?select=id&limit=1" \
+            -H "apikey: ${SUPABASE_ANON_KEY}" \
+            -H "Authorization: Bearer ${SUPABASE_ANON_KEY}")
+
+          echo "HTTP Status retornado: $STATUS"
+          if [ "$STATUS" -ge 200 ] && [ "$STATUS" -lt 300 ]; then
+            echo "✅ Banco de dados Supabase mantido ativo com sucesso!"
+          else
+            echo "❌ Erro ao consultar PostgREST. Código HTTP: $STATUS"
+            exit 1
+          fi

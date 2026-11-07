@@ -1,0 +1,23 @@
+[
+  {
+    "topico": "Uso de Sanitários Corporativos por Pessoas Trans",
+    "eixo_tematico": "Direito do Trabalho e Relações Corporativas",
+    "descricao": "Pessoas trans têm o direito assegurado de utilizar os sanitários e vestiários do ambiente de trabalho correspondentes à sua identidade de gênero autopercebida. A jurisprudência do Tribunal Superior do Trabalho (TST) e o Supremo Tribunal Federal (STF - RE 845.779) estabelecem que proibir o acesso de mulheres trans ao banheiro feminino ou de homens trans ao banheiro masculino constitui discriminação por gênero e violação à dignidade da pessoa humana.",
+    "referencias": "STF - Recurso Extraordinário 845.779; Jurisprudência consolidada do Tribunal Superior do Trabalho (TST); Art. 1º, III e Art. 5º, X da CF/88.",
+    "tags": ["trabalho", "banheiro", "sanitarios", "trans", "tst", "stf", "identidade de genero", "clt"]
+  },
+  {
+    "topico": "Assédio Moral Laboral e Restrição de Sanitários",
+    "eixo_tematico": "Direito do Trabalho e Relações Corporativas",
+    "descricao": "Obrigar colaboradores transgênero a utilizar banheiros de pessoas com deficiência (PCD), banheiros isolados ou distantes da equipe, ou o sanitário em desacordo com seu gênero, configura assédio moral e gera o dever da empresa de indenizar por dano moral (in re ipsa). As empresas devem orientar e capacitar líderes e funcionários sobre o respeito à diversidade e às identidades de gênero.",
+    "referencias": "Convenção 111 da OIT (Discriminação em Matéria de Emprego e Ocupação); Código Civil, Arts. 186 e 927; TST - AIRR 1000632-15.2017.5.02.0084.",
+    "tags": ["assedio moral", "dano moral", "empresa", "rh", "banheiro", "trans", "oit 111", "diversidade"]
+  },
+  {
+    "topico": "Diretrizes do MTE e OIT 111 contra Discriminação no Trabalho",
+    "eixo_tematico": "Direito do Trabalho e Relações Corporativas",
+    "descricao": "A Convenção nº 111 da OIT, internalizada no Brasil, e as portarias do Ministério do Trabalho e Emprego (MTE) impõem o dever de erradicar qualquer forma de discriminação nas relações de trabalho. Políticas corporativas de inclusão e conduta devem garantir tratamento igualitário, adoção irrestrita do nome social em crachás e sistemas corporativos e acesso irrestrito aos espaços comuns.",
+    "referencias": "Convenção nº 111 da Organização Internacional do Trabalho (OIT); Portaria MTP nº 1.224/2023; Decreto nº 62.150/1968.",
+    "tags": ["mte", "oit", "clt", "discriminacao", "nome social", "inclusao", "trabalho"]
+  }
+]
