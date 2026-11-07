@@ -109,6 +109,7 @@ def gerar_resposta(chat: Any, prompt: str, info_adicional: str) -> str:
 def transcrever_audio(audio_file: Any) -> Optional[str]:
     """
     Realiza a transcrição de um arquivo de áudio de voz para texto utilizando o modelo Gemini.
+    (Delega para a implementação dedicada em src.core.audio.transcrever_audio_gemini)
 
     Args:
         audio_file (Any): Arquivo ou buffer contendo o áudio gravado.
@@ -116,21 +117,5 @@ def transcrever_audio(audio_file: Any) -> Optional[str]:
     Returns:
         Optional[str]: O texto transcrito ou None em caso de erro na API de áudio.
     """
-    client = configurar_api_gemini()
-    if not client:
-        logger.error("⚠️ Cliente Gemini não configurado para transcrição.")
-        return None
-
-    try:
-        audio_bytes = audio_file.read() if hasattr(audio_file, "read") else audio_file
-        response = client.models.generate_content(
-            model=GEMINI_MODEL_NAME,
-            contents=[
-                "Transcreva este áudio para português do Brasil. Retorne apenas o texto transcrito.",
-                types.Part.from_bytes(data=audio_bytes, mime_type="audio/mp3"),
-            ],
-        )
-        return response.text
-    except Exception as e:
-        logger.error(f"❌ Erro na transcrição de áudio: {e}")
-        return None
+    from src.core.audio import transcrever_audio_gemini
+    return transcrever_audio_gemini(audio_file)
