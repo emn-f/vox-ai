@@ -217,6 +217,20 @@ class TestTranscricaoAudioGemini:
         resultado = transcrever_audio_gemini(b"dados-de-audio", client=mock_client)
         assert resultado is None
 
+    @patch("streamlit.toast")
+    def test_transcrever_audio_gemini_fallback_cascade_multi_model(self, mock_toast):
+        mock_client = MagicMock()
+        mock_resp_success = MagicMock(text="Transcrição recuperada com sucesso pelo modelo 2.")
+        mock_client.models.generate_content.side_effect = [
+            Exception("429 ResourceExhausted: Quota exceeded"),
+            mock_resp_success,
+        ]
+
+        resultado = transcrever_audio_gemini(b"dados-de-audio", client=mock_client)
+        assert resultado == "Transcrição recuperada com sucesso pelo modelo 2."
+        assert mock_client.models.generate_content.call_count == 2
+        mock_toast.assert_called_once()
+
     def test_transcrever_audio_gemini_resposta_sem_texto(self):
         mock_client = MagicMock()
         mock_response = MagicMock()

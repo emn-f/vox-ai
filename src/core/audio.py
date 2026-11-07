@@ -19,7 +19,7 @@ from google import genai
 from google.genai import types
 from gtts import gTTS
 
-from src.config import GEMINI_MODEL_NAME, logger
+from src.config import GEMINI_MODEL_NAME, GEMINI_FALLBACK_MODELS, logger
 from src.core.genai import configurar_api_gemini
 
 # Mapeamento de vozes pré-construídas suportadas pelo Gemini
@@ -242,7 +242,7 @@ def transcrever_audio_gemini(
             logger.error("⚠️ Cliente Gemini não disponível para transcrição de áudio.")
             return None
 
-        modelo_alvo = model or GEMINI_MODEL_NAME
+        modelos_tentativa = [model] if model else (GEMINI_FALLBACK_MODELS or [GEMINI_MODEL_NAME])
         prompt_transcricao = (
             "Transcreva com máxima precisão este áudio para o português do Brasil. "
             "Mantenha a pontuação adequada, fidelidade aos termos utilizados (incluindo vocabulário "
@@ -251,15 +251,38 @@ def transcrever_audio_gemini(
         )
 
         audio_part = types.Part.from_bytes(data=audio_bytes, mime_type=detected_mime)
-        response = client_ativo.models.generate_content(
-            model=modelo_alvo,
-            contents=[prompt_transcricao, audio_part],
-        )
 
-        if response and response.text:
-            return response.text.strip()
+        for idx, modelo_alvo in enumerate(modelos_tentativa):
+            try:
+                response = client_ativo.models.generate_content(
+                    model=modelo_alvo,
+                    contents=[prompt_transcricao, audio_part],
+                )
 
-        logger.warning("⚠️ Modelo Gemini retornou resposta sem texto na transcrição de áudio.")
+                if response and response.text:
+                    return response.text.strip()
+
+                logger.warning(f"⚠️ Modelo '{modelo_alvo}' retornou resposta sem texto na transcrição de áudio.")
+            except Exception as e_mod:
+                if idx < len(modelos_tentativa) - 1:
+                    proximo = modelos_tentativa[idx + 1]
+                    logger.warning(
+                        f"⚠️ Erro ao transcrever áudio com modelo '{modelo_alvo}': {e_mod}. "
+                        f"Tentando fallback '{proximo}'..."
+                    )
+                    try:
+                        import streamlit as st
+                        if hasattr(st, "toast"):
+                            st.toast(
+                                f"Instabilidade no áudio. Tentando modelo alternativo ({proximo})...",
+                                icon="🎙️",
+                            )
+                    except Exception:
+                        pass
+                else:
+                    logger.error(f"❌ Todos os modelos de transcrição de áudio falharam. Último erro: {e_mod}")
+                    return None
+
         return None
 
     except Exception as e:
