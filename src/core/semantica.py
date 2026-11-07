@@ -18,18 +18,30 @@ from typing import Any
 from google.genai import types
 from google.genai.errors import APIError
 
-from src.config import MODELO_SEMANTICO_NOME, TAMANHO_VETOR_SEMANTICO, logger
+from src.config import (
+    LIMITE_TEMAS,
+    MODELO_SEMANTICO_NOME,
+    SEMANTICA_THRESHOLD,
+    TAMANHO_VETOR_SEMANTICO,
+    logger,
+)
 from src.core.database import recuperar_contexto_inteligente
 from src.core.genai import configurar_api_gemini
 
 
-def semantica(prompt: str) -> tuple[str | None, str | None, list[dict[str, Any]] | None]:
+def semantica(
+    prompt: str,
+    threshold: float | None = None,
+    limit: int | None = None,
+) -> tuple[str | None, str | None, list[dict[str, Any]] | None]:
     """
     Gera o embedding vetorial para a pergunta do usuário e busca o contexto correspondente
     e relevante na base de dados de conhecimento do projeto.
 
     Args:
         prompt (str): Pergunta ou texto enviado pelo usuário.
+        threshold (float | None): Limiar de similaridade cosseno opcional.
+        limit (int | None): Número máximo de chunks candidatos inicial.
 
     Returns:
         tuple[str | None, str | None, list[dict[str, Any]] | None]: Uma tupla contendo:
@@ -62,7 +74,11 @@ def semantica(prompt: str) -> tuple[str | None, str | None, list[dict[str, Any]]
         # 4. Executa a busca inteligente de similaridade no banco de dados (pgvector)
         #    Decide estrategicamente entre a expansão do tópico completo ou o fallback dos top-5 chunks.
         texto_contexto, fonte_identificadora, lista_ids = (
-            recuperar_contexto_inteligente(vetor_prompt)
+            recuperar_contexto_inteligente(
+                vetor_prompt,
+                threshold=threshold if threshold is not None else SEMANTICA_THRESHOLD,
+                limit=limit if limit is not None else LIMITE_TEMAS,
+            )
         )
 
         # Retorna os dados caso um contexto válido tenha sido recuperado com sucesso
