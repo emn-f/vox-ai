@@ -93,6 +93,18 @@ def _obter_lista_modelos_fallback(chat: Any) -> list[str]:
     return modelos or [GEMINI_MODEL_NAME]
 
 
+def _notificar_fallback_ui(modelo_falhou: str, proximo_modelo: str) -> None:
+    """Emite uma notificação visual amigável (toast) no Streamlit se a UI estiver ativa."""
+    try:
+        if hasattr(st, "toast"):
+            st.toast(
+                f"Servidor ocupado. Alternando automaticamente para contingência ({proximo_modelo})...",
+                icon="🔄",
+            )
+    except Exception:
+        pass
+
+
 def _is_safety_error(e: Exception) -> bool:
     """
     Identifica se a exceção é decorrente de bloqueio por diretrizes de segurança/moderação (Safety/Policy).
@@ -351,6 +363,7 @@ def gerar_resposta_stream(chat: Any, prompt: str, info_adicional: str) -> Genera
                 f"⚠️ Erro ao gerar resposta com modelo '{modelo}': {e}. "
                 f"Alternando para fallback '{proximo_modelo}'..."
             )
+            _notificar_fallback_ui(modelo, proximo_modelo)
 
     if not sucesso and last_exception is not None:
         _tratar_erro_genai(last_exception)

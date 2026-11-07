@@ -13,12 +13,13 @@ def mock_streamlit():
     with patch("streamlit.spinner", return_value=nullcontext()), \
          patch("streamlit.empty") as mock_empty, \
          patch("streamlit.error") as mock_error, \
+         patch("streamlit.toast") as mock_toast, \
          patch("streamlit.stop", side_effect=StopException) as mock_stop:
         st.session_state["session_id"] = "test-session-id"
         st.session_state["git_version_str"] = "test-git-version"
         mock_placeholder = MagicMock()
         mock_empty.return_value = mock_placeholder
-        yield {"empty": mock_empty, "placeholder": mock_placeholder, "error": mock_error, "stop": mock_stop}
+        yield {"empty": mock_empty, "placeholder": mock_placeholder, "error": mock_error, "stop": mock_stop, "toast": mock_toast}
 
 @pytest.mark.unit
 @patch("src.core.db.logs.salvar_erro")
@@ -102,6 +103,7 @@ def test_fallback_success_on_second_model(mock_salvar_erro, mock_streamlit):
     assert mock_chat.send_message_stream.call_count == 2
     mock_salvar_erro.assert_not_called()
     mock_streamlit["error"].assert_not_called()
+    mock_streamlit["toast"].assert_called_once()
 
 
 @pytest.mark.unit
@@ -123,6 +125,7 @@ def test_fallback_cascade_three_models_success_on_third(mock_salvar_erro, mock_s
     assert mock_chat.send_message_stream.call_count == 3
     mock_salvar_erro.assert_not_called()
     mock_streamlit["error"].assert_not_called()
+    assert mock_streamlit["toast"].call_count == 2
 
 
 @pytest.mark.unit
@@ -201,8 +204,8 @@ def test_fallback_updates_chat_model_attribute(mock_salvar_erro, mock_streamlit)
     resposta = gerar_resposta(chat, "Olá", "")
 
     assert resposta == "ok"
-    assert chat.calls == ["gemini-3.6-flash", "gemini-3.1-flash-lite"]
-    assert chat._model == "gemini-3.1-flash-lite"
+    assert chat.calls == ["gemini-3.6-flash", "gemini-3.5-flash"]
+    assert chat._model == "gemini-3.5-flash"
 
 
 @pytest.mark.unit
