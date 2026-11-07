@@ -4,7 +4,11 @@ import pytest
 
 pytestmark = pytest.mark.unit
 
-from src.config import LIMITE_TEMAS, SEMANTICA_THRESHOLD, TAMANHO_VETOR_SEMANTICO
+from src.config import (
+    LIMITE_TEMAS,
+    SEMANTICA_THRESHOLD,
+    TAMANHO_VETOR_SEMANTICO,
+)
 from src.core.database import (buscar_chunks_por_topico, buscar_referencias_db, get_categorias_erro, recuperar_contexto_inteligente, salvar_erro, salvar_report, salvar_sessao)
 
 
