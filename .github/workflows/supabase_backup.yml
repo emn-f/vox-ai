@@ -30,8 +30,8 @@ jobs:
 
       - name: 🚀 Executar Script de Backup
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_ANON_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL || secrets.SUPABASE_URL_DEV }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_KEY_PROD || secrets.SUPABASE_ANON_KEY || secrets.SUPABASE_ANON_KEY_DEV }}
         run: |
           uv run python scripts/backup_supabase.py --output-dir backups_output
 

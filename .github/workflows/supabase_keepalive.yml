@@ -11,20 +11,21 @@ jobs:
     name: Ping PostgREST Database
     runs-on: ubuntu-latest
     steps:
-      - name: Verificar variáveis de ambiente
+      - name: Executar consulta leve na tabela report_categories
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL || secrets.SUPABASE_URL_DEV }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY || secrets.SUPABASE_ANON_KEY_DEV || secrets.SUPABASE_KEY_PROD }}
         run: |
-          if [ -z "${{ secrets.SUPABASE_URL }}" ] || [ -z "${{ secrets.SUPABASE_ANON_KEY }}" ]; then
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
             echo "⚠️ AVISO: SUPABASE_URL ou SUPABASE_ANON_KEY não estão configurados nos Secrets do GitHub."
             echo "Por favor configure em Settings > Secrets and variables > Actions."
             exit 1
           fi
 
-      - name: Executar consulta leve na tabela report_categories
-        run: |
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-            -X GET "${{ secrets.SUPABASE_URL }}/rest/v1/report_categories?select=id&limit=1" \
-            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
-            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}")
+            -X GET "${SUPABASE_URL}/rest/v1/report_categories?select=id&limit=1" \
+            -H "apikey: ${SUPABASE_ANON_KEY}" \
+            -H "Authorization: Bearer ${SUPABASE_ANON_KEY}")
 
           echo "HTTP Status retornado: $STATUS"
           if [ "$STATUS" -ge 200 ] && [ "$STATUS" -lt 300 ]; then
