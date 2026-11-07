@@ -349,7 +349,7 @@ def test_telegram_bot_commands_case_insensitive_and_mentions():
 
 
 @pytest.mark.unit
-@patch("src.core.genai.configurar_api_gemini")
+@patch("src.core.audio.configurar_api_gemini")
 def test_transcrever_audio_mime_type_inference(mock_config_api):
     import io
     from src.core.genai import transcrever_audio

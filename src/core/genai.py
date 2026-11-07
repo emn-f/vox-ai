@@ -404,4 +404,6 @@ def transcrever_audio(audio_file: Any, mime_type: Optional[str] = None) -> Optio
         Optional[str]: O texto transcrito ou None em caso de erro na API de áudio.
     """
     from src.core.audio import transcrever_audio_gemini
-    return transcrever_audio_gemini(audio_file, mime_type=mime_type or "audio/mp3")
+    if mime_type is not None:
+        return transcrever_audio_gemini(audio_file, mime_type=mime_type)
+    return transcrever_audio_gemini(audio_file)
