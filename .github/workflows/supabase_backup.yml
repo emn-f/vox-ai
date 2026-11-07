@@ -35,7 +35,33 @@ jobs:
         run: |
           uv run python scripts/backup_supabase.py --output-dir backups_output
 
+      - name: 🔍 Validar Integridade do Backup
+        run: |
+          if [ ! -d "backups_output" ] || [ -z "$(ls -A backups_output)" ]; then
+            echo "❌ Diretório de backup inexistente ou vazio."
+            exit 1
+          fi
+
+          MANIFEST=$(find backups_output -name "manifest.json" | head -n 1)
+          if [ -z "$MANIFEST" ] || [ ! -f "$MANIFEST" ]; then
+            echo "❌ Manifesto do backup (manifest.json) não foi gerado."
+            exit 1
+          fi
+
+          echo "📋 Verificando status do manifesto..."
+          STATUS=$(python -c "import json; m=json.load(open('$MANIFEST')); print(m.get('status', 'unknown'))")
+          echo "Status do manifesto: $STATUS"
+
+          if [ "$STATUS" != "success" ]; then
+            echo "❌ O backup não foi concluído com status 'success' (status atual: $STATUS)."
+            echo "Abortando upload de artefato para não persistir backups corrompidos ou parciais."
+            exit 1
+          fi
+
+          echo "✅ Backup íntegro e validado com sucesso."
+
       - name: 📤 Upload do Artefato de Backup
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: supabase-backup-${{ github.run_number }}
