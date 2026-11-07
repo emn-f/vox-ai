@@ -221,7 +221,8 @@ def exibir_historico_chat(historico_conversa: list) -> None:
                 chave_botao = f"btn_audio_{i}"
                 if st.button("🔊 Ouvir", key=chave_botao):
                     audio_data = texto_para_audio(msg["parts"][0])
-                    st.audio(audio_data, format="audio/mp3")
+                    formato_audio = "audio/wav" if audio_data.getvalue().startswith(b"RIFF") else "audio/mp3"
+                    st.audio(audio_data, format=formato_audio)
         else:
             with st.chat_message("user", avatar="👤"):
                 st.markdown(msg["parts"][0])
