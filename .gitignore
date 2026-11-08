@@ -34,9 +34,10 @@ ENV/
 # Documentação local não rastreada
 MELHORIAS_ARQUITETURA.md
 
-# Backups
+# Backups e Temporários
 backups/
 backups_output/
+temp/
 
 # ==============================================================================
 # IDEs & Editors

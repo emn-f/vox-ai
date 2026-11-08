@@ -4,7 +4,7 @@ emoji: 🏳️‍🌈
 colorFrom: purple
 colorTo: red
 sdk: streamlit
-sdk_version: 1.52.2
+sdk_version: 1.67.0
 python_version: 3.13
 app_file: vox_ai.py
 pinned: false
@@ -61,7 +61,7 @@ O **Vox AI** é um chatbot de apoio e informação a comunidade LGBTQIA+. Nossa 
 ![Last Update](https://img.shields.io/github/last-commit/emn-f/vox-ai/main?style=flat-square&logo=github&label=Last%20Update)
 
 ### Atividade e Evolução
-![Commits Last Release](https://img.shields.io/github/commits-since/emn-f/vox-ai/v3.2.14?style=flat-square&logo=git&label=Commits%20since%20last%20release&color=007acc)
+![Commits Last Release](https://img.shields.io/github/commits-since/emn-f/vox-ai/v5.0.0?style=flat-square&logo=git&label=Commits%20since%20last%20release&color=007acc)
 ![Closed Issues](https://img.shields.io/github/issues-closed/emn-f/vox-ai?style=flat-square&logo=github&label=Issues%20Resolved&color=28a745)
 ![Closed PRs](https://img.shields.io/github/issues-pr-closed/emn-f/vox-ai?style=flat-square&logo=github&label=PRs%20Merged&color=6f42c1)
 
@@ -71,27 +71,30 @@ O **Vox AI** é um chatbot de apoio e informação a comunidade LGBTQIA+. Nossa 
 
 ## ✨ Funcionalidades
 
-* **Interface Acolhedora:** Chatbot intuitivo desenvolvido com Streamlit, focado na experiência do usuário.
-* **Busca Semântica (RAG):** Respostas embasadas em uma base de conhecimento curada, utilizando `SentenceTransformers` para garantir precisão e evitar alucinações.
-* **IA Generativa:** Integração com Google Gemini, instruído para atuar com empatia e segurança.
-* **Sistema de Denúncia:** Ferramenta integrada ao chat para reportar respostas inadequadas, alucinações ou violações, com categorização e comentários.
-* **Feedback Loop:** Mecanismo de avaliação integrado para melhoria contínua baseada na opinião da comunidade.
-* **Portal de Transparência:** Um [Dashboard](https://emn-f.github.io/vox-ai/) público para acompanhar changelogs, status da base de dados e outras métricas do projeto.
+* **Interface Acolhedora:** Chatbot intuitivo e acessível em Streamlit com suporte completo a streaming de respostas e feedback em tempo real.
+* **Voz & Áudio Nativo (STT & TTS):** Entrada de voz com transcrição multimodal via Gemini e síntese de voz (TTS) nativa em alta fidelidade (24 kHz PCM WAV) com fallback automático.
+* **Busca Semântica & RAG Inteligente:** Recuperação contextual enriquecida sobre direitos LGBTQIA+, retificação de nome social (MEC), rede de acolhimento local (Salvador/Camaçari) e diretrizes trabalhistas corporativas.
+* **Resiliência Multi-Modelo:** Fallback automático em cascata entre modelos Google Gemini caso o principal atinja limites de cota ou indisponibilidade.
+* **Rede de Apoio Integrada:** Diretório com busca e filtros por cidade, categoria e contato de centros de referência, ONGs e delegacias especializadas.
+* **Core Desacoplado & API REST:** Arquitetura desacoplada com FastAPI (`src/api/`) para execução headless, integrações de canais (WhatsApp/Telegram) e microsserviços.
+* **Pipeline de Ingestão & Auditoria:** Sistema de moderação com IA e Human-in-the-Loop (`conteudo_pendente`) e ferramentas de auditoria e métricas vetoriais da base (`scripts/audit_kb.py`).
+* **Segurança e Gatekeep:** Varreduras SAST com Semgrep, validação estrita de segredos e pipeline de backup automatizado do banco no Supabase.
 
 ## 💻 Tecnologias Utilizadas
 
-* **Core:** Python 3.13, Streamlit.
-* **IA:** Google Gemini Flash.
-* **RAG:** Google GenAI Embeddings (`gemini-embedding-001`).
-* **Dados:** Supabase (Banco Relacional, Vetorial e Logs).
-* **DevOps:** GitHub Actions (CI/CD), Git Cliff (Changelog), Hugging Face (Deploy), uv (Gestão de Dependências).
+* **Core & Backend:** Python 3.13, Streamlit, FastAPI, Uvicorn.
+* **Inteligência Artificial:** Google Gemini (Flash, Flash-Lite, Audio STT & TTS).
+* **Embeddings & Vector Store:** Google GenAI Embeddings (`gemini-embedding-001`), PostgreSQL (`pgvector`) no Supabase.
+* **Segurança & SAST:** Semgrep (v1.183.0), Pre-Push Gatekeep Scanner, Supabase RLS.
+* **DevOps & CI/CD:** GitHub Actions (Node 22 LTS, setup-python@v5, setup-uv@v5, Supabase CLI v2.84.2), Git Cliff, Hugging Face Spaces (Streamlit SDK 1.67.0).
 
 ## 🤖 Automação e CI/CD
 
-* **Versionamento Semântico:** Tags geradas automaticamente em releases.
-* **Changelog Automático:** Gerado via Git Cliff a cada atualização.
-* **Deploy de Banco de Dados:** Aplicação automática de migrações no Supabase.
-* **Deploy Contínuo:** Espelhamento automático para o Hugging Face Spaces.
+* **Versionamento Semântico Automatizado:** Tags `vX.Y.Z` geradas dinamicamente com base em Conventional Commits.
+* **Changelog Contínuo:** Histórico detalhado gerado via Git Cliff (`cliff.toml`).
+* **Deploy de Banco de Dados:** Aplicação controlada e idempotente de migrações no Supabase.
+* **Deploy Contínuo:** Espelhamento automático para Hugging Face Spaces com ambiente validado.
+* **Backups e Manutenção:** Backups semanais validados com manifesto e rotina keep-alive automática.
 
 ## 🤝 Como Contribuir
 
@@ -105,7 +108,7 @@ Segurança e respeito são pilares do Vox. Consulte nossos documentos oficiais:
 * [**Código de Conduta**](.github/CODE_OF_CONDUCT.md): Nossos pactos de convivência.
 * [**Política de Privacidade**](docs/legal/PRIVACY_POLICY.md): Como tratamos dados (100% anônimos).
 * [**Política de Segurança**](.github/SECURITY.md): Como reportar vulnerabilidades.
-* [**Termos de Uso**](docs\legal\TERMS_OF_USE.md): O que você precisa ter em mente ao utilizar o Vox AI.
+* [**Termos de Uso**](docs/legal/TERMS_OF_USE.md): O que você precisa ter em mente ao utilizar o Vox AI.
 
 ## 📝 Licença
 

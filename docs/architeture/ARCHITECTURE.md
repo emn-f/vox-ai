@@ -150,11 +150,35 @@ O Vox AI foi desenhado seguindo princípios de *Privacy by Design* e em conformi
 3. **Descarte Automático e Retenção (Art. 15 e 16):** Um job automático configurado no PostgreSQL via `pg_cron` executa semanalmente a exclusão permanente de registros de logs de chat, erros e sessões com mais de 12 meses de criação.
 4. **Direito de Eliminação (Art. 18):** Disponibilizamos a opção de exclusão sob demanda na interface. O acionamento executa um comando de exclusão em cascata (`DELETE`) no banco de dados para todas as referências associadas ao `session_id` atual.
 
-### Stack Tecnológica
-* ***Orquestração***: Python 3.13 + Streamlit
-* ***Vector Store***: Supabase (`pgvector`)
-* ***LLM & Embeddings***: Google Gemini API (`gemini-3-flash-preview` e `gemini-embedding-001`)
-* ***CI/CD***: GitHub Actions (Deploy automático de Migrations e Code Review)
+## 🚀 Evolução Arquitetural v5.0.0
+
+A versão 5.0.0 do Vox AI introduziu componentes de grande porte para desacoplamento, robustez multimodal e segurança:
+
+1. **Desacoplamento de Backend (API REST Headless):**
+   - Criação da camada `src/api/service.py` e `src/api/routes.py` utilizando FastAPI.
+   - O core do Vox AI opera de forma independente da interface gráfica do Streamlit, permitindo o consumo por bots externos (WhatsApp, Telegram) e futuras aplicações mobile.
+
+2. **Áudio Nativo Gemini (STT & TTS):**
+   - Módulo `src/core/audio.py` com suporte à transcrição de áudio via API multimodal do Gemini e síntese de voz (TTS) em alta fidelidade (PCM 24 kHz WAV).
+   - Resiliência integrada com fallback transparente para síntese alternativa quando necessário.
+
+3. **Resiliência Multi-Modelo (LLM Cascade):**
+   - Estratégia de fallback automático em cascata entre modelos Gemini (`gemini-3.6-flash`, `gemini-3.1-flash-lite`, `gemini-2.5-flash`), evitando interrupções em caso de 429 (rate-limit) ou indisponibilidade temporária.
+
+4. **Pipeline de Ingestão e Curadoria com IA:**
+   - Tabela de staging `conteudo_pendente` para revisão human-in-the-loop antes da publicação definitiva na base de conhecimento.
+   - Script de auditoria e métricas vetoriais `scripts/audit_kb.py` com cálculo de similaridade por cosseno e diagnóstico temático.
+
+5. **Infraestrutura e DevOps:**
+   - GitHub Actions modernizado com Node 22 (LTS), `astral-sh/setup-uv@v5`, `actions/setup-python@v5`, `supabase/setup-cli@v3` (v2.84.2 fixada) e `semgrep/semgrep:1.183.0`.
+   - Relatórios automáticos de execução via `$GITHUB_STEP_SUMMARY` em todos os fluxos de trabalho.
+
+### Stack Tecnológica v5.0.0
+* ***Backend & Core***: Python 3.13, FastAPI, Uvicorn, Streamlit
+* ***Vector Store & Database***: Supabase (PostgreSQL 15+, `pgvector`, RLS restrito)
+* ***LLM, Embeddings & Áudio***: Google Gemini (`gemini-3-flash-preview`, `gemini-3.8-flash-tts`, `gemini-embedding-001`)
+* ***Segurança & SAST***: Semgrep SAST 1.183.0, Gatekeep Pre-Push Hook, RLS Policies
+* ***CI/CD & DevOps***: GitHub Actions (Node 22 LTS), Git Cliff, uv, Hugging Face Spaces (Streamlit SDK 1.67.0)
 ---
 
 <div align="left">
