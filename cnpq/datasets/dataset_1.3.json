@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "categoria": "Educação e Sociedade",
+    "pergunta": "minha prof fica me chamando pelo nome errado na chamada.. sou trans e ela sabe diss.. a escola e obrigada pela lei a usa meu nome social??",
+    "objetivo": "Avalia resiliência a erros ortográficos e linguagem informal sobre a Resolução CNE/CP nº 1/2018 — obrigação legal de uso do nome social na chamada escolar."
+  },
+  {
+    "id": 2,
+    "categoria": "Educação e Sociedade",
+    "pergunta": "retifiquei meu nome no cartorio mas a faculdade nao qr reemitir meu diploma com o nome novo.. tem lei q obrigue eles n??",
+    "objetivo": "Avalia resiliência a abreviações ('n??') e erros sobre reemissão de diploma pós-retificação (CNJ 73/2018 + diretrizes CNE/MEC), sem custo abusivo ao estudante."
+  },
+  {
+    "id": 3,
+    "categoria": "Educação e Sociedade",
+    "pergunta": "como coloco meu nome social no enem?? to inscrita mas esqueci de colocar na hora. da pra muda isso dpois??",
+    "objetivo": "Avalia resiliência a gírias ('dpois', 'da pra') sobre procedimento de nome social no Enem, sincronização com CPF e prazo do edital INEP/MEC 27/2024."
+  },
+  {
+    "id": 4,
+    "categoria": "Segurança e Violência",
+    "pergunta": "meu chefe proibiu eu de entra no banheiro feminino sendo q sou mulher trans isso pode?? posso processa ele??",
+    "objetivo": "Avalia resiliência a linguagem coloquial sobre TST caso Luxottica 2024 — proibição de banheiro configura dano moral e gera direito a indenização (R$ 25 mil)."
+  },
+  {
+    "id": 5,
+    "categoria": "Segurança e Violência",
+    "pergunta": "fiz denúncia de lgbtfobia no trabalho mas a empresa disse q criou banheiro pra mim separado e ta tudo certo. isso e mesmo uma soluçao legal??",
+    "objetivo": "Avalia resiliência a texto informal sobre TST 6ª Turma (2017) — banheiro unissex/separado como solução forçada é discriminação, não resolução."
+  },
+  {
+    "id": 6,
+    "categoria": "Segurança e Violência",
+    "pergunta": "levei homofobia aqui em ssalvador. qual o delegacia especializada q atende esse tipo d caso?? tem telefone??",
+    "objetivo": "Avalia resiliência a erro tipográfico ('ssalvador') e linguagem informal sobre DECRIN Salvador: endereço CPCD, telefones (71) 99637-8289 / 3450-1111."
+  },
+  {
+    "id": 7,
+    "categoria": "Saúde e Acolhimento",
+    "pergunta": "to passando por situaçao mto perigosa em casa pq sou bi, to com medo d voltar pra casa. tem casa d acolhimento em salvador?? como entra em contato??",
+    "objetivo": "Avalia resiliência a urgência emocional e linguagem comprimida sobre Casa Marielle Franco Brasil (sigilo de endereço, WhatsApp (71) 99153-9477) e Vida Bruno."
+  },
+  {
+    "id": 8,
+    "categoria": "Saúde e Acolhimento",
+    "pergunta": "quero comecar hormonizaçao mas n tenho plano de saude. tem algum postinho ou ambulatorio gratis pra trans aqui em ssalvador??",
+    "objetivo": "Avalia resiliência a erro tipográfico ('ssalvador') e linguagem informal sobre ambulatórios SUS trans: Multicentro Carlos Gomes (71) 3202-1924 e CEDAP (71) 3116-8838."
+  },
+  {
+    "id": 9,
+    "categoria": "Segurança e Violência",
+    "pergunta": "onde fico reclamando se a empresa discriminou eu por ser trans?? tem como denuncia sem perder o emprego??",
+    "objetivo": "Avalia resiliência a linguagem coloquial sobre canais de denúncia: MPT (mpt.mp.br), MTE (gov.br/trabalho) e Disque 100 — sigilo do denunciante garantido."
+  },
+  {
+    "id": 10,
+    "categoria": "Educação e Sociedade",
+    "pergunta": "li q 82 por cento das pessoa trans largam a escola por causa de preconceito. onde busco apoio se to pensando em largar minha facul por causa de transfobia??",
+    "objetivo": "Avalia recuperação de dados ANTRA/OAB sobre evasão (82%) e encaminhamento ao CPDD-LGBT (Pelourinho) e Centro Vida Bruno (Rio Vermelho) para apoio jurídico e psicossocial."
+  }
+]

@@ -64,7 +64,7 @@ def get_git_files(mode: str) -> List[str]:
     if mode == "pre-commit":
         cmd = ["git", "diff", "--name-only", "--cached"]
     elif mode == "pre-push":
-        cmd = ["git", "diff", "--name-only", "origin/main..HEAD"]
+        cmd = ["git", "diff", "--name-only", "@{u}..HEAD"]
 
     try:
         output = subprocess.check_output(cmd, stderr=subprocess.DEVNULL).decode()
@@ -93,7 +93,7 @@ def get_git_diff_content(mode: str) -> str:
     if mode == "pre-commit":
         cmd = ["git", "diff", "--cached"]
     elif mode == "pre-push":
-        cmd = ["git", "diff", "origin/main..HEAD"]
+        cmd = ["git", "diff", "@{u}..HEAD"]
 
     try:
         return subprocess.check_output(cmd, stderr=subprocess.DEVNULL).decode()

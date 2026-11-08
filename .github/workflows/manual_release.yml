@@ -34,8 +34,13 @@ jobs:
 
       - name: Calcular Próxima Versão
         id: get_tag
+        env:
+          REF_NAME: ${{ github.ref_name }}
+          INPUT_INCREMENT_TYPE: ${{ github.event.inputs.increment_type }}
+          REPO: ${{ github.repository }}
+          TOKEN: ${{ secrets.TOKEN_DEPLOY_VOX }}
         run: |
-          if [ "${{ github.ref_name }}" == "develop" ]; then
+          if [ "$REF_NAME" == "develop" ]; then
             PREFIX="dev-v"
           else
             PREFIX="v"
@@ -51,7 +56,7 @@ jobs:
           VERSION=${LAST_TAG#$PREFIX}
           IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
           
-          INCREMENT_TYPE="${{ github.event.inputs.increment_type }}"
+          INCREMENT_TYPE="$INPUT_INCREMENT_TYPE"
           echo "Tipo de incremento selecionado: $INCREMENT_TYPE"
 
           if [ "$INCREMENT_TYPE" == "major" ]; then
@@ -72,8 +77,8 @@ jobs:
           echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
           git tag $NEW_TAG
 
-          git remote set-url origin https://emn-f:${{ secrets.TOKEN_DEPLOY_VOX }}@github.com/${{ github.repository }}.git
+          git remote set-url origin "https://emn-f:${TOKEN}@github.com/${REPO}.git"
           
-          git push origin ${{ github.ref_name }} --tags
+          git push origin "$REF_NAME" --tags
 
           echo "✅ Versão Manual ${NEW_TAG} lançada!"

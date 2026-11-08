@@ -39,21 +39,10 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Calcular Próxima Versão Prod
+      - name: Calcular Próxima Versão Dinâmica (SemVer via Conventional Commits)
         id: get_tag
         run: |
-          LAST_TAG=$(git tag --list "v*" --sort=-v:refname | head -n 1)
-          if [ -z "$LAST_TAG" ]; then
-            LAST_TAG="v0.0.0"
-          fi
-
-          VERSION=${LAST_TAG#v}
-          IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
-          PATCH=$((PATCH + 1))
-          NEW_TAG="v${MAJOR}.${MINOR}.${PATCH}"
-
-          echo "Nova versão Prod: $NEW_TAG"
-          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
+          python3 scripts/calc_next_version.py --prefix "v" --export-github
 
       - name: Gerar Changelog (Git Cliff)
         uses: orhun/git-cliff-action@v4
@@ -62,9 +51,11 @@ jobs:
           args: --unreleased --tag ${{ steps.get_tag.outputs.new_tag }} --prepend CHANGELOG.md
 
       - name: Commitar, Taggear e Push
+        env:
+          NEW_TAG: ${{ steps.get_tag.outputs.new_tag }}
+          REPO: ${{ github.repository }}
+          TOKEN: ${{ secrets.TOKEN_DEPLOY_VOX }}
         run: |
-          NEW_TAG="${{ steps.get_tag.outputs.new_tag }}"
-
           git add CHANGELOG.md
 
           if git diff --staged --quiet; then
@@ -73,9 +64,9 @@ jobs:
             git commit -m "chore(release): changelog atualizado para versão ${NEW_TAG} [skip ci]"
           fi
 
-          git tag $NEW_TAG
+          git tag "$NEW_TAG"
 
-          git remote set-url origin https://emn-f:${{ secrets.TOKEN_DEPLOY_VOX }}@github.com/${{ github.repository }}.git
+          git remote set-url origin "https://emn-f:${TOKEN}@github.com/${REPO}.git"
           
           git push origin main --tags
 

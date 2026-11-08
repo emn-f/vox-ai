@@ -50,15 +50,22 @@ if "session_id" not in st.session_state:
     st.session_state.session_id = str(uuid.uuid4())
     salvar_sessao(st.session_state.session_id)
 
+if "hist_exibir" not in st.session_state:
+    st.session_state.hist_exibir = []
+
 carregar_sidebar(SIDEBAR_BODY, SIDEBAR_FOOTER)
 
 st.session_state.key_api = configurar_api_gemini()
 
-inicializar_chat_modelo()
+if st.session_state.get("key_api"):
+    try:
+        inicializar_chat_modelo()
+    except Exception as e_init:
+        logger.warning(f"Aviso ao inicializar chat conversacional: {e_init}")
 
 exibir_historico_chat(st.session_state.hist_exibir)
 
-if "key_api" in st.session_state:
+if st.session_state.get("key_api"):
     if "primeira_vez" not in st.session_state:
         mensagem_boas_vindas = SAUDACAO
         st.session_state.hist_exibir.append(
@@ -77,8 +84,8 @@ if "key_api" in st.session_state:
 
     prompt_final = None
 
-    if prompt:
-        prompt_final = prompt
+    if prompt and prompt.strip():
+        prompt_final = prompt.strip()
     elif audio_val:
         if (
             "ultimo_audio_id" not in st.session_state
@@ -86,8 +93,8 @@ if "key_api" in st.session_state:
         ):
             with st.spinner("Ouvindo e transcrevendo... 🎧"):
                 texto_transcrito = transcrever_audio(audio_val)
-                if texto_transcrito:
-                    prompt_final = texto_transcrito
+                if texto_transcrito and texto_transcrito.strip():
+                    prompt_final = texto_transcrito.strip()
                     st.session_state.ultimo_audio_id = audio_val.name
 
     if prompt_final:

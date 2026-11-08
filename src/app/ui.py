@@ -14,6 +14,43 @@ def configurar_pagina() -> None:
     e renderiza o cabeçalho estilizado da aplicação.
     """
     st.set_page_config(page_title="Vox AI: Assistente de Apoio e Informação LGBTQIA+", page_icon="🌈")
+    
+    # Injeta script para atualizar as meta tags no head principal para visual móvel
+    st.markdown(
+        """
+        <script>
+            const doc = window.parent.document;
+            
+            // Atualiza ou cria a tag meta theme-color para a barra de endereços do celular
+            let metaTheme = doc.querySelector('meta[name="theme-color"]');
+            if (!metaTheme) {
+                metaTheme = doc.createElement('meta');
+                metaTheme.name = "theme-color";
+                doc.getElementsByTagName('head')[0].appendChild(metaTheme);
+            }
+            metaTheme.content = "#7209b7";
+            
+            // Configurações para Safari no iOS
+            let appleCapable = doc.querySelector('meta[name="apple-mobile-web-app-capable"]');
+            if (!appleCapable) {
+                appleCapable = doc.createElement('meta');
+                appleCapable.name = "apple-mobile-web-app-capable";
+                doc.getElementsByTagName('head')[0].appendChild(appleCapable);
+            }
+            appleCapable.content = "yes";
+
+            let appleStatus = doc.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
+            if (!appleStatus) {
+                appleStatus = doc.createElement('meta');
+                appleStatus.name = "apple-mobile-web-app-status-bar-style";
+                doc.getElementsByTagName('head')[0].appendChild(appleStatus);
+            }
+            appleStatus.content = "black-translucent";
+        </script>
+        """,
+        unsafe_allow_html=True,
+    )
+
     st.markdown(
         """
         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
@@ -108,6 +145,15 @@ def dialog_reportar() -> None:
                     return
 
 
+@st.dialog("🤝 Rede de Apoio e Acolhimento", width="large")
+def dialog_rede_apoio() -> None:
+    """
+    Exibe o diretório da Rede de Apoio e Acolhimento em modal interativo.
+    """
+    from src.app.pages.rede_apoio import render_rede_apoio
+    render_rede_apoio()
+
+
 def carregar_sidebar(sidebar_content: str, sidebar_footer: str) -> None:
     """
     Renderiza os elementos da barra lateral (sidebar), incluindo links de redes sociais,
@@ -125,6 +171,9 @@ def carregar_sidebar(sidebar_content: str, sidebar_footer: str) -> None:
             url=f"{CONTRIBUTING}",
             use_container_width=True,
         )
+
+        if st.button("🤝 Rede de Apoio & Acolhimento", use_container_width=True):
+            dialog_rede_apoio()
 
         col1, col2 = st.columns(2)
         with col1:
@@ -184,7 +233,8 @@ def exibir_historico_chat(historico_conversa: list) -> None:
                 chave_botao = f"btn_audio_{i}"
                 if st.button("🔊 Ouvir", key=chave_botao):
                     audio_data = texto_para_audio(msg["parts"][0])
-                    st.audio(audio_data, format="audio/mp3")
+                    formato_audio = "audio/wav" if audio_data.getvalue().startswith(b"RIFF") else "audio/mp3"
+                    st.audio(audio_data, format=formato_audio)
         else:
             with st.chat_message("user", avatar="👤"):
                 st.markdown(msg["parts"][0])

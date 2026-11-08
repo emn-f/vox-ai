@@ -1,0 +1,10 @@
+# Semgrep ignore rules for Vox AI
+.venv/
+venv/
+tests/
+temp/
+backups/
+data/
+*.min.js
+*.bundle.js
+docs/

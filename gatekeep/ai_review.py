@@ -21,8 +21,15 @@ BLOCK_KEYWORDS = [
     "chave exposta",
 ]
 
-def log_ai_event(event_type: str, ai_response: str):
-    """Registra eventos da IA no log e tenta abrir o arquivo em caso de bloqueio."""
+def log_ai_event(event_type: str, ai_response: str) -> None:
+    """Registra eventos da IA no log e tenta abrir o arquivo em caso de bloqueio.
+
+    Os novos logs são inseridos no final do arquivo (append) para máxima performance de I/O.
+
+    Args:
+        event_type (str): O tipo de evento ocorrido (ex: BLOCK, PASS).
+        ai_response (str): O feedback textual retornado pela IA.
+    """
     log_file = "ai_gatekeeper.log"
     meta = get_git_metadata()
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -49,13 +56,27 @@ CODE REVIEWER FEEDBACK (Gemini):
     except Exception as e:
         print_colored(f"⚠️ Falha ao gravar log: {e}", COLOR_YELLOW)
 
-def _open_log_file(log_file: str):
-    """Tenta abrir o log no editor padrão ou VS Code/Notepad++."""
+def _open_log_file(log_file: str) -> None:
+    """Tenta abrir o log no editor padrão ou VS Code/Notepad++.
+
+    Se o VS Code for detectado, abre o arquivo posicionando o cursor na última
+    linha (mais recente).
+
+    Args:
+        log_file (str): O caminho do arquivo de log a ser aberto.
+    """
     try:
+        # Conta a quantidade de linhas no arquivo para abrir o VS Code no final
+        num_lines = 1
+        if os.path.exists(log_file):
+            with open(log_file, "r", encoding="utf-8") as f:
+                num_lines = sum(1 for _ in f)
+
         if shutil.which("notepad++"):
             subprocess.Popen(["notepad++", log_file])
         elif shutil.which("code"):
-            subprocess.Popen(["code", "-g", log_file])
+            # Abre o VS Code focando na última linha (mais recente)
+            subprocess.Popen(["code", "-g", f"{log_file}:{num_lines}"])
         elif sys.platform == "win32":
             os.startfile(log_file)
         else:

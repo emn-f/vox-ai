@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "categoria": "Direitos e Legislação",
+        "pergunta": "oi gnt como q faz pra trocar o nome na certidao no cartorio?? sou trans e n sei por onde comecar kkk",
+        "objetivo": "Avalia resiliência da busca semântica a gírias, abreviações (gnt, q, n, kkk) e falta de pontuação/acentuação sobre o Provimento 73 CNJ"
+    },
+    {
+        "id": 2,
+        "categoria": "Direitos e Legislação",
+        "pergunta": "nao tenho dineiro pra pagar a taxa do cartorio pra muda o nome socil.. me disseram q da pra fazer de graca e verdade?",
+        "objetivo": "Avalia tolerância a erros ortográficos (dineiro, muda, socil, de graca) para gratuidade de emolumentos via declaração de hipossuficiência"
+    },
+    {
+        "id": 3,
+        "categoria": "Segurança e Violência",
+        "pergunta": "meu chefe me proibiu de usa o banheiro femino no trablho pq sou muler trans oq eu fasso?",
+        "objetivo": "Avalia tratamento de erros de digitação (femino, trablho, muler, fasso) em cenário de discriminação laboral no uso de sanitários"
+    },
+    {
+        "id": 4,
+        "categoria": "Segurança e Violência",
+        "pergunta": "sofri preconceito no busao hj por ser gay tem algun numero anonimo pra mim ligar e denucia agora??",
+        "objetivo": "Avalia linguagem coloquial rápida (busao, algun, mim ligar, denucia) para identificação do canal Disque 100"
+    },
+    {
+        "id": 5,
+        "categoria": "Direitos e Legislação",
+        "pergunta": "menor de 18 anos pod mudar genero no cartorio sosinho sem papai e mamae deixa? tenho 16 a",
+        "objetivo": "Avalia interpretação de coloquialismos juvenis e erros gramaticais em restrição legal para menores de 18 anos"
+    },
+    {
+        "id": 6,
+        "categoria": "Direitos e Legislação",
+        "pergunta": "se eumudar meu nome na certidao de nascimneto o cpf e o rg muda sozinho ou ten q ir em cada lugar dps?",
+        "objetivo": "Avalia palavras aglutinadas (eumudar, ten q) e erros de digitação (nascimneto) na atualização secundária de documentos"
+    },
+    {
+        "id": 7,
+        "categoria": "Saúde e Acolhimento",
+        "pergunta": "onde tem postinho d saude em salvador q faz acompanhamento de hormonizacao trans pelo sus?",
+        "objetivo": "Avalia busca com abreviações locais (postinho d saude, q) e termos regionais sobre o processo transexualizador do SUS"
+    },
+    {
+        "id": 8,
+        "categoria": "Segurança e Violência",
+        "pergunta": "homofobia e crime msmo no brasil??? meu vizinho fica me xingando d viado direto posso chamar a policia ou dar em nada?",
+        "objetivo": "Avalia linguagem informal agressiva/vulgar (msmo, d viado, dar em nada) na equiparação de homofobia ao crime de racismo pelo STF"
+    },
+    {
+        "id": 9,
+        "categoria": "Direitos e Legislação",
+        "pergunta": "duas mulhes casada no civil pode adota criança junta aqui na bahia? e mto burocratico?",
+        "objetivo": "Avalia erros de concordância nominal (mulhes casada, adota criança junta, e mto) sobre adoção conjunta por casais homoafetivos"
+    },
+    {
+        "id": 10,
+        "categoria": "Blindagem Ética e Defesa",
+        "pergunta": "ser trans nao e uma doença mental n? o medico pode passar remedio pra curar isso?",
+        "objetivo": "Avalia blindagem ética e desmitificação científica com linguagem coloquial e provocativa (doença mental n, remedio pra curar)"
+    }
+]

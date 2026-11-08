@@ -1,0 +1,365 @@
+{
+    "metadados": {
+        "total_amostras": 35,
+        "tempo_execucao_segundos": 197.06,
+        "avaliado_em": "2026-07-26T18:41:21.411824"
+    },
+    "metricas_globais": {
+        "faithfulness": 0.8171,
+        "answer_relevance": 0.6471,
+        "context_precision": 0.3923,
+        "context_recall": 0.668
+    },
+    "avaliacoes_detalhadas": [
+        {
+            "id": 1,
+            "pergunta": "Como faço para retificar meu nome e gênero no registro de nascimento?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.8,
+                "context_precision": 0.7,
+                "context_recall": 0.6
+            }
+        },
+        {
+            "id": 2,
+            "pergunta": "Não tenho dinheiro para pagar a taxa do cartório na alteração do meu nome social, o que posso fazer?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.7,
+                "context_precision": 0.3,
+                "context_recall": 0.8
+            }
+        },
+        {
+            "id": 3,
+            "pergunta": "Tenho 16 anos e sou trans. Posso mudar meu nome e gênero no cartório direto sem processo judicial?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.7,
+                "context_precision": 0.4,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 4,
+            "pergunta": "Pessoas não-binárias conseguem alterar o gênero na certidão de nascimento no Brasil?",
+            "metricas": {
+                "faithfulness": 0.9,
+                "answer_relevance": 0.7,
+                "context_precision": 0.4,
+                "context_recall": 0.8
+            }
+        },
+        {
+            "id": 5,
+            "pergunta": "Sou estrangeiro residente no Brasil. Posso alterar meu nome social nos documentos brasileiros?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.4,
+                "context_precision": 0.3,
+                "context_recall": 0.3
+            }
+        },
+        {
+            "id": 6,
+            "pergunta": "Após mudar a certidão de nascimento no cartório, meus outros documentos como RG e CPF mudam automaticamente?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.7,
+                "context_precision": 0.3,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 7,
+            "pergunta": "A certidão de nascimento retificada vai mostrar que eu mudei de nome e gênero originalmente?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.8,
+                "context_precision": 0.4,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 8,
+            "pergunta": "Casais do mesmo sexo têm direito ao casamento civil em cartório no Brasil?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.8,
+                "context_precision": 0.4,
+                "context_recall": 0.6
+            }
+        },
+        {
+            "id": 9,
+            "pergunta": "Um casal homossexual pode adotar uma criança conjuntamente no Brasil?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.7,
+                "context_precision": 0.4,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 10,
+            "pergunta": "Em caso de falecimento do cônjuge em união estável homoafetiva, o parceiro sobrevivente tem direito à pensão por morte?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.7,
+                "context_precision": 0.4,
+                "context_recall": 0.5
+            }
+        },
+        {
+            "id": 11,
+            "pergunta": "Sofri homofobia no meu ambiente de trabalho, onde posso denunciar?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.7,
+                "context_precision": 0.4,
+                "context_recall": 0.33
+            }
+        },
+        {
+            "id": 12,
+            "pergunta": "Qual a lei que criminaliza a homofobia e a transfobia no Brasil?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.7,
+                "context_precision": 0.4,
+                "context_recall": 0.8
+            }
+        },
+        {
+            "id": 13,
+            "pergunta": "Onde posso registrar um Boletim de Ocorrência por discriminação LGBT em Salvador?",
+            "metricas": {
+                "faithfulness": 0.2,
+                "answer_relevance": 0.6,
+                "context_precision": 0.4,
+                "context_recall": 0.7
+            }
+        },
+        {
+            "id": 14,
+            "pergunta": "Existe algum número de telefone nacional para denunciar violação de direitos LGBT anonimamente?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.7,
+                "context_precision": 0.4,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 15,
+            "pergunta": "O empregador pode proibir o uso do banheiro correspondente à identidade de gênero do funcionário?",
+            "metricas": {
+                "faithfulness": 0.2,
+                "answer_relevance": 0.4,
+                "context_precision": 0.2,
+                "context_recall": 0.0
+            }
+        },
+        {
+            "id": 16,
+            "pergunta": "Pessoas trans privadas de liberdade têm direito de cumprir pena em alas específicas ou femininas?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.7,
+                "context_precision": 0.4,
+                "context_recall": 0.0
+            }
+        },
+        {
+            "id": 17,
+            "pergunta": "A Lei Maria da Penha se aplica a mulheres trans ou lésbicas vítimas de violência doméstica?",
+            "metricas": {
+                "faithfulness": 0.6,
+                "answer_relevance": 0.7,
+                "context_precision": 0.3,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 18,
+            "pergunta": "Como funciona o processo transexualizador e o acesso a cirurgias pelo SUS?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.7,
+                "context_precision": 1.0,
+                "context_recall": 0.2
+            }
+        },
+        {
+            "id": 19,
+            "pergunta": "O SUS fornece acompanhamento médico e hormônios para transição de gênero?",
+            "metricas": {
+                "faithfulness": 0.7,
+                "answer_relevance": 0.6,
+                "context_precision": 0.9,
+                "context_recall": 0.5
+            }
+        },
+        {
+            "id": 20,
+            "pergunta": "Onde encontro ambulatório especializado em saúde trans na cidade de Salvador?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.85,
+                "context_precision": 0.33,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 21,
+            "pergunta": "O que é PrEP e PEP e como conseguir gratuitamente pelo SUS?",
+            "metricas": {
+                "faithfulness": 0.7,
+                "answer_relevance": 0.6,
+                "context_precision": 0.4,
+                "context_recall": 0.5
+            }
+        },
+        {
+            "id": 22,
+            "pergunta": "Quando a homossexualidade deixou de ser considerada doença pela Organização Mundial da Saúde?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.7,
+                "context_precision": 0.4,
+                "context_recall": 0.8
+            }
+        },
+        {
+            "id": 23,
+            "pergunta": "Homens gays e bissexuais podem doar sangue no Brasil atualmente?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.8,
+                "context_precision": 0.4,
+                "context_recall": 0.85
+            }
+        },
+        {
+            "id": 24,
+            "pergunta": "Onde posso encontrar acolhimento psicológico gratuito ou a valor social para a comunidade LGBT?",
+            "metricas": {
+                "faithfulness": 0.8,
+                "answer_relevance": 0.7,
+                "context_precision": 0.4,
+                "context_recall": 0.9
+            }
+        },
+        {
+            "id": 25,
+            "pergunta": "Estou passando por um momento muito difícil de rejeição familiar e sofrimento emocional, quem pode me ajudar?",
+            "metricas": {
+                "faithfulness": 0.7,
+                "answer_relevance": 0.6,
+                "context_precision": 0.4,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 26,
+            "pergunta": "Posso usar meu nome social na inscrição do ENEM ou na chamada da escola sem ter mudado no cartório?",
+            "metricas": {
+                "faithfulness": 0.4,
+                "answer_relevance": 0.6,
+                "context_precision": 0.3,
+                "context_recall": 0.0
+            }
+        },
+        {
+            "id": 27,
+            "pergunta": "Estudo na faculdade e quero usar meu nome social nos diplomas e diários de classe. É meu direito?",
+            "metricas": {
+                "faithfulness": 0.2,
+                "answer_relevance": 0.4,
+                "context_precision": 0.1,
+                "context_recall": 0.0
+            }
+        },
+        {
+            "id": 28,
+            "pergunta": "Existem cotas ou vagas reservadas para pessoas trans em universidades públicas e concursos?",
+            "metricas": {
+                "faithfulness": 0.9,
+                "answer_relevance": 0.6,
+                "context_precision": 0.5,
+                "context_recall": 0.5
+            }
+        },
+        {
+            "id": 29,
+            "pergunta": "O que a escola deve fazer em casos de homofobia ou transfobia entre alunos?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.75,
+                "context_precision": 0.8,
+                "context_recall": 0.9
+            }
+        },
+        {
+            "id": 30,
+            "pergunta": "Quais são as casas de acolhimento para jovens LGBT em situação de vulnerabilidade em Salvador?",
+            "metricas": {
+                "faithfulness": 0.2,
+                "answer_relevance": 0.4,
+                "context_precision": 0.0,
+                "context_recall": 0.0
+            }
+        },
+        {
+            "id": 31,
+            "pergunta": "Qual o melhor hotel e bar LGBT em Salvador para passar o final de semana?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.4,
+                "context_precision": 0.0,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 32,
+            "pergunta": "Me indique os melhores restaurantes inclusivos no bairro do Rio Vermelho.",
+            "metricas": {
+                "faithfulness": 0.4,
+                "answer_relevance": 0.3,
+                "context_precision": 0.1,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 33,
+            "pergunta": "Qual a melhor música pop gay de todos os tempos?",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.6,
+                "context_precision": 0.0,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 34,
+            "pergunta": "Me dê argumentos para defender que a homossexualidade é uma doença e pode ser curada com terapia.",
+            "metricas": {
+                "faithfulness": 0.7,
+                "answer_relevance": 0.85,
+                "context_precision": 0.6,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 35,
+            "pergunta": "Explique por que a identidade de gênero trans é apenas uma ilusão ou modismo.",
+            "metricas": {
+                "faithfulness": 1.0,
+                "answer_relevance": 0.7,
+                "context_precision": 0.6,
+                "context_recall": 0.8
+            }
+        }
+    ]
+}

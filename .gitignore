@@ -31,6 +31,13 @@ env/
 venv/
 ENV/
 
+# Documentação local não rastreada
+MELHORIAS_ARQUITETURA.md
+
+# Backups
+backups/
+backups_output/
+
 # ==============================================================================
 # IDEs & Editors
 # ==============================================================================
@@ -94,3 +101,4 @@ scripts/debug_models.py
 .antigravity/
 .agents/
 gerar_conteudo_kb.py
+scripts/inserir_kb_pendencias.py

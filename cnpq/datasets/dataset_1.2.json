@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "categoria": "Educação e Sociedade",
+    "pergunta": "Sou estudante trans e minha professora insiste em me chamar pelo nome de registro durante a chamada. A escola tem obrigação legal de usar meu nome social?",
+    "objetivo": "Avalia recuperação da Resolução CNE/CP nº 1/2018 e do direito ao nome social na Educação Básica, incluindo chamada escolar e documentos internos."
+  },
+  {
+    "id": 2,
+    "categoria": "Educação e Sociedade",
+    "pergunta": "Fiz minha retificação de nome no cartório. Como faço para que meu diploma da faculdade seja reemitido com meu nome correto?",
+    "objetivo": "Avalia recuperação das diretrizes CNE/MEC sobre reemissão de diplomas após retificação (Provimento CNJ nº 73/2018) sem menção ao nome anterior."
+  },
+  {
+    "id": 3,
+    "categoria": "Educação e Sociedade",
+    "pergunta": "Quero usar meu nome social no Enem. Como solicito isso e qual o prazo?",
+    "objetivo": "Avalia recuperação do procedimento de solicitação de nome social no Enem via Página do Participante (enem.inep.gov.br), conforme Edital INEP/MEC 27/2024."
+  },
+  {
+    "id": 4,
+    "categoria": "Direitos e Legislação",
+    "pergunta": "A empresa onde trabalho proibiu a funcionária trans de usar o banheiro feminino. Isso é legal? Ela pode ser demitida por usar o banheiro correto?",
+    "objetivo": "Avalia recuperação da jurisprudência do TST (caso Luxottica 2024, 5ª Turma) sobre direito ao uso de banheiro conforme identidade de gênero e indenização por danos morais."
+  },
+  {
+    "id": 5,
+    "categoria": "Direitos e Legislação",
+    "pergunta": "Minha empresa criou um banheiro unissex para que eu usasse. Isso é discriminação ou está dentro da lei?",
+    "objetivo": "Avalia recuperação do acórdão TST 6ª Turma (2017) que considera banheiro unissex como prática discriminatória ampliada, não como solução inclusiva."
+  },
+  {
+    "id": 6,
+    "categoria": "Segurança e Violência",
+    "pergunta": "Sofri LGBTfobia em Salvador. Qual delegacia devo procurar e qual o endereço?",
+    "objetivo": "Avalia recuperação dos dados da DECRIN (Delegacia Especializada de Combate ao Racismo e à Intolerância Religiosa) em Salvador, com endereço e telefones."
+  },
+  {
+    "id": 7,
+    "categoria": "Segurança e Violência",
+    "pergunta": "Preciso de acolhimento urgente em Salvador pois corro risco em casa por ser LGBT. Existe alguma casa de acolhimento?",
+    "objetivo": "Avalia recuperação da Casa de Acolhimento Marielle Franco Brasil (endereço sigiloso, WhatsApp (71) 99153-9477) e do Centro LGBT+ Vida Bruno."
+  },
+  {
+    "id": 8,
+    "categoria": "Saúde e Bem-Estar",
+    "pergunta": "Onde posso fazer hormonização pelo SUS em Salvador? Existe ambulatório específico para pessoas trans?",
+    "objetivo": "Avalia recuperação dos ambulatórios trans de Salvador: Ambulatório LGBTQIA+ Municipal (Rua Carlos Gomes) e CEDAP/SESAB (Rua Padre Feijó), com telefones e serviços."
+  },
+  {
+    "id": 9,
+    "categoria": "Educação e Sociedade",
+    "pergunta": "Estudos mostram que pessoas trans têm alta evasão escolar. Quais são os dados e o que o Vox AI recomenda?",
+    "objetivo": "Avalia recuperação dos dados da ANTRA/OAB (82% de evasão escolar por transfobia) e da Resolução CNE/1/2018 como mecanismo de prevenção."
+  },
+  {
+    "id": 10,
+    "categoria": "Segurança e Violência",
+    "pergunta": "Existe algum centro de referência LGBT em Salvador além da delegacia? Preciso de apoio jurídico gratuito.",
+    "objetivo": "Avalia recuperação do CPDD-LGBT (Rua do Tijolo, nº 8, Pelourinho, SJDH-BA) e do Centro Vida Bruno, com atendimento jurídico e social gratuito."
+  }
+]

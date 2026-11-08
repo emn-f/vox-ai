@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard RAG - Vox AI</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f8fafc;
+            --accent: #38bdf8;
+            --border: #334155;
+            --green: #22c55e;
+        }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        .card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .card .title {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .card .val {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin: 0.5rem 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: #0f172a;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+        .badge {
+            background: #0284c7;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Dashboard de Avaliação RAG — Vox AI</h1>
+        <div class="subtitle">Visão geral consolidada dos benchmarks de entrada e saída textual</div>
+
+        <div class="cards">
+            <div class="card">
+                <div class="title">Fidelidade Média</div>
+                <div class="val" style="color: #4ade80;">0.9450</div>
+                <small style="color: #94a3b8;">Faithfulness</small>
+            </div>
+            <div class="card">
+                <div class="title">Relevância Média</div>
+                <div class="val" style="color: #38bdf8;">0.7479</div>
+                <small style="color: #94a3b8;">Answer Relevance</small>
+            </div>
+            <div class="card">
+                <div class="title">Precisão Média</div>
+                <div class="val" style="color: #facc15;">0.6474</div>
+                <small style="color: #94a3b8;">Context Precision</small>
+            </div>
+            <div class="card">
+                <div class="title">Revocação Média</div>
+                <div class="val" style="color: #a78bfa;">0.8505</div>
+                <small style="color: #94a3b8;">Context Recall</small>
+            </div>
+        </div>
+
+        <h2>📜 Histórico de Testes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Versão</th>
+                    <th>Data / Hora</th>
+                    <th>Cenários</th>
+                    <th>Faithfulness</th>
+                    <th>Relevância</th>
+                    <th>Precisão</th>
+                    <th>Revocação</th>
+                    <th>Arquivo JSON</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+        <tr>
+            <td><span class="badge">v1.3</span></td>
+            <td>2026-07-26 21:09:33</td>
+            <td>10</td>
+            <td><strong>0.9700</strong></td>
+            <td><strong>0.7350</strong></td>
+            <td><strong>0.7200</strong></td>
+            <td><strong>0.7400</strong></td>
+            <td style="font-size: 0.85em; color: #666;">benchmark_completo_v1.3_20260726_210933.json</td>
+        </tr>
+        
+        <tr>
+            <td><span class="badge">v1.2</span></td>
+            <td>2026-07-26 21:07:36</td>
+            <td>10</td>
+            <td><strong>0.9650</strong></td>
+            <td><strong>0.7800</strong></td>
+            <td><strong>0.6900</strong></td>
+            <td><strong>0.8500</strong></td>
+            <td style="font-size: 0.85em; color: #666;">benchmark_completo_v1.2_20260726_210736.json</td>
+        </tr>
+        
+        <tr>
+            <td><span class="badge">v1.1</span></td>
+            <td>2026-07-26 20:44:36</td>
+            <td>10</td>
+            <td><strong>0.9450</strong></td>
+            <td><strong>0.7650</strong></td>
+            <td><strong>0.6250</strong></td>
+            <td><strong>0.9950</strong></td>
+            <td style="font-size: 0.85em; color: #666;">benchmark_completo_v1.1_20260726_204436.json</td>
+        </tr>
+        
+        <tr>
+            <td><span class="badge">v1.0</span></td>
+            <td>2026-07-26 20:57:11</td>
+            <td>35</td>
+            <td><strong>0.9000</strong></td>
+            <td><strong>0.7114</strong></td>
+            <td><strong>0.5546</strong></td>
+            <td><strong>0.8171</strong></td>
+            <td style="font-size: 0.85em; color: #666;">benchmark_completo_v1.0_20260726_205711.json</td>
+        </tr>
+        
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

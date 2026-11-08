@@ -21,23 +21,10 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-    - name: Calcular Próxima Versão Develop
+    - name: Calcular Próxima Versão Dinâmica Develop (SemVer via Conventional Commits)
       id: calc_version
       run: |
-        LAST_TAG=$(git tag --list "dev-v*" --sort=-v:refname | head -n 1)
-        
-        if [ -z "$LAST_TAG" ]; then
-          LAST_TAG="dev-v0.0.0"
-        fi
-        
-        VERSION=${LAST_TAG#dev-v}
-        IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
-        
-        PATCH=$((PATCH + 1))
-        NEW_TAG="dev-v${MAJOR}.${MINOR}.${PATCH}"
-        
-        echo "Nova versão Develop: $NEW_TAG"
-        echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
+        python3 scripts/calc_next_version.py --prefix "dev-v" --export-github
 
     - name: Criar Tag e Push (Sem Changelog)
       run: |

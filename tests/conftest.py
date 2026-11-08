@@ -14,7 +14,12 @@ def set_dummy_env_vars(request):
     antes mesmo de chegar nos mocks de cliente.
     Não aplica o patch se o teste for de integração real.
     """
-    if "integration" in request.node.keywords or "tests/integration" in str(request.node.fspath):
+    if (
+        "integration" in request.keywords
+        or "e2e" in request.keywords
+        or "tests/integration" in str(request.node.fspath)
+        or "tests/e2e" in str(request.node.fspath)
+    ):
         yield
         return
 
@@ -40,7 +45,12 @@ def mock_supabase_global(request):
     Intercepta qualquer chamada a 'supabase.create_client'.
     Não aplica o mock se o teste for de integração real.
     """
-    if "integration" in request.node.keywords or "tests/integration" in str(request.node.fspath):
+    if (
+        "integration" in request.keywords
+        or "e2e" in request.keywords
+        or "tests/integration" in str(request.node.fspath)
+        or "tests/e2e" in str(request.node.fspath)
+    ):
         yield
         return
 
@@ -79,7 +89,12 @@ def mock_gemini_global(request):
     Intercepta 'google.genai.Client' para evitar chamadas reais à API.
     Não aplica o mock se o teste for de integração real.
     """
-    if "integration" in request.node.keywords or "tests/integration" in str(request.node.fspath):
+    if (
+        "integration" in request.keywords
+        or "e2e" in request.keywords
+        or "tests/integration" in str(request.node.fspath)
+        or "tests/e2e" in str(request.node.fspath)
+    ):
         yield
         return
 

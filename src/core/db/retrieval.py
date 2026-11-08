@@ -72,7 +72,11 @@ def buscar_chunks_por_topico(topico_alvo: str, limit: int = 30) -> list[dict[str
         logger.error(f"❌ Erro ao buscar tópico completo: {e}")
         return []
 
-def recuperar_contexto_inteligente(vector_embedding: list[float]) -> tuple[str | None, str, list[dict[str, Any]] | None]:
+def recuperar_contexto_inteligente(
+    vector_embedding: list[float],
+    threshold: float = SEMANTICA_THRESHOLD,
+    limit: int = LIMITE_TEMAS,
+) -> tuple[str | None, str, list[dict[str, Any]] | None]:
     """
     Decide estrategicamente e executa a melhor busca de contexto no banco de dados.
     Caso um tópico apareça 3x ou mais nos top-K chunks similares, expande a busca para recuperar
@@ -80,6 +84,8 @@ def recuperar_contexto_inteligente(vector_embedding: list[float]) -> tuple[str |
 
     Args:
         vector_embedding (list[float]): Vetor numérico do embedding da query.
+        threshold (float): Limiar de similaridade cosseno (padrão: SEMANTICA_THRESHOLD).
+        limit (int): Número máximo de candidatos iniciais (padrão: LIMITE_TEMAS).
 
     Returns:
         tuple[str | None, str, list[dict[str, Any]] | None]:
@@ -92,17 +98,17 @@ def recuperar_contexto_inteligente(vector_embedding: list[float]) -> tuple[str |
         logger.error("⚠️ Erro: Cliente Supabase não inicializado.")
         return None, "Erro DB", None
     
-    resultados_iniciais = buscar_referencias_db(vector_embedding, SEMANTICA_THRESHOLD, LIMITE_TEMAS, None)
+    resultados_iniciais = buscar_referencias_db(vector_embedding, threshold, limit, None)
     
     if not resultados_iniciais:
         return None, "Nenhuma referencia encontrada na base de conhecimento.", None
 
-    def _gerar_fallback_top5() -> tuple[list[str], list[dict[str, Any]]]:
-        top_5 = resultados_iniciais[:5]
-        contexto = [item["descricao"] for item in top_5]
+    def _gerar_fallback_top3() -> tuple[list[str], list[dict[str, Any]]]:
+        top_3 = resultados_iniciais[:3]
+        contexto = [item["descricao"] for item in top_3]
         ids_usados = []
         
-        for item in top_5:
+        for item in top_3:
             kid = item.get("kb_id") or item.get("id")
             if kid:
                 ids_usados.append({"kb_id": kid, "similarity": item.get("similarity")})
@@ -121,7 +127,7 @@ def recuperar_contexto_inteligente(vector_embedding: list[float]) -> tuple[str |
     fonte_origem = "Busca por similaridade (Fragmentos)"
 
     if not contagem_topicos:
-        contexto_final, lista_ids_usados = _gerar_fallback_top5()
+        contexto_final, lista_ids_usados = _gerar_fallback_top3()
         return "\n---\n".join(contexto_final), fonte_origem, lista_ids_usados
 
     topico_vencedor = max(contagem_topicos, key=contagem_topicos.get)
@@ -143,11 +149,11 @@ def recuperar_contexto_inteligente(vector_embedding: list[float]) -> tuple[str |
 
         except Exception as e:
             logger.warning(f"⚠️ Erro ao expandir contexto: {e}. Usando fallback.")
-            contexto_final, lista_ids_usados = _gerar_fallback_top5()
+            contexto_final, lista_ids_usados = _gerar_fallback_top3()
 
     else:
         logger.info(f"🔍 Estratégia: Tópicos mistos (Vencedor '{topico_vencedor}')")
         fonte_origem = f"Tópicos mistos (Vencedor: {topico_vencedor})"
-        contexto_final, lista_ids_usados = _gerar_fallback_top5()
+        contexto_final, lista_ids_usados = _gerar_fallback_top3()
 
     return "\n---\n".join(contexto_final), fonte_origem, lista_ids_usados

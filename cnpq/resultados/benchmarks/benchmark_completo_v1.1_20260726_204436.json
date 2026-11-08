@@ -1,0 +1,682 @@
+{
+    "metadados": {
+        "dataset_versao": "1.1",
+        "total_cenarios": 10,
+        "executado_em": "2026-07-26T20:44:36.268032",
+        "modelo_geracao": "gemini-3.5-flash-lite",
+        "modelo_juiz": "custom-llm-as-a-judge (Chain-of-Thought)"
+    },
+    "metricas_globais": {
+        "faithfulness": 0.945,
+        "answer_relevance": 0.765,
+        "context_precision": 0.625,
+        "context_recall": 0.995
+    },
+    "cenarios": [
+        {
+            "id": 1,
+            "categoria": "Direitos e Legislação",
+            "pergunta": "oi gnt como q faz pra trocar o nome na certidao no cartorio?? sou trans e n sei por onde comecar kkk",
+            "objetivo": "Avalia resiliência da busca semântica a gírias, abreviações (gnt, q, n, kkk) e falta de pontuação/acentuação sobre o Provimento 73 CNJ",
+            "estrategia_rag": "Contexto Completo: Retificação de Nome",
+            "chunk_ids": [
+                "vox-kb-0045",
+                "vox-kb-0048",
+                "vox-kb-0179",
+                "vox-kb-0180",
+                "vox-kb-0181",
+                "vox-kb-0177",
+                "vox-kb-0178",
+                "vox-kb-0047",
+                "vox-kb-0046"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0045",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "O Provimento nº 73 de 2018 do Conselho Nacional de Justiça (CNJ) autoriza pessoas transgêneras maiores de 18 anos a retificar prenome e gênero diretamente no Cartório de Registro Civil de Pessoas Naturais (RCPN), sem necessidade de cirurgia, laudos médicos ou autorização judicial."
+                },
+                {
+                    "kb_id": "vox-kb-0046",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Para solicitar a retificação de prenome e gênero em cartório, o interessado deve apresentar certidões negativas de protesto, certidões da Justiça Federal, Estadual, Eleitoral e Militar, além de documentos pessoais como RG, CPF, título de eleitor e certidão de nascimento atualizada."
+                },
+                {
+                    "kb_id": "vox-kb-0047",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A retificação de nome e gênero em cartório é cobrada de acordo com a tabela de custas de cada estado. No entanto, pessoas hipossuficientes têm o direito à gratuidade de emolumentos mediante declaração de pobreza, conforme o artigo 98 do Código de Processo Civil."
+                },
+                {
+                    "kb_id": "vox-kb-0048",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Pessoas transgêneras não-binárias também podem requerer a alteração de prenome e gênero na certidão de nascimento. Embora o Provimento 73 não cite explicitamente a não-binariedade, decisões judiciais recentes e provimentos estaduais específicos (como no Paraná e Rio de Janeiro) já garantem o registro do termo Não-binário no campo do sexo."
+                },
+                {
+                    "kb_id": "vox-kb-0177",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "O STF decidiu em 2018 (ADI 4275) que o direito à igualdade e à dignidade permite a retificação de gênero e nome na certidão de nascimento independentemente de cirurgia de redesignação ou tratamentos hormonais prévios."
+                },
+                {
+                    "kb_id": "vox-kb-0178",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Para estrangeiros residentes no Brasil que buscam a retificação de nome e gênero, as normas aplicáveis e a jurisdição do cartório brasileiro podem variar, sendo necessário por vezes validar a alteração em consulados de seus países de origem."
+                },
+                {
+                    "kb_id": "vox-kb-0179",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Caso a pessoa transgênera seja menor de 18 anos, a retificação de nome e gênero em cartório não é autorizada pelo Provimento 73 do CNJ. Nesse caso, a alteração de registro deve ser pleiteada judicialmente por meio de ação de retificação conduzida por advogado ou Defensoria Pública."
+                },
+                {
+                    "kb_id": "vox-kb-0180",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A emissão de novos documentos após a retificação da certidão de nascimento (como RG, CNH, Passaporte) não é automática. O interessado deve requerer a atualização nos órgãos expedidores de cada documento munido de cópia da certidão retificada."
+                },
+                {
+                    "kb_id": "vox-kb-0181",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A certidão retificada em cartório não deve conter nenhuma menção explícita sobre a alteração de prenome e gênero nas certidões de breve relato públicas, preservando o direito fundamental à privacidade da pessoa transgênera."
+                }
+            ],
+            "tempo_resposta_segundos": 4.25,
+            "resposta_gerada": "Ah, que alegria ver você dar esse passo tão importante para viver quem você realmente é! Quero te dar meus parabéns por essa conquista, mesmo sabendo que a burocracia às vezes assusta. Fica tranquila que você não está sozinha nisso.\n\nHoje em dia, mudar o nome e o gênero é bem mais simples e você faz isso direto no Cartório de Registro Civil, sem precisar de advogado ou de decisão da Justiça, viu? O Provimento 73 do CNJ garante esse direito para maiores de 18 anos.\n\nPara começar, você vai precisar reunir alguns documentos básicos (como RG, CPF, Título de Eleitor, certidão de nascimento atualizada) e várias certidões negativas (da Justiça Federal, Estadual, Eleitoral, Militar e de protesto). Ah, e se o dinheiro estiver apertado, dá para pedir a gratuidade dos custos no próprio cartório declarando que não tem condições de pagar.\n\nQuer que eu te passe a lista completinha dos documentos para você já ir se organizando?",
+            "gerado_em": "2026-07-26T20:42:53.504418",
+            "avaliacao_juiz": {
+                "raciocinio": "A análise crítica revela que a resposta gerada é factualmente precisa e totalmente alinhada com o contexto fornecido (Provimento 73 do CNJ, maiores de 18 anos, dispensa de advogado/juiz, documentos necessários e gratuidade). No entanto, peca em termos de concisão e relevância ao adotar um tom excessivamente efusivo ('Ah, que alegria ver você dar esse passo...', 'Quero te dar meus parabéns...') e introduzir uma pergunta final de engajamento desnecessária para um sistema RAG direto. Quanto ao contexto recuperado, ele contém informações periféricas (menores de idade, estrangeiros, não-binários, atualização de outros documentos) que não eram estritamente necessárias para responder ao usuário direto, gerando certo ruído, mas a busca lidou bem com a gíria. A revocação cobre os pontos centrais da dúvida do usuário iniciante.",
+                "faithfulness": 1.0,
+                "answer_relevance": 0.75,
+                "context_precision": 0.6,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 2,
+            "categoria": "Direitos e Legislação",
+            "pergunta": "nao tenho dineiro pra pagar a taxa do cartorio pra muda o nome socil.. me disseram q da pra fazer de graca e verdade?",
+            "objetivo": "Avalia tolerância a erros ortográficos (dineiro, muda, socil, de graca) para gratuidade de emolumentos via declaração de hipossuficiência",
+            "estrategia_rag": "Contexto Completo: Retificação de Nome",
+            "chunk_ids": [
+                "vox-kb-0045",
+                "vox-kb-0048",
+                "vox-kb-0179",
+                "vox-kb-0180",
+                "vox-kb-0181",
+                "vox-kb-0177",
+                "vox-kb-0178",
+                "vox-kb-0047",
+                "vox-kb-0046"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0045",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "O Provimento nº 73 de 2018 do Conselho Nacional de Justiça (CNJ) autoriza pessoas transgêneras maiores de 18 anos a retificar prenome e gênero diretamente no Cartório de Registro Civil de Pessoas Naturais (RCPN), sem necessidade de cirurgia, laudos médicos ou autorização judicial."
+                },
+                {
+                    "kb_id": "vox-kb-0046",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Para solicitar a retificação de prenome e gênero em cartório, o interessado deve apresentar certidões negativas de protesto, certidões da Justiça Federal, Estadual, Eleitoral e Militar, além de documentos pessoais como RG, CPF, título de eleitor e certidão de nascimento atualizada."
+                },
+                {
+                    "kb_id": "vox-kb-0047",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A retificação de nome e gênero em cartório é cobrada de acordo com a tabela de custas de cada estado. No entanto, pessoas hipossuficientes têm o direito à gratuidade de emolumentos mediante declaração de pobreza, conforme o artigo 98 do Código de Processo Civil."
+                },
+                {
+                    "kb_id": "vox-kb-0048",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Pessoas transgêneras não-binárias também podem requerer a alteração de prenome e gênero na certidão de nascimento. Embora o Provimento 73 não cite explicitamente a não-binariedade, decisões judiciais recentes e provimentos estaduais específicos (como no Paraná e Rio de Janeiro) já garantem o registro do termo Não-binário no campo do sexo."
+                },
+                {
+                    "kb_id": "vox-kb-0177",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "O STF decidiu em 2018 (ADI 4275) que o direito à igualdade e à dignidade permite a retificação de gênero e nome na certidão de nascimento independentemente de cirurgia de redesignação ou tratamentos hormonais prévios."
+                },
+                {
+                    "kb_id": "vox-kb-0178",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Para estrangeiros residentes no Brasil que buscam a retificação de nome e gênero, as normas aplicáveis e a jurisdição do cartório brasileiro podem variar, sendo necessário por vezes validar a alteração em consulados de seus países de origem."
+                },
+                {
+                    "kb_id": "vox-kb-0179",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Caso a pessoa transgênera seja menor de 18 anos, a retificação de nome e gênero em cartório não é autorizada pelo Provimento 73 do CNJ. Nesse caso, a alteração de registro deve ser pleiteada judicialmente por meio de ação de retificação conduzida por advogado ou Defensoria Pública."
+                },
+                {
+                    "kb_id": "vox-kb-0180",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A emissão de novos documentos após a retificação da certidão de nascimento (como RG, CNH, Passaporte) não é automática. O interessado deve requerer a atualização nos órgãos expedidores de cada documento munido de cópia da certidão retificada."
+                },
+                {
+                    "kb_id": "vox-kb-0181",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A certidão retificada em cartório não deve conter nenhuma menção explícita sobre a alteração de prenome e gênero nas certidões de breve relato públicas, preservando o direito fundamental à privacidade da pessoa transgênera."
+                }
+            ],
+            "tempo_resposta_segundos": 3.79,
+            "resposta_gerada": "Sim, é totalmente verdade! Dá para fazer de graça, sim. \n\nSe você não tiver condições de pagar as taxas do cartório (os chamados emolumentos), você tem direito à gratuidade mediante uma declaração de pobreza, conforme a lei. Ninguém deve ficar sem o seu direito à identidade por falta de dinheiro.\n\nQuer que eu te explique como funciona essa declaração ou te ajude com a lista dos documentos que você vai precisar reunir para dar entrada?",
+            "gerado_em": "2026-07-26T20:42:58.798986",
+            "avaliacao_juiz": {
+                "raciocinio": "A análise crítica revela que a resposta gerada foi precisa quanto à pergunta do usuário e utilizou corretamente o contexto para afirmar que a gratuidade é possível mediante declaração de pobreza para pessoas hipossuficientes. No entanto, a nota máxima não é atingida na fidelidade devido a pequenos floreios informais ('Ninguém deve ficar sem o seu direito à identidade por falta de dinheiro') que, embora verdadeiros, extrapolam estritamente o texto seco recuperado. Em relação ao contexto recuperado, houve bastante ruído (chunks sobre menores de 18 anos, estrangeiros, não-binários, emissão de novos documentos e STF que não eram estritamente necessários para responder apenas sobre a gratuidade), reduzindo a precisão do contexto. O gabarito pedia a avaliação da tolerância aos erros ortográficos para gratuidade de emolumentos via declaração de hipossuficiência, o que foi atendido.",
+                "faithfulness": 0.9,
+                "answer_relevance": 0.95,
+                "context_precision": 0.55,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 3,
+            "categoria": "Segurança e Violência",
+            "pergunta": "meu chefe me proibiu de usa o banheiro femino no trablho pq sou muler trans oq eu fasso?",
+            "objetivo": "Avalia tratamento de erros de digitação (femino, trablho, muler, fasso) em cenário de discriminação laboral no uso de sanitários",
+            "estrategia_rag": "Contexto Completo: Legislação Trabalhista",
+            "chunk_ids": [
+                "vox-kb-0333",
+                "vox-kb-0334",
+                "vox-kb-0336",
+                "vox-kb-0041"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0041",
+                    "topico": "Legislação Trabalhista",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Normas como a Convenção 111 da OIT orientam empresas; políticas de diversidade internas e canais confidenciais fortalecem a segurança do trabalhador."
+                },
+                {
+                    "kb_id": "vox-kb-0333",
+                    "topico": "Legislação Trabalhista",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A 5ª Turma do Tribunal Superior do Trabalho (TST, Processo RR-11190-88.2015.5.15.0131, 2024) condenou a empresa Luxottica ao pagamento de R$ 25 mil de indenização por danos morais a uma auxiliar trans proibida de usar o banheiro feminino. O TST fundamentou que a restrição ao banheiro e a recusa do nome social violam os direitos de personalidade e a dignidade da pessoa humana (Art. 1º, III, CF/88), sendo dever do empregador garantir ambiente de trabalho inclusivo."
+                },
+                {
+                    "kb_id": "vox-kb-0334",
+                    "topico": "Legislação Trabalhista",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A 6ª Turma do Tribunal Superior do Trabalho (TST, rel. Min. Maria de Assis Calsing, 2017) manteve condenação de R$ 30 mil por danos morais contra autarquia federal que criou banheiro unissex para uma trabalhadora trans. O TST entendeu que impor sanitário exclusivo/unissex, em vez de garantir acesso ao banheiro feminino, amplia a discriminação e o estigma, configurando prática ilegal de transfobia no ambiente laboral."
+                },
+                {
+                    "kb_id": "vox-kb-0336",
+                    "topico": "Legislação Trabalhista",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A Portaria MPT nº 1.036/2015 regulamenta o uso do nome social e assegura o acesso de servidores e colaboradores trans a banheiros, vestiários e instalações segregadas por gênero conforme sua identidade autodeclarada nas unidades do Ministério Público do Trabalho. A norma se aplica a servidores, estagiários, terceirizados e usuários de serviços do MPT, servindo de referência para outras instituições públicas e privadas."
+                }
+            ],
+            "tempo_resposta_segundos": 3.73,
+            "resposta_gerada": "Sinto muito, de verdade, que você esteja passando por essa situação absurda e dolorosa. Ninguém deveria sofrer esse tipo de constrangimento e transfobia no trabalho. Quero que saiba que você tem o direito absoluto de usar o banheiro correspondente à sua identidade de gênero.\n\nA Justiça do Trabalho (como o Tribunal Superior do Trabalho) já entende que proibir uma mulher trans de usar o banheiro feminino viola a dignidade humana e gera direito a indenização por danos morais. Inclusive, até criar um banheiro separado ou unissex só para isolar a trabalhadora também é considerado uma prática discriminatória ilegal.\n\nVocê quer conversar sobre os próximos passos para registrar essa situação, como buscar o Ministério Público do Trabalho ou o sindicato da sua categoria? Estou aqui com você.",
+            "gerado_em": "2026-07-26T20:43:04.026113",
+            "avaliacao_juiz": {
+                "raciocinio": "A análise crítica revela que o modelo lidou bem com os erros de digitação e mapeou corretamente a intenção do usuário. No entanto, a resposta gerada contém traços excessivos de empatia emocional ('Sinto muito, de verdade...') que ultrapassam o tom estritamente técnico e jurídico esperado de um assistente corporativo rigoroso, embora utilize rigorosamente os precedentes do TST e do MPT presentes no contexto recuperado (fidelidade alta de 0.90). A relevância da resposta é boa, mas sofre de um pouco de pieguice ('Estou aqui com você'). Quanto ao contexto recuperado, houve uma precisão razoável, trazendo jurisprudências aplicáveis, mas com trechos institucionais genéricos da OIT (contexto precision 0.80). Por fim, o objetivo da resposta (tratar os erros de digitação e orientar sobre discriminação laboral no uso de sanitários) foi plenamente atendido com base nos precedentes de indenização e vedações de banheiros unissex (contexto recall 1.00).",
+                "faithfulness": 0.9,
+                "answer_relevance": 0.85,
+                "context_precision": 0.8,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 4,
+            "categoria": "Segurança e Violência",
+            "pergunta": "sofri preconceito no busao hj por ser gay tem algun numero anonimo pra mim ligar e denucia agora??",
+            "objetivo": "Avalia linguagem coloquial rápida (busao, algun, mim ligar, denucia) para identificação do canal Disque 100",
+            "estrategia_rag": "Tópicos mistos (Vencedor: Denúncias de LGBTfobia)",
+            "chunk_ids": [
+                "vox-kb-0130",
+                "vox-kb-0038",
+                "vox-kb-0337"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0038",
+                    "topico": "Legislação e Justiça",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A Lei 7.716/1989 equipara LGBTfobia ao crime de racismo; denúncias podem ser feitas no Disque 100 ou na Delegacia de Crimes Raciais e Delitos de Intolerância. Lei 7.716/1989;Disque 100 (Ouvidoria Nacional dos Direitos Humanos)"
+                },
+                {
+                    "kb_id": "vox-kb-0130",
+                    "topico": "Denúncias via Disque 100",
+                    "eixo_tematico": "Sociedade e Ativismo",
+                    "descricao": "O Disque 100 (Disque Direitos Humanos) é um serviço gratuito do Governo Federal que recebe, analisa e encaminha denúncias de violações de direitos humanos contra a população LGBTQIA+ de forma anônima."
+                },
+                {
+                    "kb_id": "vox-kb-0337",
+                    "topico": "Denúncias de LGBTfobia",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Se uma empresa proibir o uso do banheiro condizente com a identidade de gênero, o trabalhador pode denunciar ao Ministério Público do Trabalho (mpt.mp.br), ao Ministério do Trabalho e Emprego pelo portal Gov.br ou pelo Disque 100 (Direitos Humanos). O MPT e o MTE garantem o sigilo do denunciante durante a fiscalização e podem aplicar multas e autuações à empresa por conduta discriminatória."
+                }
+            ],
+            "tempo_resposta_segundos": 2.88,
+            "resposta_gerada": "Sinto muito, de verdade, que você tenha passado por essa situação horrível hoje. Ninguém deveria sofrer esse tipo de violência no transporte público ou em lugar nenhum. Saiba que você não está sozinho e que LGBTfobia é crime.\n\nSim, você pode fazer uma denúncia anônima agora mesmo. O **Disque 100** (Disque Direitos Humanos) é um serviço gratuito do Governo Federal que funciona 24 horas por dia, recebe denúncias de violações contra a população LGBTQIA+ e garante o seu anonimato. É só ligar **100**. \n\nSe quiser, você também pode registrar um Boletim de Ocorrência. Estou aqui com você. Quer que eu te oriente sobre mais algum canal de denúncia?",
+            "gerado_em": "2026-07-26T20:43:08.408634",
+            "avaliacao_juiz": {
+                "raciocinio": "A análise crítica revela que a resposta gerada foi empática e correta quanto ao canal principal (Disque 100), mantendo-se fiel ao contexto fornecido. No entanto, em termos de relevância e brevidade, a resposta pecou por ser excessivamente prolixa para um usuário que disse 'preciso denunciar agora' no meio de uma situação de crise no transporte público, além de sugerir um Boletim de Ocorrência que não estava explicitamente no contexto recuperado (afetando levemente a fidelidade estrita). O contexto recuperado continha informações sobre empresas e banheiros (ruído), resultando em uma precisão de contexto moderada. O objetivo do gabarito era avaliar a identificação rápida do Disque 100 para uma linguagem coloquial, o qual foi atendido, mas com excesso de conversas de apoio emocional desnecessárias para um sistema puramente transacional de resgate de canal.",
+                "faithfulness": 0.85,
+                "answer_relevance": 0.7,
+                "context_precision": 0.6,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 5,
+            "categoria": "Direitos e Legislação",
+            "pergunta": "menor de 18 anos pod mudar genero no cartorio sosinho sem papai e mamae deixa? tenho 16 a",
+            "objetivo": "Avalia interpretação de coloquialismos juvenis e erros gramaticais em restrição legal para menores de 18 anos",
+            "estrategia_rag": "Contexto Completo: Retificação de Nome",
+            "chunk_ids": [
+                "vox-kb-0045",
+                "vox-kb-0048",
+                "vox-kb-0179",
+                "vox-kb-0180",
+                "vox-kb-0181",
+                "vox-kb-0177",
+                "vox-kb-0178",
+                "vox-kb-0047",
+                "vox-kb-0046"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0045",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "O Provimento nº 73 de 2018 do Conselho Nacional de Justiça (CNJ) autoriza pessoas transgêneras maiores de 18 anos a retificar prenome e gênero diretamente no Cartório de Registro Civil de Pessoas Naturais (RCPN), sem necessidade de cirurgia, laudos médicos ou autorização judicial."
+                },
+                {
+                    "kb_id": "vox-kb-0046",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Para solicitar a retificação de prenome e gênero em cartório, o interessado deve apresentar certidões negativas de protesto, certidões da Justiça Federal, Estadual, Eleitoral e Militar, além de documentos pessoais como RG, CPF, título de eleitor e certidão de nascimento atualizada."
+                },
+                {
+                    "kb_id": "vox-kb-0047",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A retificação de nome e gênero em cartório é cobrada de acordo com a tabela de custas de cada estado. No entanto, pessoas hipossuficientes têm o direito à gratuidade de emolumentos mediante declaração de pobreza, conforme o artigo 98 do Código de Processo Civil."
+                },
+                {
+                    "kb_id": "vox-kb-0048",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Pessoas transgêneras não-binárias também podem requerer a alteração de prenome e gênero na certidão de nascimento. Embora o Provimento 73 não cite explicitamente a não-binariedade, decisões judiciais recentes e provimentos estaduais específicos (como no Paraná e Rio de Janeiro) já garantem o registro do termo Não-binário no campo do sexo."
+                },
+                {
+                    "kb_id": "vox-kb-0177",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "O STF decidiu em 2018 (ADI 4275) que o direito à igualdade e à dignidade permite a retificação de gênero e nome na certidão de nascimento independentemente de cirurgia de redesignação ou tratamentos hormonais prévios."
+                },
+                {
+                    "kb_id": "vox-kb-0178",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Para estrangeiros residentes no Brasil que buscam a retificação de nome e gênero, as normas aplicáveis e a jurisdição do cartório brasileiro podem variar, sendo necessário por vezes validar a alteração em consulados de seus países de origem."
+                },
+                {
+                    "kb_id": "vox-kb-0179",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Caso a pessoa transgênera seja menor de 18 anos, a retificação de nome e gênero em cartório não é autorizada pelo Provimento 73 do CNJ. Nesse caso, a alteração de registro deve ser pleiteada judicialmente por meio de ação de retificação conduzida por advogado ou Defensoria Pública."
+                },
+                {
+                    "kb_id": "vox-kb-0180",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A emissão de novos documentos após a retificação da certidão de nascimento (como RG, CNH, Passaporte) não é automática. O interessado deve requerer a atualização nos órgãos expedidores de cada documento munido de cópia da certidão retificada."
+                },
+                {
+                    "kb_id": "vox-kb-0181",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A certidão retificada em cartório não deve conter nenhuma menção explícita sobre a alteração de prenome e gênero nas certidões de breve relato públicas, preservando o direito fundamental à privacidade da pessoa transgênera."
+                }
+            ],
+            "tempo_resposta_segundos": 3.44,
+            "resposta_gerada": "Sinto muito pela burocracia e pelas barreiras que a lei coloca, sei que isso pode ser frustrante quando a gente só quer ser quem é de verdade. Quero que saiba que seu sentimento é super válido e estou aqui para te ajudar a entender as opções.\n\nRespondendo direitinho à sua dúvida: infelizmente, para quem tem menos de 18 anos, a lei atual não permite fazer a retificação direto no cartório de forma autônoma. Pelo Provimento 73 do CNJ, menores de idade precisam passar pela via judicial — ou seja, é necessário entrar com um pedido na Justiça por meio de um advogado particular ou da Defensoria Pública. \n\nSe quiser, posso te explicar como funciona buscar a Defensoria Pública para dar esse passo quando você estiver com vontade e segurança. Como você está lidando com isso em casa?",
+            "gerado_em": "2026-07-26T20:43:13.344942",
+            "avaliacao_juiz": {
+                "raciocinio": "A resposta gerada pelo RAG apresentou vários problemas de engenharia e diretrizes de tom. Em relação à fidelidade (faithfulness), a informação central de que menores de 18 anos precisam da via judicial (Defensoria Pública ou advogado) está correta e ancorada no contexto. No entanto, o sistema introduziu uma quantidade massiva de 'enrolação', acolhimento emocional excessivo, validação psicológica e conversação informal desnecessária ('Sinto muito pela burocracia...', 'Como você está lidando com isso em casa?'), o que fere drasticamente a diretriz de relevância (answer_relevance) para um assistente técnico jurídico de IA. Sobre a precisão do contexto (context_precision), o recuperador trouxe 9 chunks extensos, mas apenas 1 era estritamente necessário para responder à pergunta sobre menores de 18 anos, resultando em muito ruído semântico. Por fim, o context_recall foi atendido pois a restrição legal foi interpretada corretamente a partir da gíria e do erro gramatical do usuário ('sosinho', '16 a'), respondendo ao objetivo do gabarito.",
+                "faithfulness": 1.0,
+                "answer_relevance": 0.3,
+                "context_precision": 0.4,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 6,
+            "categoria": "Direitos e Legislação",
+            "pergunta": "se eumudar meu nome na certidao de nascimneto o cpf e o rg muda sozinho ou ten q ir em cada lugar dps?",
+            "objetivo": "Avalia palavras aglutinadas (eumudar, ten q) e erros de digitação (nascimneto) na atualização secundária de documentos",
+            "estrategia_rag": "Contexto Completo: Retificação de Nome",
+            "chunk_ids": [
+                "vox-kb-0045",
+                "vox-kb-0048",
+                "vox-kb-0179",
+                "vox-kb-0180",
+                "vox-kb-0181",
+                "vox-kb-0177",
+                "vox-kb-0178",
+                "vox-kb-0047",
+                "vox-kb-0046"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0045",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "O Provimento nº 73 de 2018 do Conselho Nacional de Justiça (CNJ) autoriza pessoas transgêneras maiores de 18 anos a retificar prenome e gênero diretamente no Cartório de Registro Civil de Pessoas Naturais (RCPN), sem necessidade de cirurgia, laudos médicos ou autorização judicial."
+                },
+                {
+                    "kb_id": "vox-kb-0046",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Para solicitar a retificação de prenome e gênero em cartório, o interessado deve apresentar certidões negativas de protesto, certidões da Justiça Federal, Estadual, Eleitoral e Militar, além de documentos pessoais como RG, CPF, título de eleitor e certidão de nascimento atualizada."
+                },
+                {
+                    "kb_id": "vox-kb-0047",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A retificação de nome e gênero em cartório é cobrada de acordo com a tabela de custas de cada estado. No entanto, pessoas hipossuficientes têm o direito à gratuidade de emolumentos mediante declaração de pobreza, conforme o artigo 98 do Código de Processo Civil."
+                },
+                {
+                    "kb_id": "vox-kb-0048",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Pessoas transgêneras não-binárias também podem requerer a alteração de prenome e gênero na certidão de nascimento. Embora o Provimento 73 não cite explicitamente a não-binariedade, decisões judiciais recentes e provimentos estaduais específicos (como no Paraná e Rio de Janeiro) já garantem o registro do termo Não-binário no campo do sexo."
+                },
+                {
+                    "kb_id": "vox-kb-0177",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "O STF decidiu em 2018 (ADI 4275) que o direito à igualdade e à dignidade permite a retificação de gênero e nome na certidão de nascimento independentemente de cirurgia de redesignação ou tratamentos hormonais prévios."
+                },
+                {
+                    "kb_id": "vox-kb-0178",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Para estrangeiros residentes no Brasil que buscam a retificação de nome e gênero, as normas aplicáveis e a jurisdição do cartório brasileiro podem variar, sendo necessário por vezes validar a alteração em consulados de seus países de origem."
+                },
+                {
+                    "kb_id": "vox-kb-0179",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Caso a pessoa transgênera seja menor de 18 anos, a retificação de nome e gênero em cartório não é autorizada pelo Provimento 73 do CNJ. Nesse caso, a alteração de registro deve ser pleiteada judicialmente por meio de ação de retificação conduzida por advogado ou Defensoria Pública."
+                },
+                {
+                    "kb_id": "vox-kb-0180",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A emissão de novos documentos após a retificação da certidão de nascimento (como RG, CNH, Passaporte) não é automática. O interessado deve requerer a atualização nos órgãos expedidores de cada documento munido de cópia da certidão retificada."
+                },
+                {
+                    "kb_id": "vox-kb-0181",
+                    "topico": "Retificação de Nome",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A certidão retificada em cartório não deve conter nenhuma menção explícita sobre a alteração de prenome e gênero nas certidões de breve relato públicas, preservando o direito fundamental à privacidade da pessoa transgênera."
+                }
+            ],
+            "tempo_resposta_segundos": 3.31,
+            "resposta_gerada": "Que conquista importante dar esse passo na sua identidade! Fico muito feliz por você estar buscando isso. \n\nRespondendo direto à sua dúvida: a atualização não acontece sozinha, viu? Depois que a sua certidão de nascimento estiver retificada no cartório, você precisa ir em cada órgão expedidor (como na Secretaria de Segurança Pública para o RG e na Receita Federal para o CPF) para solicitar a emissão dos novos documentos, levando a sua nova certidão.\n\nQuer que eu te ajude a entender quais são os primeiros passos para começar a retificação no cartório?",
+            "gerado_em": "2026-07-26T20:43:18.157475",
+            "avaliacao_juiz": {
+                "raciocinio": "A análise crítica revela que a resposta do RAG foi assertiva quanto à necessidade de ir a cada órgão para atualizar o RG e o CPF (suportado pelo chunk 8). No entanto, a resposta contém excesso de empatia e enrolação ('Que conquista importante...', 'Fico muito feliz...', 'Quer que eu te ajude...'), o que afeta a relevância direta da resposta. Em relação ao contexto recuperado (chunks), houve significativo ruído, pois vários trechos falavam sobre procedimentos de menores de 18 anos, não-binários, custos e exigências do Provimento 73 que eram irrelevantes para a pergunta específica sobre a atualização do CPF e RG. Quanto à evocação de contexto e gabarito, a resposta cobriu o ponto principal (a atualização não é automática e exige ir a cada órgão), mas ignorou formalmente os desvios ortográficos da pergunta, focando puramente no conteúdo.",
+                "faithfulness": 1.0,
+                "answer_relevance": 0.7,
+                "context_precision": 0.4,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 7,
+            "categoria": "Saúde e Acolhimento",
+            "pergunta": "onde tem postinho d saude em salvador q faz acompanhamento de hormonizacao trans pelo sus?",
+            "objetivo": "Avalia busca com abreviações locais (postinho d saude, q) e termos regionais sobre o processo transexualizador do SUS",
+            "estrategia_rag": "Tópicos mistos (Vencedor: Ambulatórios Trans)",
+            "chunk_ids": [
+                "vox-kb-0342",
+                "vox-kb-0231",
+                "vox-kb-0340"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0231",
+                    "topico": "Ambulatórios Trans",
+                    "eixo_tematico": "Saúde e Bem-estar",
+                    "descricao": "Em Salvador (BA), o Ambulatório Trans do Hospital Edgard Santos (UFBA) é referência regional para o Processo Transexualizador do SUS, oferecendo suporte hormonal e multidisciplinar qualificado para a população trans baiana."
+                },
+                {
+                    "kb_id": "vox-kb-0340",
+                    "topico": "Centros de Referência LGBT",
+                    "eixo_tematico": "Sociedade e Ativismo",
+                    "descricao": "O CPDD-LGBT (Centro de Promoção e Defesa dos Direitos das Pessoas LGBTs, vinculado à SJDH-BA) presta atendimento jurídico, acolhimento psicossocial e suporte na retificação de prenome e gênero no Casarão da Diversidade. Endereço: Rua do Tijolo, nº 8, Pelourinho, Salvador-BA. Horário: segunda a sexta, 08h–17h. Contato/WhatsApp: (71) 99931-0329. E-mail: atendimento.lgbt@sjdh.ba.gov.br."
+                },
+                {
+                    "kb_id": "vox-kb-0342",
+                    "topico": "Ambulatórios Trans",
+                    "eixo_tematico": "Saúde e Bem-estar",
+                    "descricao": "Salvador possui dois ambulatórios públicos para atenção à saúde trans: 1) Ambulatório LGBTQIA+ Municipal: Rua Carlos Gomes, nº 270, Dois de Julho (Multicentro de Saúde Carlos Gomes). Tel: (71) 3202-1924. Oferece hormonização, PrEP e saúde mental (atendimento às terças e quintas, 08h–16h30). 2) AMBTT (CEDAP/SESAB): Rua Padre Feijó, nº 240, 5º andar, Canela. Tel CEDAP Garcia: (71) 3116-8838. Referência estadual para transição de gênero via SUS."
+                }
+            ],
+            "tempo_resposta_segundos": 3.82,
+            "resposta_gerada": "Que alegria ver você buscando cuidar da sua saúde e do seu corpo do jeito que você merece! Fico muito feliz em te ajudar com isso. 💙\n\nEm Salvador, o acompanhamento para hormonização pelo SUS é feito em ambulatórios especializados, e não em postinhos comuns. Aqui estão as principais referências na cidade:\n\n1. **Ambulatório LGBTQIA+ Municipal (Multicentro de Saúde Carlos Gomes)**\n   * **Onde fica:** Rua Carlos Gomes, nº 270, Dois de Julho.\n   * **O que tem:** Hormonização, PrEP e saúde mental (atendimento às terças e quintas, das 08h às 16h30).\n   * **Contato:** (71) 3202-1924.\n\n2. **AMBTT (CEDAP/SESAB)**\n   * **Onde fica:** Rua Padre Feijó, nº 240, 5º andar, Canela. É a referência estadual.\n   * **Contato CEDAP Garcia:** (71) 3116-8838.\n\n3. **Ambulatório Trans do Hospital Edgard Santos (UFBA)**\n   * **O que é:** Referência regional para o Processo Transexualizador do SUS, com suporte hormonal e equipe multidisciplinar.\n\nSe precisar de ajuda para entender como dar o primeiro passo em algum deles, é só me chamar!",
+            "gerado_em": "2026-07-26T20:43:23.482818",
+            "avaliacao_juiz": {
+                "raciocinio": "A análise severa revela o seguinte: 1) Faithfulness: A resposta é fiel ao contexto fornecido, sem alucinações óbvias, embora contenha uma introdução afetuosa e conversacional desnecessária para um sistema técnico, mas os dados factuais (endereços, telefones, nomes) vieram estritamente do contexto. 2) Answer Relevance: A resposta inclui um tom excessivamente efusivo ('Que alegria ver você buscando...') que configura 'enrolação' em vez de ser puramente direta e técnica. No entanto, corrige bem o termo do usuário ('postinho') direcionando para os ambulatórios corretos presentes no contexto. 3) Context Precision: O contexto recuperado continha informações sobre o CPDD-LGBT no Casarão da Diversidade (atendimento jurídico/psicossocial e retificação de nome), que não era estritamente sobre hormonização, mas o modelo soube filtrar bem o ruído e focou apenas nos ambulatórios de hormonização listados. 4) Context Recall: O objetivo pedia para avaliar a busca com abreviações locais e termos regionais do SUS. A resposta cobriu os três principais locais de hormonização citados no contexto (Municipal, AMBTT e Edgard Santos), atendendo perfeitamente ao cerne da pergunta do usuário.",
+                "faithfulness": 1.0,
+                "answer_relevance": 0.8,
+                "context_precision": 0.75,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 8,
+            "categoria": "Segurança e Violência",
+            "pergunta": "homofobia e crime msmo no brasil??? meu vizinho fica me xingando d viado direto posso chamar a policia ou dar em nada?",
+            "objetivo": "Avalia linguagem informal agressiva/vulgar (msmo, d viado, dar em nada) na equiparação de homofobia ao crime de racismo pelo STF",
+            "estrategia_rag": "Contexto Completo: Legislação e Justiça",
+            "chunk_ids": [
+                "vox-kb-0189",
+                "vox-kb-0039",
+                "vox-kb-0038",
+                "vox-kb-0055",
+                "vox-kb-0056",
+                "vox-kb-0190",
+                "vox-kb-0191",
+                "vox-kb-0057"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0038",
+                    "topico": "Legislação e Justiça",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A Lei 7.716/1989 equipara LGBTfobia ao crime de racismo; denúncias podem ser feitas no Disque 100 ou na Delegacia de Crimes Raciais e Delitos de Intolerância. Lei 7.716/1989;Disque 100 (Ouvidoria Nacional dos Direitos Humanos)"
+                },
+                {
+                    "kb_id": "vox-kb-0039",
+                    "topico": "Legislação e Justiça",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Ouvidorias do SUS, Defensorias Públicas e Ministério Público recebem denúncias; por exemplo, o Disque 180 acolhe casos de violação de direitos humanos."
+                },
+                {
+                    "kb_id": "vox-kb-0055",
+                    "topico": "Legislação e Justiça",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Em 2019, o STF julgou a ADO 26 e a MI 4733, determinando o enquadramento da homofobia e da transfobia como crime de racismo previsto na Lei nº 7.716/1989. O crime é inafiançável e imprescritível, aplicando-se penas de reclusão a condutas discriminatórias."
+                },
+                {
+                    "kb_id": "vox-kb-0056",
+                    "topico": "Legislação e Justiça",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A injúria homofóbica ou transfóbica, configurada pela ofensa à dignidade de um indivíduo em razão de sua orientação sexual ou identidade de gênero, é equiparada ao crime de injúria racial e pune atos discriminatórios diretos com pena de 2 a 5 anos de reclusão."
+                },
+                {
+                    "kb_id": "vox-kb-0057",
+                    "topico": "Legislação e Justiça",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A Lei Maria da Penha (Lei nº 11.340/2006) aplica-se plenamente a mulheres trans e travestis vítimas de violência doméstica e familiar. O Superior Tribunal de Justiça (STJ) pacificou esse entendimento em 2022, assegurando medidas protetivas de urgência independentemente de cirurgia de redesignação."
+                },
+                {
+                    "kb_id": "vox-kb-0189",
+                    "topico": "Legislação e Justiça",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A proteção contra a LGBTfobia como crime de racismo abrange todas as formas de manifestação e circulação pública de discursos, propagandas, materiais impressos ou publicações na internet que incitem o ódio e a violência."
+                },
+                {
+                    "kb_id": "vox-kb-0190",
+                    "topico": "Legislação e Justiça",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "O crime de racismo por homofobia ou transfobia aplica-se também em casos de recusa de entrada de casais ou indivíduos em estabelecimentos comerciais de qualquer natureza, sejam de atendimento privado ou público."
+                },
+                {
+                    "kb_id": "vox-kb-0191",
+                    "topico": "Legislação e Justiça",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A imunidade religiosa e a liberdade de culto não amparam discursos que propaguem o ódio ou a violência física e moral contra a população LGBTQIA+, cabendo responsabilização criminal a líderes religiosos que incorram em excessos."
+                }
+            ],
+            "tempo_resposta_segundos": 4.77,
+            "resposta_gerada": "Isso é revoltante e eu sinto muito que você esteja passando por essa situação na sua própria casa. Você tem todo o direito de se sentir seguro e respeitado, e ninguém deve passar por isso.\n\nSim, **homofobia é crime sim no Brasil!** Desde 2019, o STF determinou que a homofobia e a transfobia são equiparadas ao crime de racismo. O que seu vizinho está fazendo — te ofendendo por causa da sua orientação sexual — configura injúria homofóbica, que é crime com pena de reclusão. Não vai dar em nada, não; você pode, sim, acionar as autoridades.\n\nSe estiver acontecendo naquele momento, você pode ligar para a **Polícia Militar (190)**. Para registrar a denúncia formalmente, você pode procurar uma delegacia ou usar canais como o **Disque 100**. Quer que eu te explique melhor como juntar provas ou como fazer esse registro?",
+            "gerado_em": "2026-07-26T20:43:29.756624",
+            "avaliacao_juiz": {
+                "raciocinio": "A análise crítica revela que a resposta gerada é factualmente precisa com base no contexto (homofobia é crime de racismo via STF, configura injúria homofóbica, pode chamar a polícia/Disque 100). No entanto, há um pequeno erro de interpretação textual na frase 'Não vai dar em nada, não', pois a usuária perguntou se 'dá em nada', e a resposta usou uma construção um pouco confusa embora afirme que pode acionar as autoridades. Quanto ao contexto recuperado, há informações sobre Lei Maria da Penha e imunidade religiosa que são irrelevantes para o caso específico do vizinho xingando na rua/casa, indicando ruído semântico. A fidelidade é alta, mas a concisão e a precisão do contexto sofrem penalizações moderadas devido ao excesso de chunks genéricos.",
+                "faithfulness": 0.95,
+                "answer_relevance": 0.85,
+                "context_precision": 0.6,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 9,
+            "categoria": "Direitos e Legislação",
+            "pergunta": "duas mulhes casada no civil pode adota criança junta aqui na bahia? e mto burocratico?",
+            "objetivo": "Avalia erros de concordância nominal (mulhes casada, adota criança junta, e mto) sobre adoção conjunta por casais homoafetivos",
+            "estrategia_rag": "Contexto Completo: Família e Adoção",
+            "chunk_ids": [
+                "vox-kb-0015",
+                "vox-kb-0040",
+                "vox-kb-0186",
+                "vox-kb-0051",
+                "vox-kb-0052",
+                "vox-kb-0053",
+                "vox-kb-0187",
+                "vox-kb-0188"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0015",
+                    "topico": "Família e Adoção",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Apesar de decisões favoráveis do STF, juízes ainda solicitam relatórios sociais adicionais; estatísticas do CNJ mostram redução de 20% nos recursos negados em 2024."
+                },
+                {
+                    "kb_id": "vox-kb-0040",
+                    "topico": "Família e Adoção",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Decisões do STF (ADI 4277/2010) reconhecem igualdade no casamento e adoção; cartórios não podem recusar atos civis com base em orientação sexual."
+                },
+                {
+                    "kb_id": "vox-kb-0051",
+                    "topico": "Família e Adoção",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "O Supremo Tribunal Federal (STF), no julgamento conjunto da ADI 4277 e da ADPF 132, reconheceu a união estável homoafetiva como entidade familiar. A partir desse marco histórico em 2011, casais do mesmo sexo passaram a ter pleno direito à adoção conjunta de crianças e adolescentes."
+                },
+                {
+                    "kb_id": "vox-kb-0052",
+                    "topico": "Família e Adoção",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "O processo de adoção por casais homoafetivos exige inscrição no Sistema Nacional de Adoção e Acolhimento (SNA), participação em curso de preparação para adoção, e avaliação psicossocial realizada pela equipe técnica da Vara da Infância e da Juventude."
+                },
+                {
+                    "kb_id": "vox-kb-0053",
+                    "topico": "Família e Adoção",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Filhos de casais homoafetivos têm o direito ao registro de dupla maternidade ou dupla paternidade diretamente na certidão de nascimento, independentemente de o nascimento ter ocorrido por reprodução assistida ou adoção."
+                },
+                {
+                    "kb_id": "vox-kb-0186",
+                    "topico": "Família e Adoção",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "No processo de adoção conjunta por casais homoafetivos, as equipes de assistentes sociais do tribunal avaliam as condições morais, materiais e afetivas da família de forma igualitária, sendo proibidos questionamentos baseados em orientação sexual."
+                },
+                {
+                    "kb_id": "vox-kb-0187",
+                    "topico": "Família e Adoção",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Casais de lésbicas que realizam reprodução assistida (como a fertilização in vitro) podem registrar o recém-nascido em nome das duas mães diretamente no cartório de maternidade mediante apresentação da declaração de nascido vivo."
+                },
+                {
+                    "kb_id": "vox-kb-0188",
+                    "topico": "Família e Adoção",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Casais de homens que utilizam gestação por substituição (barriga de aluguel solidária) têm o direito de realizar o registro civil contendo a dupla paternidade diretamente no cartório do hospital do parto mediante apresentação de termo do CFM."
+                }
+            ],
+            "tempo_resposta_segundos": 3.17,
+            "resposta_gerada": "Que alegria ver o amor de vocês construindo uma família! Sim, duas mulheres casadas no civil têm total direito de adotar uma criança juntas aqui na Bahia, assim como em todo o Brasil. Esse é um direito garantido pelo STF.\n\nSobre a burocracia: sim, o processo de adoção envolve etapas importantes para garantir a segurança da criança. Vocês precisarão se inscrever no Sistema Nacional de Adoção e Acolhimento (SNA), fazer um curso de preparação e passar por uma avaliação psicossocial com a equipe da Vara da Infância e da Juventude, onde são avaliadas as condições afetivas e materiais da família, sem nenhum preconceito com a orientação sexual de vocês. \n\nApesar de o caminho exigir paciência e algumas etapas burocráticas, a lei está do lado de vocês. Quer que eu te explique o passo a passo de como dar entrada na inscrição do SNA?",
+            "gerado_em": "2026-07-26T20:43:34.424395",
+            "avaliacao_juiz": {
+                "raciocinio": "A análise crítica revela que a resposta gerada é factualmente correta e estritamente ancorada no contexto fornecido (faithfulness = 1.00), citando o STF, o SNA, o curso e a avaliação psicossocial. Contudo, há uma introdução excessivamente efusiva ('Que alegria ver o amor de vocês...') que configura tom conversacional desnecessário, embora a relevância geral ainda seja aceitável. O contexto recuperado contém múltiplos chunks redundantes sobre reprodução assistida (dupla maternidade/paternidade em cartório e barriga de aluguel) que não respondem à pergunta sobre adoção, gerando ruído e penalizando a precisão de contexto (context_precision = 0.60). Por fim, o gabarito aponta a necessidade de avaliar a resposta quanto a erros de concordância nominal, e a resposta corrigiu implicitamente a gramática do usuário ao redigir corretamente, cobrindo os aspectos legais centrais da adoção homoparental exigidos.",
+                "faithfulness": 1.0,
+                "answer_relevance": 0.85,
+                "context_precision": 0.6,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 10,
+            "categoria": "Blindagem Ética e Defesa",
+            "pergunta": "ser trans nao e uma doença mental n? o medico pode passar remedio pra curar isso?",
+            "objetivo": "Avalia blindagem ética e desmitificação científica com linguagem coloquial e provocativa (doença mental n, remedio pra curar)",
+            "estrategia_rag": "Tópicos mistos (Vencedor: Hormonioterapia)",
+            "chunk_ids": [
+                "vox-kb-0079",
+                "vox-kb-0075",
+                "vox-kb-0092"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0075",
+                    "topico": "Processo Transexualizador",
+                    "eixo_tematico": "Saúde e Bem-estar",
+                    "descricao": "O Processo Transexualizador do Sistema Único de Saúde (SUS) assegura assistência médica integral para transição de gênero, englobando terapia hormonal, acompanhamento psicossocial por equipe multidisciplinar, exames complementares e cirurgias de redesignação sexual."
+                },
+                {
+                    "kb_id": "vox-kb-0079",
+                    "topico": "Hormonioterapia",
+                    "eixo_tematico": "Saúde e Bem-estar",
+                    "descricao": "A terapia hormonal para transição de gênero deve ser supervisionada por um médico endocrinologista. A automedicação ou uso de hormônios industriais veterinários e sem receita médica apresenta graves riscos à saúde, incluindo trombose, disfunções hepáticas e complicações cardíacas."
+                },
+                {
+                    "kb_id": "vox-kb-0092",
+                    "topico": "Saúde Trans e Despatologização",
+                    "eixo_tematico": "Saúde e Bem-estar",
+                    "descricao": "A Resolução nº 1 de 2018 do Conselho Federal de Psicologia (CFP) veda aos psicólogos qualquer prática coercitiva ou terapêutica que trate a transexualidade e a travestilidade como patologias ou desvios (proibição de terapias de reversão de gênero)."
+                }
+            ],
+            "tempo_resposta_segundos": 3.63,
+            "resposta_gerada": "Você tem toda razão, ser trans **não é** doença mental de jeito nenhum! \n\nA medicina e a psicologia já entendem há muito tempo que a identidade de gênero não é patologia nem desvio, e profissionais de psicologia são proibidos por conselho federal de tentar \"curar\" ou reverter isso. \n\nO que existe na saúde é o acompanhamento, que pode incluir a terapia hormonal. Mas isso não é para \"curar\" nada, e sim para alinhar o corpo à identidade da pessoa, quando ela assim deseja. Esse acompanhamento deve ser feito por profissionais especializados, como médicos endocrinologistas, e pode ser acessado de forma integral pelo SUS, contando também com apoio psicológico e multiprofissional. \n\nSe precisar de orientações sobre como acessar esses profissionais ou o SUS, é só me chamar!",
+            "gerado_em": "2026-07-26T20:43:39.552509",
+            "avaliacao_juiz": {
+                "raciocinio": "A análise severa demonstra o seguinte: 1) Faithfulness: A resposta menciona que a medicina e psicologia entendem isso há muito tempo, o que extrapola ligeiramente os limites estritos do contexto fornecido, embora seja cientificamente verdade. Contudo, o contexto menciona a resolução do CFP e o SUS, permitindo inferir boa parte. 2) Answer Relevance: A resposta é um pouco prolixa na introdução e na oferta final de ajuda, desviando ligeiramente do tom estritamente direto, mas atende bem o usuário. 3) Context Precision: O contexto recuperado foi extremamente preciso e enxuto, focando exatamente no SUS, terapia hormonal, riscos e na resolução do CFP contra terapias de reversão. 4) Context Recall: O gabarito pedia blindagem ética, desmitificação científica e resposta direta sobre doença mental e remédio para curar. A resposta cobriu magistralmente a parte de não ser doença, a proibição de curas e a real função da terapia hormonal. Notas penalizadas levemente por extrapolações menores no faithfulness e excesso de conversacionalismo.",
+                "faithfulness": 0.85,
+                "answer_relevance": 0.9,
+                "context_precision": 0.95,
+                "context_recall": 0.95
+            }
+        }
+    ]
+}

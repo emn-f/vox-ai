@@ -4,13 +4,28 @@ import os
 import re
 import subprocess
 
-import streamlit as st
+from functools import lru_cache
+
+try:
+    import streamlit as st
+    from streamlit.runtime import exists as _runtime_exists
+
+    def safe_cache(func):
+        if _runtime_exists():
+            return st.cache_data(func)
+        return lru_cache(maxsize=32)(func)
+except Exception:
+    st = None
+
+    def safe_cache(func):
+        return lru_cache(maxsize=32)(func)
+
 from gtts import gTTS
 
 from src.config import logger
 
 
-@st.cache_data
+@safe_cache
 def get_current_branch() -> str:
     """
     Retorna o nome da branch Git atual de forma segura.
@@ -40,7 +55,7 @@ def get_version_from_changelog() -> str:
     return ""
 
 
-@st.cache_data
+@safe_cache
 def git_version() -> str:
     """
     Obtém a versão atual do git baseada em tags ou no CHANGELOG.
@@ -66,8 +81,8 @@ def git_version() -> str:
 def limpeza_texto(texto: str) -> str:
     """
     Sanitiza uma string de texto removendo caracteres especiais e símbolos,
-    preservando apenas letras, números, pontuação comum e acentuação da língua portuguesa.
-    Essencial para evitar falhas no gerador de áudio gTTS.
+    preservando apenas letras, números, pontuação comum, acentuação e símbolos de identidades (+ e -).
+    Essencial para evitar falhas no gerador de áudio.
 
     Args:
         texto (str): Texto a ser sanitizado.
@@ -75,26 +90,21 @@ def limpeza_texto(texto: str) -> str:
     Returns:
         str: Texto sanitizado e limpo.
     """
-    texto_limpo = re.sub(r'[^\w\s,.:;!?áéíóúàèìòùâêîôûãõçÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÇ]', '', texto)
-    return texto_limpo
+    if not texto:
+        return ""
+    texto_limpo = re.sub(r'[^\w\s,.:;!?áéíóúàèìòùâêîôûãõçÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÇ+\-]', '', str(texto))
+    return texto_limpo.strip()
 
 def texto_para_audio(texto: str) -> io.BytesIO:
     """
-    Converte um bloco de texto escrito em um áudio falado utilizando gTTS (Google Text-to-Speech).
+    Converte um bloco de texto escrito em um áudio falado utilizando Gemini TTS
+    com fallback automático e resiliente para gTTS (Google Text-to-Speech).
 
     Args:
         texto (str): O texto que será falado.
 
     Returns:
-        io.BytesIO: Um buffer em memória contendo o arquivo de áudio gerado (MP3).
+        io.BytesIO: Um buffer em memória contendo o arquivo de áudio gerado.
     """
-    texto_tratado = limpeza_texto(texto)
-
-    if not texto_tratado.strip():
-        texto_tratado = "Não foi possível ler a resposta."
-    
-    tts = gTTS(text=texto_tratado, lang='pt-br')
-    audio_buffer = io.BytesIO()
-    tts.write_to_fp(audio_buffer)
-    audio_buffer.seek(0)
-    return audio_buffer 
+    from src.core.audio import gerar_fala_gemini
+    return gerar_fala_gemini(texto) 

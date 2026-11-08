@@ -1,0 +1,500 @@
+{
+    "metadados": {
+        "dataset_versao": "1.3",
+        "total_cenarios": 10,
+        "executado_em": "2026-07-26T21:09:33.685615",
+        "modelo_geracao": "gemini-3.5-flash-lite",
+        "modelo_juiz": "custom-llm-as-a-judge (Chain-of-Thought)"
+    },
+    "metricas_globais": {
+        "faithfulness": 0.97,
+        "answer_relevance": 0.735,
+        "context_precision": 0.72,
+        "context_recall": 0.74
+    },
+    "cenarios": [
+        {
+            "id": 1,
+            "categoria": "Educação e Sociedade",
+            "pergunta": "minha prof fica me chamando pelo nome errado na chamada.. sou trans e ela sabe diss.. a escola e obrigada pela lei a usa meu nome social??",
+            "objetivo": "Avalia resiliência a erros ortográficos e linguagem informal sobre a Resolução CNE/CP nº 1/2018 — obrigação legal de uso do nome social na chamada escolar.",
+            "estrategia_rag": "Contexto Completo: Direito ao Nome Social na Escola",
+            "chunk_ids": [
+                "vox-kb-0331",
+                "vox-kb-0328",
+                "vox-kb-0136",
+                "vox-kb-0135",
+                "vox-kb-0272"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0135",
+                    "topico": "Direito ao Nome Social na Escola",
+                    "eixo_tematico": "Educação e Cultura",
+                    "descricao": "A Resolução CNE/CP nº 1 de 2018 do Ministério da Educação (MEC) assegura aos estudantes maiores de 18 anos o uso do nome social em registros e diários escolares na Educação Básica, dispensando autorizações de responsáveis."
+                },
+                {
+                    "kb_id": "vox-kb-0136",
+                    "topico": "Direito ao Nome Social na Escola",
+                    "eixo_tematico": "Educação e Cultura",
+                    "descricao": "Estudantes menores de 18 anos têm o direito de requerer o uso do nome social nas escolas de educação básica mediante solicitação formal apresentada por escrito pelos pais ou responsáveis legais."
+                },
+                {
+                    "kb_id": "vox-kb-0272",
+                    "topico": "Direito ao Nome Social na Escola",
+                    "eixo_tematico": "Educação e Cultura",
+                    "descricao": "A Resolução CNE/CP 01/2018 determina que as escolas de educação básica de todo o país devem adaptar seus formulários eletrônicos de matrícula para inclusão do nome social e do gênero correspondente à identidade."
+                },
+                {
+                    "kb_id": "vox-kb-0328",
+                    "topico": "Direito ao Nome Social na Escola",
+                    "eixo_tematico": "Educação e Cultura",
+                    "descricao": "A Resolução CNE/CP nº 1/2018 assegura o uso do nome social de estudantes travestis e transexuais na Educação Básica. O nome social deve constar em diários de classe, chamadas, fichas de matrícula e documentos internos (Art. 2º). Maiores de 18 anos solicitam diretamente; menores de 18 anos, via responsáveis legais (Art. 3º). Os documentos de conclusão, como certificados e diplomas da Educação Básica, devem ser emitidos com o nome social solicitado (Art. 4º)."
+                },
+                {
+                    "kb_id": "vox-kb-0331",
+                    "topico": "Direito ao Nome Social na Escola",
+                    "eixo_tematico": "Educação e Cultura",
+                    "descricao": "Estudos da ANTRA e da OAB revelam que aproximadamente 82% das pessoas trans enfrentam evasão escolar motivada por transfobia e desrespeito à identidade de gênero. O reconhecimento e garantia do uso do nome social nas escolas reduz constrangimentos na chamada e o assédio moral, atuando como medida direta para a permanência escolar e proteção do direito fundamental à educação de jovens travestis e transexuais."
+                }
+            ],
+            "tempo_resposta_segundos": 3.0,
+            "resposta_gerada": "Isso é uma falta de respeito enorme e dói muito passar por essa situação, ainda mais vindo de quem deveria zelar por um ambiente seguro. Quero te dar um abraço virtual e dizer que você tem total direito de ser respeitada na escola.\n\nSim, a escola é obrigada por lei a usar o seu nome social. A Resolução CNE/CP nº 1/2018 garante que estudantes travestis e transexuais têm direito ao uso do nome social em diários de classe, chamadas e documentos internos. \n\nSe você já tiver 18 anos, pode solicitar isso diretamente à direção. Se for menor de 18 anos, o pedido precisa ser feito por escrito com o apoio dos seus responsáveis legais. \n\nQuer conversar sobre como você pode falar com a coordenação da escola para resolver isso? Estou aqui.",
+            "gerado_em": "2026-07-26T21:07:54.511870",
+            "avaliacao_juiz": {
+                "raciocinio": "A análise severa revela que: 1) Faithfulness: A resposta é 100% fiel ao contexto e à legislação citada (Resolução CNE/CP nº 1/2018), sem alucinações. 2) Answer_relevance: A resposta inclui elementos empáticos e conversacionais ('abraço virtual', oferecimento para conversar no final), que embora humanos, desviam da concisão técnica rigorosa exigida por avaliadores estritos. 3) Context_precision: O contexto recuperado trouxe 5 chunks, sendo que alguns continham dados estatísticos da ANTRA/OAB e redundâncias sobre menores de idade que diluíram a densidade da recuperação, apresentando ruído moderado (atribuído 0.70). 4) Context_recall: O objetivo da resposta era cobrir a obrigatoriedade legal baseada na Resolução CNE/CP nº 1/2018 na chamada escolar, o que foi plenamente atendido cobrindo a legislação, a chamada e os procedimentos por idade.",
+                "faithfulness": 1.0,
+                "answer_relevance": 0.85,
+                "context_precision": 0.7,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 2,
+            "categoria": "Educação e Sociedade",
+            "pergunta": "retifiquei meu nome no cartorio mas a faculdade nao qr reemitir meu diploma com o nome novo.. tem lei q obrigue eles n??",
+            "objetivo": "Avalia resiliência a abreviações ('n??') e erros sobre reemissão de diploma pós-retificação (CNJ 73/2018 + diretrizes CNE/MEC), sem custo abusivo ao estudante.",
+            "estrategia_rag": "Tópicos mistos (Vencedor: Retificação de Nome)",
+            "chunk_ids": [
+                "vox-kb-0332",
+                "vox-kb-0273",
+                "vox-kb-0312"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0273",
+                    "topico": "Direito ao Nome Social na Faculdade",
+                    "eixo_tematico": "Educação e Cultura",
+                    "descricao": "O diploma emitido pelas instituições de ensino superior (públicas e privadas) deve exibir exclusivamente o nome civil ou, mediante requerimento prévio do aluno, constar em destaque o nome social com mesmo valor legal."
+                },
+                {
+                    "kb_id": "vox-kb-0312",
+                    "topico": "Termos de Uso",
+                    "eixo_tematico": "Sobre o Vox",
+                    "descricao": "As orientações jurídicas geradas pelo Vox AI (como passos para retificação de nome ou direitos civis) servem como esclarecimento geral de cidadania e não constituem consultoria jurídica formal ou advocacia."
+                },
+                {
+                    "kb_id": "vox-kb-0332",
+                    "topico": "Educação Superior e Nome Social",
+                    "eixo_tematico": "Educação e Cultura",
+                    "descricao": "Após a retificação do prenome e gênero em Cartório de Registro Civil (Provimento CNJ nº 73/2018), o titular deve apresentar a nova Certidão de Nascimento à instituição de ensino para requerer a atualização dos registros acadêmicos e a reemissão do diploma. Conforme diretrizes do CNE/MEC, a escola ou universidade deve expedir o novo diploma ajustado ao registro retificado, sem menção ao nome anterior e sem custos abusivos ao estudante."
+                }
+            ],
+            "tempo_resposta_segundos": 2.14,
+            "resposta_gerada": "Que chato e frustrante passar por isso depois de dar um passo tão importante na sua vida. Sinto muito que você esteja enfrentando essa barreira. \n\nSim, existe lei e diretriz que obriga a faculdade a fazer isso! \n\nDepois que você retifica seus documentos em cartório, a instituição de ensino tem a obrigação de atualizar os seus registros acadêmicos e **reemitir o seu diploma** com o seu nome novo. O Ministério da Educação (CNE/MEC) determina que esse novo diploma deve vir ajustado ao seu registro retificado, sem mostrar o nome antigo e sem cobranças abusivas. \n\nQuer que eu te ajude a estruturar um pedido formal ou te oriente sobre onde buscar apoio caso eles continuem recusando?",
+            "gerado_em": "2026-07-26T21:07:58.151653",
+            "avaliacao_juiz": {
+                "raciocinio": "A análise crítica revela que a resposta gerada é fiel aos fatos apresentados no contexto (Provimento CNJ 73/2018 e diretrizes CNE/MEC sobre reemissão sem custos abusivos), obtendo nota máxima em faithfulness. No entanto, a resposta peca na relevância ao incluir muita conversa fiada ('Que chato e frustrante...', 'Sinto muito...'), o que reduz a concisão exigida de um assistente técnico rigoroso. Em relação ao contexto recuperado, houve inclusão de ruído no chunk (o aviso sobre 'Vox AI' e 'consultoria jurídica' que não é diretamente útil para a resposta final), penalizando a precisão de contexto. Por fim, a revocação de contexto cobre os pontos principais exigidos no gabarito (reemissão pós-retificação, CNE/MEC e proibição de custos abusivos), embora falhe em citar explicitamente o Provimento CNJ nº 73/2018.",
+                "faithfulness": 1.0,
+                "answer_relevance": 0.8,
+                "context_precision": 0.6,
+                "context_recall": 0.9
+            }
+        },
+        {
+            "id": 3,
+            "categoria": "Educação e Sociedade",
+            "pergunta": "como coloco meu nome social no enem?? to inscrita mas esqueci de colocar na hora. da pra muda isso dpois??",
+            "objetivo": "Avalia resiliência a gírias ('dpois', 'da pra') sobre procedimento de nome social no Enem, sincronização com CPF e prazo do edital INEP/MEC 27/2024.",
+            "estrategia_rag": "Tópicos mistos (Vencedor: Direito a Nome Social no Exame)",
+            "chunk_ids": [
+                "vox-kb-0329",
+                "vox-kb-0123",
+                "vox-kb-0153"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0123",
+                    "topico": "Direito a Nome Social no Exame",
+                    "eixo_tematico": "Sociedade e Ativismo",
+                    "descricao": "O INEP assegura a candidatos inscritos no Exame Nacional do Ensino Médio (ENEM) o uso do nome social no cartão de confirmação, lista de presença das salas e salas de aplicação de exames de forma respeitosa."
+                },
+                {
+                    "kb_id": "vox-kb-0153",
+                    "topico": "Educação Superior e Nome Social",
+                    "eixo_tematico": "Educação e Cultura",
+                    "descricao": "Os sistemas de inscrição para vestibulares e processos seletivos de pós-graduação devem fornecer a opção de inscrição por nome social de forma simplificada no momento do preenchimento das informações iniciais."
+                },
+                {
+                    "kb_id": "vox-kb-0329",
+                    "topico": "Direito a Nome Social no Exame",
+                    "eixo_tematico": "Educação e Cultura",
+                    "descricao": "No Enem, a solicitação do nome social é feita na Página do Participante (enem.inep.gov.br) durante o período de inscrição. O INEP sincroniza o nome social com o cadastro do CPF na Receita Federal; caso não esteja cadastrado, o participante deve anexar a documentação exigida pelo edital dentro do prazo. O nome social aprovado constará no cartão de confirmação, na lista de presença das salas de aplicação e nos relatórios de resultados individuais."
+                }
+            ],
+            "tempo_resposta_segundos": 3.83,
+            "resposta_gerada": "Olha, respira fundo, eu te entendo perfeitamente. É super normal a gente esquecer algum detalhe na correria da inscrição, mas vamos dar um jeito nisso juntas!\n\nSobre a sua dúvida: no Enem, a solicitação do nome social precisa ser feita diretamente na Página do Participante (enem.inep.gov.br) e o prazo para isso é o mesmo período de inscrições. Ou seja, como o prazo do período de inscrição já passou, o sistema oficial do INEP geralmente não permite alterações posteriores de nome social fora dessa janela. \n\nPara a próxima edição ou caso abra algum prazo extraordinário de retificação no edital, lembre-se de que o INEP exige que seus dados estejam certinhos (sincronizados com o CPF na Receita Federal ou com a documentação própria que o edital pede). \n\nSe você estiver sentindo que a situação está muito difícil ou precisar de orientação sobre como proceder em editais futuros, estou aqui, tá? Quer conversar sobre mais alguma coisa?",
+            "gerado_em": "2026-07-26T21:08:03.479539",
+            "avaliacao_juiz": {
+                "raciocinio": "A análise crítica revela que a resposta gerada é excessivamente prolixa, repleta de empatia artificial e conversacionalismo desnecessário ('Olha, respira fundo', 'vamos dar um jeito nisso juntas!'), o que fere gravemente a relevância e objetividade. Em relação à fidelidade (faithfulness), a resposta deduz que 'como o prazo do período de inscrição já passou, o sistema oficial do INEP geralmente não permite alterações posteriores' — uma extrapolação lógica baseada no senso comum, visto que o contexto apenas afirma que a solicitação é feita 'durante o período de inscrição'. Quanto ao context_precision, o segundo chunk do contexto ('Os sistemas de inscrição para vestibulares...') é claramente ruído irrelevante genérico que não diz respeito diretamente ao Enem. Sobre o context_recall, a resposta cobriu a necessidade de solicitar na Página do Participante e o prazo de inscrição, mas pecou em não detalhar a sincronização com o CPF na Receita Federal ou a necessidade de envio de documentação citada no gabarito e no contexto.",
+                "faithfulness": 0.8,
+                "answer_relevance": 0.4,
+                "context_precision": 0.6,
+                "context_recall": 0.7
+            }
+        },
+        {
+            "id": 4,
+            "categoria": "Segurança e Violência",
+            "pergunta": "meu chefe proibiu eu de entra no banheiro feminino sendo q sou mulher trans isso pode?? posso processa ele??",
+            "objetivo": "Avalia resiliência a linguagem coloquial sobre TST caso Luxottica 2024 — proibição de banheiro configura dano moral e gera direito a indenização (R$ 25 mil).",
+            "estrategia_rag": "Contexto Completo: Legislação Trabalhista",
+            "chunk_ids": [
+                "vox-kb-0333",
+                "vox-kb-0334",
+                "vox-kb-0336",
+                "vox-kb-0041"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0041",
+                    "topico": "Legislação Trabalhista",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Normas como a Convenção 111 da OIT orientam empresas; políticas de diversidade internas e canais confidenciais fortalecem a segurança do trabalhador."
+                },
+                {
+                    "kb_id": "vox-kb-0333",
+                    "topico": "Legislação Trabalhista",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A 5ª Turma do Tribunal Superior do Trabalho (TST, Processo RR-11190-88.2015.5.15.0131, 2024) condenou a empresa Luxottica ao pagamento de R$ 25 mil de indenização por danos morais a uma auxiliar trans proibida de usar o banheiro feminino. O TST fundamentou que a restrição ao banheiro e a recusa do nome social violam os direitos de personalidade e a dignidade da pessoa humana (Art. 1º, III, CF/88), sendo dever do empregador garantir ambiente de trabalho inclusivo."
+                },
+                {
+                    "kb_id": "vox-kb-0334",
+                    "topico": "Legislação Trabalhista",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A 6ª Turma do Tribunal Superior do Trabalho (TST, rel. Min. Maria de Assis Calsing, 2017) manteve condenação de R$ 30 mil por danos morais contra autarquia federal que criou banheiro unissex para uma trabalhadora trans. O TST entendeu que impor sanitário exclusivo/unissex, em vez de garantir acesso ao banheiro feminino, amplia a discriminação e o estigma, configurando prática ilegal de transfobia no ambiente laboral."
+                },
+                {
+                    "kb_id": "vox-kb-0336",
+                    "topico": "Legislação Trabalhista",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A Portaria MPT nº 1.036/2015 regulamenta o uso do nome social e assegura o acesso de servidores e colaboradores trans a banheiros, vestiários e instalações segregadas por gênero conforme sua identidade autodeclarada nas unidades do Ministério Público do Trabalho. A norma se aplica a servidores, estagiários, terceirizados e usuários de serviços do MPT, servindo de referência para outras instituições públicas e privadas."
+                }
+            ],
+            "tempo_resposta_segundos": 3.51,
+            "resposta_gerada": "Sinto muito, de verdade, que você esteja passando por essa situação. É revoltante e desrespeitosa, e quero que saiba que a sua identidade e a sua dignidade devem ser respeitadas. \n\nIsso **não pode** acontecer. O Tribunal Superior do Trabalho (TST) já tem decisões firmes dizendo que proibir uma mulher trans de usar o banheiro feminino é um ato de transfobia, viola os direitos de personalidade e gera direito a processo e indenização por danos morais. Inclusive, criar banheiros separados ou unissex só para isolar a pessoa também é considerado ilegal e discriminatório.\n\nVocê tem o direito de ser respeitada e de trabalhar em um ambiente seguro. Se quiser conversar sobre como registrar isso, reunir provas ou buscar apoio jurídico, estou aqui com você. Como prefere seguir?",
+            "gerado_em": "2026-07-26T21:08:08.494166",
+            "avaliacao_juiz": {
+                "raciocinio": "Análise crítica do sistema RAG: 1. Faithfulness: A resposta manteve-se estritamente fiel aos fatos jurídicos presentes no contexto (entendimento do TST sobre proibição de banheiro feminino para mulheres trans constituir dano moral), sem inventar jurisprudências falsas, embora tenha adotado um tom excessivamente empático e conversacional típico de chatbots generalistas. 2. Answer Relevance: A resposta inclui um preâmbulo longo e emocional e uma finalização conversacional excessiva ('estou aqui com você. Como prefere seguir?'), o que polui a objetividade exigida de uma resposta jurídica baseada em IA. 3. Context Precision: O contexto recuperado continha informações úteis (Caso Luxottica do TST, jurisprudência sobre banheiro unissex e Portaria do MPT). No entanto, o primeiro chunk sobre a OIT e diversidade interna é irrelevante e pura gordura semântica. 4. Context Recall: O objetivo (gabarito) exigia avaliar a resiliência à linguagem coloquial e citar o caso TST Luxottica 2024, destacando o dano moral e a indenização. A resposta tratou do mérito da decisão do TST e do dano moral, mas omitiu especificamente o valor da indenização (R$ 25 mil) e a menção direta ao caso paradigma.",
+                "faithfulness": 0.9,
+                "answer_relevance": 0.7,
+                "context_precision": 0.75,
+                "context_recall": 0.8
+            }
+        },
+        {
+            "id": 5,
+            "categoria": "Segurança e Violência",
+            "pergunta": "fiz denúncia de lgbtfobia no trabalho mas a empresa disse q criou banheiro pra mim separado e ta tudo certo. isso e mesmo uma soluçao legal??",
+            "objetivo": "Avalia resiliência a texto informal sobre TST 6ª Turma (2017) — banheiro unissex/separado como solução forçada é discriminação, não resolução.",
+            "estrategia_rag": "Contexto Completo: Legislação Trabalhista",
+            "chunk_ids": [
+                "vox-kb-0333",
+                "vox-kb-0334",
+                "vox-kb-0336",
+                "vox-kb-0041"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0041",
+                    "topico": "Legislação Trabalhista",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Normas como a Convenção 111 da OIT orientam empresas; políticas de diversidade internas e canais confidenciais fortalecem a segurança do trabalhador."
+                },
+                {
+                    "kb_id": "vox-kb-0333",
+                    "topico": "Legislação Trabalhista",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A 5ª Turma do Tribunal Superior do Trabalho (TST, Processo RR-11190-88.2015.5.15.0131, 2024) condenou a empresa Luxottica ao pagamento de R$ 25 mil de indenização por danos morais a uma auxiliar trans proibida de usar o banheiro feminino. O TST fundamentou que a restrição ao banheiro e a recusa do nome social violam os direitos de personalidade e a dignidade da pessoa humana (Art. 1º, III, CF/88), sendo dever do empregador garantir ambiente de trabalho inclusivo."
+                },
+                {
+                    "kb_id": "vox-kb-0334",
+                    "topico": "Legislação Trabalhista",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A 6ª Turma do Tribunal Superior do Trabalho (TST, rel. Min. Maria de Assis Calsing, 2017) manteve condenação de R$ 30 mil por danos morais contra autarquia federal que criou banheiro unissex para uma trabalhadora trans. O TST entendeu que impor sanitário exclusivo/unissex, em vez de garantir acesso ao banheiro feminino, amplia a discriminação e o estigma, configurando prática ilegal de transfobia no ambiente laboral."
+                },
+                {
+                    "kb_id": "vox-kb-0336",
+                    "topico": "Legislação Trabalhista",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A Portaria MPT nº 1.036/2015 regulamenta o uso do nome social e assegura o acesso de servidores e colaboradores trans a banheiros, vestiários e instalações segregadas por gênero conforme sua identidade autodeclarada nas unidades do Ministério Público do Trabalho. A norma se aplica a servidores, estagiários, terceirizados e usuários de serviços do MPT, servindo de referência para outras instituições públicas e privadas."
+                }
+            ],
+            "tempo_resposta_segundos": 3.68,
+            "resposta_gerada": "Sinto muito que você esteja passando por isso. É revoltante e muito doloroso ver uma empresa tentar camuflar o preconceito com medidas que só isolam e discriminam ainda mais a gente. Você merece respeito e dignidade no seu ambiente de trabalho de verdade, e não ser tratada como um problema a ser escondido.\n\nRespondendo direto à sua pergunta: **não, isso não é uma solução legal.** \n\nA Justiça do Trabalho (inclusive o Tribunal Superior do Trabalho) já firmou entendimento de que criar um banheiro separado, unissex ou exclusivo para uma pessoa trans, em vez de garantir o livre acesso ao banheiro correspondente à sua identidade de gênero, é uma prática discriminatória e transfóbica. Isso só reforça o estigma e fere a sua dignidade.\n\nSe você quiser dar um passo adiante contra essa situação, existem caminhos como o Ministério Público do Trabalho (MPT) ou o sindicato da sua categoria para fazer valer os seus direitos. Quer que eu te oriente sobre como funcionam esses canais de denúncia?",
+            "gerado_em": "2026-07-26T21:08:13.678801",
+            "avaliacao_juiz": {
+                "raciocinio": "Análise crítica do sistema RAG:\n1. Faithfulness (Fidelidade): A resposta utilizou estritamente os fatos fornecidos nos chunks (jurisprudência do TST sobre banheiro separado/unissex configurando discriminação e transfobia). Não houve alucinação direta.\n2. Answer Relevance (Relevância): A resposta abordou diretamente o questionamento do usuário, explicando com clareza a ilegalidade da medida da empresa. Houve um tom um pouco acolhedor/emocional no início ('Sinto muito...'), o que é aceitável em assistentes para temas sensíveis, mas a densidade informativa poderia ser mais enxuta.\n3. Context Precision (Precisão de Contexto): O contexto recuperado continha informações úteis (jurisprudência do TST), embora o primeiro parágrafo sobre a Convenção 111 da OIT e políticas internas fosse um tanto genérico. Ainda assim, os trechos cruciais sobre a decisão de 2017 do TST estavam presentes.\n4. Context Recall (Revocação de Contexto): A resposta cobriu perfeitamente o gabarito, atestando que a criação de banheiro separado/unissex é prática discriminatória e ilegal, alinhada à jurisprudência do TST exigida.",
+                "faithfulness": 1.0,
+                "answer_relevance": 0.9,
+                "context_precision": 0.85,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 6,
+            "categoria": "Segurança e Violência",
+            "pergunta": "levei homofobia aqui em ssalvador. qual o delegacia especializada q atende esse tipo d caso?? tem telefone??",
+            "objetivo": "Avalia resiliência a erro tipográfico ('ssalvador') e linguagem informal sobre DECRIN Salvador: endereço CPCD, telefones (71) 99637-8289 / 3450-1111.",
+            "estrategia_rag": "Tópicos mistos (Vencedor: Centros de Referência LGBT)",
+            "chunk_ids": [
+                "vox-kb-0338",
+                "vox-kb-0340",
+                "vox-kb-0038"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0038",
+                    "topico": "Legislação e Justiça",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A Lei 7.716/1989 equipara LGBTfobia ao crime de racismo; denúncias podem ser feitas no Disque 100 ou na Delegacia de Crimes Raciais e Delitos de Intolerância. Lei 7.716/1989;Disque 100 (Ouvidoria Nacional dos Direitos Humanos)"
+                },
+                {
+                    "kb_id": "vox-kb-0338",
+                    "topico": "Denúncias de LGBTfobia",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A DECRIN (Delegacia Especializada de Combate ao Racismo e à Intolerância Religiosa) é a unidade da Polícia Civil da Bahia responsável por investigar crimes de LGBTfobia em Salvador. Endereço: Centro Policial de Cidadania e Diversidade (CPCD) — Rua Padre Luiz Figueira, s/n, Engenho Velho de Brotas, Salvador-BA. Horário: segunda a sexta, 08h30–12h e 14h–18h. Telefones: (71) 99637-8289 / 3450-1111 / 3450-7317. Registro online: delegaciavirtual.sinesp.gov.br."
+                },
+                {
+                    "kb_id": "vox-kb-0340",
+                    "topico": "Centros de Referência LGBT",
+                    "eixo_tematico": "Sociedade e Ativismo",
+                    "descricao": "O CPDD-LGBT (Centro de Promoção e Defesa dos Direitos das Pessoas LGBTs, vinculado à SJDH-BA) presta atendimento jurídico, acolhimento psicossocial e suporte na retificação de prenome e gênero no Casarão da Diversidade. Endereço: Rua do Tijolo, nº 8, Pelourinho, Salvador-BA. Horário: segunda a sexta, 08h–17h. Contato/WhatsApp: (71) 99931-0329. E-mail: atendimento.lgbt@sjdh.ba.gov.br."
+                }
+            ],
+            "tempo_resposta_segundos": 3.56,
+            "resposta_gerada": "Sinto muito, de verdade, que você tenha passado por isso. Ninguém deveria sofrer nenhum tipo de violência ou preconceito. Saiba que você não está sozinho(a) e que a LGBTfobia é crime.\n\nEm Salvador, a delegacia especializada que atende esses casos é a **DECRIN** (Delegacia Especializada de Combate ao Racismo e à Intolerância Religiosa). Ela fica no Centro Policial de Cidadania e Diversidade (CPCD), na Rua Padre Luiz Figueira, s/n, Engenho Velho de Brotas. O atendimento presencial acontece de segunda a sexta, das 08h30 às 12h e das 14h às 18h.\n\nOs telefones de contato de lá são:\n* (71) 99637-8289\n* (71) 3450-1111\n* (71) 3450-7317\n\nSe preferir registrar o boletim de forma online, você pode acessar a Delegacia Virtual (delegaciavirtual.sinesp.gov.br) ou ligar para o Disque 100. \n\nSe precisar de apoio psicológico ou jurídico gratuito após o que aconteceu, você também pode contar com o CPDD-LGBT no Casarão da Diversidade (Rua do Tijolo, nº 8, Pelourinho), pelo WhatsApp (71) 99931-0329. \n\nComo você está se sentindo agora? Se precisar conversar ou de mais alguma orientação, estou aqui.",
+            "gerado_em": "2026-07-26T21:08:18.739407",
+            "avaliacao_juiz": {
+                "raciocinio": "A análise rigorosa demonstra que a resposta gerada utilizou estritamente as informações presentes no contexto recuperado, sem apresentar alucinações (faithfulness = 1.00). A resposta atendeu perfeitamente ao objetivo do gabarito, abordando a DECRIN em Salvador, fornecendo o endereço completo, horários, telefones corretos, link de registro online e até mesmo suporte adicional do CPDD-LGBT, demonstrando excelente recall de contexto (context_recall = 1.00). Em relação à precisão do contexto, os chunks continham dados úteis, embora com alguma duplicação inicial, mas o modelo soube filtrar bem as informações (context_precision = 0.90). No quesito relevância da resposta, o modelo adotou um tom acolhedor (empático), o que para o caso de homofobia é adequado e humanizado, mas adicionou uma pergunta final ('Como você está se sentindo agora?...'), o que ligeiramente desvia da concisão esperada de um assistente puramente objetivo de RAG, embora não chegue a ser uma poluição grave (answer_relevance = 0.90).",
+                "faithfulness": 1.0,
+                "answer_relevance": 0.9,
+                "context_precision": 0.9,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 7,
+            "categoria": "Saúde e Acolhimento",
+            "pergunta": "to passando por situaçao mto perigosa em casa pq sou bi, to com medo d voltar pra casa. tem casa d acolhimento em salvador?? como entra em contato??",
+            "objetivo": "Avalia resiliência a urgência emocional e linguagem comprimida sobre Casa Marielle Franco Brasil (sigilo de endereço, WhatsApp (71) 99153-9477) e Vida Bruno.",
+            "estrategia_rag": "Tópicos mistos (Vencedor: Centros de Referência LGBT)",
+            "chunk_ids": [
+                "vox-kb-0341",
+                "vox-kb-0340",
+                "vox-kb-0339"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0339",
+                    "topico": "Centros de Referência LGBT",
+                    "eixo_tematico": "Sociedade e Ativismo",
+                    "descricao": "O Centro Municipal de Referência LGBT+ Vida Bruno (Prefeitura de Salvador) oferece acolhimento psicossocial, assistência social e orientação jurídica gratuita, incluindo apoio na retificação de nome social/civil e atendimento a vítimas de violência LGBTfóbica. Endereço: Avenida Oceânica, nº 3731, Rio Vermelho, Salvador-BA. Horário: segunda a sexta, 08h–12h e 13h–17h. Telefone: (71) 3202-2750."
+                },
+                {
+                    "kb_id": "vox-kb-0340",
+                    "topico": "Centros de Referência LGBT",
+                    "eixo_tematico": "Sociedade e Ativismo",
+                    "descricao": "O CPDD-LGBT (Centro de Promoção e Defesa dos Direitos das Pessoas LGBTs, vinculado à SJDH-BA) presta atendimento jurídico, acolhimento psicossocial e suporte na retificação de prenome e gênero no Casarão da Diversidade. Endereço: Rua do Tijolo, nº 8, Pelourinho, Salvador-BA. Horário: segunda a sexta, 08h–17h. Contato/WhatsApp: (71) 99931-0329. E-mail: atendimento.lgbt@sjdh.ba.gov.br."
+                },
+                {
+                    "kb_id": "vox-kb-0341",
+                    "topico": "Casas de Acolhimento",
+                    "eixo_tematico": "Sociedade e Ativismo",
+                    "descricao": "A Casa de Acolhimento Marielle Franco Brasil oferece acolhimento residencial temporário com suporte psicológico, jurídico e médico para LGBT+ e mulheres em situação de vulnerabilidade extrema ou risco de morte em Salvador-BA. Por segurança das pessoas acolhidas, o endereço é mantido em sigilo absoluto. Contato para triagem e acolhimento: (71) 99153-9477 (WhatsApp). Instagram: @casamariellefrancobr."
+                }
+            ],
+            "tempo_resposta_segundos": 3.6,
+            "resposta_gerada": "Sinto muito, de verdade, que você esteja passando por isso. É uma situação muito assustadora, mas quero que saiba que você não está sozinha, sozinho ou todes, e que sua segurança vem em primeiro lugar. Você não precisa enfrentar isso sozinha.\n\nEm Salvador, nós temos a **Casa de Acolhimento Marielle Franco Brasil**, que oferece justamente esse suporte residencial temporário, com ajuda psicológica, jurídica e médica para pessoas LGBT+ em situação de risco. Por segurança, o endereço deles é sigiloso, mas você pode fazer contato direto para triagem pelo WhatsApp: **(71) 99153-9477** ou pelo Instagram **@casamariellefrancobr**.\n\nSe precisar de mais algum apoio psicossocial ou jurídico nesse momento, o **Centro Municipal Vida Bruno** também é um ponto seguro na cidade: fica na Avenida Oceânica, 3731, no Rio Vermelho, e o telefone de lá é **(71) 3202-2750**. \n\nConsegue mandar mensagem agora para o WhatsApp da Casa Marielle para tentarmos um lugar seguro para você passar a noite? Estou aqui.",
+            "gerado_em": "2026-07-26T21:08:23.842649",
+            "avaliacao_juiz": {
+                "raciocinio": "A análise crítica revela que a resposta gerada foi altamente empática e assertiva, focando exatamente nos pontos cruciais do contexto (Casa de Acolhimento Marielle Franco Brasil para risco de morte/sigilo e o Vida Bruno/CPDD). A faithfulness é perfeita, pois não há alucinações; tudo está estritamente baseado nos chunks fornecidos. A relevância é alta, embora envolva uma introdução acolhedora (necessária para o caso de urgência emocional descrito pelo usuário). A precisão do contexto recuperado é boa, contendo dados úteis sem excesso de ruído massivo. O context_recall atende plenamente ao gabarito ao focar na urgência, na Casa Marielle (com WhatsApp correto) e no suporte de Salvador.",
+                "faithfulness": 1.0,
+                "answer_relevance": 0.95,
+                "context_precision": 0.9,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 8,
+            "categoria": "Saúde e Acolhimento",
+            "pergunta": "quero comecar hormonizaçao mas n tenho plano de saude. tem algum postinho ou ambulatorio gratis pra trans aqui em ssalvador??",
+            "objetivo": "Avalia resiliência a erro tipográfico ('ssalvador') e linguagem informal sobre ambulatórios SUS trans: Multicentro Carlos Gomes (71) 3202-1924 e CEDAP (71) 3116-8838.",
+            "estrategia_rag": "Tópicos mistos (Vencedor: Ambulatórios Trans)",
+            "chunk_ids": [
+                "vox-kb-0342",
+                "vox-kb-0231",
+                "vox-kb-0340"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0231",
+                    "topico": "Ambulatórios Trans",
+                    "eixo_tematico": "Saúde e Bem-estar",
+                    "descricao": "Em Salvador (BA), o Ambulatório Trans do Hospital Edgard Santos (UFBA) é referência regional para o Processo Transexualizador do SUS, oferecendo suporte hormonal e multidisciplinar qualificado para a população trans baiana."
+                },
+                {
+                    "kb_id": "vox-kb-0340",
+                    "topico": "Centros de Referência LGBT",
+                    "eixo_tematico": "Sociedade e Ativismo",
+                    "descricao": "O CPDD-LGBT (Centro de Promoção e Defesa dos Direitos das Pessoas LGBTs, vinculado à SJDH-BA) presta atendimento jurídico, acolhimento psicossocial e suporte na retificação de prenome e gênero no Casarão da Diversidade. Endereço: Rua do Tijolo, nº 8, Pelourinho, Salvador-BA. Horário: segunda a sexta, 08h–17h. Contato/WhatsApp: (71) 99931-0329. E-mail: atendimento.lgbt@sjdh.ba.gov.br."
+                },
+                {
+                    "kb_id": "vox-kb-0342",
+                    "topico": "Ambulatórios Trans",
+                    "eixo_tematico": "Saúde e Bem-estar",
+                    "descricao": "Salvador possui dois ambulatórios públicos para atenção à saúde trans: 1) Ambulatório LGBTQIA+ Municipal: Rua Carlos Gomes, nº 270, Dois de Julho (Multicentro de Saúde Carlos Gomes). Tel: (71) 3202-1924. Oferece hormonização, PrEP e saúde mental (atendimento às terças e quintas, 08h–16h30). 2) AMBTT (CEDAP/SESAB): Rua Padre Feijó, nº 240, 5º andar, Canela. Tel CEDAP Garcia: (71) 3116-8838. Referência estadual para transição de gênero via SUS."
+                }
+            ],
+            "tempo_resposta_segundos": 4.76,
+            "resposta_gerada": "Que alegria ver você dando esse passo importante na sua transição! É super válido buscar esse cuidado, e a boa notícia é que o SUS oferece isso de graça, sim, aqui em Salvador. \n\nVocê não precisa de plano de saúde para começar. Temos opções públicas importantes na cidade para o acompanhamento com hormonização e suporte multidisciplinar:\n\n1. **Ambulatório LGBTQIA+ Municipal**: Fica no Multicentro de Saúde Carlos Gomes (Rua Carlos Gomes, nº 270, Dois de Julho). O atendimento de saúde trans e mental acontece às terças e quintas, das 08h às 16h30. O telefone de lá é o (71) 3202-1924.\n2. **AMBTT (CEDAP/SESAB)**: É a referência estadual, localizado na Rua Padre Feijó, nº 240, 5º andar, Canela. Se precisar ligar, o contato do CEDAP Garcia é (71) 3116-8838.\n3. **Ambulatório Trans do Hospital Edgard Santos (UFBA)**: Também é uma grande referência regional pelo SUS para o suporte hormonal e acompanhamento especializado.\n\nQuer que eu te dê mais detalhes sobre algum desses locais ou sobre como costuma ser o primeiro atendimento? Estou por aqui para o que precisar!",
+            "gerado_em": "2026-07-26T21:08:30.107870",
+            "avaliacao_juiz": {
+                "raciocinio": "A análise rigorosa revela que a resposta do RAG utilizou com precisão as informações fornecidas no contexto, listando corretamente os locais de atendimento em Salvador (Multicentro Carlos Gomes, AMBTT/CEDAP e Hospital Edgard Santos), demonstrando alta fidelidade. No entanto, o tom inicial é um pouco prolixo (cheio de saudações e enrolações emocionais antes de ir direto ao ponto), o que penaliza levemente a relevância da resposta sob uma ótica estritamente técnica. Quanto ao contexto recuperado, houve a inclusão do CPDD-LGBT que é voltado para apoio jurídico/social e não especificamente para hormonização médica, gerando um pequeno ruído semântico, mas o contexto geral foi útil. O gabarito exigia a cobertura do Multicentro Carlos Gomes e do CEDAP com seus respectivos telefones, o que foi integralmente atendido na resposta gerada.",
+                "faithfulness": 1.0,
+                "answer_relevance": 0.85,
+                "context_precision": 0.8,
+                "context_recall": 1.0
+            }
+        },
+        {
+            "id": 9,
+            "categoria": "Segurança e Violência",
+            "pergunta": "onde fico reclamando se a empresa discriminou eu por ser trans?? tem como denuncia sem perder o emprego??",
+            "objetivo": "Avalia resiliência a linguagem coloquial sobre canais de denúncia: MPT (mpt.mp.br), MTE (gov.br/trabalho) e Disque 100 — sigilo do denunciante garantido.",
+            "estrategia_rag": "Contexto Completo: Mercado de Trabalho",
+            "chunk_ids": [
+                "vox-kb-0335",
+                "vox-kb-0195",
+                "vox-kb-0028",
+                "vox-kb-0011",
+                "vox-kb-0008",
+                "vox-kb-0061",
+                "vox-kb-0060",
+                "vox-kb-0196"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0008",
+                    "topico": "Mercado de Trabalho",
+                    "eixo_tematico": "Sociedade e Ativismo",
+                    "descricao": "Artigos da CLT e normas ISO 30415 obrigam empresas a criar políticas antiassédio; algumas organizações adotam cartilhas internas e canais anônimos de denúncia."
+                },
+                {
+                    "kb_id": "vox-kb-0011",
+                    "topico": "Mercado de Trabalho",
+                    "eixo_tematico": "Sociedade e Ativismo",
+                    "descricao": "Feiras populares e ambulantes LGBTQIA+ relatam conflitos com fiscalização; em Salvador, iniciativas de cooperativas criam redes de apoio para formalização de negócios."
+                },
+                {
+                    "kb_id": "vox-kb-0028",
+                    "topico": "Mercado de Trabalho",
+                    "eixo_tematico": "Sociedade e Ativismo",
+                    "descricao": "Rejeição familiar e discriminação no trabalho geram desemprego de até 25% na população trans; iniciativas de microcrédito tentam diminuir esse impacto."
+                },
+                {
+                    "kb_id": "vox-kb-0060",
+                    "topico": "Mercado de Trabalho",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A portaria nº 3.291 de 2021 do Ministério do Trabalho assegura às pessoas trans o direito ao uso do nome social em crachás, contas de e-mail institucional, sistemas de informática corporativos e demais identificações funcionais no ambiente de trabalho."
+                },
+                {
+                    "kb_id": "vox-kb-0061",
+                    "topico": "Mercado de Trabalho",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A discriminação na contratação ou demissão de colaboradores com base em sua orientação sexual ou identidade de gênero é ilegal e passível de processo por danos morais na Justiça do Trabalho. A Convenção 111 da Organização Internacional do Trabalho (OIT) proíbe esse tipo de discriminação."
+                },
+                {
+                    "kb_id": "vox-kb-0195",
+                    "topico": "Mercado de Trabalho",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "A demissão sem justa causa fundada na orientação sexual do colaborador caracteriza dispensa discriminatória, cabendo pedido de reintegração ao cargo ou indenização em dobro por danos morais na Justiça do Trabalho."
+                },
+                {
+                    "kb_id": "vox-kb-0196",
+                    "topico": "Mercado de Trabalho",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "Empresas públicas e privadas que adotam canais internos de integridade e compliance para denúncias de assédio moral ou homofobia no ambiente corporativo previnem litígios trabalhistas e garantem bem-estar laboral."
+                },
+                {
+                    "kb_id": "vox-kb-0335",
+                    "topico": "Mercado de Trabalho",
+                    "eixo_tematico": "Direitos e Legislação",
+                    "descricao": "O Tribunal Superior do Trabalho (TST) consolida que pessoas trans têm o direito de utilizar o banheiro correspondente à sua identidade de gênero no ambiente de trabalho. Esse direito é independente de cirurgia de redesignação sexual ou de alteração no registro civil, sendo dever do empregador assegurar meio ambiente de trabalho livre de constrangimento e transfobia, sob pena de indenização por danos morais."
+                }
+            ],
+            "tempo_resposta_segundos": 3.42,
+            "resposta_gerada": "Sinto muito, de verdade, que você esteja passando por essa situação. Ninguém deveria sofrer discriminação ou preconceito em nenhum lugar, muito menos no trabalho, onde passamos tanto tempo. Quero que saiba que você não está sozinha nessa.\n\nA discriminação por identidade de gênero no ambiente de trabalho é ilegal. Se a empresa te discriminou, você tem direitos a proteger. Sobre a denúncia sem perder o emprego: as empresas são obrigadas a manter um ambiente seguro e livres de assédio, e muitas possuem canais internos de denúncia (como compliance ou ouvidoria anônima). Além disso, a Justiça do Trabalho protege contra a demissão discriminatória — se você for demitida por ser trans, isso é considerado dispensa discriminatória e você pode pedir a reintegração ao cargo ou indenização. \n\nVocê gostaria que eu te ajude a entender como funcionam os canais internos da sua empresa ou prefere saber mais sobre como buscar a Justiça do Trabalho? Estou aqui com você.",
+            "gerado_em": "2026-07-26T21:08:35.028274",
+            "avaliacao_juiz": {
+                "raciocinio": "A análise crítica revela falhas graves no pipeline RAG e na resposta gerada. 1. Faithfulness (Fidelidade): A resposta gerada atém-se aos fatos presentes no contexto (ilegalidade da discriminação, canais internos, reintegração/indenização), sem inventar fatos novos externos aos chunks fornecidos, pontuando bem. 2. Answer_relevance (Relevância): A resposta peca por ser excessivamente prolixa, sentimentalista ('Sinto muito, de verdade...') e demora a entregar a informação prática, violando o princípio da concisão em engenharia de IA. 3. Context_precision (Precisão de Contexto): O recuperador trouxe muito ruído e dados irrelevantes (feiras populares, microcrédito para população trans, etc.), poluindo semanticamente o contexto (nota baixa). 4. Context_recall (Revocação de Contexto): O gabarito exigia explicitamente citar os canais externos oficiais (MPT - mpt.mp.br, MTE - gov.br/trabalho e Disque 100) e o sigilo do denunciante. A resposta ignorou completamente o gabarito, focando apenas nos canais internos da empresa, falhando totalmente neste quesito.",
+                "faithfulness": 1.0,
+                "answer_relevance": 0.5,
+                "context_precision": 0.4,
+                "context_recall": 0.0
+            }
+        },
+        {
+            "id": 10,
+            "categoria": "Educação e Sociedade",
+            "pergunta": "li q 82 por cento das pessoa trans largam a escola por causa de preconceito. onde busco apoio se to pensando em largar minha facul por causa de transfobia??",
+            "objetivo": "Avalia recuperação de dados ANTRA/OAB sobre evasão (82%) e encaminhamento ao CPDD-LGBT (Pelourinho) e Centro Vida Bruno (Rio Vermelho) para apoio jurídico e psicossocial.",
+            "estrategia_rag": "Tópicos mistos (Vencedor: Direito ao Nome Social na Escola)",
+            "chunk_ids": [
+                "vox-kb-0331",
+                "vox-kb-0161",
+                "vox-kb-0149"
+            ],
+            "chunks_knowledge_base": [
+                {
+                    "kb_id": "vox-kb-0149",
+                    "topico": "Educação de Jovens e Adultos (EJA)",
+                    "eixo_tematico": "Educação e Cultura",
+                    "descricao": "A inclusão de pessoas trans e travestis em turmas de Educação de Jovens e Adultos (EJA) é uma das principais ferramentas de combate à evasão escolar decorrente de preconceito nas escolas tradicionais durante a adolescência."
+                },
+                {
+                    "kb_id": "vox-kb-0161",
+                    "topico": "Políticas de Permanência Estudantil",
+                    "eixo_tematico": "Educação e Cultura",
+                    "descricao": "Universidades federais brasileiras desenvolvem auxílios financeiros de permanência estudantil específicos voltados a alunos trans em situação de extrema vulnerabilidade social, combatendo a evasão acadêmica de minorias."
+                },
+                {
+                    "kb_id": "vox-kb-0331",
+                    "topico": "Direito ao Nome Social na Escola",
+                    "eixo_tematico": "Educação e Cultura",
+                    "descricao": "Estudos da ANTRA e da OAB revelam que aproximadamente 82% das pessoas trans enfrentam evasão escolar motivada por transfobia e desrespeito à identidade de gênero. O reconhecimento e garantia do uso do nome social nas escolas reduz constrangimentos na chamada e o assédio moral, atuando como medida direta para a permanência escolar e proteção do direito fundamental à educação de jovens travestis e transexuais."
+                }
+            ],
+            "tempo_resposta_segundos": 4.02,
+            "resposta_gerada": "Sinto muito no fundo do coração que você esteja passando por isso. Ninguém deveria ter que escolher entre estudar em paz e ser quem é, e é revoltante ver esse peso recair sobre você. Saiba que você não está sozinha, sozinho ou todes nessa, e sua presença na faculdade importa muito.\n\nInfelizmente, dados como esse da ANTRA mostram uma realidade dura, onde cerca de 82% das pessoas trans acabam deixando os estudos por causa da transfobia. Mas você não precisa carregar isso sozinha. \n\nPara tentar segurar essa barra e garantir que você não precise abrir mão do seu futuro, vale a pena dar uma olhada em dois caminhos principais na sua universidade:\n\n1. **Assistência Estudantil:** Muitas universidades oferecem auxílios financeiros de permanência voltados justamente para estudantes trans em situação de vulnerabilidade, o que pode te dar um alívio financeiro.\n2. **Ouvidoria, Coletivos ou Núcleos de Diversidade:** A maioria das instituições tem órgãos de apoio ou coletivos estudantis que acolhem denúncias de transfobia e ajudam a cobrar a faculdade.\n\nSe quiser, me conta: você estuda em qual faculdade ou cidade? Posso te ajudar a procurar os canais de apoio ou a ouvidoria de lá para darmos um passo juntos. Respira fundo, estou aqui com você.",
+            "gerado_em": "2026-07-26T21:08:40.552659",
+            "avaliacao_juiz": {
+                "raciocinio": "Análise crítica severa: 1. Fidelidade (faithfulness): A resposta utilizou dados corretos do contexto (estatística de 82% da ANTRA e auxílios de permanência) e não inventou fatos externos absurdos, mantendo-se fiel ao que foi recuperado. Nota: 1.00. 2. Relevância da resposta (answer_relevance): A resposta foi prolixa e piegas ('Sinto muito no fundo do coração', 'Respira fundo', 'estou aqui com você'), adotando um tom de chatbot excessivamente emocional e longo que desvia do foco técnico e direto que se espera de um assistente RAG. Nota: 0.50. 3. Precisão de contexto (context_precision): O contexto recuperado trouxe informações mistas (EJA, universidades federais, ANTRA/OAB, nome social), mas a densidade útil foi moderada para responder à pergunta. Nota: 0.70. 4. Revocação de contexto / Gabarito (context_recall): O gabarito explicitava o direcionamento para órgãos específicos (CPDD-LGBT e Centro Vida Bruno), os quais totalmente ausentes no contexto recuperado e, consequentemente, na resposta gerada. A resposta falhou gravemente em fornecer os locais reais de apoio jurídico e psicossocial exigidos pelo gabarito. Nota: 0.00.",
+                "faithfulness": 1.0,
+                "answer_relevance": 0.5,
+                "context_precision": 0.7,
+                "context_recall": 0.0
+            }
+        }
+    ]
+}
