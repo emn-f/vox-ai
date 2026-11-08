@@ -72,10 +72,47 @@ def buscar_chunks_por_topico(topico_alvo: str, limit: int = 30) -> list[dict[str
         logger.error(f"❌ Erro ao buscar tópico completo: {e}")
         return []
 
+# Tópicos e termos estritamente voltados a desenvolvedores do projeto
+TOPICOS_EXCLUSIVOS_DEV = {
+    "Como Contribuir",
+    "Padrões de Commit",
+    "Acesso ao Banco de Dados",
+    "Código Aberto e Git",
+}
+
+TERMOS_PERGUNTA_DEV = {
+    "contribuir",
+    "contribuição",
+    "contribuicao",
+    "pull request",
+    "github",
+    "repositório",
+    "repositorio",
+    "código",
+    "codigo",
+    "desenvolver",
+    "desenvolvedor",
+    "programar",
+    "programação",
+    "secrets.toml",
+    "uv run",
+    "setup local",
+}
+
+
+def eh_pergunta_desenvolvedor(query_texto: str | None) -> bool:
+    """Verifica se a pergunta do usuário expressa intenção explícita sobre desenvolvimento/código/contribuição."""
+    if not query_texto:
+        return False
+    texto_lower = query_texto.lower()
+    return any(termo in texto_lower for termo in TERMOS_PERGUNTA_DEV)
+
+
 def recuperar_contexto_inteligente(
     vector_embedding: list[float],
     threshold: float = SEMANTICA_THRESHOLD,
     limit: int = LIMITE_TEMAS,
+    query_texto: str | None = None,
 ) -> tuple[str | None, str, list[dict[str, Any]] | None]:
     """
     Decide estrategicamente e executa a melhor busca de contexto no banco de dados.
@@ -86,6 +123,7 @@ def recuperar_contexto_inteligente(
         vector_embedding (list[float]): Vetor numérico do embedding da query.
         threshold (float): Limiar de similaridade cosseno (padrão: SEMANTICA_THRESHOLD).
         limit (int): Número máximo de candidatos iniciais (padrão: LIMITE_TEMAS).
+        query_texto (str | None): Pergunta original do usuário (usada para calibrar filtros contextuais).
 
     Returns:
         tuple[str | None, str, list[dict[str, Any]] | None]:
@@ -99,6 +137,15 @@ def recuperar_contexto_inteligente(
         return None, "Erro DB", None
     
     resultados_iniciais = buscar_referencias_db(vector_embedding, threshold, limit, None)
+
+    # Filtrar chunks estritamente técnicos de dev se a consulta não for sobre desenvolvimento
+    if not eh_pergunta_desenvolvedor(query_texto):
+        resultados_iniciais = [
+            item
+            for item in resultados_iniciais
+            if item.get("topico") not in TOPICOS_EXCLUSIVOS_DEV
+            and not any(pat in (item.get("descricao") or "").lower() for pat in ["secrets.toml", "uv run streamlit"])
+        ]
     
     if not resultados_iniciais:
         return None, "Nenhuma referencia encontrada na base de conhecimento.", None
