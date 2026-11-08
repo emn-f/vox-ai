@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.1.0 - 08/11/2026
+
+
+### ✨ Funcionalidades
+
+* Adiciona spinner de espera e cache na geracao de audio ([dc59efd](https://github.com/emn-f/vox-ai/commit/dc59efd102e92056e90860bdcb94c1cade9b054c))
+
+
 ## v5.0.2 - 08/11/2026
 
 
