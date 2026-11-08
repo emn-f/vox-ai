@@ -11,6 +11,7 @@ permissions:
 
 jobs:
   sync-to-hub:
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,10 +29,9 @@ jobs:
           # Criar branch orfã (sem histórico) para o deploy
           git checkout --orphan release-branch
 
-          # Remover binários de documentação
-          if [ -d "docs/architeture/imgs" ]; then
-            git rm -rf docs/architeture/imgs
-          fi
+          # Remover documentação e arquivos binários não aceitos pelo Hugging Face
+          git rm -rf docs/ || true
+          find static/ -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.pdf" \) -exec git rm -f {} + || true
 
           # Commit apenas do estado atual (Snapshot)
           git commit -m "chore(deploy): snapshot release [skip ci]"

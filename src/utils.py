@@ -47,7 +47,7 @@ def get_version_from_changelog() -> str:
         changelog_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "CHANGELOG.md")
         with open(changelog_path, "r", encoding="utf-8") as f:
             content = f.read()
-            match = re.search(r"## \[([\d\.]+)\]", content)
+            match = re.search(r"##\s*\[?v?([\d\.]+)\]?", content)
             if match:
                 return f"v{match.group(1)}"
     except Exception as e:
@@ -70,11 +70,14 @@ def git_version() -> str:
             
         last_tag = subprocess.check_output(["git", "tag", "--list", tag_pattern, "--sort=-v:refname"]).decode("utf-8").splitlines()
         last_tag = last_tag[0] if last_tag else ""
-    except subprocess.CalledProcessError:
+    except (subprocess.CalledProcessError, FileNotFoundError):
         last_tag = ""
     
     if not last_tag:
         last_tag = get_version_from_changelog()
+    
+    if not last_tag:
+        last_tag = "v5.0.0"
     
     return f"{last_tag}"
 
