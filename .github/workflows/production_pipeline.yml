@@ -39,21 +39,10 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Calcular Próxima Versão Prod
+      - name: Calcular Próxima Versão Dinâmica (SemVer via Conventional Commits)
         id: get_tag
         run: |
-          LAST_TAG=$(git tag --list "v*" --sort=-v:refname | head -n 1)
-          if [ -z "$LAST_TAG" ]; then
-            LAST_TAG="v0.0.0"
-          fi
-
-          VERSION=${LAST_TAG#v}
-          IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
-          PATCH=$((PATCH + 1))
-          NEW_TAG="v${MAJOR}.${MINOR}.${PATCH}"
-
-          echo "Nova versão Prod: $NEW_TAG"
-          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
+          python3 scripts/calc_next_version.py --prefix "v" --export-github
 
       - name: Gerar Changelog (Git Cliff)
         uses: orhun/git-cliff-action@v4
