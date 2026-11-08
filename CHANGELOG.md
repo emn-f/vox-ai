@@ -7,6 +7,26 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.0.1 - 08/11/2026
+
+
+### 🐛 Correções
+
+* Corrige sintese de fala nativa do gemini com v1alpha e texto puro ([3304690](https://github.com/emn-f/vox-ai/commit/33046900aff91b82a0833a04c8452930b7336072))
+
+
+### 📚 Documentação
+
+* Atualiza documentacoes, versao 5.0.0 e compatibilidade hugging face ([61d3c89](https://github.com/emn-f/vox-ai/commit/61d3c8960140edf4d087a416fa3163a7843b7f45))
+
+
+### 🤖 CI/CD & Automação
+
+* Atualiza node 22 lts, acoes v5, versoes fixas e step summaries ([f33b0d3](https://github.com/emn-f/vox-ai/commit/f33b0d33d1448ca146d398c8ecd68a22a0855ef0))
+
+* Mitiga injecao de shell nos step summaries das github actions ([03b0bd9](https://github.com/emn-f/vox-ai/commit/03b0bd997f61958917eb3c524b2fe57476959220))
+
+
 ## v5.0.0 - 08/11/2026
 
 
