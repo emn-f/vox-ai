@@ -105,19 +105,21 @@ if st.session_state.get("key_api"):
             st.markdown(prompt_final)
 
         try:
-
-            tema_match, descricao_match, ids_referencia = semantica(prompt_final)
-
-            info_adicional_contexto = ""
-            if tema_match:
-                info_adicional_contexto = descricao_match
-            else:
-                descricao_match = "N/A"
-
             with st.chat_message("assistant", avatar="🌈"):
-                resposta = gerar_resposta(
-                    inicializar_chat_modelo(), prompt_final, info_adicional_contexto
-                )
+                with st.spinner("Vox está pensando com carinho e acolhimento... 💜"):
+                    tema_match, descricao_match, ids_referencia = semantica(prompt_final)
+
+                    info_adicional_contexto = ""
+                    if tema_match:
+                        info_adicional_contexto = descricao_match
+                    else:
+                        descricao_match = "N/A"
+
+                    resposta = gerar_resposta(
+                        inicializar_chat_modelo(), prompt_final, info_adicional_contexto
+                    )
+                msg_placeholder = st.empty()
+                msg_placeholder.write_stream(stream_resposta(resposta))
 
             st.session_state.hist_exibir.append({"role": "model", "parts": [resposta]})
 

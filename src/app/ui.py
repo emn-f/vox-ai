@@ -151,7 +151,7 @@ def dialog_rede_apoio() -> None:
     Exibe o diretório da Rede de Apoio e Acolhimento em modal interativo.
     """
     from src.app.pages.rede_apoio import render_rede_apoio
-    render_rede_apoio()
+    render_rede_apoio(show_title=False)
 
 
 def carregar_sidebar(sidebar_content: str, sidebar_footer: str) -> None:
