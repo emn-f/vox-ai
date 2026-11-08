@@ -54,7 +54,6 @@ temp/
 # General
 *.swp
 *.swo
-.agent
 
 # ==============================================================================
 # Operating System Files
@@ -100,6 +99,5 @@ scripts/debug_models.py
 # Antigravity CLI
 # ==============================================================================
 .antigravity/
-.agents/
 gerar_conteudo_kb.py
 scripts/inserir_kb_pendencias.py
