@@ -103,8 +103,8 @@ def _notificar_fallback_ui(modelo_falhou: str, proximo_modelo: str) -> None:
     try:
         if hasattr(st, "toast"):
             st.toast(
-                f"Servidor ocupado. Alternando automaticamente para contingência ({proximo_modelo})...",
-                icon="🔄",
+                f"Servidor ocupado. Alternando para contingência ({proximo_modelo})...",
+                icon="ℹ️",
             )
     except Exception:
         pass
