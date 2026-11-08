@@ -27,6 +27,15 @@ def vox_service():
     return VoxService()
 
 
+@pytest.fixture(scope="module", autouse=True)
+def check_e2e_prerequisites():
+    from src.config import get_secret
+    url = get_secret("supabase.url")
+    key = get_secret("supabase.key")
+    if not url or not key:
+        pytest.skip("Credenciais reais do Supabase não configuradas no ambiente. Pulando suite E2E.")
+
+
 @pytest.mark.integration
 class TestVoxE2ESuite:
     """Conjunto de testes ponta a ponta para validação contínua em Dev."""
