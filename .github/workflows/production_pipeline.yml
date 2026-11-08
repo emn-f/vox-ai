@@ -26,14 +26,21 @@ jobs:
         run: uv run pytest
       - name: 📊 Summary de Testes
         if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+          COMMIT_SHA: ${{ github.sha }}
         run: |
           echo "## 🧪 Relatório de Testes Automatizados (Produção)" >> $GITHUB_STEP_SUMMARY
           echo "| Métrica | Valor |" >> $GITHUB_STEP_SUMMARY
           echo "|---|---|" >> $GITHUB_STEP_SUMMARY
-          echo "| **Status** | ${{ job.status == 'success' && '✅ 100% Aprovados' || '❌ Falhas detectadas' }} |" >> $GITHUB_STEP_SUMMARY
+          if [ "$JOB_STATUS" = "success" ]; then
+            echo "| **Status** | ✅ 100% Aprovados |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| **Status** | ❌ Falhas detectadas |" >> $GITHUB_STEP_SUMMARY
+          fi
           echo "| **Python Runtime** | \`3.13\` |" >> $GITHUB_STEP_SUMMARY
           echo "| **Package Manager** | \`uv (astral-sh/setup-uv@v5)\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Commit** | \`$COMMIT_SHA\` |" >> $GITHUB_STEP_SUMMARY
 
   release_prod:
     needs: test
@@ -103,14 +110,22 @@ jobs:
 
       - name: 📊 Gerar Step Summary do Release
         if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+          NEW_TAG: ${{ steps.get_tag.outputs.new_tag }}
+          COMMIT_SHA: ${{ github.sha }}
         run: |
           echo "## 🚀 Relatório de Release Oficial (Produção)" >> $GITHUB_STEP_SUMMARY
           echo "| Propriedade | Valor |" >> $GITHUB_STEP_SUMMARY
           echo "|---|---|" >> $GITHUB_STEP_SUMMARY
-          echo "| **Status** | ${{ job.status == 'success' && '✅ Sucesso' || '❌ Falha' }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Tag Oficial** | \`${{ steps.get_tag.outputs.new_tag }}\` |" >> $GITHUB_STEP_SUMMARY
+          if [ "$JOB_STATUS" = "success" ]; then
+            echo "| **Status** | ✅ Sucesso |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| **Status** | ❌ Falha |" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "| **Tag Oficial** | \`$NEW_TAG\` |" >> $GITHUB_STEP_SUMMARY
           echo "| **Branch** | \`main\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Commit** | \`$COMMIT_SHA\` |" >> $GITHUB_STEP_SUMMARY
           echo "| **Changelog** | Atualizado via Git Cliff (\`cliff.toml\`) |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "🎉 **Versão ${{ steps.get_tag.outputs.new_tag }} promovida com sucesso para produção!**" >> $GITHUB_STEP_SUMMARY
+          echo "🎉 **Versão $NEW_TAG promovida com sucesso para produção!**" >> $GITHUB_STEP_SUMMARY

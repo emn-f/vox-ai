@@ -56,15 +56,22 @@ jobs:
 
       - name: 📊 Gerar Step Summary
         if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+          COMMIT_SHA: ${{ github.sha }}
         run: |
           echo "## 🎲 Relatório de Deploy de Migrações do Supabase" >> $GITHUB_STEP_SUMMARY
           echo "| Campo | Detalhe |" >> $GITHUB_STEP_SUMMARY
           echo "|---|---|" >> $GITHUB_STEP_SUMMARY
           echo "| **Projeto Supabase** | \`${SUPABASE_PROJECT_ID}\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Status** | ${{ job.status == 'success' && '✅ Sucesso' || '❌ Falha' }} |" >> $GITHUB_STEP_SUMMARY
+          if [ "$JOB_STATUS" = "success" ]; then
+            echo "| **Status** | ✅ Sucesso |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| **Status** | ❌ Falha |" >> $GITHUB_STEP_SUMMARY
+          fi
           echo "| **Node.js** | Node 22 (LTS) |" >> $GITHUB_STEP_SUMMARY
           echo "| **Supabase CLI** | \`v2.84.2\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Commit** | \`$COMMIT_SHA\` |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 📂 Migrações no Repositório" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY

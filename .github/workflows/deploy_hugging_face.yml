@@ -41,14 +41,21 @@ jobs:
 
       - name: 📊 Gerar Step Summary
         if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+          COMMIT_SHA: ${{ github.sha }}
         run: |
           echo "## 🤗 Relatório de Deploy no Hugging Face Spaces" >> $GITHUB_STEP_SUMMARY
           echo "| Campo | Detalhe |" >> $GITHUB_STEP_SUMMARY
           echo "|---|---|" >> $GITHUB_STEP_SUMMARY
           echo "| **Space URL** | [hf.co/spaces/emn-f/vox-ai](https://huggingface.co/spaces/emn-f/vox-ai) |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Status do Deploy** | ${{ job.status == 'success' && '✅ Snapshot sincronizado com sucesso' || '❌ Falha na sincronização' }} |" >> $GITHUB_STEP_SUMMARY
+          if [ "$JOB_STATUS" = "success" ]; then
+            echo "| **Status do Deploy** | ✅ Snapshot sincronizado com sucesso |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| **Status do Deploy** | ❌ Falha na sincronização |" >> $GITHUB_STEP_SUMMARY
+          fi
           echo "| **SDK Streamlit** | \`1.67.0\` |" >> $GITHUB_STEP_SUMMARY
           echo "| **Python Runtime** | \`3.13\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Commit Fonte** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Commit Fonte** | \`$COMMIT_SHA\` |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "💡 *O Hugging Face Spaces compilará automaticamente o container com Streamlit 1.67.0 e as dependências do requirements.txt.*" >> $GITHUB_STEP_SUMMARY

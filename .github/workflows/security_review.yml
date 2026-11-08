@@ -40,11 +40,18 @@ jobs:
 
       - name: 📊 Gerar Step Summary da Revisão de Segurança
         if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+          COMMIT_SHA: ${{ github.sha }}
         run: |
           echo "## 🔒 Relatório de Revisão de Segurança e Gatekeep" >> $GITHUB_STEP_SUMMARY
           echo "| Verificação | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|---|---|" >> $GITHUB_STEP_SUMMARY
-          echo "| **Resultado do Gatekeep** | ${{ job.status == 'success' && '✅ Aprovado (Nenhum segredo ou falha detectada)' || '❌ Bloqueado pelo Gatekeep' }} |" >> $GITHUB_STEP_SUMMARY
+          if [ "$JOB_STATUS" = "success" ]; then
+            echo "| **Resultado do Gatekeep** | ✅ Aprovado (Nenhum segredo ou falha detectada) |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| **Resultado do Gatekeep** | ❌ Bloqueado pelo Gatekeep |" >> $GITHUB_STEP_SUMMARY
+          fi
           echo "| **Python Runtime** | \`3.13 (actions/setup-python@v5)\` |" >> $GITHUB_STEP_SUMMARY
           echo "| **Modo do Scanner** | \`pre-push\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Commit** | \`$COMMIT_SHA\` |" >> $GITHUB_STEP_SUMMARY

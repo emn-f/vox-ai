@@ -70,13 +70,20 @@ jobs:
 
       - name: 📊 Gerar Step Summary do Backup
         if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+          RUN_NUM: ${{ github.run_number }}
         run: |
           echo "## 💾 Relatório de Backup do Supabase" >> $GITHUB_STEP_SUMMARY
           echo "| Métrica | Detalhe |" >> $GITHUB_STEP_SUMMARY
           echo "|---|---|" >> $GITHUB_STEP_SUMMARY
-          echo "| **Status** | ${{ job.status == 'success' && '✅ Backup íntegro concluído' || '❌ Falha no backup' }} |" >> $GITHUB_STEP_SUMMARY
+          if [ "$JOB_STATUS" = "success" ]; then
+            echo "| **Status** | ✅ Backup íntegro concluído |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| **Status** | ❌ Falha no backup |" >> $GITHUB_STEP_SUMMARY
+          fi
           echo "| **Retenção** | 30 dias (GitHub Artifacts) |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Run Number** | \`#${{ github.run_number }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Run Number** | \`#${RUN_NUM}\` |" >> $GITHUB_STEP_SUMMARY
           echo "| **Data/Hora** | $(date -u '+%Y-%m-%d %H:%M:%S UTC') |" >> $GITHUB_STEP_SUMMARY
           if [ -d "backups_output" ]; then
             echo "" >> $GITHUB_STEP_SUMMARY

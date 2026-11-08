@@ -47,12 +47,19 @@ jobs:
 
       - name: 📊 Gerar Step Summary da Análise SAST
         if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+          COMMIT_SHA: ${{ github.sha }}
         run: |
           echo "## 🛡️ Relatório de Segurança SAST (Semgrep)" >> $GITHUB_STEP_SUMMARY
           echo "| Verificação | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|---|---|" >> $GITHUB_STEP_SUMMARY
-          echo "| **Status da Varredura** | ${{ job.status == 'success' && '✅ Nenhuma vulnerabilidade crítica detectada' || '⚠️ Vulnerabilidades ou erros encontrados' }} |" >> $GITHUB_STEP_SUMMARY
+          if [ "$JOB_STATUS" = "success" ]; then
+            echo "| **Status da Varredura** | ✅ Nenhuma vulnerabilidade crítica detectada |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| **Status da Varredura** | ⚠️ Vulnerabilidades ou erros encontrados |" >> $GITHUB_STEP_SUMMARY
+          fi
           echo "| **Imagem Semgrep** | \`semgrep/semgrep:1.183.0\` |" >> $GITHUB_STEP_SUMMARY
           echo "| **Regras Aplicadas** | \`p/security-audit\`, \`p/owasp-top-ten\`, \`p/python\`, \`p/secrets\` |" >> $GITHUB_STEP_SUMMARY
           echo "| **Artefato SARIF** | Enviado para a aba Security do GitHub |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Commit** | \`$COMMIT_SHA\` |" >> $GITHUB_STEP_SUMMARY
