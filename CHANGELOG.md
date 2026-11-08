@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.1.1 - 08/11/2026
+
+
+### 🔧 Tarefas Internas
+
+* Atualiza notificacao de fallback e regras de ia ([3fd609c](https://github.com/emn-f/vox-ai/commit/3fd609c0ce3cfe6d0a557bd60f0af63c64127813))
+
+
 ## v5.1.0 - 08/11/2026
 
 
