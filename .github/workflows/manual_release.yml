@@ -82,3 +82,25 @@ jobs:
           git push origin "$REF_NAME" --tags
 
           echo "✅ Versão Manual ${NEW_TAG} lançada!"
+
+      - name: 📊 Gerar Step Summary do Release Manual
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+          NEW_TAG: ${{ steps.get_tag.outputs.new_tag }}
+          INCREMENT_TYPE: ${{ github.event.inputs.increment_type }}
+          REF_NAME: ${{ github.ref_name }}
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          echo "## 🫴🏽 Relatório de Release Manual" >> $GITHUB_STEP_SUMMARY
+          echo "| Propriedade | Valor |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          if [ "$JOB_STATUS" = "success" ]; then
+            echo "| **Status** | ✅ Versão gerada e publicada |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| **Status** | ❌ Falha no release |" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "| **Nova Tag** | \`$NEW_TAG\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Tipo de Incremento** | \`$INCREMENT_TYPE\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Branch Alvo** | \`$REF_NAME\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Commit** | \`$COMMIT_SHA\` |" >> $GITHUB_STEP_SUMMARY
