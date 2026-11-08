@@ -51,9 +51,11 @@ jobs:
           args: --unreleased --tag ${{ steps.get_tag.outputs.new_tag }} --prepend CHANGELOG.md
 
       - name: Commitar, Taggear e Push
+        env:
+          NEW_TAG: ${{ steps.get_tag.outputs.new_tag }}
+          REPO: ${{ github.repository }}
+          TOKEN: ${{ secrets.TOKEN_DEPLOY_VOX }}
         run: |
-          NEW_TAG="${{ steps.get_tag.outputs.new_tag }}"
-
           git add CHANGELOG.md
 
           if git diff --staged --quiet; then
@@ -62,9 +64,9 @@ jobs:
             git commit -m "chore(release): changelog atualizado para versão ${NEW_TAG} [skip ci]"
           fi
 
-          git tag $NEW_TAG
+          git tag "$NEW_TAG"
 
-          git remote set-url origin https://emn-f:${{ secrets.TOKEN_DEPLOY_VOX }}@github.com/${{ github.repository }}.git
+          git remote set-url origin "https://emn-f:${TOKEN}@github.com/${REPO}.git"
           
           git push origin main --tags
 

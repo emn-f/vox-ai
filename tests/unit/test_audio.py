@@ -456,7 +456,7 @@ class TestSinteseFalaGemini:
         buffer = gerar_fala_gemini("Texto para síntese gTTS", client=None)
         assert isinstance(buffer, io.BytesIO)
         assert buffer.getvalue() == b"bytes-mp3-gtts"
-        mock_gtts_cls.assert_called_once_with(text="Texto para síntese gTTS", lang="pt-br")
+        mock_gtts_cls.assert_called_once_with(text="Texto para síntese gTTS", lang="pt", tld="com.br")
 
     @patch("src.core.audio.gTTS", side_effect=Exception("Falha total na conexão de rede"))
     def test_gerar_fala_resiliencia_falha_total(self, _mock_gtts):

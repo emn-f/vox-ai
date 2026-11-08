@@ -152,7 +152,7 @@ def _gerar_fala_gtts(texto: str) -> io.BytesIO:
         if not texto_limpo:
             texto_limpo = "Não foi possível ler a resposta."
 
-        tts = gTTS(text=texto_limpo, lang="pt-br")
+        tts = gTTS(text=texto_limpo, lang="pt", tld="com.br")
         buffer = io.BytesIO()
         tts.write_to_fp(buffer)
         buffer.seek(0)
