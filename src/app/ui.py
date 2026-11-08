@@ -231,10 +231,22 @@ def exibir_historico_chat(historico_conversa: list) -> None:
                 st.markdown(msg["parts"][0], unsafe_allow_html=False)
 
                 chave_botao = f"btn_audio_{i}"
-                if st.button("🔊 Ouvir", key=chave_botao):
-                    audio_data = texto_para_audio(msg["parts"][0])
-                    formato_audio = "audio/wav" if audio_data.getvalue().startswith(b"RIFF") else "audio/mp3"
-                    st.audio(audio_data, format=formato_audio)
+                chave_audio_cache = f"audio_cache_{i}"
+
+                # Exibe reprodutor direto se já foi sintetizado nesta sessão
+                if chave_audio_cache in st.session_state:
+                    audio_bytes = st.session_state[chave_audio_cache]
+                    formato_audio = "audio/wav" if audio_bytes.startswith(b"RIFF") else "audio/mp3"
+                    st.audio(audio_bytes, format=formato_audio)
+                else:
+                    if st.button("🔊 Ouvir resposta", key=chave_botao):
+                        with st.spinner("🎙️ Gerando áudio com voz humanizada... Por favor, aguarde um instante"):
+                            audio_data = texto_para_audio(msg["parts"][0])
+                            audio_bytes = audio_data.getvalue() if audio_data else b""
+                            if audio_bytes:
+                                st.session_state[chave_audio_cache] = audio_bytes
+                                formato_audio = "audio/wav" if audio_bytes.startswith(b"RIFF") else "audio/mp3"
+                                st.audio(audio_bytes, format=formato_audio)
         else:
             with st.chat_message("user", avatar="👤"):
                 st.markdown(msg["parts"][0])

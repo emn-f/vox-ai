@@ -1,5 +1,9 @@
 import sys
 import types
+import warnings
+
+# Suprime aviso de escape sequence inválido cosmético em docstrings do google.genai no Python 3.12+
+warnings.filterwarnings("ignore", category=SyntaxWarning, module="google.genai")
 
 """
 Este patch é necessário para evitar erros de importação do 'torch.classes' em ambientes 
