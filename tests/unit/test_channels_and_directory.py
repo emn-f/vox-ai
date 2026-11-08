@@ -402,3 +402,50 @@ def test_render_rede_apoio_show_title_flag(mock_st_title):
         render_rede_apoio(show_title=True)
         mock_st_title.assert_called_once_with("🤝 Rede de Apoio e Acolhimento Vox")
 
+
+@pytest.mark.unit
+def test_exibir_historico_chat_audio_spinner_and_cache():
+    """Testa renderização do histórico com spinner durante geração de áudio e uso de cache."""
+    import io
+    from unittest.mock import MagicMock, patch
+    from src.app.ui import exibir_historico_chat
+
+    historico = [
+        {"role": "user", "parts": ["Olá!"]},
+        {"role": "model", "parts": ["Olá, sou o Vox! Como posso te acolher?"]},
+    ]
+
+    mock_session_state = {}
+
+    with patch("streamlit.chat_message") as mock_chat_message, \
+         patch("streamlit.markdown") as mock_markdown, \
+         patch("streamlit.button", return_value=True) as mock_button, \
+         patch("streamlit.spinner") as mock_spinner, \
+         patch("streamlit.audio") as mock_audio, \
+         patch("streamlit.session_state", mock_session_state), \
+         patch("src.utils.texto_para_audio", return_value=io.BytesIO(b"RIFFwavdata")) as mock_tts:
+
+        # 1. Primeira vez: usuário clica no botão "Ouvir"
+        exibir_historico_chat(historico)
+
+        mock_spinner.assert_called_once()
+        mock_tts.assert_called_once_with("Olá, sou o Vox! Como posso te acolher?")
+        assert "audio_cache_1" in mock_session_state
+        assert mock_session_state["audio_cache_1"] == b"RIFFwavdata"
+        mock_audio.assert_called_once_with(b"RIFFwavdata", format="audio/wav")
+
+    # 2. Segunda vez (rerun da página): áudio já em cache, não chama TTS nem spinner
+    with patch("streamlit.chat_message"), \
+         patch("streamlit.markdown"), \
+         patch("streamlit.button") as mock_button2, \
+         patch("streamlit.spinner") as mock_spinner2, \
+         patch("streamlit.audio") as mock_audio2, \
+         patch("streamlit.session_state", mock_session_state), \
+         patch("src.utils.texto_para_audio") as mock_tts2:
+
+        exibir_historico_chat(historico)
+
+        mock_tts2.assert_not_called()
+        mock_spinner2.assert_not_called()
+        mock_audio2.assert_called_once_with(b"RIFFwavdata", format="audio/wav")
+
