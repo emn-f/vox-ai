@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v4.1.1 - 08/11/2026
+
+
+### 🤖 CI/CD & Automação
+
+* Ajusta comando supabase db push com flag --remote para CLI v3 ([0497619](https://github.com/emn-f/vox-ai/commit/04976191fa040420a2ceea8fe7fefa5c3e4c7d66))
+
+
 ## v4.1.0 - 08/11/2026
 
 
