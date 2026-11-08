@@ -7,6 +7,19 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.0.0 - 08/11/2026
+
+
+### ✨ Funcionalidades
+
+* Consolidação da arquitetura v5.0.0 com API desacoplada, RAG enriquecido e áudio nativo ([c23b769](https://github.com/emn-f/vox-ai/commit/c23b769f516c89dcf3c82f26c31d3249f3098d89))
+
+
+### 📦 Build & Dependências
+
+* Atualiza dependencias vulneraveis no uv.lock e requirements.txt ([91b9121](https://github.com/emn-f/vox-ai/commit/91b9121af0a0a298b59b9ea7c5853c5dc2023e9e))
+
+
 ## v4.1.2 - 08/11/2026
 
 
