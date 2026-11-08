@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.1.3 - 08/11/2026
+
+
+### 📚 Documentação
+
+* Atualiza regras e habilidades do vox-ai com novas diretrizes de rag, audio e git ([26a88dd](https://github.com/emn-f/vox-ai/commit/26a88dd4dccf9f6ad9d939af779141d6068a7a7f))
+
+
 ## v5.1.2 - 08/11/2026
 
 
