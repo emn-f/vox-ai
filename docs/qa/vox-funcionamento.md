@@ -14,18 +14,20 @@ Ao acessar a URL do Vox AI (`http://localhost:8501`), o usuário é recebido por
 ### 1.2 Perguntas Diretas e Escopo de Acolhimento
 Quando o usuário faz uma pergunta geral ou introdutória (ex: *"Como você pode me acolher e ajudar hoje?"*):
 1. O texto é enviado através do campo de entrada inferior (`st.chat_input`).
-2. O Vox AI responde em tom empático, sintetizando seus três pilares fundamentais:
+2. **Bypass Inteligente de Saudações (`eh_saudacao`)**: Saudações e cumprimentos diretos (ex: *"olá"*, *"bom dia"*, *"tudo bem?"*, *"hey vox"*) são detectados preventivamente em `src/core/semantica.py`. Nesses casos, a consulta vetorial RAG é dispensada deliberadamente, evitando a injeção espúria de chunks factuais e mantendo a conversa calorosa, natural e imediata.
+3. O Vox AI responde em tom empático, sintetizando seus três pilares fundamentais:
    - **Direitos e Cidadania**: leis, retificação de documentos, certidões e canais de denúncia.
    - **Saúde**: cuidados de saúde afirmativa, prevenção combinada (PrEP/PEP), saúde mental e SUS.
    - **Acolhimento**: redes de suporte, casas de abrigo e coletivos comunitários.
-3. A resposta é transmitida em *streaming*, gerando os primeiros fragmentos visíveis quase instantaneamente.
+4. A resposta é transmitida em *streaming*, gerando os primeiros fragmentos visíveis quase instantaneamente.
 
 ### 1.3 Perguntas Aprofundadas com RAG (Recuperação de Conhecimento)
 Quando a dúvida envolve normas jurídicas, resoluções institucionais ou locais de atendimento:
-1. O sistema gera uma representação vetorial (embedding de 1536 dimensões) da pergunta do usuário.
+1. O sistema gera uma representação vetorial (embedding de 1536 dimensões) da pergunta do usuário via `gemini-embedding-001`.
 2. Consulta a tabela `knowledge_base` no Supabase utilizando a extensão `pgvector`, calculando a similaridade de cosseno.
-3. Se houver correspondência semântica acima do limiar configurado (`SEMANTICA_THRESHOLD = 0.65`):
+3. Se houver correspondência semântica acima do limiar configurado (`SEMANTICA_THRESHOLD = 0.62`):
    - Os chunks de conhecimento curados são recuperados e injetados de forma invisível no prompt do modelo como contexto factual.
+   - **Segregação de Chunks de Desenvolvedor**: Tópicos voltados estritamente à infraestrutura do projeto (`Como Contribuir`, `Padrões de Commit`, `Acesso ao Banco de Dados`) são filtrados da recuperação comum e só são acionados se o usuário fizer uma pergunta explícita sobre contribuição de código (`eh_pergunta_desenvolvedor`). Isso impede que instruções internas de git ou banco vazem nas orientações acolhedoras ao público geral.
    - O modelo Gemini gera uma resposta fundamentada na lei ou diretriz oficial, sem alucinações.
 4. Exemplos validados em QA:
    - **Nome Social no Ensino**: Portarias MEC nº 1.612/2011 e nº 33/2018 e Decreto nº 8.727/2016, assegurando nome social em listas de chamada, diários de classe, carteirinhas e diplomas.
@@ -50,8 +52,10 @@ O Vox AI conta com suporte nativo e contingencial para voz tanto na entrada (STT
 
 ### 2.1 Ouvir a Resposta (Text-to-Speech - TTS)
 - Cada mensagem emitida pelo assistente possui um botão **🔊 Ouvir**.
+- **Alerta de Espera Visual (`st.spinner`)**: Ao clicar, a interface apresenta imediatamente o indicador visual animado `🎙️ Gerando áudio com voz humanizada... Por favor, aguarde um instante`, garantindo que o usuário saiba que a síntese de fala está sendo processada.
+- **Cache de Áudio em Sessão (`audio_cache_{i}`)**: O arquivo de áudio sintetizado é armazenado em `st.session_state[f"audio_cache_{i}"]`. Reproduções futuras da mesma mensagem na mesma sessão ocorrem de forma instantânea sem realizar novas requisições de rede ou consumir cotas da API.
 - Ao clicar, o sistema aciona `src/core/audio.py`:
-  - **Mecanismo Primário**: Geração de áudio nativo multimodal via API do Gemini.
+  - **Mecanismo Primário**: Geração de áudio nativo multimodal via API do Gemini (`gemini-2.5-flash-preview-tts` / `gemini-3.8-flash-tts`).
   - **Mecanismo de Resiliência (Fallback)**: Caso a cota diária do modelo esteja temporariamente esgotada (HTTP 429) ou haja oscilação de rede, o Vox AI aciona de forma transparente a síntese do `gTTS` (Google Text-to-Speech em português).
 - O player nativo HTML5 `<audio>` é renderizado na tela, com controles de reprodução, barra de progresso e volume.
 
