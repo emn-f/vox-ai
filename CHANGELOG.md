@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.0.2 - 08/11/2026
+
+
+### 🐛 Correções
+
+* Adiciona bypass de saudacoes e restringe chunks tecnicos de dev ([b3efa14](https://github.com/emn-f/vox-ai/commit/b3efa14fe2f6206a5cbcffbe4a89614fb8782bfa))
+
+
 ## v5.0.1 - 08/11/2026
 
 
