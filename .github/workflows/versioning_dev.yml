@@ -33,3 +33,14 @@ jobs:
         # Apenas cria a tag no commit atual e sobe
         git tag $NEW_TAG
         git push origin $NEW_TAG
+
+    - name: 📊 Gerar Step Summary do Versionamento Develop
+      if: always()
+      run: |
+        echo "## 🚧 Relatório de Versionamento (Develop)" >> $GITHUB_STEP_SUMMARY
+        echo "| Propriedade | Valor |" >> $GITHUB_STEP_SUMMARY
+        echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+        echo "| **Status** | ${{ job.status == 'success' && '✅ Tag gerada com sucesso' || '❌ Falha no versionamento' }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| **Tag Develop** | \`${{ steps.calc_version.outputs.new_tag }}\` |" >> $GITHUB_STEP_SUMMARY
+        echo "| **Branch** | \`develop\` |" >> $GITHUB_STEP_SUMMARY
+        echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY

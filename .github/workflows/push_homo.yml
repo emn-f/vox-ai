@@ -26,3 +26,14 @@ jobs:
             - name: Push changes to homo
               run: |
                     git push origin homo
+
+            - name: 📊 Gerar Step Summary da Homologação
+              if: always()
+              run: |
+                echo "## 📋 Relatório de Atualização de Homologação" >> $GITHUB_STEP_SUMMARY
+                echo "| Campo | Detalhe |" >> $GITHUB_STEP_SUMMARY
+                echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+                echo "| **Status** | ${{ job.status == 'success' && '✅ Homologação atualizada com sucesso' || '❌ Falha na mesclagem' }} |" >> $GITHUB_STEP_SUMMARY
+                echo "| **Branch Alvo** | \`homo\` |" >> $GITHUB_STEP_SUMMARY
+                echo "| **Origem** | \`develop\` |" >> $GITHUB_STEP_SUMMARY
+                echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY

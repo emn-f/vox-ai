@@ -14,17 +14,17 @@ jobs:
   review:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.13"
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v3
+        uses: astral-sh/setup-uv@v5
       - name: Install Dependencies
         run: |
           uv pip install -r gatekeep/requirements-gatekeep.txt --system
@@ -37,3 +37,14 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python gatekeep/security_check.py --mode pre-push
+
+      - name: 📊 Gerar Step Summary da Revisão de Segurança
+        if: always()
+        run: |
+          echo "## 🔒 Relatório de Revisão de Segurança e Gatekeep" >> $GITHUB_STEP_SUMMARY
+          echo "| Verificação | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Resultado do Gatekeep** | ${{ job.status == 'success' && '✅ Aprovado (Nenhum segredo ou falha detectada)' || '❌ Bloqueado pelo Gatekeep' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Python Runtime** | \`3.13 (actions/setup-python@v5)\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Modo do Scanner** | \`pre-push\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY

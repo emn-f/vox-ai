@@ -36,10 +36,15 @@ jobs:
             echo "✅ Token carregado"
           fi
 
-      - name: 🛠️ Setup Supabase CLI
-        uses: supabase/setup-cli@v1
+      - name: 🟢 Configurar Node.js LTS
+        uses: actions/setup-node@v4
         with:
-          version: latest
+          node-version: 22
+
+      - name: 🛠️ Setup Supabase CLI
+        uses: supabase/setup-cli@v3
+        with:
+          version: 2.84.2
 
       - name: 🔗 Link e Push (Produção)
         run: |
@@ -49,10 +54,19 @@ jobs:
           echo "🚀 Enviando migrações..."
           supabase db push --remote --yes
 
-      - name: 🎉 Sucesso
-        if: success()
-        run: echo "✅ Banco de dados atualizado com sucesso!"
-
-      - name: ❌ Falha
-        if: failure()
-        run: echo "🔥 Ocorreu um erro. Verifique os logs."
+      - name: 📊 Gerar Step Summary
+        if: always()
+        run: |
+          echo "## 🎲 Relatório de Deploy de Migrações do Supabase" >> $GITHUB_STEP_SUMMARY
+          echo "| Campo | Detalhe |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Projeto Supabase** | \`${SUPABASE_PROJECT_ID}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Status** | ${{ job.status == 'success' && '✅ Sucesso' || '❌ Falha' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Node.js** | Node 22 (LTS) |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Supabase CLI** | \`v2.84.2\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📂 Migrações no Repositório" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          ls -1 supabase/migrations/*.sql >> $GITHUB_STEP_SUMMARY 2>&1 || echo "Nenhuma migração encontrada" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY

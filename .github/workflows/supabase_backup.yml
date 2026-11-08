@@ -23,7 +23,7 @@ jobs:
           python-version: "3.13"
 
       - name: ⚡ Instalar uv
-        uses: astral-sh/setup-uv@v3
+        uses: astral-sh/setup-uv@v5
 
       - name: 📦 Instalar Dependências
         run: uv sync
@@ -67,3 +67,21 @@ jobs:
           name: supabase-backup-${{ github.run_number }}
           path: backups_output/
           retention-days: 30
+
+      - name: 📊 Gerar Step Summary do Backup
+        if: always()
+        run: |
+          echo "## 💾 Relatório de Backup do Supabase" >> $GITHUB_STEP_SUMMARY
+          echo "| Métrica | Detalhe |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Status** | ${{ job.status == 'success' && '✅ Backup íntegro concluído' || '❌ Falha no backup' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Retenção** | 30 dias (GitHub Artifacts) |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Run Number** | \`#${{ github.run_number }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Data/Hora** | $(date -u '+%Y-%m-%d %H:%M:%S UTC') |" >> $GITHUB_STEP_SUMMARY
+          if [ -d "backups_output" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 📦 Arquivos Gerados" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            ls -lh backups_output/ >> $GITHUB_STEP_SUMMARY 2>&1 || true
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi

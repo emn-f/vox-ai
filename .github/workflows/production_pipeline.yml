@@ -15,15 +15,25 @@ jobs:
         with:
           fetch-depth: 0
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.13"
       - name: Install uv
-        uses: astral-sh/setup-uv@v3
+        uses: astral-sh/setup-uv@v5
       - name: Install Dependencies
         run: uv sync
       - name: Run Tests
         run: uv run pytest
+      - name: 📊 Summary de Testes
+        if: always()
+        run: |
+          echo "## 🧪 Relatório de Testes Automatizados (Produção)" >> $GITHUB_STEP_SUMMARY
+          echo "| Métrica | Valor |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Status** | ${{ job.status == 'success' && '✅ 100% Aprovados' || '❌ Falhas detectadas' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Python Runtime** | \`3.13\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Package Manager** | \`uv (astral-sh/setup-uv@v5)\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
 
   release_prod:
     needs: test
@@ -90,3 +100,17 @@ jobs:
           else
             echo "✅ Nenhuma ação necessária para o deploy do banco."
           fi
+
+      - name: 📊 Gerar Step Summary do Release
+        if: always()
+        run: |
+          echo "## 🚀 Relatório de Release Oficial (Produção)" >> $GITHUB_STEP_SUMMARY
+          echo "| Propriedade | Valor |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Status** | ${{ job.status == 'success' && '✅ Sucesso' || '❌ Falha' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Tag Oficial** | \`${{ steps.get_tag.outputs.new_tag }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Branch** | \`main\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Changelog** | Atualizado via Git Cliff (\`cliff.toml\`) |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🎉 **Versão ${{ steps.get_tag.outputs.new_tag }} promovida com sucesso para produção!**" >> $GITHUB_STEP_SUMMARY

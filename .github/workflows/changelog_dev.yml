@@ -39,6 +39,19 @@ jobs:
             git add CHANGELOG.md
             git commit -m "chore: sync CHANGELOG.md from main"
             git push origin develop
+            echo "CHANGELOG_SYNCED=true" >> $GITHUB_ENV
           else
             echo "No changes to sync."
+            echo "CHANGELOG_SYNCED=false" >> $GITHUB_ENV
           fi
+
+      - name: 📊 Gerar Step Summary da Sincronização
+        if: always()
+        run: |
+          echo "## 🔄 Relatório de Sincronização do CHANGELOG na Develop" >> $GITHUB_STEP_SUMMARY
+          echo "| Campo | Detalhe |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Status** | ${{ job.status == 'success' && '✅ Concluído' || '❌ Falha' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Branch Alvo** | \`develop\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Origem** | \`main (CHANGELOG.md)\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Ação** | ${{ env.CHANGELOG_SYNCED == 'true' && '📝 Changelog atualizado e comitado na develop' || 'ℹ️ Changelog já estava atualizado' }} |" >> $GITHUB_STEP_SUMMARY

@@ -30,7 +30,22 @@ jobs:
           echo "HTTP Status retornado: $STATUS"
           if [ "$STATUS" -ge 200 ] && [ "$STATUS" -lt 300 ]; then
             echo "✅ Banco de dados Supabase mantido ativo com sucesso!"
+            echo "STATUS_RESULT=success" >> $GITHUB_ENV
+            echo "HTTP_CODE=$STATUS" >> $GITHUB_ENV
           else
             echo "❌ Erro ao consultar PostgREST. Código HTTP: $STATUS"
+            echo "STATUS_RESULT=failure" >> $GITHUB_ENV
+            echo "HTTP_CODE=$STATUS" >> $GITHUB_ENV
             exit 1
           fi
+
+      - name: 📊 Gerar Step Summary do Keep-Alive
+        if: always()
+        run: |
+          echo "## 💓 Relatório de Supabase Keep-Alive" >> $GITHUB_STEP_SUMMARY
+          echo "| Métrica | Detalhe |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Status** | ${{ job.status == 'success' && '✅ Banco Ativo (Keep-Alive OK)' || '❌ Falha no Ping' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Endpoint** | \`/rest/v1/report_categories\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Código HTTP** | \`${{ env.HTTP_CODE || 'N/A' }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Horário** | $(date -u '+%Y-%m-%d %H:%M:%S UTC') |" >> $GITHUB_STEP_SUMMARY

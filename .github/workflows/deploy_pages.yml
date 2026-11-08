@@ -53,3 +53,13 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: 📊 Gerar Step Summary do GitHub Pages
+        if: always()
+        run: |
+          echo "## 🌐 Relatório de Deploy no GitHub Pages" >> $GITHUB_STEP_SUMMARY
+          echo "| Campo | Detalhe |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Status** | ${{ job.status == 'success' && '✅ Publicado com sucesso' || '❌ Falha na publicação' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **URL** | [${{ steps.deployment.outputs.page_url }}](${{ steps.deployment.outputs.page_url }}) |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
