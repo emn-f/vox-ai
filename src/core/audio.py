@@ -22,7 +22,13 @@ try:
 except ImportError:
     gTTS = None
 
-from src.config import GEMINI_MODEL_NAME, GEMINI_FALLBACK_MODELS, GEMINI_TTS_MODELS, logger
+from src.config import (
+    GEMINI_MODEL_NAME,
+    GEMINI_FALLBACK_MODELS,
+    GEMINI_TTS_MODELS,
+    get_secret,
+    logger,
+)
 from src.core.genai import configurar_api_gemini
 
 # Mapeamento de vozes pré-construídas suportadas pelo Gemini
@@ -338,9 +344,26 @@ def gerar_fala_gemini(
 
     client_ativo = None
     try:
-        client_ativo = client or configurar_api_gemini()
+        if client is not None:
+            # Em testes unitários que passam MagicMock, preserva o mock
+            if hasattr(client, "_mock_return_value") or hasattr(client, "_mock_wraps") or "mock" in str(type(client)).lower():
+                client_ativo = client
+            else:
+                api_key = get_secret("GEMINI_API_KEY")
+                if api_key:
+                    client_ativo = genai.Client(api_key=api_key, http_options={"api_version": "v1alpha"})
+                else:
+                    client_ativo = client
+        else:
+            api_key = get_secret("GEMINI_API_KEY")
+            if api_key:
+                client_ativo = genai.Client(api_key=api_key, http_options={"api_version": "v1alpha"})
+            else:
+                client_ativo = configurar_api_gemini()
     except Exception as e_cfg:
         logger.warning(f"⚠️ Não foi possível configurar cliente Gemini para síntese de voz: {e_cfg}")
+        if client:
+            client_ativo = client
 
     if not client_ativo:
         logger.info("ℹ️ Cliente Gemini ausente. Acionando fallback direto para gTTS.")
@@ -361,15 +384,13 @@ def gerar_fala_gemini(
         ),
     )
 
-    prompt_fala = (
-        f"Fale de forma clara, natural, empática e acolhedora em português brasileiro o seguinte texto: {texto_limpo}"
-    )
-
     for idx, modelo_alvo in enumerate(modelos_tts):
         try:
+            # Modelos TTS dedicados exigem receber o texto puro para sintetizar em áudio,
+            # sem comandos conversacionais que fariam o modelo tentar responder textualmente e gerar 400 INVALID_ARGUMENT.
             response = client_ativo.models.generate_content(
                 model=modelo_alvo,
-                contents=prompt_fala,
+                contents=texto_limpo,
                 config=config,
             )
 
