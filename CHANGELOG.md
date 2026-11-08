@@ -54,212 +54,120 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 ## v5.0.0 - 08/11/2026
 
 
+### 🐛 Correções
+
+* Remove título duplicado no modal, adiciona spinner amigável no chat e habilita modelos dedicados de TTS do Gemini ([9ad382c](https://github.com/emn-f/vox-ai/commit/9ad382c28307df5dc4880318c01f7f0ba6139619))
+
+* Corrige injeção de shell nos workflows, usa poll no watcher e atualiza idioma do gTTS ([34b3333](https://github.com/emn-f/vox-ai/commit/34b333313d4574a30c9591797b3cc7eb0e587ed6))
+
+* Trata mensagens vazias e adiciona fallback local no pipeline de staging ([4124967](https://github.com/emn-f/vox-ai/commit/41249670d8f7b6ad84326171d0a12541c1b1810f))
+
+* Corrige versão do FastAPI e changelog, ajusta config do Supabase e deploy HF ([4d46163](https://github.com/emn-f/vox-ai/commit/4d461639e109d55b71263e969f23eb71c5e93bb4))
+
+* Adiciona fallback de secrets para `SUPABASE_URL_DEV` e `SUPABASE_ANON_KEY_DEV` ([d175d1b](https://github.com/emn-f/vox-ai/commit/d175d1ba33957bb69a4444f0d33fc173477e2623))
+
+* Garante inicialização resiliente de `hist_exibir` no `session_state` do Streamlit ([0743f2e](https://github.com/emn-f/vox-ai/commit/0743f2eb0b499ed8173a83e9377452b037895752))
+
+* Corrige design quebrado na barra lateral ([bd5ac4b](https://github.com/emn-f/vox-ai/commit/bd5ac4b6b8f5a8d93861410e3797fb78d6b5754d))
+
+* Adiciona requirements.txt para container do Hugging Face e remove import não utilizado de gtts ([c888d66](https://github.com/emn-f/vox-ai/commit/c888d66bb46c02149d6f3848c887f9a59ed96cbd))
+
+
 ### ✨ Funcionalidades
 
 * Consolidação da arquitetura v5.0.0 com API desacoplada, RAG enriquecido e áudio nativo ([c23b769](https://github.com/emn-f/vox-ai/commit/c23b769f516c89dcf3c82f26c31d3249f3098d89))
 
+* Implementa STT (transcrição) e TTS (síntese de fala) nativo com Gemini e cascata de fallback multi-modelo (closes #301, #302, #153) ([dade988](https://github.com/emn-f/vox-ai/commit/dade988ce65923700ebcd9699cd3655f94451b39), [3a46e7a](https://github.com/emn-f/vox-ai/commit/3a46e7aeb4c023d24cc89eaf09ff86b2b1b9011d))
 
-### 📦 Build & Dependências
+* Implementa fallback automático e transparente de modelos de IA com notificação visual toast (closes #337) ([715e129](https://github.com/emn-f/vox-ai/commit/715e129aa46aa9a62d256b2abc3765e685b08bf7), [01e4ade](https://github.com/emn-f/vox-ai/commit/01e4ade7e6714e27d03feadf2dcff8adb525dbe8))
 
-* Atualiza dependencias vulneraveis no uv.lock e requirements.txt ([91b9121](https://github.com/emn-f/vox-ai/commit/91b9121af0a0a298b59b9ea7c5853c5dc2023e9e))
+* Enriquece base de conhecimento com resoluções do MEC (nome social), rede local de Salvador/Camaçari e sanitários trans (closes #344, #345, #346, #347, #321, #320) ([82d5f3e](https://github.com/emn-f/vox-ai/commit/82d5f3e8320feb8bb88e11ee461aaf32e47e3c6f), [0427b43](https://github.com/emn-f/vox-ai/commit/0427b43d47b423cad9a83e91d4178f679d4dd021))
 
+* Adiciona pipeline de ingestão automatizada com IA (human-in-the-loop), auditoria de integridade e diagnóstico da KB (closes #285, #306, #307, #308, #331, #255, #97) ([b74db03](https://github.com/emn-f/vox-ai/commit/b74db030aab9c4cda477232a4f61b5910f6122be))
 
-## v4.1.2 - 08/11/2026
+* Adiciona integração com canais (Telegram e WhatsApp), diretório da rede de apoio e nova identidade visual completa (closes #309, #258, #259, #26, #191, #175, #304, #305) ([0875d79](https://github.com/emn-f/vox-ai/commit/0875d7952f636c8f39f06022b719ebbc236cab85))
 
+* Criação de nova identidade visual oficial com logos SVG/PNG, manual de identidade visual em PDF e banners institucionais (closes #309) ([d6890c4](https://github.com/emn-f/vox-ai/commit/d6890c49287afa8683951a01277c4c0af675dadc), [592be3c](https://github.com/emn-f/vox-ai/commit/592be3c2875cfd5a5acc84f02f8c1554c3e6bc74))
 
-### 🐛 Correções
+* Aprimoramento humanizado e acolhedor do `system prompt` (v2.0) ([d26ba7c](https://github.com/emn-f/vox-ai/commit/d26ba7c7bc6a4c84bcd17a0390f7bfbb9089fc88))
 
-* Remove titulo duplicado no modal, adiciona spinner amigavel no chat e habilita modelos dedicados de TTS do Gemini ([9ad382c](https://github.com/emn-f/vox-ai/commit/9ad382c28307df5dc4880318c01f7f0ba6139619))
+* Adiciona datasets, scripts e resultados do pipeline para avaliação quantitativa do CNPq ([5bfd84a](https://github.com/emn-f/vox-ai/commit/5bfd84aaffdc7406b68cebee1cf5bbf9ec663f36))
 
-* Adiciona requirements.txt para container do Hugging Face e remove import nao utilizado de gtts ([c888d66](https://github.com/emn-f/vox-ai/commit/c888d66bb46c02149d6f3848c887f9a59ed96cbd))
+* Implementa validador de conformidade e privacidade LGPD ([56d749b](https://github.com/emn-f/vox-ai/commit/56d749b135c15906aee1b77c749d170b147e42ac))
 
+* Criação de view SQL e estrutura analítica para o dashboard de métricas ([9ed567a](https://github.com/emn-f/vox-ai/commit/9ed567a4be9a8d840bf561ada108b8c760019ae4))
 
-## v4.1.1 - 08/11/2026
+* Adiciona rotina de keepalive e backup automático diário do Supabase (closes #276) ([e80783a](https://github.com/emn-f/vox-ai/commit/e80783a7b894ba194f7b4b2b4c1b985778fdebfa))
 
-
-### 🤖 CI/CD & Automação
-
-* Ajusta comando supabase db push com flag --remote para CLI v3 ([0497619](https://github.com/emn-f/vox-ai/commit/04976191fa040420a2ceea8fe7fefa5c3e4c7d66))
-
-
-## v4.1.0 - 08/11/2026
-
-
-### revert
-
-* SAUDACAO foi removida por engano ([3f08874](https://github.com/emn-f/vox-ai/commit/3f088744046e1a030230457daa7380b9b627502b))
+* Adiciona suporte a mobile e meta tags de `theme-color` ([5829c6c](https://github.com/emn-f/vox-ai/commit/5829c6c78b18e0f7f665946ce2ba50f5cf099bc4))
 
 
 ### ♻️ Refatoração & Melhorias
 
-* Slogan do Vox atualizado ([4872396](https://github.com/emn-f/vox-ai/commit/48723967880afbadda72521849666f23d896815d))
+* Desacopla API de serviço FastAPI e adiciona pesquisas avançadas de IA (closes #123, #312, #256, #102) ([fa09603](https://github.com/emn-f/vox-ai/commit/fa096031a8acc79e7218a824bf3a7ca8c4bc99d6))
 
-* Desacopla cliente supabase e genai da interface streamlit ([3a4617c](https://github.com/emn-f/vox-ai/commit/3a4617c917dea0bfdc6e4e50e6428b702301426e))
+* Desacopla cliente Supabase e Gemini da interface web Streamlit ([3a4617c](https://github.com/emn-f/vox-ai/commit/3a4617c917dea0bfdc6e4e50e6428b702301426e))
 
-* Desacopla API de servico e adiciona pesquisas avancadas de IA (closes #123, #312, #256, #102) ([fa09603](https://github.com/emn-f/vox-ai/commit/fa096031a8acc79e7218a824bf3a7ca8c4bc99d6))
+* Otimiza logs com gravação append-only e foco no VS Code ([4692d7f](https://github.com/emn-f/vox-ai/commit/4692d7fab3352d7b36d4853f2f95b7c8a79d73d2))
 
-* Desacopla API de servico e adiciona pesquisas avancadas de IA (closes #123, #312, #256, #102) ([0e4a103](https://github.com/emn-f/vox-ai/commit/0e4a10340ee73d7a68dab6d3a01fd9a97a421d4e))
+* Atualização do slogan oficial do Vox AI ([4872396](https://github.com/emn-f/vox-ai/commit/48723967880afbadda72521849666f23d896815d))
 
 
 ### ⚡ Performance
 
-* Otimiza retriever vetorial e system prompt contra alucinacoes ([5716e20](https://github.com/emn-f/vox-ai/commit/5716e209469510dee156811fdb0232b240d75be5))
-
-
-### ✨ Funcionalidades
-
-* Criação de view para uso do dashboard ([9ed567a](https://github.com/emn-f/vox-ai/commit/9ed567a4be9a8d840bf561ada108b8c760019ae4))
-
-* Melhorias no `system prompt` (v2.0) ([d26ba7c](https://github.com/emn-f/vox-ai/commit/d26ba7c7bc6a4c84bcd17a0390f7bfbb9089fc88))
-
-* Melhorias no system prompt (v2.0) ([a536a23](https://github.com/emn-f/vox-ai/commit/a536a234d4d184b6627c3220b1980b2b6249736e))
-
-* Criação de script que atualiza slongan do Vox em arquivos .md de forma automatizada ([d3aa747](https://github.com/emn-f/vox-ai/commit/d3aa7479b0c63b1b5806c40b1ab783cff4b971d3))
-
-* Adicionar meta tags de theme-color e suporte a mobile ([5829c6c](https://github.com/emn-f/vox-ai/commit/5829c6c78b18e0f7f665946ce2ba50f5cf099bc4))
-
-* Otimizar logs com gravação append-only e foco no VS Code ([4692d7f](https://github.com/emn-f/vox-ai/commit/4692d7fab3352d7b36d4853f2f95b7c8a79d73d2))
-
-* Adiciona migration 20260726195823_kb_count_default ([a7e8891](https://github.com/emn-f/vox-ai/commit/a7e88915f6626dce1d7915674f34f1160cde3fde))
-
-* Adiciona datasets, scripts e resultados do pipeline para avaliação do CNPq ([5bfd84a](https://github.com/emn-f/vox-ai/commit/5bfd84aaffdc7406b68cebee1cf5bbf9ec663f36))
-
-* Implementa validador lgpd ([56d749b](https://github.com/emn-f/vox-ai/commit/56d749b135c15906aee1b77c749d170b147e42ac))
-
-* Adiciona integracao telegram/whatsapp, identidade visual e rede de apoio (closes #309, #258, #259, #26, #191, #175, #304, #305) ([0875d79](https://github.com/emn-f/vox-ai/commit/0875d7952f636c8f39f06022b719ebbc236cab85))
-
-* Adiciona pipeline de ingestao IA, auditoria e analise de dados da KB (closes #285, #306, #307, #308, #331, #255, #97) ([b74db03](https://github.com/emn-f/vox-ai/commit/b74db030aab9c4cda477232a4f61b5910f6122be))
-
-* Implementa STT e TTS nativo com Gemini e relatorio de viabilidade (closes #301, #302, #153) ([3a46e7a](https://github.com/emn-f/vox-ai/commit/3a46e7aeb4c023d24cc89eaf09ff86b2b1b9011d))
-
-* Implementa fallback automatico de modelos de IA (closes #337) ([01e4ade](https://github.com/emn-f/vox-ai/commit/01e4ade7e6714e27d03feadf2dcff8adb525dbe8))
-
-* Adiciona keepalive e rotina de backup do supabase (closes #276) ([e80783a](https://github.com/emn-f/vox-ai/commit/e80783a7b894ba194f7b4b2b4c1b985778fdebfa))
-
-* Incorpora melhorias de infra e backup do supabase (closes #276) ([0f6452a](https://github.com/emn-f/vox-ai/commit/0f6452a68a536a088305baa688927c7f59819a70))
-
-* Adiciona dados de enriquecimento da base de conhecimento (closes #345, #346, #347, #321) ([6a3f4ec](https://github.com/emn-f/vox-ai/commit/6a3f4ec0e0359e766bb0cf35fcdc22e332893695))
-
-* Finaliza ingestao de dados e testes do RAG (closes #344, #345, #346, #347, #321, #320) ([0427b43](https://github.com/emn-f/vox-ai/commit/0427b43d47b423cad9a83e91d4178f679d4dd021))
-
-* Adiciona sincronizacao de sequence e proximo_kb_id dinamico no pipeline ([8fee50a](https://github.com/emn-f/vox-ai/commit/8fee50a5d8a318fa736c482c832a42742fdd26d2))
-
-* Enriquece knowledge base com MEC, rede local e sanitarios trans (closes #344, #345, #346, #347, #321, #320) ([82d5f3e](https://github.com/emn-f/vox-ai/commit/82d5f3e8320feb8bb88e11ee461aaf32e47e3c6f))
-
-* Expande modelos de fallback e adiciona notificacao visual toast no streamlit ([6e7d757](https://github.com/emn-f/vox-ai/commit/6e7d7571720d44228b49de3af56dfef2ffec50b1))
-
-* Implementa fallback automatico de modelos de IA e notificacao visual (closes #337) ([715e129](https://github.com/emn-f/vox-ai/commit/715e129aa46aa9a62d256b2abc3765e685b08bf7))
-
-* Adiciona cascata de fallback multi-modelo na transcricao de audio ([f5ddd67](https://github.com/emn-f/vox-ai/commit/f5ddd674205c1ccb0c1daf5bcec570e9fe6707c2))
-
-* Implementa STT e TTS nativo com Gemini e cascata de fallback (closes #301, #302, #153) ([dade988](https://github.com/emn-f/vox-ai/commit/dade988ce65923700ebcd9699cd3655f94451b39))
-
-* Adiciona pipeline de ingestao IA, auditoria e analise de dados da KB (closes #285, #306, #307, #308, #331, #255, #97) ([f7461ec](https://github.com/emn-f/vox-ai/commit/f7461ec75d47856a6504f9270e65ed9684eb159e))
-
-* Adiciona versoes PNG em alta resolucao e manual em PDF (closes #309) ([d6890c4](https://github.com/emn-f/vox-ai/commit/d6890c49287afa8683951a01277c4c0af675dadc))
-
-* Alinha identidade visual com logo oficial do Vox AI e Instagram (closes #309) ([592be3c](https://github.com/emn-f/vox-ai/commit/592be3c2875cfd5a5acc84f02f8c1554c3e6bc74))
-
-* Ajusta posicao do logotipo no banner institucional para o topo esquerdo (closes #309) ([ea1f985](https://github.com/emn-f/vox-ai/commit/ea1f9850625b5fd07f2e1f34824b923f77b6d326))
-
-* Atualiza banner com logo no centro a esquerda e texto a direita (closes #309) ([dcd5695](https://github.com/emn-f/vox-ai/commit/dcd56956adc8ef99663a44be4998ce750bef4417))
-
-* Posiciona logotipo no meio a direita e conteudo a esquerda no banner (closes #309) ([0a92d44](https://github.com/emn-f/vox-ai/commit/0a92d443317408e8af2c7bacc82fef780639ed0a))
-
-* Ajusta espacamento horizontal do banner eliminando vacuo central (closes #309) ([5e37048](https://github.com/emn-f/vox-ai/commit/5e370485e80ad6c0fae85948d9661195323e3133))
-
-* Adiciona integracao telegram/whatsapp, identidade visual e rede de apoio (closes #309, #258, #259, #26, #191, #175, #304, #305) ([060351f](https://github.com/emn-f/vox-ai/commit/060351ff016f0dbfb02b9567fa5e8c2d65a0742d))
+* Otimiza retriever vetorial e prompt de sistema com limiar estrito anti-alucinação ([5716e20](https://github.com/emn-f/vox-ai/commit/5716e209469510dee156811fdb0232b240d75be5))
 
 
 ### 🎨 Estilo e Formatação
 
-* Emojis do usuário e do assistente alterados ([f335ff5](https://github.com/emn-f/vox-ai/commit/f335ff57d019efcdf313f1f903b9befed32bbd45))
+* Refinamento visual da barra lateral (sidebar) e do chat do Vox AI ([e703870](https://github.com/emn-f/vox-ai/commit/e7038703a46be5f216d7a7b65c6604676699924c), [2d0f28f](https://github.com/emn-f/vox-ai/commit/2d0f28fb7676d1f47a2e5924ab3c47aa8c9dc20f))
 
-* Melhorias na sidebar ([2d0f28f](https://github.com/emn-f/vox-ai/commit/2d0f28fb7676d1f47a2e5924ab3c47aa8c9dc20f))
-
-* Melhorias visuais na sidebar e no chat do Vox ([e703870](https://github.com/emn-f/vox-ai/commit/e7038703a46be5f216d7a7b65c6604676699924c))
-
-
-### 🐛 Correções
-
-* Corrgido design quebrado na SIDEBAR ([bd5ac4b](https://github.com/emn-f/vox-ai/commit/bd5ac4b6b8f5a8d93861410e3797fb78d6b5754d))
-
-* Adiciona fallback de secrets para SUPABASE_URL_DEV e SUPABASE_ANON_KEY_DEV ([d175d1b](https://github.com/emn-f/vox-ai/commit/d175d1ba33957bb69a4444f0d33fc173477e2623))
-
-* Garante inicializacao resiliente de hist_exibir no session_state do Streamlit ([0743f2e](https://github.com/emn-f/vox-ai/commit/0743f2eb0b499ed8173a83e9377452b037895752))
-
-* Trata mensagens vazias e adiciona fallback local no pipeline de staging ([4124967](https://github.com/emn-f/vox-ai/commit/41249670d8f7b6ad84326171d0a12541c1b1810f))
-
-* Corrige injecao de shell nos workflows, usa poll no watcher e atualiza idioma do gtts ([34b3333](https://github.com/emn-f/vox-ai/commit/34b333313d4574a30c9591797b3cc7eb0e587ed6))
-
-* Corrige versao do fastapi e changelog, ajusta config do supabase e deploy hf ([4d46163](https://github.com/emn-f/vox-ai/commit/4d461639e109d55b71263e969f23eb71c5e93bb4))
+* Atualização dos avatares e emojis de representatividade do usuário e do assistente ([f335ff5](https://github.com/emn-f/vox-ai/commit/f335ff57d019efcdf313f1f903b9befed32bbd45))
 
 
 ### 📚 Documentação
 
-* Correcao na identificacao do modelo do gemini ([cb01791](https://github.com/emn-f/vox-ai/commit/cb01791790e6d8b375aef023481ffa1e35e2a399))
+* Melhorias no guia de contribuição e destaque no Guia para Não-Desenvolvedores ([febe1d1](https://github.com/emn-f/vox-ai/commit/febe1d126a301e9fffb70494e38991b0a7e74b12), [55fa8db](https://github.com/emn-f/vox-ai/commit/55fa8db15ec975f793310d2afd11e037c38d0bc9))
 
-* Melhorias no CONTRIBUITING.md; maior destaque no Guia para Não Devs ([febe1d1](https://github.com/emn-f/vox-ai/commit/febe1d126a301e9fffb70494e38991b0a7e74b12))
-
-* Revisão em CONTRIBUTING_NON_DEVS ([55fa8db](https://github.com/emn-f/vox-ai/commit/55fa8db15ec975f793310d2afd11e037c38d0bc9))
-
-
-### 🔧 Tarefas Internas
-
-* Remove arquivo de teste temporário ([6a1cc21](https://github.com/emn-f/vox-ai/commit/6a1cc215eaa02c16a0ea056344acaa540839d992))
-
-* Remove arquivo de teste temporário ([d9f62f8](https://github.com/emn-f/vox-ai/commit/d9f62f8fabab175ee014cb54343687cc01740dce))
-
-* .devcontainer será criado e utilizado posteriormente ([df66bf8](https://github.com/emn-f/vox-ai/commit/df66bf85031288ac1315b245d4136d8c356d78db))
-
-* Remove arquivo temporario MELHORIAS_ARQUITETURA.md ([e4b12da](https://github.com/emn-f/vox-ai/commit/e4b12da879fadda7970071a771724d2e6233bab8))
-
-* Ignora arquivo local MELHORIAS_ARQUITETURA.md ([e103581](https://github.com/emn-f/vox-ai/commit/e1035813b4ee96fa790fc51c0655e55817636104))
-
-* Atualizar gitignore para ignorar scripts temporarios de ingestao de kb ([3838ec0](https://github.com/emn-f/vox-ai/commit/3838ec0b9b2d98d242bb851f3c5cfea7ed666eee))
-
-* Sincroniza develop em feat/llm-fallback-resilience ([d16d5af](https://github.com/emn-f/vox-ai/commit/d16d5afa8cb036e492fedcd26a0c46b199d3d82b))
-
-* Sincroniza develop em feat/gemini-native-audio ([b886898](https://github.com/emn-f/vox-ai/commit/b88689874a811deaa80852a5755c097c28527095))
-
-* Sincroniza develop em feat/kb-audit-and-ingestion-pipeline ([87e998d](https://github.com/emn-f/vox-ai/commit/87e998d7268415988c8ae86c36322abd71127dbf))
-
-* Sincroniza develop em refactor/api-decoupling-and-ai-research ([c43c319](https://github.com/emn-f/vox-ai/commit/c43c3199ef7c5457dbc63ac1c7e933abadad4866))
-
-* Sincroniza develop em feat/channels-branding-and-docs ([c8fd0e0](https://github.com/emn-f/vox-ai/commit/c8fd0e09399a5f4eb26204b5b2797217fd6073cf))
+* Correção na identificação do modelo Gemini na documentação técnica ([cb01791](https://github.com/emn-f/vox-ai/commit/cb01791790e6d8b375aef023481ffa1e35e2a399))
 
 
 ### 🤖 CI/CD & Automação
 
-* Permitir execucao do workflow de release manual em qualquer branch ([a3950e3](https://github.com/emn-f/vox-ai/commit/a3950e3107ff0d4c7b4aa619c8b105b232771887))
+* Ajusta comando Supabase DB push com flag `--remote` para compatibilidade com CLI v3 ([0497619](https://github.com/emn-f/vox-ai/commit/04976191fa040420a2ceea8fe7fefa5c3e4c7d66))
 
-* Prefixo de tag dinamico por branch no release manual ([5c3333b](https://github.com/emn-f/vox-ai/commit/5c3333b928e59a0b0353fff18c4f4af6e90d5c2c))
+* Adiciona cálculo dinâmico de versão SemVer baseado em Conventional Commits ([5e4872b](https://github.com/emn-f/vox-ai/commit/5e4872b23c680a37ee125acc51d48584a94bcd07))
 
-* Adiciona trigger de push temporario para validar action de keepalive ([33c7ff8](https://github.com/emn-f/vox-ai/commit/33c7ff8f92569ba108e87daf8cba1b9239f07807))
+* Adiciona análise de segurança estática com Semgrep SAST e regras personalizadas ([16cde41](https://github.com/emn-f/vox-ai/commit/16cde41ef58ed920607566e648e00fcb9c5977dd))
 
-* Remove trigger temporario de push do keepalive apos validacao bem-sucedida ([7675f31](https://github.com/emn-f/vox-ai/commit/7675f31ea50c5a64b498a88d06db51afaa2db286))
+* Adiciona validação de integridade pré-upload nos backups do banco de dados ([b07ecd2](https://github.com/emn-f/vox-ai/commit/b07ecd2f89132339b1483aacbc8c2ecccdfe52b8))
 
-* Adiciona validacao de integridade antes do upload de backup ([b07ecd2](https://github.com/emn-f/vox-ai/commit/b07ecd2f89132339b1483aacbc8c2ecccdfe52b8))
+* Permite execução flexível do workflow de release manual com prefixo dinâmico ([a3950e3](https://github.com/emn-f/vox-ai/commit/a3950e3107ff0d4c7b4aa619c8b105b232771887), [5c3333b](https://github.com/emn-f/vox-ai/commit/5c3333b928e59a0b0353fff18c4f4af6e90d5c2c))
 
-* Adiciona calculo dinamico de versao SemVer baseado em Conventional Commits ([5e4872b](https://github.com/emn-f/vox-ai/commit/5e4872b23c680a37ee125acc51d48584a94bcd07))
 
-* Ajusta execucao do semgrep sast e adiciona semgrepignore ([16cde41](https://github.com/emn-f/vox-ai/commit/16cde41ef58ed920607566e648e00fcb9c5977dd))
+### 📦 Build & Dependências
+
+* Atualiza dependências vulneráveis no uv.lock e requirements.txt ([91b9121](https://github.com/emn-f/vox-ai/commit/91b9121af0a0a298b59b9ea7c5853c5dc2023e9e))
 
 
 ### 🧪 Testes Unitários e de Integração
 
-* Adiciona skip gracioso na suite de testes quando credenciais ausentes em CI ([f660f7f](https://github.com/emn-f/vox-ai/commit/f660f7fe3cf66cc4c1e0099b429b214a78588c0c))
-
-
-## v4.0.2 - 21/06/2026
+* Adiciona skip gracioso na suíte de testes de integração quando credenciais estiverem ausentes em ambiente de CI ([f660f7f](https://github.com/emn-f/vox-ai/commit/f660f7fe3cf66cc4c1e0099b429b214a78588c0c))
 
 
 ## v4.0.1 - 07/06/2026
 
 
-### revert
+### 🐛 Correções
 
-* Removendo arquivo de draf de PR ([7814646](https://github.com/emn-f/vox-ai/commit/78146462db8bd932d6f80413406aeca52eb80da5))
+* Corrigir type hint de retorno para texto_para_audio ([0a7363c](https://github.com/emn-f/vox-ai/commit/0a7363c66a5074e0bda768878f3722ccfa101b93))
+
+* Instrui vox a recusar conteúdo inadequado sem linguagem jurídica ([31fc15a](https://github.com/emn-f/vox-ai/commit/31fc15aa4531f758555d7b1fd8a5f1aa9d45e06e))
+
+
+### ✨ Funcionalidades
+
+* Remove view legada; adiciona filtro que considera se o kb está ativo no momento do match semantico ([7cfb492](https://github.com/emn-f/vox-ai/commit/7cfb492cc6e6202a02c89b2d9426a89f022622f1))
 
 
 ### ♻️ Refatoração & Melhorias
@@ -271,18 +179,6 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 * Remover parametros de logs inativos e organizar testes ([eb0cb2e](https://github.com/emn-f/vox-ai/commit/eb0cb2ee2efae76d5eef4f80d486b25acd09db36))
 
 * Renomear config_loader para config_gatekeep e isolar dependencias da CI ([c930979](https://github.com/emn-f/vox-ai/commit/c930979db062c261de4288109eb99a6245635c49))
-
-
-### ✨ Funcionalidades
-
-* Remove view legada; adiciona filtro que considera se o kb está ativo no momento do match semantico ([7cfb492](https://github.com/emn-f/vox-ai/commit/7cfb492cc6e6202a02c89b2d9426a89f022622f1))
-
-
-### 🐛 Correções
-
-* Corrigir type hint de retorno para texto_para_audio ([0a7363c](https://github.com/emn-f/vox-ai/commit/0a7363c66a5074e0bda768878f3722ccfa101b93))
-
-* Instrui vox a recusar conteúdo inadequado sem linguagem jurídica ([31fc15a](https://github.com/emn-f/vox-ai/commit/31fc15aa4531f758555d7b1fd8a5f1aa9d45e06e))
 
 
 ### 📚 Documentação
@@ -300,6 +196,11 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 ### 🧪 Testes Unitários e de Integração
 
 * Pula variaveis de ambiente ficticias em testes de integracao ([9c60ff3](https://github.com/emn-f/vox-ai/commit/9c60ff3a136aacc383ed1b6a07c4ca618b6b7720))
+
+
+### ⏪ Reversões
+
+* Removendo arquivo de draf de PR ([7814646](https://github.com/emn-f/vox-ai/commit/78146462db8bd932d6f80413406aeca52eb80da5))
 
 
 ## v3.3.19 - 07/06/2026
