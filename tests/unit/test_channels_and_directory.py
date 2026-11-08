@@ -387,3 +387,18 @@ def test_rede_apoio_filters():
     assert len(resultado_gratis) > 0
     assert all(item["gratuito"] for item in resultado_gratis)
 
+
+@pytest.mark.unit
+@patch("streamlit.title")
+def test_render_rede_apoio_show_title_flag(mock_st_title):
+    from src.app.pages.rede_apoio import render_rede_apoio
+    with patch("streamlit.text_input", return_value=""), \
+         patch("streamlit.selectbox", return_value="Todas as Categorias"), \
+         patch("streamlit.checkbox", return_value=False), \
+         patch("streamlit.columns", return_value=[MagicMock(), MagicMock(), MagicMock()]):
+        render_rede_apoio(show_title=False)
+        mock_st_title.assert_not_called()
+
+        render_rede_apoio(show_title=True)
+        mock_st_title.assert_called_once_with("🤝 Rede de Apoio e Acolhimento Vox")
+

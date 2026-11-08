@@ -17,9 +17,12 @@ from typing import Any, Optional
 
 from google import genai
 from google.genai import types
-from gtts import gTTS
+try:
+    from gtts import gTTS
+except ImportError:
+    gTTS = None
 
-from src.config import GEMINI_MODEL_NAME, GEMINI_FALLBACK_MODELS, logger
+from src.config import GEMINI_MODEL_NAME, GEMINI_FALLBACK_MODELS, GEMINI_TTS_MODELS, logger
 from src.core.genai import configurar_api_gemini
 
 # Mapeamento de vozes pré-construídas suportadas pelo Gemini
@@ -148,6 +151,10 @@ def _gerar_fala_gtts(texto: str) -> io.BytesIO:
         io.BytesIO: Buffer de memória contendo o áudio MP3 gerado.
     """
     try:
+        if gTTS is None:
+            logger.warning("⚠️ Biblioteca gTTS não instalada no ambiente. Retornando buffer vazio.")
+            return io.BytesIO()
+
         texto_limpo = _sanitizar_texto(texto)
         if not texto_limpo:
             texto_limpo = "Não foi possível ler a resposta."
@@ -339,83 +346,84 @@ def gerar_fala_gemini(
         logger.info("ℹ️ Cliente Gemini ausente. Acionando fallback direto para gTTS.")
         return _gerar_fala_gtts(texto_limpo)
 
-    try:
-        modelo_alvo = model or GEMINI_MODEL_NAME
-        voz_limpa = (voz or "Puck").strip()
-        voice_name = VOZES_PADRAO_GEMINI.get(voz_limpa.lower(), voz_limpa)
+    modelos_tts = [model] if model else (GEMINI_TTS_MODELS or [GEMINI_MODEL_NAME])
+    voz_limpa = (voz or "Puck").strip()
+    voice_name = VOZES_PADRAO_GEMINI.get(voz_limpa.lower(), voz_limpa)
 
-        config = types.GenerateContentConfig(
-            response_modalities=["AUDIO"],
-            speech_config=types.SpeechConfig(
-                voice_config=types.VoiceConfig(
-                    prebuilt_voice_config=types.PrebuiltVoiceConfig(
-                        voice_name=voice_name
-                    )
+    config = types.GenerateContentConfig(
+        response_modalities=["AUDIO"],
+        speech_config=types.SpeechConfig(
+            voice_config=types.VoiceConfig(
+                prebuilt_voice_config=types.PrebuiltVoiceConfig(
+                    voice_name=voice_name
                 )
-            ),
-        )
+            )
+        ),
+    )
 
-        prompt_fala = (
-            f"Fale de forma clara, natural, empática e acolhedora em português brasileiro o seguinte texto: {texto_limpo}"
-        )
+    prompt_fala = (
+        f"Fale de forma clara, natural, empática e acolhedora em português brasileiro o seguinte texto: {texto_limpo}"
+    )
 
-        response = client_ativo.models.generate_content(
-            model=modelo_alvo,
-            contents=prompt_fala,
-            config=config,
-        )
-
-        audio_chunks: list[bytes] = []
-        mime_type_retornado: Optional[str] = None
-
-        if response and getattr(response, "candidates", None):
-            for candidate in response.candidates:
-                content = getattr(candidate, "content", None)
-                if content and getattr(content, "parts", None):
-                    for part in content.parts:
-                        inline_data = getattr(part, "inline_data", None)
-                        if inline_data and getattr(inline_data, "data", None):
-                            data = inline_data.data
-                            if isinstance(data, str):
-                                import base64
-                                audio_chunks.append(base64.b64decode(data))
-                            elif isinstance(data, (bytes, bytearray)):
-                                audio_chunks.append(bytes(data))
-                            if not mime_type_retornado:
-                                mime_type_retornado = getattr(inline_data, "mime_type", "")
-                if audio_chunks:
-                    # Alternativas de resposta (candidates); utiliza a primeira que retornou blocos de áudio
-                    break
-
-        if audio_chunks:
-            audio_bytes = b"".join(audio_chunks)
-
-            # Verifica se já possui contêiner WAV ou MP3 completo
-            ja_encapsulado = (
-                audio_bytes.startswith(b"RIFF")
-                or audio_bytes.startswith(b"ID3")
-                or audio_bytes[:2] in (b"\xff\xfb", b"\xff\xf3", b"\xff\xf2")
+    for idx, modelo_alvo in enumerate(modelos_tts):
+        try:
+            response = client_ativo.models.generate_content(
+                model=modelo_alvo,
+                contents=prompt_fala,
+                config=config,
             )
 
-            if not ja_encapsulado:
-                sample_rate = 24000
-                if mime_type_retornado and "rate=" in mime_type_retornado.lower():
-                    try:
-                        sample_rate = int(mime_type_retornado.lower().split("rate=")[-1].split(";")[0].strip())
-                    except Exception:
-                        sample_rate = 24000
-                audio_bytes = _pcm_to_wav(audio_bytes, sample_rate=sample_rate)
+            audio_chunks: list[bytes] = []
+            mime_type_retornado: Optional[str] = None
 
-            buffer = io.BytesIO(audio_bytes)
-            buffer.seek(0)
-            return buffer
+            if response and getattr(response, "candidates", None):
+                for candidate in response.candidates:
+                    content = getattr(candidate, "content", None)
+                    if content and getattr(content, "parts", None):
+                        for part in content.parts:
+                            inline_data = getattr(part, "inline_data", None)
+                            if inline_data and getattr(inline_data, "data", None):
+                                data = inline_data.data
+                                if isinstance(data, str):
+                                    import base64
+                                    audio_chunks.append(base64.b64decode(data))
+                                elif isinstance(data, (bytes, bytearray)):
+                                    audio_chunks.append(bytes(data))
+                                if not mime_type_retornado:
+                                    mime_type_retornado = getattr(inline_data, "mime_type", "")
+                    if audio_chunks:
+                        # Alternativas de resposta (candidates); utiliza a primeira que retornou blocos de áudio
+                        break
 
-        logger.warning("⚠️ Resposta do Gemini não conteve dados de áudio válidos. Acionando fallback gTTS.")
-        return _gerar_fala_gtts(texto_limpo)
+            if audio_chunks:
+                audio_bytes = b"".join(audio_chunks)
 
-    except Exception as e:
-        logger.warning(
-            f"⚠️ Falha na geração nativa de fala via Gemini ({type(e).__name__}: {e}). "
-            "Acionando fallback transparente para gTTS."
-        )
-        return _gerar_fala_gtts(texto_limpo)
+                # Verifica se já possui contêiner WAV ou MP3 completo
+                ja_encapsulado = (
+                    audio_bytes.startswith(b"RIFF")
+                    or audio_bytes.startswith(b"ID3")
+                    or audio_bytes[:2] in (b"\xff\xfb", b"\xff\xf3", b"\xff\xf2")
+                )
+
+                if not ja_encapsulado:
+                    sample_rate = 24000
+                    if mime_type_retornado and "rate=" in mime_type_retornado.lower():
+                        try:
+                            sample_rate = int(mime_type_retornado.lower().split("rate=")[-1].split(";")[0].strip())
+                        except Exception:
+                            sample_rate = 24000
+                    audio_bytes = _pcm_to_wav(audio_bytes, sample_rate=sample_rate)
+
+                buffer = io.BytesIO(audio_bytes)
+                buffer.seek(0)
+                logger.info(f"🔊 Áudio gerado com sucesso via Gemini TTS nativo ({modelo_alvo}, {len(audio_bytes)} bytes).")
+                return buffer
+
+        except Exception as e_mod:
+            logger.warning(
+                f"⚠️ Falha na geração de fala com modelo Gemini '{modelo_alvo}': {e_mod}. "
+                f"Tentando próximo fallback..."
+            )
+
+    logger.warning("⚠️ Todos os modelos de fala nativa do Gemini falharam. Acionando fallback transparente para gTTS.")
+    return _gerar_fala_gtts(texto_limpo)

@@ -297,12 +297,13 @@ def render_banner_sos() -> None:
     )
 
 
-def render_rede_apoio() -> None:
+def render_rede_apoio(show_title: bool = True) -> None:
     """
     Renderiza o diretório completo com busca interativa, filtros por categoria,
     estado (UF), tags e formulário de inscrição para novos profissionais.
     """
-    st.title("🤝 Rede de Apoio e Acolhimento Vox")
+    if show_title:
+        st.title("🤝 Rede de Apoio e Acolhimento Vox")
     st.markdown(
         "Conectamos você a **casas de acolhimento parceiras**, **centros públicos de referência**, "
         "**ONGs combativas** e **profissionais de saúde e direito afirmativos** em todo o Brasil. 🏳️‍🌈"

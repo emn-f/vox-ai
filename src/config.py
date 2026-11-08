@@ -51,6 +51,12 @@ GEMINI_FALLBACK_MODELS = [
     "gemini-2.5-flash-lite",
     "gemini-flash-latest",
 ]
+GEMINI_TTS_MODELS = [
+    "gemini-3.8-flash-tts",
+    "gemini-3.8-flash-lite-tts",
+    "gemini-3.1-flash-tts-preview",
+    "gemini-2.5-flash-preview-tts",
+]
 MODELO_SEMANTICO_NOME = "gemini-embedding-001"
 TAMANHO_VETOR_SEMANTICO = 1536
 
