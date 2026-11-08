@@ -17,7 +17,10 @@ from typing import Any, Optional
 
 from google import genai
 from google.genai import types
-from gtts import gTTS
+try:
+    from gtts import gTTS
+except ImportError:
+    gTTS = None
 
 from src.config import GEMINI_MODEL_NAME, GEMINI_FALLBACK_MODELS, GEMINI_TTS_MODELS, logger
 from src.core.genai import configurar_api_gemini
@@ -148,6 +151,10 @@ def _gerar_fala_gtts(texto: str) -> io.BytesIO:
         io.BytesIO: Buffer de memória contendo o áudio MP3 gerado.
     """
     try:
+        if gTTS is None:
+            logger.warning("⚠️ Biblioteca gTTS não instalada no ambiente. Retornando buffer vazio.")
+            return io.BytesIO()
+
         texto_limpo = _sanitizar_texto(texto)
         if not texto_limpo:
             texto_limpo = "Não foi possível ler a resposta."

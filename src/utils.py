@@ -20,8 +20,6 @@ except Exception:
     def safe_cache(func):
         return lru_cache(maxsize=32)(func)
 
-from gtts import gTTS
-
 from src.config import logger
 
 
