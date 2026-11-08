@@ -104,7 +104,7 @@ def gerar_embedding_chunk(
         # Gera vetor determinístico normalizado para testes offline
         import hashlib
 
-        seed = int(hashlib.md5(texto.encode("utf-8")).hexdigest()[:8], 16)
+        seed = int(hashlib.sha256(texto.encode("utf-8")).hexdigest()[:8], 16)
         vetor_mock = [(float((seed + i) % 1000) / 1000.0) for i in range(TAMANHO_VETOR_SEMANTICO)]
         norm = sum(x * x for x in vetor_mock) ** 0.5 or 1.0
         return [round(x / norm, 6) for x in vetor_mock]
