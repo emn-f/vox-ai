@@ -69,4 +69,6 @@ def test_gemini_connection_and_generation():
         print(f"✅ Resposta recebida: {response.text.strip()}")
 
     except Exception as e:
+        if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
+            pytest.skip(f"⚠️ Cota diária do plano gratuito do Gemini atingida (429 RESOURCE_EXHAUSTED): {e}")
         pytest.fail(f"❌ Falha na comunicação com Gemini: {e}")

@@ -3,7 +3,7 @@ Modelos de dados Pydantic para validação e serialização da API REST do Vox A
 """
 
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class ChatMessage(BaseModel):
@@ -18,6 +18,13 @@ class ChatRequest(BaseModel):
     session_id: Optional[str] = Field(None, description="Identificador único da sessão (UUID). Se omitido, é gerado automaticamente.")
     include_audio: bool = Field(False, description="Se True, gera e retorna o áudio TTS da resposta em base64")
     history: Optional[List[ChatMessage]] = Field(None, description="Histórico prévio de mensagens (opcional)")
+
+    @field_validator("prompt")
+    @classmethod
+    def validate_non_whitespace_prompt(cls, v: str) -> str:
+        if not v or not v.strip():
+            raise ValueError("O campo 'prompt' não pode ser vazio ou conter apenas espaços em branco.")
+        return v.strip()
 
 
 class ReferenceItem(BaseModel):
@@ -45,6 +52,13 @@ class RAGQueryRequest(BaseModel):
     query: str = Field(..., min_length=1, description="Pergunta ou termo para busca semântica")
     threshold: Optional[float] = Field(None, ge=0.0, le=1.0, description="Threshold mínimo de similaridade")
     limit: Optional[int] = Field(None, ge=1, le=50, description="Limite máximo de resultados")
+
+    @field_validator("query")
+    @classmethod
+    def validate_non_whitespace_query(cls, v: str) -> str:
+        if not v or not v.strip():
+            raise ValueError("O campo 'query' não pode ser vazio ou conter apenas espaços em branco.")
+        return v.strip()
 
 
 class RAGQueryResponse(BaseModel):

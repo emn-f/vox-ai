@@ -63,9 +63,11 @@ def test_chat_endpoint_success(mock_chat, client):
 
 
 def test_chat_endpoint_validation_error(client):
-    # Prompt vazio deve falhar com status 422
+    # Prompt vazio ou apenas espaços deve falhar com status 422
     response = client.post("/chat", json={"prompt": ""})
     assert response.status_code == 422
+    response_spaces = client.post("/chat", json={"prompt": "     "})
+    assert response_spaces.status_code == 422
 
 
 @patch("src.api.routes.VoxService.chat_stream")
@@ -105,6 +107,14 @@ def test_rag_query_endpoint(mock_rag, client):
     data = response.json()
     assert data["topic"] == "Prevenção"
     assert "PrEP" in data["context"]
+
+
+def test_rag_query_endpoint_validation_error(client):
+    # Query vazia ou apenas espaços deve falhar com status 422
+    response_empty = client.post("/rag/query", json={"query": ""})
+    assert response_empty.status_code == 422
+    response_spaces = client.post("/rag/query", json={"query": "     "})
+    assert response_spaces.status_code == 422
 
 
 @patch("src.api.routes.VoxService.get_categories")

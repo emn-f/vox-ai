@@ -84,8 +84,8 @@ if st.session_state.get("key_api"):
 
     prompt_final = None
 
-    if prompt:
-        prompt_final = prompt
+    if prompt and prompt.strip():
+        prompt_final = prompt.strip()
     elif audio_val:
         if (
             "ultimo_audio_id" not in st.session_state
@@ -93,8 +93,8 @@ if st.session_state.get("key_api"):
         ):
             with st.spinner("Ouvindo e transcrevendo... 🎧"):
                 texto_transcrito = transcrever_audio(audio_val)
-                if texto_transcrito:
-                    prompt_final = texto_transcrito
+                if texto_transcrito and texto_transcrito.strip():
+                    prompt_final = texto_transcrito.strip()
                     st.session_state.ultimo_audio_id = audio_val.name
 
     if prompt_final:

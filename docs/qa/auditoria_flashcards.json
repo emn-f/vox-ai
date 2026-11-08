@@ -1,0 +1,3206 @@
+[
+  {
+    "kb_id": "vox-kb-0329",
+    "topico": "Direito a Nome Social no Exame",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.786570+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0331",
+    "topico": "Direito ao Nome Social na Escola",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.787029+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0332",
+    "topico": "Educação Superior e Nome Social",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.787457+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0072",
+    "topico": "Deserdação e Testamento",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.787823+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0333",
+    "topico": "Legislação Trabalhista",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.788254+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0334",
+    "topico": "Legislação Trabalhista",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.788732+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0336",
+    "topico": "Legislação Trabalhista",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.789386+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0337",
+    "topico": "Denúncias de LGBTfobia",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.789988+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0330",
+    "topico": "Educação Superior e Nome Social",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.790594+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0335",
+    "topico": "Mercado de Trabalho",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.791264+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0328",
+    "topico": "Direito ao Nome Social na Escola",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.791844+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0338",
+    "topico": "Denúncias de LGBTfobia",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.792543+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0339",
+    "topico": "Centros de Referência LGBT",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.793308+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0340",
+    "topico": "Centros de Referência LGBT",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.793994+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0342",
+    "topico": "Ambulatórios Trans",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.794533+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0341",
+    "topico": "Casas de Acolhimento",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.795067+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0200",
+    "topico": "Pensão por Morte",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.795800+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0202",
+    "topico": "Doação de Sangue",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.796405+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0020",
+    "topico": "Escola e Universidade",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.797011+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0042",
+    "topico": "O Projeto",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.797571+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0021",
+    "topico": "O Projeto",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.798057+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0012",
+    "topico": "Cultura e Representatividade",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.798650+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0023",
+    "topico": "O Projeto",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.799266+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0059",
+    "topico": "Direitos Prisionais",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.799940+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0001",
+    "topico": "Escola e Universidade",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.800572+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0062",
+    "topico": "Direitos do Consumidor",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.802902+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0009",
+    "topico": "Cidadania",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.803772+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0345",
+    "topico": "Diretrizes do MTE e OIT 111 contra Discriminação no Trabalho",
+    "eixo_tematico": "Direito do Trabalho e Relações Corporativas",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.804519+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0029",
+    "topico": "Violência e Segurança",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.805261+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0045",
+    "topico": "Retificação de Nome",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.805945+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0296",
+    "topico": "Limitações do Vox",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.806701+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0348",
+    "topico": "Despatologização das Identidades Trans na CID-11",
+    "eixo_tematico": "História e Memória do Movimento LGBTQIA+",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.807450+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0349",
+    "topico": "Nome Social na Educação Básica - Resolução CNE/CP 01/2018",
+    "eixo_tematico": "Educação e Cidadania",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.808041+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0346",
+    "topico": "História do 17 de Maio de 1990 - Despatologização pela OMS",
+    "eixo_tematico": "História e Memória do Movimento LGBTQIA+",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.808788+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0347",
+    "topico": "Origem do IDAHOBIT - Dia Internacional de Luta contra a LGBTfobia",
+    "eixo_tematico": "História e Memória do Movimento LGBTQIA+",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.809450+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0073",
+    "topico": "Serviço Militar",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.813769+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0351",
+    "topico": "Emissão e Reemissão de Diplomas com Nome Retificado",
+    "eixo_tematico": "Educação e Cidadania",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.814917+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0352",
+    "topico": "DECRADI Salvador - Delegacia de Combate à Discriminação",
+    "eixo_tematico": "Segurança Pública e Direitos Humanos",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.815457+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0353",
+    "topico": "CPDD-LGBT e Casarão da Diversidade - Salvador",
+    "eixo_tematico": "Rede de Acolhimento e Cidadania",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.815953+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0350",
+    "topico": "Nome Social no Ensino Superior e Rede Federal - Portaria MEC 33/2018",
+    "eixo_tematico": "Educação e Cidadania",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.816724+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0355",
+    "topico": "Rede de Proteção Social e Apoio LGBT em Camaçari",
+    "eixo_tematico": "Rede de Acolhimento e Cidadania",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.817465+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0354",
+    "topico": "Casa Marielle Franco e Acolhimento em Salvador e RMS",
+    "eixo_tematico": "Rede de Acolhimento e Cidadania",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.821019+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0165",
+    "topico": "O Projeto Vox AI",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.821856+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0166",
+    "topico": "O Projeto Vox AI",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.822422+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0102",
+    "topico": "Prevenção Combinada",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.822903+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0088",
+    "topico": "Apoio Psicológico Acessível",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.823352+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0167",
+    "topico": "O Projeto Vox AI",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.823751+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0292",
+    "topico": "O Projeto Vox AI",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.824142+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0293",
+    "topico": "O Projeto Vox AI",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.824568+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0294",
+    "topico": "O Projeto Vox AI",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.824944+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0137",
+    "topico": "Direito ao Nome Social na Faculdade",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.828568+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0343",
+    "topico": "Uso de Sanitários Corporativos por Pessoas Trans",
+    "eixo_tematico": "Direito do Trabalho e Relações Corporativas",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.829792+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0344",
+    "topico": "Assédio Moral Laboral e Restrição de Sanitários",
+    "eixo_tematico": "Direito do Trabalho e Relações Corporativas",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.830470+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0105",
+    "topico": "Casas de Acolhimento",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.830969+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0111",
+    "topico": "História do Movimento",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.831404+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0311",
+    "topico": "Termos de Uso",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.831850+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0168",
+    "topico": "Limitações do Vox",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.832304+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0124",
+    "topico": "Trabalho e Transição",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.832729+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0010",
+    "topico": "Cultura e Representatividade",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.833153+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0095",
+    "topico": "Saúde Mental e Aceitação",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.833623+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0145",
+    "topico": "Cultura Drag",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.834031+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0314",
+    "topico": "Como Contribuir",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.836518+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0154",
+    "topico": "Visibilidade Intersexo na Cultura",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.837193+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0174",
+    "topico": "Privacidade no Vox",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.837791+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0175",
+    "topico": "Código Aberto",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.838263+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0171",
+    "topico": "Privacidade no Vox",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.838719+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0189",
+    "topico": "Legislação e Justiça",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.839160+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0195",
+    "topico": "Mercado de Trabalho",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.839608+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0216",
+    "topico": "PrEP (Profilaxia Pré-Exposição)",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.840004+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0227",
+    "topico": "Saúde e Práticas Seguras",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.840455+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0221",
+    "topico": "Saúde Sexual Masculina Trans",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.843228+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0222",
+    "topico": "ISTs e Testagem",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.844366+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0245",
+    "topico": "Casas de Acolhimento",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.844981+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0247",
+    "topico": "História do Movimento",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.845480+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0248",
+    "topico": "História do Movimento",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.845939+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0236",
+    "topico": "Terapia Antirretroviral e Sucesso",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.846376+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0253",
+    "topico": "Políticas de Cotas",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.846790+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0285",
+    "topico": "Educação Superior e Nome Social",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.847151+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0281",
+    "topico": "Cultura Drag",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.847576+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0301",
+    "topico": "Privacidade no Vox",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.848134+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0291",
+    "topico": "Dia da Visibilidade Trans na Cultura",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.848703+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0004",
+    "topico": "Ativismo Digital",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.850072+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0016",
+    "topico": "Escola e Universidade",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.850794+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0037",
+    "topico": "Cidadania",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.851387+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0324",
+    "topico": "Padrões de Commit",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.851932+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0325",
+    "topico": "Acesso ao Banco de Dados",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.852573+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0326",
+    "topico": "Acesso ao Banco de Dados",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.855642+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0327",
+    "topico": "Acesso ao Banco de Dados",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.856383+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0015",
+    "topico": "Família e Adoção",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.857007+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0044",
+    "topico": "Assistência Social",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.857563+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0019",
+    "topico": "Saúde Geral",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.858019+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0315",
+    "topico": "Como Contribuir",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.858495+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0316",
+    "topico": "Como Contribuir",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.858983+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0317",
+    "topico": "Como Contribuir",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.859476+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0026",
+    "topico": "Cidadania e Acesso",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.862905+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0043",
+    "topico": "Rede de Apoio",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.863638+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0003",
+    "topico": "Cultura e Representatividade",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.864292+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0013",
+    "topico": "Assistência Social",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.864851+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0014",
+    "topico": "Movimentos Sociais",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.865432+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0006",
+    "topico": "Ativismo Digital",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.866057+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0002",
+    "topico": "Saúde Mental",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.866648+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0017",
+    "topico": "Saúde Intersex",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.867114+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0028",
+    "topico": "Mercado de Trabalho",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.867609+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0036",
+    "topico": "Cidadania",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.868079+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0040",
+    "topico": "Família e Adoção",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.868571+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0039",
+    "topico": "Legislação e Justiça",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.869063+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0018",
+    "topico": "Assistência Social",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.873629+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0005",
+    "topico": "Violência e Segurança",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.874326+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0041",
+    "topico": "Legislação Trabalhista",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.874885+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0011",
+    "topico": "Mercado de Trabalho",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.875399+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0035",
+    "topico": "Acolhimento e Humanização",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.875908+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0031",
+    "topico": "Saúde Sexual",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.876438+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0033",
+    "topico": "Saúde Mental",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.876868+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0008",
+    "topico": "Mercado de Trabalho",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.878463+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0030",
+    "topico": "Desinformação",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.879246+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0024",
+    "topico": "Parcerias",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.884273+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0007",
+    "topico": "Saúde Trans",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.885092+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0319",
+    "topico": "Como Contribuir",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.885766+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0022",
+    "topico": "Transparência",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.886418+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0025",
+    "topico": "Acessibilidade",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.886939+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0320",
+    "topico": "Como Contribuir",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.887517+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0048",
+    "topico": "Retificação de Nome",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.888089+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0179",
+    "topico": "Retificação de Nome",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.888633+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0180",
+    "topico": "Retificação de Nome",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.889110+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0181",
+    "topico": "Retificação de Nome",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.892044+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0032",
+    "topico": "Saúde Sexual",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.892708+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0027",
+    "topico": "Violência e Segurança",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.893046+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0038",
+    "topico": "Legislação e Justiça",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.893420+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0231",
+    "topico": "Ambulatórios Trans",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.893783+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0282",
+    "topico": "Música e Representatividade",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.894122+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0308",
+    "topico": "Política de Privacidade",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.894505+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0309",
+    "topico": "Política de Privacidade",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.896575+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0034",
+    "topico": "Cidadania",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.897144+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0058",
+    "topico": "Violência e Segurança",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.897540+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0079",
+    "topico": "Hormonioterapia",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.898012+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0087",
+    "topico": "Saúde Mental e Crise",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.898764+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0090",
+    "topico": "Uso de Binder",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.899144+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0120",
+    "topico": "Visibilidade Assexual",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.901626+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0122",
+    "topico": "Assistência Social e CadÚnico",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.902686+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0136",
+    "topico": "Direito ao Nome Social na Escola",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.903154+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0138",
+    "topico": "Cotas em Concursos",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.903509+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0228",
+    "topico": "Saúde e Práticas Seguras",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.903859+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0186",
+    "topico": "Família e Adoção",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.904228+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0177",
+    "topico": "Retificação de Nome",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.904573+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0313",
+    "topico": "Termos de Uso",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.906070+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0114",
+    "topico": "Ativismo Digital",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.906515+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0103",
+    "topico": "Saúde Masculina e Urologia",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.906926+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0215",
+    "topico": "Hormonioterapia Feminilizante",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.907418+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0218",
+    "topico": "Saúde Mental",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.907958+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0223",
+    "topico": "ISTs e Testagem",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.908363+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0240",
+    "topico": "Saúde e Redução de Danos",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.908726+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0000",
+    "topico": "N/A",
+    "eixo_tematico": "N/A",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.909022+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0235",
+    "topico": "Vacinação e Proteção",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.909378+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0152",
+    "topico": "Cultura Trans e Literatura",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.912757+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0303",
+    "topico": "Política de Privacidade",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.913845+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0304",
+    "topico": "Política de Privacidade",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.914333+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0153",
+    "topico": "Educação Superior e Nome Social",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.914717+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0118",
+    "topico": "Visibilidade Trans",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.915072+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0061",
+    "topico": "Mercado de Trabalho",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.915473+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0252",
+    "topico": "Políticas de Cotas",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.917572+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0267",
+    "topico": "Visibilidade Intersexo e Triagem",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.918554+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0269",
+    "topico": "Lideranças Históricas",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.919068+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0273",
+    "topico": "Direito ao Nome Social na Faculdade",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.919421+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0286",
+    "topico": "Estudos de Gênero",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.919753+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0298",
+    "topico": "Privacidade no Vox",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.920083+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0119",
+    "topico": "Visibilidade Intersexo",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.920439+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0060",
+    "topico": "Mercado de Trabalho",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.920784+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0306",
+    "topico": "Política de Privacidade",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.921126+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0063",
+    "topico": "Imposto de Renda",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.921514+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0064",
+    "topico": "Herança e Partilha",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.921881+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0068",
+    "topico": "Nome Social no Título",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.924267+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0065",
+    "topico": "Plano de Saúde",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.925160+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0066",
+    "topico": "Direitos Asilares e Refúgio",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.925566+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0067",
+    "topico": "Pensão por Morte",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.925925+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0069",
+    "topico": "Doação de Sangue",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.926301+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0070",
+    "topico": "Asilo de Idosos",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.926651+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0071",
+    "topico": "Direito à Manifestação",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.927011+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0049",
+    "topico": "Casamento Civil",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.929465+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0050",
+    "topico": "Casamento Civil",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.930266+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0051",
+    "topico": "Família e Adoção",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.930684+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0052",
+    "topico": "Família e Adoção",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.931053+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0053",
+    "topico": "Família e Adoção",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.931430+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0054",
+    "topico": "Reprodução Assistida",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.931816+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0055",
+    "topico": "Legislação e Justiça",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.932172+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0056",
+    "topico": "Legislação e Justiça",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.932551+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0074",
+    "topico": "Direito à Moradia",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.932912+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0075",
+    "topico": "Processo Transexualizador",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.935728+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0076",
+    "topico": "Processo Transexualizador",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.936887+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0077",
+    "topico": "Processo Transexualizador",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.937271+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0078",
+    "topico": "Nome Social no SUS",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.937621+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0080",
+    "topico": "Hormonioterapia Masculinizante",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.937985+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0081",
+    "topico": "Hormonioterapia Feminilizante",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.938354+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0082",
+    "topico": "PrEP (Profilaxia Pré-Exposição)",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.938704+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0083",
+    "topico": "PEP (Profilaxia Pós-Exposição)",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.939077+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0084",
+    "topico": "Saúde Mental",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.940062+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0085",
+    "topico": "Saúde Sexual Masculina Trans",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.940513+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0086",
+    "topico": "ISTs e Testagem",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.941560+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0089",
+    "topico": "Cirurgias de redesignação",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.941959+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0091",
+    "topico": "Amamentação Induzida",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.942341+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0092",
+    "topico": "Saúde Trans e Despatologização",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.942725+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0093",
+    "topico": "Saúde e Respeito Ético",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.943094+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0094",
+    "topico": "Ginecologia Sem Preconceito",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.945032+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0123",
+    "topico": "Direito a Nome Social no Exame",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.945473+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0096",
+    "topico": "Uso de Próteses Penianas",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.945842+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0098",
+    "topico": "Vacinação contra HPV",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.946234+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0099",
+    "topico": "Terapia Antirretroviral (TARV)",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.946593+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0100",
+    "topico": "Cirurgia de Redução de Gomo",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.946943+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0112",
+    "topico": "História do Movimento",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.948524+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0113",
+    "topico": "História do Movimento",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.949146+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0116",
+    "topico": "Representatividade Lésbica",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.950056+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0104",
+    "topico": "Saúde e Desintoxicação",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.950429+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0108",
+    "topico": "ONGs e Apoio",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.950817+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0109",
+    "topico": "ONGs e Apoio",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.951181+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0110",
+    "topico": "ONGs e Apoio",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.951542+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0115",
+    "topico": "Direito de Voto e Liderança",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.951908+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0117",
+    "topico": "Representatividade Bissexual",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.952290+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0101",
+    "topico": "Saúde Mental e Grupos de Apoio",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.952632+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0125",
+    "topico": "Políticas de Cotas",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.952979+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0126",
+    "topico": "Segurança e Proteção Coletiva",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.953361+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0127",
+    "topico": "História e Orgulho no Brasil",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.953726+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0128",
+    "topico": "Parcerias de Acolhimento",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.954103+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0129",
+    "topico": "Conselhos Estaduais LGBT",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.954476+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0130",
+    "topico": "Denúncias via Disque 100",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.954817+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0131",
+    "topico": "Casas de Acolhimento do Nordeste",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.955160+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0132",
+    "topico": "História de Luta e Resistência",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.955528+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0133",
+    "topico": "Casas de Acolhimento do Sul",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.955868+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0134",
+    "topico": "História LGBT e Arte",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.956225+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0135",
+    "topico": "Direito ao Nome Social na Escola",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.956588+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0147",
+    "topico": "Música e Representatividade",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.956927+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0140",
+    "topico": "Teatro e Representatividade",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.957285+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0148",
+    "topico": "Dia do Orgulho nas Empresas",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.957653+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0121",
+    "topico": "Combate à LGBTfobia",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.958008+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0139",
+    "topico": "Histórico Literário LGBT",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.958367+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0141",
+    "topico": "Representatividade no Cinema",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.958742+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0142",
+    "topico": "Educação Inclusiva",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.959095+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0143",
+    "topico": "Cultura Ballroom",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.959456+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0144",
+    "topico": "Bissexualidade na História",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.959825+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0146",
+    "topico": "História e Visibilidade",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.960188+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0150",
+    "topico": "Representação de Gênero na História",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.960562+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0151",
+    "topico": "Literatura de Cordel e Diversidade",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.962299+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0155",
+    "topico": "Prêmio Triângulo de Ouro",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.962704+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0156",
+    "topico": "Dia Internacional da Educação",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.963547+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0157",
+    "topico": "Estudos de Gênero",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.964224+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0158",
+    "topico": "Visibilidade no Esporte",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.964589+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0159",
+    "topico": "Ditadura Militar e Repressão LGBT",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.964953+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0160",
+    "topico": "Casamento Religioso e Diversidade",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.965318+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0161",
+    "topico": "Políticas de Permanência Estudantil",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.965659+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0162",
+    "topico": "Dia da Cultura e Arte LGBT",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.966035+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0163",
+    "topico": "História e Luta da Visibilidade Lésbica",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.966414+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0178",
+    "topico": "Retificação de Nome",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.966810+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0176",
+    "topico": "Contato do Projeto",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.967312+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0170",
+    "topico": "Segurança e Denúncias no Vox",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.967845+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0172",
+    "topico": "Privacidade no Vox",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.969677+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0173",
+    "topico": "Privacidade no Vox",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.970872+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0182",
+    "topico": "Casamento Civil",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.971427+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0183",
+    "topico": "Casamento Civil",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.971840+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0184",
+    "topico": "Casamento Civil",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.972333+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0185",
+    "topico": "Casamento Civil",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.972785+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0201",
+    "topico": "Nome Social no Título",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.973143+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0187",
+    "topico": "Família e Adoção",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.973645+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0188",
+    "topico": "Família e Adoção",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.974103+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0190",
+    "topico": "Legislação e Justiça",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.974485+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0191",
+    "topico": "Legislação e Justiça",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.974863+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0192",
+    "topico": "Violência e Segurança",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.975239+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0193",
+    "topico": "Violência e Segurança",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.975589+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0194",
+    "topico": "Direitos Prisionais",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.976190+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0196",
+    "topico": "Mercado de Trabalho",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.976671+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0197",
+    "topico": "Direitos do Consumidor",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.977028+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0198",
+    "topico": "Imposto de Renda",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.995313+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0199",
+    "topico": "Plano de Saúde",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.996267+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0207",
+    "topico": "Direito Civil de Nome",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.997247+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0210",
+    "topico": "Direitos Cívicos e RG",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.997721+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0203",
+    "topico": "Asilo de Idosos",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.998102+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0204",
+    "topico": "Serviço Militar",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.998531+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0205",
+    "topico": "Direito à Moradia",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:06.999625+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0206",
+    "topico": "Direito Autoral",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.000416+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0208",
+    "topico": "Legislação Estudantil",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.003135+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0209",
+    "topico": "Violência Escolar",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.003889+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0211",
+    "topico": "Pessoas Intersexo",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.004412+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0212",
+    "topico": "Processo Transexualizador",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.005121+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0213",
+    "topico": "Hormonioterapia",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.005851+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0214",
+    "topico": "Hormonioterapia Masculinizante",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.006408+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0217",
+    "topico": "PEP (Profilaxia Pós-Exposição)",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.006886+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0219",
+    "topico": "Saúde Mental",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.007448+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0220",
+    "topico": "Saúde Mental",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.008020+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0224",
+    "topico": "ISTs e Testagem",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.009287+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0225",
+    "topico": "Uso de Binder",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.009996+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0226",
+    "topico": "Uso de Binder",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.011351+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0229",
+    "topico": "Terapia Antirretroviral (TARV)",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.011992+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0230",
+    "topico": "Apoio Psicológico Acessível",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.012420+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0232",
+    "topico": "Ambulatórios Trans",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.013556+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0233",
+    "topico": "Ambulatórios Trans",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.014367+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0234",
+    "topico": "Uso de Próteses Penianas",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.015357+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0237",
+    "topico": "Mamoplastia Masculinizante",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.016013+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0238",
+    "topico": "Feminilização Facial",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.017034+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0239",
+    "topico": "Saúde Transmasculina e Gravidez",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.017771+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0241",
+    "topico": "Saúde Mental e Família",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.020479+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0242",
+    "topico": "ONGs e Apoio",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.021181+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0243",
+    "topico": "ONGs e Apoio",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.021654+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0244",
+    "topico": "ONGs e Apoio",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.022117+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0251",
+    "topico": "Ativismo Digital",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.022698+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0321",
+    "topico": "Como Contribuir",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.023171+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0255",
+    "topico": "Denúncias de LGBTfobia",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.023590+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0256",
+    "topico": "Centros de Referência LGBT",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.024165+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0257",
+    "topico": "Centros de Referência LGBT",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.024803+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0258",
+    "topico": "Centros de Referência LGBT",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.025931+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0259",
+    "topico": "Família e Apoio",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.026581+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0260",
+    "topico": "Assistência Social",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.029561+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0261",
+    "topico": "Segurança e Proteção Coletiva",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.030340+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0262",
+    "topico": "Conselhos Municipais LGBT",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.030889+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0263",
+    "topico": "Parcerias de Acolhimento",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.031425+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0264",
+    "topico": "Ativismo LGBT e Esportes",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.031879+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0265",
+    "topico": "Visibilidade Lésbica e Ativismo",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.032255+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0266",
+    "topico": "Visibilidade Assexual",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.032625+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0268",
+    "topico": "Conselhos Estaduais e Atendimento",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.033163+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0278",
+    "topico": "Educação Inclusiva",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.033892+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0270",
+    "topico": "Lideranças Históricas",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.035382+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0271",
+    "topico": "Combate ao Preconceito Escolar",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.036072+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0272",
+    "topico": "Direito ao Nome Social na Escola",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.037534+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0274",
+    "topico": "Cotas em Concursos",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.038444+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0275",
+    "topico": "Histórico Literário LGBT",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.039321+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0276",
+    "topico": "Teatro e Representatividade",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.039881+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0277",
+    "topico": "Representatividade no Cinema",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.040346+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0279",
+    "topico": "Cultura Ballroom",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.041360+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0280",
+    "topico": "Bissexualidade na História",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.042067+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0283",
+    "topico": "Dia do Orgulho nas Empresas",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.043149+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0284",
+    "topico": "Cultura Trans e Literatura",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.043832+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0295",
+    "topico": "Limitações do Vox",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.045224+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0287",
+    "topico": "Ditadura Militar e Imprensa LGBT",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.046102+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0288",
+    "topico": "Casamento Religioso Inclusivo",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.048658+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0289",
+    "topico": "Políticas de Permanência Universitária",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.049385+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0290",
+    "topico": "Dia da Cultura e Arte LGBT",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.049796+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0297",
+    "topico": "Privacidade no Vox",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.050156+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0299",
+    "topico": "Privacidade no Vox",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.050652+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0300",
+    "topico": "Código Aberto e Git",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.051303+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0318",
+    "topico": "Como Contribuir",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.051886+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0106",
+    "topico": "Casas de Acolhimento",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.052659+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0107",
+    "topico": "Casas de Acolhimento",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.053424+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0246",
+    "topico": "Casas de Acolhimento",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.054452+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0047",
+    "topico": "Retificação de Nome",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.055080+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0310",
+    "topico": "Termos de Uso",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.055501+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0305",
+    "topico": "Política de Privacidade",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.056386+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0307",
+    "topico": "Política de Privacidade",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.057015+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0302",
+    "topico": "Política de Privacidade",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.058565+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0322",
+    "topico": "Padrões de Commit",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.059274+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0323",
+    "topico": "Padrões de Commit",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.060800+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0046",
+    "topico": "Retificação de Nome",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.061533+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0149",
+    "topico": "Educação de Jovens e Adultos (EJA)",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.065143+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0057",
+    "topico": "Legislação e Justiça",
+    "eixo_tematico": "Direitos e Legislação",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.065890+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0249",
+    "topico": "História do Movimento",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.066427+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0312",
+    "topico": "Termos de Uso",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.066963+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0250",
+    "topico": "História do Movimento",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.067675+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0254",
+    "topico": "Visibilidade Trans",
+    "eixo_tematico": "Sociedade e Ativismo",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.068197+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0164",
+    "topico": "Dia Nacional do Orgulho Lésbico",
+    "eixo_tematico": "Educação e Cultura",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.068693+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0169",
+    "topico": "Limitações do Vox",
+    "eixo_tematico": "Sobre o Vox",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.069249+00:00"
+  },
+  {
+    "kb_id": "vox-kb-0097",
+    "topico": "Saúde e Práticas Seguras",
+    "eixo_tematico": "Saúde e Bem-estar",
+    "decisao": "INSPECTED",
+    "notas": "Auditoria automatizada",
+    "revisor": "auditor_vox",
+    "data_auditoria": "2026-11-08T01:02:07.069866+00:00"
+  }
+]

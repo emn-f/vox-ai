@@ -223,6 +223,35 @@ def estruturar_conteudo_com_ia(
 # ETAPA 3: CARGA NA TABELA DE STAGING (LOAD & HUMAN-IN-THE-LOOP)
 # ==============================================================================
 
+LOCAL_STAGING_PATH = Path(caminho_raiz) / "data" / "staging_conteudo_pendente.json"
+
+
+def _is_table_missing_error(e: Exception) -> bool:
+    """Verifica se o erro é decorrente da tabela de staging não existir no banco."""
+    err_msg = str(e).lower()
+    return "pgrst205" in err_msg or "could not find the table" in err_msg or "does not exist" in err_msg
+
+
+def _carregar_staging_local() -> List[Dict[str, Any]]:
+    """Carrega registros de staging salvos localmente."""
+    if not LOCAL_STAGING_PATH.exists():
+        return []
+    try:
+        with open(LOCAL_STAGING_PATH, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return data if isinstance(data, list) else []
+    except Exception as e:
+        logger.warning(f"Falha ao ler staging local ({LOCAL_STAGING_PATH}): {e}")
+        return []
+
+
+def _salvar_staging_local(itens: List[Dict[str, Any]]) -> None:
+    """Persiste registros de staging localmente com formatação legível."""
+    LOCAL_STAGING_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(LOCAL_STAGING_PATH, "w", encoding="utf-8") as f:
+        json.dump(itens, f, indent=2, ensure_ascii=False)
+
+
 def salvar_em_staging(
     itens_estruturados: List[Dict[str, Any]],
     supabase_client: Optional[Any] = None,
@@ -230,6 +259,8 @@ def salvar_em_staging(
     """
     Insere os registros estruturados na tabela de staging `conteudo_pendente`
     com status 'PENDING_REVIEW'. Nenhum dado é inserido direto na KB de produção.
+    Caso a tabela remota não esteja disponível no banco, realiza fallback
+    transparente para o arquivo local data/staging_conteudo_pendente.json.
     """
     if not itens_estruturados:
         logger.info("Nenhum item para salvar em staging.")
@@ -264,10 +295,30 @@ def salvar_em_staging(
             logger.info(f"✅ {len(registros_para_inserir)} itens inseridos em 'conteudo_pendente'.")
             return resp.data or registros_para_inserir
         except Exception as e:
+            if _is_table_missing_error(e):
+                logger.warning(
+                    "⚠️ Tabela remota 'conteudo_pendente' não encontrada no banco (migração pendente de deploy). "
+                    "Salvando os itens em staging local: data/staging_conteudo_pendente.json"
+                )
+                existentes = _carregar_staging_local()
+                proximo_id = max([int(x.get("id", 0)) for x in existentes if str(x.get("id", "")).isdigit()] or [0]) + 1
+                for reg in registros_para_inserir:
+                    reg["id"] = proximo_id
+                    proximo_id += 1
+                    existentes.append(reg)
+                _salvar_staging_local(existentes)
+                return registros_para_inserir
             logger.error(f"Erro ao salvar na tabela 'conteudo_pendente': {e}")
             raise e
 
-    logger.warning("Supabase não disponível. Itens processados apenas em memória.")
+    logger.warning("Supabase não disponível. Itens processados no staging local.")
+    existentes = _carregar_staging_local()
+    proximo_id = max([int(x.get("id", 0)) for x in existentes if str(x.get("id", "")).isdigit()] or [0]) + 1
+    for reg in registros_para_inserir:
+        reg["id"] = proximo_id
+        proximo_id += 1
+        existentes.append(reg)
+    _salvar_staging_local(existentes)
     return registros_para_inserir
 
 
@@ -276,25 +327,31 @@ def listar_conteudos_pendentes(
     status: str = "PENDING_REVIEW",
 ) -> List[Dict[str, Any]]:
     """
-    Recupera conteúdos pendentes de revisão na tabela staging.
+    Recupera conteúdos pendentes de revisão na tabela staging (Supabase ou fallback local).
     """
     client = supabase_client or get_db_client()
-    if not client:
-        logger.warning("Cliente do banco não disponível.")
-        return []
+    if client:
+        try:
+            resp = (
+                client.table("conteudo_pendente")
+                .select("*")
+                .eq("status", status)
+                .order("criado_em", desc=True)
+                .execute()
+            )
+            return resp.data or []
+        except Exception as e:
+            if _is_table_missing_error(e):
+                logger.info(
+                    "ℹ️ Tabela 'conteudo_pendente' não encontrada no Supabase. Lendo registros do staging local."
+                )
+                itens_locais = _carregar_staging_local()
+                return [item for item in itens_locais if item.get("status") == status]
+            logger.error(f"Erro ao listar pendentes: {e}")
+            return []
 
-    try:
-        resp = (
-            client.table("conteudo_pendente")
-            .select("*")
-            .eq("status", status)
-            .order("criado_em", desc=True)
-            .execute()
-        )
-        return resp.data or []
-    except Exception as e:
-        logger.error(f"Erro ao listar pendentes: {e}")
-        return []
+    itens_locais = _carregar_staging_local()
+    return [item for item in itens_locais if item.get("status") == status]
 
 
 def revisar_conteudo(
@@ -320,17 +377,35 @@ def revisar_conteudo(
     }
 
     if client:
-        resp = (
-            client.table("conteudo_pendente")
-            .update(payload_update)
-            .eq("id", item_id)
-            .execute()
-        )
-        if not resp.data:
-            raise ValueError(f"Item com ID {item_id} não encontrado na tabela 'conteudo_pendente'.")
-        return resp.data[0]
+        try:
+            resp = (
+                client.table("conteudo_pendente")
+                .update(payload_update)
+                .eq("id", item_id)
+                .execute()
+            )
+            if not resp.data:
+                raise ValueError(f"Item com ID {item_id} não encontrado na tabela 'conteudo_pendente'.")
+            return resp.data[0]
+        except Exception as e:
+            if _is_table_missing_error(e):
+                logger.info("ℹ️ Tabela remota ausente. Atualizando item no staging local.")
+                existentes = _carregar_staging_local()
+                for item in existentes:
+                    if str(item.get("id")) == str(item_id):
+                        item.update(payload_update)
+                        _salvar_staging_local(existentes)
+                        return item
+                raise ValueError(f"Item com ID {item_id} não encontrado no staging local.")
+            raise e
 
-    logger.warning("Supabase não disponível. Decisão de revisão simulada em memória.")
+    logger.warning("Supabase não disponível. Decisão de revisão realizada no staging local.")
+    existentes = _carregar_staging_local()
+    for item in existentes:
+        if str(item.get("id")) == str(item_id):
+            item.update(payload_update)
+            _salvar_staging_local(existentes)
+            return item
     res = dict(payload_update)
     res["id"] = item_id
     return res
@@ -413,7 +488,18 @@ def promover_item_para_knowledge_base(
                 }
                 if kb_id:
                     update_staging["kb_id"] = kb_id
-                client_db.table("conteudo_pendente").update(update_staging).eq("id", staging_id).execute()
+                try:
+                    client_db.table("conteudo_pendente").update(update_staging).eq("id", staging_id).execute()
+                except Exception as e_stg:
+                    if _is_table_missing_error(e_stg):
+                        existentes = _carregar_staging_local()
+                        for item in existentes:
+                            if str(item.get("id")) == str(staging_id):
+                                item.update(update_staging)
+                                _salvar_staging_local(existentes)
+                                break
+                    else:
+                        logger.warning(f"Falha ao vincular kb_id no staging: {e_stg}")
             except Exception as e:
                 logger.warning(f"Falha ao vincular kb_id no staging: {e}")
 
