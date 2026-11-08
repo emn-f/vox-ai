@@ -13,6 +13,7 @@ Principais Responsabilidades:
 4. Tratar erros específicos da API (como cota e indisponibilidade) de forma resiliente.
 """
 
+import re
 from typing import Any
 
 from google.genai import types
@@ -27,6 +28,48 @@ from src.config import (
 )
 from src.core.database import recuperar_contexto_inteligente
 from src.core.genai import configurar_api_gemini
+
+# Conjunto de termos e expressões de saudação/small-talk trivial que não demandam busca na base de conhecimento
+SAUDACOES_CONHECIDAS = {
+    "oi", "oie", "oii", "oiii", "ola", "olá", "hey", "hello", "hi",
+    "bom dia", "boa tarde", "boa noite", "opa", "e ai", "e aí", "eai",
+    "tudo bem", "tudo bem?", "como vai", "como vai?", "tudo bom", "tudo bom?",
+    "salve", "fala ai", "fala aí", "koé", "coe", "coé", "boa", "buenas"
+}
+TERMOS_SAUDACAO_BASE = {
+    "oi", "ola", "olá", "hey", "hello", "hi", "opa", "eai", "salve",
+    "tudo", "bem", "bom", "dia", "tarde", "noite", "vox", "ai",
+    "como", "vai", "voce", "você", "ta", "tá"
+}
+
+
+def eh_saudacao(texto: str) -> bool:
+    """
+    Verifica se a mensagem enviada pelo usuário é puramente uma saudação, cumprimento
+    ou início de conversa trivial (ex: 'hey', 'olá', 'bom dia', 'tudo bem?').
+
+    Nesses casos, a busca vetorial (RAG) deve ser dispensada para evitar alucinações
+    ou injeção de contextos espúrios na resposta de boas-vindas da persona.
+    """
+    if not texto or not texto.strip():
+        return True
+
+    texto_normalizado = texto.strip().lower()
+    # Remove pontuação em toda a string para isolar palavras e expressões
+    texto_sem_pontuacao = re.sub(r"[^\w\s]", " ", texto_normalizado)
+    frase_limpa = " ".join(texto_sem_pontuacao.split())
+
+    if not frase_limpa:
+        return True
+
+    if frase_limpa in SAUDACOES_CONHECIDAS:
+        return True
+
+    palavras = frase_limpa.split()
+    if 1 <= len(palavras) <= 5 and all(p in TERMOS_SAUDACAO_BASE for p in palavras):
+        return True
+
+    return False
 
 
 def semantica(
@@ -49,6 +92,11 @@ def semantica(
             - str | None: Bloco textual de contexto consolidado para alimentar o prompt de IA.
             - list[dict[str, Any]] | None: Lista de correspondências detalhadas (IDs, notas) para auditoria.
     """
+    # 0. Bypass de saudações e cumprimentos triviais: evita chamadas de embeddings e contextos espúrios
+    if eh_saudacao(prompt):
+        logger.info(f"👋 Entrada '{prompt}' identificada como saudação/small-talk. Dispensando RAG.")
+        return None, None, None
+
     try:
         # 1. Configura e recupera o cliente da API do Gemini
         client = configurar_api_gemini()
@@ -78,6 +126,7 @@ def semantica(
                 vetor_prompt,
                 threshold=threshold if threshold is not None else SEMANTICA_THRESHOLD,
                 limit=limit if limit is not None else LIMITE_TEMAS,
+                query_texto=prompt,
             )
         )
 
