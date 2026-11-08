@@ -1,3 +1,5 @@
+import base64
+import os
 import time
 
 from src.external_links import CONTRIBUTING
@@ -6,6 +8,18 @@ import streamlit as st
 from collections.abc import Iterator
 from src.config import CSS_PATH
 from src.core.database import salvar_report, get_categorias_erro, salvar_erro, excluir_dados_sessao
+
+
+def carregar_icone_base64() -> str:
+    """Carrega o ícone oficial em formato Base64 para exibição no cabeçalho."""
+    caminho_icone = "static/branding/icon.png"
+    if os.path.exists(caminho_icone):
+        try:
+            with open(caminho_icone, "rb") as f:
+                return base64.b64encode(f.read()).decode("utf-8")
+        except Exception:
+            return ""
+    return ""
 
 
 def configurar_pagina() -> None:
@@ -51,11 +65,24 @@ def configurar_pagina() -> None:
         unsafe_allow_html=True,
     )
 
+    icone_b64 = carregar_icone_base64()
+    if icone_b64:
+        img_tag = f'<img src="data:image/png;base64,{icone_b64}" class="vox-header-icon" alt="Vox AI Logo" />'
+    else:
+        img_tag = '<span style="font-size: 2.8rem; margin-right: 0.8rem;">🌈</span>'
+
     st.markdown(
-        """
-        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <h2 style="text-align: center">Vox AI</h2>
-            <p style="text-align: center; color: gray;">Assistente de Apoio e Informação LGBTQIA+</p>
+        f"""
+        <div class="vox-header-container">
+            <div class="vox-header-card">
+                <div class="vox-header-brand">
+                    {img_tag}
+                    <div class="vox-header-titles">
+                        <div class="vox-brand-title">Vox<span class="vox-brand-ai">AI</span></div>
+                        <div class="vox-brand-slogan">Informação é uma forma de cuidado</div>
+                    </div>
+                </div>
+            </div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -225,9 +252,11 @@ def exibir_historico_chat(historico_conversa: list) -> None:
     """
     from src.utils import texto_para_audio
     
+    avatar_assistant = "static/branding/icon.png" if os.path.exists("static/branding/icon.png") else "🌈"
+
     for i, msg in enumerate(historico_conversa):
         if msg["role"] == "model":
-            with st.chat_message("assistant", avatar="🌈"):
+            with st.chat_message("assistant", avatar=avatar_assistant):
                 st.markdown(msg["parts"][0], unsafe_allow_html=False)
 
                 chave_botao = f"btn_audio_{i}"
@@ -240,7 +269,7 @@ def exibir_historico_chat(historico_conversa: list) -> None:
                     st.audio(audio_bytes, format=formato_audio)
                 else:
                     if st.button("🔊 Ouvir resposta", key=chave_botao):
-                        with st.spinner("🎙️ Gerando áudio com voz humanizada... Por favor, aguarde um instante"):
+                        with st.spinner("🎙️ Gerando áudio..."):
                             audio_data = texto_para_audio(msg["parts"][0])
                             audio_bytes = audio_data.getvalue() if audio_data else b""
                             if audio_bytes:
@@ -248,7 +277,8 @@ def exibir_historico_chat(historico_conversa: list) -> None:
                                 formato_audio = "audio/wav" if audio_bytes.startswith(b"RIFF") else "audio/mp3"
                                 st.audio(audio_bytes, format=formato_audio)
         else:
-            with st.chat_message("user", avatar="👤"):
+            avatar_user = "static/branding/user_avatar.png" if os.path.exists("static/branding/user_avatar.png") else "👤"
+            with st.chat_message("user", avatar=avatar_user):
                 st.markdown(msg["parts"][0])
 
 

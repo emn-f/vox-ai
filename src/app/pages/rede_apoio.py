@@ -373,14 +373,14 @@ def render_rede_apoio(show_title: bool = True) -> None:
             with st.container():
                 st.markdown(
                     f"""
-                    <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; padding: 18px; margin-bottom: 16px;">
-                        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
-                            <h3 style="margin: 0; color: #FFF; font-size: 19px;">{item['nome']}</h3>
-                            <span style="background: #7209B7; color: #FFF; font-size: 11px; font-weight: bold; padding: 4px 10px; border-radius: 12px;">{item['uf']} — {item['cidade']}</span>
+                    <div style="background: rgba(22, 18, 38, 0.85); border: 1px solid rgba(114, 9, 183, 0.25); border-radius: 14px; padding: 18px; margin-bottom: 16px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); backdrop-filter: blur(8px);">
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;">
+                            <h3 style="margin: 0; color: #FFFFFF; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.15rem; font-weight: 700;">{item['nome']}</h3>
+                            <span style="background: linear-gradient(135deg, #7209B7 0%, #B5179E 100%); color: #FFF; font-size: 11px; font-weight: bold; padding: 4px 10px; border-radius: 12px; box-shadow: 0 2px 8px rgba(114, 9, 183, 0.3);">{item['uf']} — {item['cidade']}</span>
                         </div>
                         <p style="color: #CBD5E1; margin: 10px 0 12px 0; font-size: 14px; line-height: 1.5;">{item['descricao']}</p>
                         <div style="margin-bottom: 12px;">
-                            {' '.join([f'<span style="background: rgba(0, 180, 216, 0.15); color: #38BDF8; font-size: 11px; padding: 3px 8px; border-radius: 6px; margin-right: 6px;">#{t}</span>' for t in item['tags']])}
+                            {' '.join([f'<span style="background: rgba(114, 9, 183, 0.15); border: 1px solid rgba(114, 9, 183, 0.3); color: #C084FC; font-size: 11px; padding: 3px 8px; border-radius: 6px; margin-right: 6px;">#{t}</span>' for t in item['tags']])}
                         </div>
                     </div>
                     """,
