@@ -25,13 +25,17 @@ async def lifespan(app: FastAPI):
     logger.info("🛑 Encerrando Vox AI Core API Service...")
 
 
+api_version = (git_version() or "v5.0.0").lstrip("v")
+if not api_version:
+    api_version = "5.0.0"
+
 app = FastAPI(
     title="Vox AI - Core API",
     description=(
         "API desacoplada do Vox AI: Assistente virtual de apoio, cidadania e saúde LGBTQIA+ "
         "com Inteligência Artificial e busca semântica RAG (pgvector)."
     ),
-    version=git_version(),
+    version=api_version,
     lifespan=lifespan,
     docs_url="/docs",
     redoc_url="/redoc",
