@@ -7,6 +7,16 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v4.1.2 - 08/11/2026
+
+
+### 🐛 Correções
+
+* Remove titulo duplicado no modal, adiciona spinner amigavel no chat e habilita modelos dedicados de TTS do Gemini ([9ad382c](https://github.com/emn-f/vox-ai/commit/9ad382c28307df5dc4880318c01f7f0ba6139619))
+
+* Adiciona requirements.txt para container do Hugging Face e remove import nao utilizado de gtts ([c888d66](https://github.com/emn-f/vox-ai/commit/c888d66bb46c02149d6f3848c887f9a59ed96cbd))
+
+
 ## v4.1.1 - 08/11/2026
 
 
