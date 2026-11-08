@@ -17,6 +17,7 @@ Fluxo de Execução Principal:
 8. Persistência de logs da conversa e tratamento centralizado de erros no banco de dados.
 """
 
+import os
 import uuid
 
 import streamlit as st
@@ -79,8 +80,14 @@ if st.session_state.get("key_api"):
             st.rerun()
     prompt = st.chat_input("Digite aqui...")
 
-    with st.popover("🎙️", use_container_width=False):
-        audio_val = st.audio_input("Fale sua pergunta")
+    with st.popover("🎙️ Falar com Vox", help="Grave sua pergunta por voz para o Vox AI"):
+        st.markdown(
+            "<p style='font-size: 0.88rem; color: #CBD5E1; margin: 0 0 8px 0;'>"
+            "🎙️ <b>Grave sua dúvida por voz:</b> Pressione o microfone abaixo para iniciar a gravação."
+            "</p>",
+            unsafe_allow_html=True,
+        )
+        audio_val = st.audio_input("Fale sua pergunta", label_visibility="collapsed")
 
     prompt_final = None
 
@@ -101,11 +108,13 @@ if st.session_state.get("key_api"):
         st.session_state.prompt = prompt_final
         st.session_state.hist_exibir.append({"role": "user", "parts": [prompt_final]})
 
-        with st.chat_message("user", avatar="👤"):
+        avatar_user = "static/branding/user_avatar.png" if os.path.exists("static/branding/user_avatar.png") else "👤"
+        with st.chat_message("user", avatar=avatar_user):
             st.markdown(prompt_final)
 
         try:
-            with st.chat_message("assistant", avatar="🌈"):
+            avatar_assistant = "static/branding/icon.png" if os.path.exists("static/branding/icon.png") else "🌈"
+            with st.chat_message("assistant", avatar=avatar_assistant):
                 with st.spinner("Vox está pensando com carinho e acolhimento... 💜"):
                     tema_match, descricao_match, ids_referencia = semantica(prompt_final)
 

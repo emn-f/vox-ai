@@ -1,35 +1,262 @@
-#vox-float-btn {
-    position: fixed;
-    top: 24px;
-    left: 24px;
-    z-index: 9999;
-    background: #b5179e;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    font-size: 2em;
-    cursor: pointer;
-    box-shadow: 0 2px 8px #0002;
+/* ==========================================================================
+   VOX AI — TEMA E IDENTIDADE VISUAL OFICIAL v2.1.0
+   Manual de Identidade Visual: docs/identidade_visual.md
+   Base: Dark Imersivo (#0E091B), Cards (#161226), Rainbow Pride Ribbon
+   Tipografia: Plus Jakarta Sans (Títulos) & Inter (Corpo)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    --vox-bg: #0E091B;
+    --vox-surface: #161226;
+    --vox-surface-light: #201A35;
+    --vox-surface-card: rgba(22, 18, 38, 0.85);
+    --vox-card-border: rgba(114, 9, 183, 0.25);
+    --vox-card-border-hover: rgba(181, 23, 158, 0.45);
+    
+    /* Paleta Oficial do Orgulho (Pride) */
+    --vox-red: #E7383B;
+    --vox-orange: #F77F00;
+    --vox-yellow: #FFD000;
+    --vox-green: #00A859;
+    --vox-blue: #0084C8;
+    --vox-violet: #7209B7;
+    --vox-magenta: #B5179E;
+    --vox-amber: #F7931E;
+    
+    /* Tipografia e Cores de Texto */
+    --vox-text-primary: #F8FAFC;
+    --vox-text-secondary: #94A3B8;
+    --vox-text-muted: #64748B;
+    
+    /* Gradiente Arco-Íris Contínuo Oficial */
+    --vox-rainbow-gradient: linear-gradient(
+        90deg,
+        #E7383B 0%,
+        #F77F00 20%,
+        #FFD000 40%,
+        #00A859 60%,
+        #0084C8 80%,
+        #7209B7 100%
+    );
 }
 
-#vox-float-menu {
-    display: none;
+/* --------------------------------------------------------------------------
+   1. Faixa Fixa Superior Arco-Íris (Rainbow Ribbon)
+   -------------------------------------------------------------------------- */
+body::before {
+    content: "";
     position: fixed;
-    top: 80px;
-    left: 24px;
-    z-index: 9999;
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 4px 24px 0 #00000026;
-    padding: 24px;
-    min-width: 220px;
-    max-width: 90vw;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3.5px;
+    background: var(--vox-rainbow-gradient);
+    z-index: 999999;
+    box-shadow: 0 1px 10px rgba(114, 9, 183, 0.5);
 }
 
-#vox-float-menu.active {
-    display: block;
+/* --------------------------------------------------------------------------
+   2. Aplicação Geral (Canvas & Background Imersivo)
+   -------------------------------------------------------------------------- */
+.stApp {
+    background-color: var(--vox-bg);
+    background-image: radial-gradient(circle at 50% -80px, rgba(114, 9, 183, 0.18) 0%, rgba(14, 9, 27, 0) 75%);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--vox-text-primary);
+}
+
+/* Custom Scrollbar Global */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--vox-bg);
+}
+::-webkit-scrollbar-thumb {
+    background: #2A2244;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--vox-violet);
+}
+
+/* --------------------------------------------------------------------------
+   3. Cabeçalho Oficial Vox AI
+   -------------------------------------------------------------------------- */
+header[data-testid="stHeader"],
+div[data-testid="stToolbar"] {
+    background: transparent !important;
+}
+
+[data-testid="stDecoration"] {
+    display: none !important;
+}
+
+.vox-header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem auto 1.5rem auto;
+    max-width: 800px;
+    width: 100%;
+    background: transparent !important;
+}
+
+.vox-header-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--vox-surface-card);
+    border: 1px solid var(--vox-card-border);
+    border-radius: 20px;
+    padding: 1.2rem 2rem;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(114, 9, 183, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.vox-header-card:hover {
+    border-color: var(--vox-card-border-hover);
+    transform: translateY(-2px);
+}
+
+.vox-header-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-bottom: 0;
+    background: transparent !important;
+}
+
+.vox-header-icon {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    flex-shrink: 0;
+    filter: drop-shadow(0 4px 14px rgba(114, 9, 183, 0.4));
+}
+
+.vox-header-titles {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.vox-brand-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #FFFFFF;
+    letter-spacing: -0.5px;
+}
+
+.vox-brand-ai {
+    color: var(--vox-amber);
+    background: linear-gradient(135deg, #F7931E 0%, #FFD000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.vox-brand-slogan {
+    font-size: 0.95rem;
+    color: var(--vox-text-secondary);
+    font-weight: 500;
+    margin-top: 0.2rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. Balões de Conversa do Chat (Chat Bubbles)
+   -------------------------------------------------------------------------- */
+div[data-testid="stChatMessage"] {
+    border-radius: 18px !important;
+    padding: 1.1rem 1.4rem !important;
+    margin-bottom: 1rem !important;
+    transition: all 0.25s ease-in-out !important;
+    border: 1px solid transparent !important;
+}
+
+/* Balão do Assistente (Vox AI) */
+div[data-testid="stChatMessage"]:has(div[data-testid="chatAvatarIcon-assistant"]),
+div[data-testid="stChatMessage"]:has(div[data-testid="stChatMessageAvatarAssistant"]) {
+    background: var(--vox-surface-card) !important;
+    border: 1px solid var(--vox-card-border) !important;
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.35), 0 2px 8px -2px rgba(114, 9, 183, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+}
+
+div[data-testid="stChatMessage"]:has(div[data-testid="chatAvatarIcon-assistant"]):hover,
+div[data-testid="stChatMessage"]:has(div[data-testid="stChatMessageAvatarAssistant"]):hover {
+    border-color: var(--vox-card-border-hover) !important;
+}
+
+/* Balão do Usuário */
+div[data-testid="stChatMessage"]:has(div[data-testid="chatAvatarIcon-user"]),
+div[data-testid="stChatMessage"]:has(div[data-testid="stChatMessageAvatarUser"]) {
+    background: rgba(45, 36, 75, 0.55) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+/* Avatares arredondados nos balões */
+div[data-testid="stChatMessage"] img,
+div[data-testid="stChatMessage"] div[data-testid*="Avatar"] {
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+div[data-testid="stChatMessage"]:has(div[data-testid*="User"]) img,
+div[data-testid="stChatMessage"]:has(div[data-testid*="user"]) img {
+    border: 1.5px solid rgba(181, 23, 158, 0.45) !important;
+    box-shadow: 0 0 12px rgba(181, 23, 158, 0.3) !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. Caixa de Entrada de Mensagens (stChatInput)
+   -------------------------------------------------------------------------- */
+div[data-testid="stChatInput"] {
+    border-radius: 20px !important;
+    background: transparent !important;
+}
+
+div[data-testid="stChatInput"] > div {
+    background: rgba(22, 18, 38, 0.95) !important;
+    border: 1px solid var(--vox-card-border) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(12px) !important;
+    transition: all 0.25s ease !important;
+}
+
+div[data-testid="stChatInput"] > div:focus-within {
+    border-color: var(--vox-violet) !important;
+    box-shadow: 0 0 0 3px rgba(114, 9, 183, 0.35), 0 8px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+div[data-testid="stChatInput"] textarea {
+    color: var(--vox-text-primary) !important;
+    font-size: 0.95rem !important;
+}
+
+div[data-testid="stChatInput"] textarea::placeholder {
+    color: var(--vox-text-secondary) !important;
 }
 
 @media (max-width: 700px) {
@@ -39,91 +266,140 @@
         left: 0;
         width: 100vw !important;
         z-index: 10000;
-        background: #fff;
-        box-shadow: 0 -2px 12px #0001;
-        padding-bottom: env(safe-area-inset-bottom, 8px);
-        transition: top 0.2s, box-shadow 0.2s;
+        background: rgba(14, 9, 27, 0.98) !important;
+        backdrop-filter: blur(16px) !important;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4) !important;
+        padding-bottom: env(safe-area-inset-bottom, 10px) !important;
+        padding-top: 8px !important;
     }
 }
 
+/* --------------------------------------------------------------------------
+   6. Botão de Áudio ("🔊 Ouvir resposta") e Player
+   -------------------------------------------------------------------------- */
+button[key^="btn_audio_"],
+div[data-testid="stChatMessage"] button {
+    border-radius: 999px !important;
+    font-size: 0.85rem !important;
+    padding: 0.35rem 1rem !important;
+    background: rgba(114, 9, 183, 0.15) !important;
+    border: 1px solid rgba(114, 9, 183, 0.4) !important;
+    color: #F1F5F9 !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+}
+
+button[key^="btn_audio_"]:hover,
+div[data-testid="stChatMessage"] button:hover {
+    background: rgba(114, 9, 183, 0.35) !important;
+    border-color: var(--vox-magenta) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 14px rgba(114, 9, 183, 0.3) !important;
+}
+
+audio {
+    border-radius: 12px;
+    filter: invert(0.9) hue-rotate(220deg);
+    margin-top: 6px;
+    width: 100%;
+    max-width: 380px;
+}
+
+/* --------------------------------------------------------------------------
+   7. Barra Lateral (Sidebar)
+   -------------------------------------------------------------------------- */
+section[data-testid="stSidebar"] {
+    background-color: var(--vox-surface) !important;
+    border-right: 1px solid var(--vox-card-border) !important;
+}
+
 .vox-sidebar-title {
-    font-size: 1.5em;
-    font-weight: bold;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
     color: transparent;
-    background: linear-gradient(90deg, #e63946, #f1c40f, #43aa8b, #4361ee, #b5179e);
+    background: var(--vox-rainbow-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 0.6em;
+    margin-bottom: 0.8em;
     text-align: center;
 }
 
-/* Cards na sidebar */
 .vox-sidebar-card {
-    background: rgba(128, 128, 128, 0.08);
-    border: 1px solid rgba(128, 128, 128, 0.15);
-    border-radius: 12px;
-    padding: 14px;
+    background: rgba(14, 9, 27, 0.65);
+    border: 1px solid var(--vox-card-border);
+    border-radius: 14px;
+    padding: 14px 16px;
     margin-bottom: 14px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(8px);
+    transition: border-color 0.25s ease;
+}
+
+.vox-sidebar-card:hover {
+    border-color: var(--vox-card-border-hover);
 }
 
 .vox-sidebar-card-title {
-    font-size: 0.8em;
-    font-weight: bold;
-    color: #888;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--vox-text-secondary);
     margin-bottom: 8px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
 }
 
 .vox-sidebar-section {
-    font-size: 0.92em;
-    line-height: 1.4;
-    color: inherit;
-    opacity: 0.9;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--vox-text-primary);
+    opacity: 0.95;
 }
 
-/* Links em formato de botões de lista interativos */
+/* Links da Sidebar */
 .vox-sidebar-list {
     list-style: none;
     padding: 0 !important;
     margin: 0 !important;
 }
 
-
 .vox-sidebar-list-item a {
     display: flex;
     align-items: center;
     padding: 8px 12px;
-    background: rgba(128, 128, 128, 0.05);
-    border: 1px solid rgba(128, 128, 128, 0.1);
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
     text-decoration: none !important;
-    color: inherit !important;
-    font-size: 0.88em;
+    color: #F1F5F9 !important;
+    font-size: 0.88rem;
     font-weight: 500;
     transition: all 0.2s ease-in-out;
-}
-div[data-testid="stMarkdownContainer"] .vox-sidebar-list li {
-    margin-left: 0 !important;
-    padding-left: 0 !important;
+    margin-bottom: 6px;
 }
 
-/* Container de redes sociais */
+.vox-sidebar-list-item a:hover {
+    background: rgba(114, 9, 183, 0.25);
+    border-color: rgba(114, 9, 183, 0.5);
+    transform: translateX(3px);
+}
+
+/* Redes Sociais */
 .vox-social-grid {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     justify-content: center;
     margin-top: 10px;
 }
 
 .vox-social-icon {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
-    background: rgba(128, 128, 128, 0.08);
-    border: 1px solid rgba(128, 128, 128, 0.12);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -131,9 +407,10 @@ div[data-testid="stMarkdownContainer"] .vox-sidebar-list li {
 }
 
 .vox-social-icon:hover {
-    background: rgba(128, 128, 128, 0.18);
+    background: rgba(114, 9, 183, 0.3);
+    border-color: var(--vox-violet);
     transform: scale(1.15) translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 14px rgba(114, 9, 183, 0.4);
 }
 
 .vox-social-icon img {
@@ -141,52 +418,146 @@ div[data-testid="stMarkdownContainer"] .vox-sidebar-list li {
     width: 20px;
 }
 
-/* Links Legais no Footer */
-.footer-links-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    text-align: center;
-    margin-top: 10px;
+/* Customização dos botões Streamlit na sidebar */
+div[data-testid="stSidebar"] button {
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    color: var(--vox-text-primary) !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    padding: 8px 14px !important;
 }
 
+div[data-testid="stSidebar"] button:hover {
+    background-color: rgba(114, 9, 183, 0.2) !important;
+    border-color: var(--vox-violet) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Botões Primários */
+div[data-testid="stSidebar"] button[kind="primary"],
+button[kind="primary"] {
+    background: linear-gradient(135deg, var(--vox-violet) 0%, var(--vox-magenta) 100%) !important;
+    border: none !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 16px rgba(114, 9, 183, 0.35) !important;
+}
+
+div[data-testid="stSidebar"] button[kind="primary"]:hover,
+button[kind="primary"]:hover {
+    filter: brightness(1.12);
+    box-shadow: 0 6px 20px rgba(181, 23, 158, 0.45) !important;
+    transform: translateY(-1px);
+}
+
+/* Botões de Link (st.link_button) */
+a[data-testid="stLinkButton"] {
+    border-radius: 12px !important;
+    border: 1px solid rgba(114, 9, 183, 0.4) !important;
+    background: rgba(114, 9, 183, 0.12) !important;
+    color: #F8FAFC !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+}
+
+a[data-testid="stLinkButton"]:hover {
+    background: rgba(114, 9, 183, 0.3) !important;
+    border-color: var(--vox-magenta) !important;
+    box-shadow: 0 4px 14px rgba(114, 9, 183, 0.35) !important;
+    transform: translateY(-1px);
+}
+
+/* Footer & Legal */
 .legal-link {
     text-decoration: none;
-    color: #888;
-    font-size: 0.8em;
+    color: var(--vox-text-muted);
+    font-size: 0.8rem;
     transition: color 0.2s;
     font-weight: 500;
 }
 
 .legal-link:hover {
-    color: #fff;
+    color: #FFFFFF;
     text-decoration: underline;
 }
 
-/* Customização dos botões Streamlit na sidebar */
-div[data-testid="stSidebar"] button {
-    border-radius: 10px !important;
-    border: 1px solid rgba(128, 128, 128, 0.2) !important;
-    background-color: rgba(128, 128, 128, 0.05) !important;
-    color: inherit !important;
-    font-weight: 500 !important;
+/* --------------------------------------------------------------------------
+   8. Diálogos e Modais (@st.dialog)
+   -------------------------------------------------------------------------- */
+div[role="dialog"] {
+    background-color: var(--vox-surface) !important;
+    border: 1px solid var(--vox-card-border) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. Botão de Microfone / Gravação de Áudio (stPopover & stAudioInput)
+   -------------------------------------------------------------------------- */
+div[data-testid="stPopover"] {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0 14px 0;
+}
+
+div[data-testid="stPopover"] > button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    background: linear-gradient(135deg, rgba(114, 9, 183, 0.28) 0%, rgba(181, 23, 158, 0.28) 100%) !important;
+    border: 1.5px solid rgba(114, 9, 183, 0.55) !important;
+    border-radius: 999px !important;
+    padding: 8px 22px !important;
+    color: #F8FAFC !important;
+    font-weight: 600 !important;
+    font-size: 0.92rem !important;
+    box-shadow: 0 4px 16px rgba(114, 9, 183, 0.25) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    cursor: pointer !important;
+}
+
+div[data-testid="stPopover"] > button:hover {
+    background: linear-gradient(135deg, #7209B7 0%, #B5179E 100%) !important;
+    border-color: #B5179E !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 0 6px 22px rgba(181, 23, 158, 0.45) !important;
+}
+
+div[data-testid="stPopover"] > button:active {
+    transform: translateY(0) scale(0.98) !important;
+}
+
+/* Janela Popover Flutuante de Gravação */
+div[data-testid="stPopoverBody"] {
+    background-color: rgba(22, 18, 38, 0.98) !important;
+    border: 1px solid var(--vox-card-border) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(114, 9, 183, 0.2) !important;
+    padding: 16px !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    color: var(--vox-text-primary) !important;
+}
+
+/* Componente Interno stAudioInput */
+div[data-testid="stAudioInput"] {
+    background: rgba(14, 9, 27, 0.6) !important;
+    border: 1px solid rgba(114, 9, 183, 0.3) !important;
+    border-radius: 14px !important;
+    padding: 10px !important;
+}
+
+div[data-testid="stAudioInput"] button {
+    border-radius: 50% !important;
     transition: all 0.2s ease !important;
-    padding: 6px 12px !important;
 }
 
-div[data-testid="stSidebar"] button:hover {
-    background-color: rgba(128, 128, 128, 0.12) !important;
-    border-color: rgba(128, 128, 128, 0.3) !important;
-    transform: translateY(-1px);
-}
-
-div[data-testid="stSidebar"] button[kind="primary"] {
-    background: linear-gradient(90deg, #e63946, #b5179e) !important;
-    border: none !important;
-    color: #fff !important;
-}
-
-div[data-testid="stSidebar"] button[kind="primary"]:hover {
-    filter: brightness(1.1);
-    box-shadow: 0 4px 12px rgba(181, 23, 158, 0.25) !important;
+div[data-testid="stAudioInput"] button:hover {
+    transform: scale(1.08) !important;
 }

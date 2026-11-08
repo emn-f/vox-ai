@@ -4,4 +4,8 @@ fileWatcherType = "poll"
 
 [theme]
 base = "dark"
+primaryColor = "#7209B7"
+backgroundColor = "#0E091B"
+secondaryBackgroundColor = "#161226"
+textColor = "#F8FAFC"
 font = "sans serif"  
