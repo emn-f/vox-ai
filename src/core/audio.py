@@ -165,7 +165,7 @@ def _gerar_fala_gtts(texto: str) -> io.BytesIO:
 
 def transcrever_audio_gemini(
     audio_data: Any,
-    mime_type: str = "audio/mp3",
+    mime_type: Optional[str] = None,
     client: Optional[genai.Client] = None,
     model: Optional[str] = None,
 ) -> Optional[str]:
@@ -176,7 +176,7 @@ def transcrever_audio_gemini(
     Args:
         audio_data (Any): Bytes do áudio, buffer (.read()), caminho de arquivo (str ou Path),
                           ou Streamlit UploadedFile.
-        mime_type (str): MIME type do formato do áudio (ex: 'audio/mp3', 'audio/wav', 'audio/ogg').
+        mime_type (Optional[str]): MIME type do formato do áudio (ex: 'audio/mp3', 'audio/wav', 'audio/ogg').
         client (Optional[genai.Client]): Cliente Gemini configurado (opcional).
         model (Optional[str]): Modelo do Gemini a ser utilizado (opcional; padrão GEMINI_MODEL_NAME).
 
@@ -199,10 +199,24 @@ def transcrever_audio_gemini(
                 except Exception:
                     pass
             audio_bytes = audio_data.read()
-            if hasattr(audio_data, "type") and getattr(audio_data, "type"):
+            if not detected_mime and hasattr(audio_data, "type") and getattr(audio_data, "type"):
                 t = getattr(audio_data, "type")
                 if isinstance(t, str) and "/" in t:
                     detected_mime = t
+            if not detected_mime and hasattr(audio_data, "name") and getattr(audio_data, "name"):
+                ext = Path(str(getattr(audio_data, "name"))).suffix.lower()
+                extensoes_mime = {
+                    ".wav": "audio/wav",
+                    ".mp3": "audio/mp3",
+                    ".ogg": "audio/ogg",
+                    ".oga": "audio/ogg",
+                    ".webm": "audio/webm",
+                    ".m4a": "audio/mp4",
+                    ".flac": "audio/flac",
+                    ".aac": "audio/aac",
+                }
+                if ext in extensoes_mime:
+                    detected_mime = extensoes_mime[ext]
 
         # 2. Caminho de arquivo no disco (str ou Path)
         elif isinstance(audio_data, (str, Path)):

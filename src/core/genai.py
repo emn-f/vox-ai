@@ -390,16 +390,20 @@ def gerar_resposta(chat: Any, prompt: str, info_adicional: str) -> str:
     return "".join(list(gerar_resposta_stream(chat, prompt, info_adicional)))
 
 
-def transcrever_audio(audio_file: Any) -> Optional[str]:
+def transcrever_audio(audio_file: Any, mime_type: Optional[str] = None) -> Optional[str]:
     """
     Realiza a transcrição de um arquivo de áudio de voz para texto utilizando o modelo Gemini.
     (Delega para a implementação dedicada em src.core.audio.transcrever_audio_gemini)
 
     Args:
         audio_file (Any): Arquivo ou buffer contendo o áudio gravado.
+        mime_type (Optional[str]): MIME type do áudio (ex: 'audio/mp3', 'audio/ogg', 'audio/wav').
+            Se omitido, tenta inferir a partir do nome ou extensão do arquivo.
 
     Returns:
         Optional[str]: O texto transcrito ou None em caso de erro na API de áudio.
     """
     from src.core.audio import transcrever_audio_gemini
+    if mime_type is not None:
+        return transcrever_audio_gemini(audio_file, mime_type=mime_type)
     return transcrever_audio_gemini(audio_file)
