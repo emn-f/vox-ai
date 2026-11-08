@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.2.0 - 08/11/2026
+
+
+### ✨ Funcionalidades
+
+* Aprimora identidade visual tema dark cabecalho e gravador de voz ([06abfd7](https://github.com/emn-f/vox-ai/commit/06abfd786fb4a2e44314e8580eda202462b4f693))
+
+
 ## v5.1.3 - 08/11/2026
 
 
