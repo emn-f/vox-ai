@@ -47,7 +47,7 @@ jobs:
           supabase link --project-ref $SUPABASE_PROJECT_ID
           
           echo "🚀 Enviando migrações..."
-          supabase db push
+          supabase db push --remote --yes
 
       - name: 🎉 Sucesso
         if: success()
