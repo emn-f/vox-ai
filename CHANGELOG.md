@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.2.2 - 09/11/2026
+
+
+### 🐛 Correções
+
+* Carrega css antes do cabecalho para evitar flash da logo sem estilo ([7e8cdf2](https://github.com/emn-f/vox-ai/commit/7e8cdf276738337d2f1f711fa24b91a3f29191fd))
+
+
 ## v5.2.1 - 09/11/2026
 
 
