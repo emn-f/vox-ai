@@ -248,13 +248,30 @@ div[data-testid="stChatMessage"]:has(div[data-testid="stChatMessageAvatarAssista
     border-color: var(--vox-card-border-hover) !important;
 }
 
-/* Balão do Usuário */
+/* Balão do Usuário (Alinhado à Direita - Estilo Mensageiro Clean) */
 div[data-testid="stChatMessage"]:has(div[data-testid="chatAvatarIcon-user"]),
 div[data-testid="stChatMessage"]:has(div[data-testid="stChatMessageAvatarUser"]) {
-    background: rgba(45, 36, 75, 0.55) !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
+    background: linear-gradient(135deg, rgba(114, 9, 183, 0.28) 0%, rgba(181, 23, 158, 0.22) 100%) !important;
+    border: 1px solid rgba(181, 23, 158, 0.35) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
     backdrop-filter: blur(8px) !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    max-width: 80% !important;
+    width: fit-content !important;
+    border-radius: 18px 18px 4px 18px !important;
+    padding: 0.9rem 1.3rem !important;
+}
+
+div[data-testid="stChatMessage"]:has(div[data-testid="chatAvatarIcon-user"]):hover,
+div[data-testid="stChatMessage"]:has(div[data-testid="stChatMessageAvatarUser"]):hover {
+    border-color: rgba(181, 23, 158, 0.55) !important;
+}
+
+/* Oculta o avatar do usuário no balão de mensagem */
+div[data-testid="stChatMessageAvatarUser"],
+div[data-testid="chatAvatarIcon-user"] {
+    display: none !important;
 }
 
 /* Avatares arredondados nos balões */
@@ -263,12 +280,6 @@ div[data-testid="stChatMessage"] div[data-testid*="Avatar"] {
     border-radius: 50% !important;
     object-fit: cover !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
-}
-
-div[data-testid="stChatMessage"]:has(div[data-testid*="User"]) img,
-div[data-testid="stChatMessage"]:has(div[data-testid*="user"]) img {
-    border: 1.5px solid rgba(181, 23, 158, 0.45) !important;
-    box-shadow: 0 0 12px rgba(181, 23, 158, 0.3) !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -303,6 +314,11 @@ div[data-testid="stChatInput"] textarea::placeholder {
 }
 
 @media (max-width: 700px) {
+    div[data-testid="stChatMessage"]:has(div[data-testid="chatAvatarIcon-user"]),
+    div[data-testid="stChatMessage"]:has(div[data-testid="stChatMessageAvatarUser"]) {
+        max-width: 90% !important;
+    }
+
     section[data-testid="stChatInput"] {
         position: fixed !important;
         bottom: 0 !important;
