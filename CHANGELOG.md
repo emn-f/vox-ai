@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.3.0 - 09/11/2026
+
+
+### ✨ Funcionalidades
+
+* Anima faixa arco-iris durante carregamento e oculta indicador nativo ([3d8a810](https://github.com/emn-f/vox-ai/commit/3d8a810679785b5c79b35e321c2c28f314806aa3))
+
+
 ## v5.2.2 - 09/11/2026
 
 
