@@ -52,7 +52,7 @@ if "session_id" not in st.session_state:
     salvar_sessao(st.session_state.session_id)
 
 if "hist_exibir" not in st.session_state:
-    st.session_state.hist_exibir = []
+    st.session_state.hist_exibir = [{"role": "model", "parts": [SAUDACAO]}]
 
 carregar_sidebar(SIDEBAR_BODY, SIDEBAR_FOOTER)
 
@@ -67,17 +67,6 @@ if st.session_state.get("key_api"):
 exibir_historico_chat(st.session_state.hist_exibir)
 
 if st.session_state.get("key_api"):
-    if "primeira_vez" not in st.session_state:
-        mensagem_boas_vindas = SAUDACAO
-        st.session_state.hist_exibir.append(
-            {"role": "model", "parts": [mensagem_boas_vindas]}
-        )
-        st.session_state.primeira_vez = True
-
-        with st.chat_message("assistant", avatar="🌈"):
-            msg_placeholder = st.empty()
-            msg_placeholder.write_stream(stream_resposta(mensagem_boas_vindas))
-            st.rerun()
     prompt = st.chat_input("Digite aqui...")
 
     with st.popover("🎙️ Falar com Vox", help="Grave sua pergunta por voz para o Vox AI"):
