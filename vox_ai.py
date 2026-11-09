@@ -26,7 +26,6 @@ import startup_patch
 
 from data.prompts.ui_content import SAUDACAO, SIDEBAR_BODY, SIDEBAR_FOOTER
 from src.app.ui import (
-    carregar_css,
     carregar_sidebar,
     configurar_pagina,
     stream_resposta,
@@ -45,7 +44,6 @@ from src.core.semantica import semantica
 from src.utils import git_version
 
 configurar_pagina()
-carregar_css()
 
 if "session_id" not in st.session_state:
     st.session_state.session_id = str(uuid.uuid4())
