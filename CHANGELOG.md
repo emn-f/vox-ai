@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.2.1 - 09/11/2026
+
+
+### 🐛 Correções
+
+* Elimina piscada no carregamento inicial ao abrir o app ([af96773](https://github.com/emn-f/vox-ai/commit/af967733846b80fab99ea478649e608a36ff4181))
+
+
 ## v5.2.0 - 08/11/2026
 
 
