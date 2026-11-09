@@ -55,6 +55,49 @@ body::before {
     background: var(--vox-rainbow-gradient);
     z-index: 999999;
     box-shadow: 0 1px 10px rgba(114, 9, 183, 0.5);
+    transition: height 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Indicador nativo de carregamento do Streamlit (ícone "running" na barra
+   superior): substituído pela animação da faixa arco-íris. */
+[data-testid="stStatusWidget"] {
+    display: none !important;
+}
+
+/* Enquanto o app processa (script em execução), a faixa fica levemente mais
+   grossa e o gradiente flui continuamente da esquerda para a direita. */
+body:has(.stApp[data-test-script-state="running"])::before {
+    height: 5px;
+    background: linear-gradient(
+        90deg,
+        #E7383B 0%,
+        #F77F00 8.33%,
+        #FFD000 16.66%,
+        #00A859 25%,
+        #0084C8 33.33%,
+        #7209B7 41.66%,
+        #E7383B 50%,
+        #F77F00 58.33%,
+        #FFD000 66.66%,
+        #00A859 75%,
+        #0084C8 83.33%,
+        #7209B7 91.66%,
+        #E7383B 100%
+    );
+    background-size: 200% 100%;
+    box-shadow: 0 1px 14px rgba(181, 23, 158, 0.75);
+    animation: vox-ribbon-flow 1.4s linear infinite;
+}
+
+@keyframes vox-ribbon-flow {
+    from { background-position: 0% 0; }
+    to   { background-position: 100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body:has(.stApp[data-test-script-state="running"])::before {
+        animation-duration: 4s;
+    }
 }
 
 /* --------------------------------------------------------------------------
