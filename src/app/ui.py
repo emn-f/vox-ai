@@ -28,6 +28,10 @@ def configurar_pagina() -> None:
     e renderiza o cabeçalho estilizado da aplicação.
     """
     st.set_page_config(page_title="Vox AI: Assistente de Apoio e Informação LGBTQIA+", page_icon="🌈")
+
+    # O CSS precisa ser injetado antes do cabeçalho; caso contrário a logo
+    # aparece sem estilo (tamanho original) por um instante e depois "pula".
+    carregar_css()
     
     # Injeta script para atualizar as meta tags no head principal para visual móvel
     st.markdown(
@@ -97,7 +101,16 @@ def carregar_css(path=CSS_PATH) -> None:
         path (str): Caminho local do arquivo CSS.
     """
     with open(path) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+        linhas = f.read().splitlines()
+
+    # @import bloqueia a aplicação das demais regras do <style> até a fonte
+    # chegar; por isso é injetado em um bloco separado, depois do CSS principal.
+    imports = [ln for ln in linhas if ln.lstrip().startswith("@import")]
+    corpo = "\n".join(ln for ln in linhas if not ln.lstrip().startswith("@import"))
+
+    st.markdown(f"<style>{corpo}</style>", unsafe_allow_html=True)
+    if imports:
+        st.markdown(f"<style>{' '.join(imports)}</style>", unsafe_allow_html=True)
 
 
 @st.dialog("🚩 Reportar Problema")
