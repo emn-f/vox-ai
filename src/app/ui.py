@@ -290,8 +290,7 @@ def exibir_historico_chat(historico_conversa: list) -> None:
                                 formato_audio = "audio/wav" if audio_bytes.startswith(b"RIFF") else "audio/mp3"
                                 st.audio(audio_bytes, format=formato_audio)
         else:
-            avatar_user = "static/branding/user_avatar.png" if os.path.exists("static/branding/user_avatar.png") else "👤"
-            with st.chat_message("user", avatar=avatar_user):
+            with st.chat_message("user"):
                 st.markdown(msg["parts"][0])
 
 

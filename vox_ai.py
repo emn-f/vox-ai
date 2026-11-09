@@ -95,8 +95,7 @@ if st.session_state.get("key_api"):
         st.session_state.prompt = prompt_final
         st.session_state.hist_exibir.append({"role": "user", "parts": [prompt_final]})
 
-        avatar_user = "static/branding/user_avatar.png" if os.path.exists("static/branding/user_avatar.png") else "👤"
-        with st.chat_message("user", avatar=avatar_user):
+        with st.chat_message("user"):
             st.markdown(prompt_final)
 
         try:
