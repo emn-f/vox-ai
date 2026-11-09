@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.4.0 - 09/11/2026
+
+
+### ✨ Funcionalidades
+
+* Alinha balao do usuario a direita e remove avatar ([50dbd2f](https://github.com/emn-f/vox-ai/commit/50dbd2f2e9e104979a068b7c0b66e0042361e9d8))
+
+
 ## v5.3.0 - 09/11/2026
 
 
