@@ -7,6 +7,16 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.4.1 - 15/11/2026
+
+
+### 🤖 CI/CD & Automação
+
+* Usa SUPABASE_ANON_KEY no workflow security_review ([271097a](https://github.com/emn-f/vox-ai/commit/271097a22cbceabf5b3e949d22118b43129ccfb9))
+
+* Remove secrets legados do workflow supabase_backup ([0575236](https://github.com/emn-f/vox-ai/commit/05752363804817c847061acfbd1a03e59bc5c85d))
+
+
 ## v5.4.0 - 09/11/2026
 
 
