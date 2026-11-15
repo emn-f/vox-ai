@@ -87,7 +87,12 @@ document.addEventListener('DOMContentLoaded', function () {
         method: 'GET',
         headers: headers
     })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro HTTP ${response.status} ao buscar estatísticas da base`);
+            }
+            return response.json();
+        })
         .then(data => {
             let totalChunks = 0;
             let maxDate = 0;
@@ -96,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (Array.isArray(data) && data.length > 0) {
                 const allTopics = [];
                 data.forEach(item => {
-                    const qty = parseInt(item.quantidade) || 0;
+                    const qty = parseInt(item.quantidade, 10) || 0;
                     totalChunks += qty;
                     if (item.tema) {
                         allTopics.push({ tema: item.tema, quantidade: qty });
@@ -112,13 +117,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Calcular estatísticas rápidas
                 const totalTopicsCount = allTopics.length;
+                const maxTopicQty = totalTopicsCount > 0 ? allTopics[0].quantidade : 0;
                 const highCoverageCount = allTopics.filter(t => t.quantidade >= 3).length;
                 const lowCoverageCount = allTopics.filter(t => t.quantidade <= 2).length;
                 const avgChunksPerTopic = totalTopicsCount > 0 ? (totalChunks / totalTopicsCount).toFixed(1) : 0;
 
-                // Atualizar Contagem
+                // Atualizar Contagem (temas + chunks)
                 const elCount = document.getElementById('kb-count');
-                if (elCount) elCount.innerText = totalChunks;
+                if (elCount) {
+                    elCount.innerHTML = `${totalTopicsCount} <span class="value-sub">${totalChunks} chunks</span>`;
+                }
 
                 // Atualizar Versão
                 const elVersion = document.getElementById('kb-version');
@@ -164,13 +172,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         <!-- Barra de Ações (Filtro e Busca) -->
                         <div class="kb-controls-row">
                             <div class="kb-search-container">
-                                <span class="kb-search-icon">🔍</span>
-                                <input type="text" id="kb-search" class="kb-search-input" placeholder="Buscar tópico por nome...">
+                                <span class="kb-search-icon" aria-hidden="true">🔍</span>
+                                <input type="text" id="kb-search" class="kb-search-input" placeholder="Buscar tópico por nome..." aria-label="Buscar tópico por nome">
                             </div>
-                            <div class="kb-filter-tabs">
-                                <button class="kb-filter-tab active" data-filter="all">Todos (${totalTopicsCount})</button>
-                                <button class="kb-filter-tab" data-filter="high">Alta Cobertura (${highCoverageCount})</button>
-                                <button class="kb-filter-tab" data-filter="low">Baixa Cobertura (${lowCoverageCount})</button>
+                            <div class="kb-filter-tabs" role="group" aria-label="Filtrar tópicos por cobertura">
+                                <button class="kb-filter-tab active" data-filter="all" aria-pressed="true">Todos (${totalTopicsCount})</button>
+                                <button class="kb-filter-tab" data-filter="high" aria-pressed="false">Alta Cobertura (${highCoverageCount})</button>
+                                <button class="kb-filter-tab" data-filter="low" aria-pressed="false">Baixa Cobertura (${lowCoverageCount})</button>
                             </div>
                         </div>
 
@@ -182,11 +190,45 @@ document.addEventListener('DOMContentLoaded', function () {
                     const searchInput = document.getElementById('kb-search');
                     const filterTabs = document.querySelectorAll('.kb-filter-tab');
 
+                    function renderTopicCard(t) {
+                        const pct = totalChunks > 0 ? Math.round((t.quantidade / totalChunks) * 100) : 0;
+                        const barWidth = maxTopicQty > 0 ? Math.round((t.quantidade / maxTopicQty) * 100) : 0;
+                        return `
+                            <div class="kb-topic-card">
+                                <div class="kb-topic-header">
+                                    <h4 class="kb-topic-title">${escapeHtml(t.tema)}</h4>
+                                    <span class="kb-topic-badge">${t.quantidade} ${t.quantidade === 1 ? 'chunk' : 'chunks'}</span>
+                                </div>
+                                <div>
+                                    <div class="kb-topic-bar-container">
+                                        <div class="kb-topic-bar" data-width="${barWidth}%" style="width: 0%"></div>
+                                    </div>
+                                    <div class="kb-topic-percentage">${pct}% do total</div>
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    function renderLowCoverageTags(list, extraMarginTop = false) {
+                        const styleAttr = extraMarginTop ? ' style="margin-top: 2.5rem;"' : '';
+                        return `
+                            <div class="kb-section-header"${styleAttr}>Tópicos com Baixa Cobertura (${list.length})</div>
+                            <div class="kb-tags-container">
+                                ${list.map(t => `
+                                    <div class="kb-topic-tag" title="${escapeHtml(t.tema)}">
+                                        <span>${escapeHtml(t.tema)}</span>
+                                        <span class="tag-count">${t.quantidade}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                    }
+
                     function renderResults() {
                         if (!resultsContainer) return;
 
                         // Aplicar filtros de busca e aba selecionada
-                        let filtered = allTopics.filter(topic => {
+                        const filtered = allTopics.filter(topic => {
                             const matchesSearch = topic.tema.toLowerCase().includes(searchQuery.toLowerCase());
                             if (!matchesSearch) return false;
 
@@ -203,78 +245,17 @@ document.addEventListener('DOMContentLoaded', function () {
                         let html = '';
 
                         if (currentFilter === 'low') {
-                            // Apenas tópicos de baixa cobertura: renderizar em formato de Tags compactas
-                            html += `
-                                <div class="kb-section-header">Tópicos com Baixa Cobertura (${filtered.length})</div>
-                                <div class="kb-tags-container">
-                                    ${filtered.map(t => `
-                                        <div class="kb-topic-tag" title="${escapeHtml(t.tema)}">
-                                            <span>${escapeHtml(t.tema)}</span>
-                                            <span class="tag-count">${t.quantidade}</span>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            `;
-                        } else if (currentFilter === 'high') {
-                            // Apenas tópicos de alta cobertura: renderizar em formato de cards com barra de progresso
-                            const paginated = filtered.slice(0, visibleCardsCount);
-                            html += `
-                                <div class="kb-section-header">Tópicos com Alta Cobertura (${filtered.length})</div>
-                                <div class="kb-health-grid">
-                                    ${paginated.map(t => {
-                                        const pct = totalChunks > 0 ? Math.round((t.quantidade / totalChunks) * 100) : 0;
-                                        return `
-                                            <div class="kb-topic-card">
-                                                <div class="kb-topic-header">
-                                                    <h4 class="kb-topic-title">${escapeHtml(t.tema)}</h4>
-                                                    <span class="kb-topic-badge">${t.quantidade} ${t.quantidade === 1 ? 'chunk' : 'chunks'}</span>
-                                                </div>
-                                                <div>
-                                                    <div class="kb-topic-bar-container">
-                                                        <div class="kb-topic-bar" style="width: ${pct}%"></div>
-                                                    </div>
-                                                    <div class="kb-topic-percentage">${pct}% do total</div>
-                                                </div>
-                                            </div>
-                                        `;
-                                    }).join('')}
-                                </div>
-                            `;
-
-                            if (filtered.length > visibleCardsCount) {
-                                html += `
-                                    <div class="kb-pagination-container">
-                                        <button id="kb-btn-load-more" class="kb-load-more-btn">Carregar Mais Tópicos</button>
-                                    </div>
-                                `;
-                            }
+                            html += renderLowCoverageTags(filtered);
                         } else {
-                            // Aba "Todos": Dividir o espaço. Cards para os de Alta Cobertura (paginados) e Tags compactas para Baixa Cobertura
-                            const highList = filtered.filter(t => t.quantidade >= 3);
-                            const lowList = filtered.filter(t => t.quantidade <= 2);
+                            const highList = currentFilter === 'high' ? filtered : filtered.filter(t => t.quantidade >= 3);
+                            const lowList = currentFilter === 'high' ? [] : filtered.filter(t => t.quantidade <= 2);
 
                             if (highList.length > 0) {
                                 const paginatedHigh = highList.slice(0, visibleCardsCount);
                                 html += `
                                     <div class="kb-section-header">Tópicos com Alta Cobertura (${highList.length})</div>
                                     <div class="kb-health-grid">
-                                        ${paginatedHigh.map(t => {
-                                            const pct = totalChunks > 0 ? Math.round((t.quantidade / totalChunks) * 100) : 0;
-                                            return `
-                                                <div class="kb-topic-card">
-                                                    <div class="kb-topic-header">
-                                                        <h4 class="kb-topic-title">${escapeHtml(t.tema)}</h4>
-                                                        <span class="kb-topic-badge">${t.quantidade} ${t.quantidade === 1 ? 'chunk' : 'chunks'}</span>
-                                                    </div>
-                                                    <div>
-                                                        <div class="kb-topic-bar-container">
-                                                            <div class="kb-topic-bar" style="width: ${pct}%"></div>
-                                                        </div>
-                                                        <div class="kb-topic-percentage">${pct}% do total</div>
-                                                    </div>
-                                                </div>
-                                            `;
-                                        }).join('')}
+                                        ${paginatedHigh.map(renderTopicCard).join('')}
                                     </div>
                                 `;
 
@@ -288,21 +269,18 @@ document.addEventListener('DOMContentLoaded', function () {
                             }
 
                             if (lowList.length > 0) {
-                                html += `
-                                    <div class="kb-section-header" style="margin-top: 2.5rem;">Tópicos com Baixa Cobertura (${lowList.length})</div>
-                                    <div class="kb-tags-container">
-                                        ${lowList.map(t => `
-                                            <div class="kb-topic-tag" title="${escapeHtml(t.tema)}">
-                                                <span>${escapeHtml(t.tema)}</span>
-                                                <span class="tag-count">${t.quantidade}</span>
-                                            </div>
-                                        `).join('')}
-                                    </div>
-                                `;
+                                html += renderLowCoverageTags(lowList, highList.length > 0);
                             }
                         }
 
                         resultsContainer.innerHTML = html;
+
+                        // Animar barras de progresso após renderização no DOM
+                        requestAnimationFrame(() => {
+                            resultsContainer.querySelectorAll('.kb-topic-bar[data-width]').forEach(bar => {
+                                bar.style.width = bar.getAttribute('data-width');
+                            });
+                        });
 
                         // Adicionar listener ao botão Carregar Mais
                         const loadMoreBtn = document.getElementById('kb-btn-load-more');
@@ -324,8 +302,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Ouvinte de mudança de abas de filtro
                     filterTabs.forEach(tab => {
                         tab.addEventListener('click', () => {
-                            filterTabs.forEach(t => t.classList.remove('active'));
+                            filterTabs.forEach(t => {
+                                t.classList.remove('active');
+                                t.setAttribute('aria-pressed', 'false');
+                            });
                             tab.classList.add('active');
+                            tab.setAttribute('aria-pressed', 'true');
                             currentFilter = tab.getAttribute('data-filter');
                             visibleCardsCount = cardsPerPage; // Resetar paginação
                             renderResults();
@@ -353,7 +335,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const elCount = document.getElementById('kb-count');
             if (elCount) elCount.innerHTML = '<span style="font-size:0.5em">Indisponível</span>';
             const elVersion = document.getElementById('kb-version');
-            if (elVersion) elVersion.innerText = 'Online';
+            if (elVersion) elVersion.innerText = 'Indisponível';
             const statsEl = document.getElementById('kb-health-stats');
             if (statsEl) statsEl.innerHTML = '<p style="color: #ef4444;">Falha ao carregar estatísticas da base.</p>';
         });
