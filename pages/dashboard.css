@@ -225,6 +225,7 @@ header {
 
 
 
+#kb-health-card,
 .about-section,
 .tech-stack-section,
 .contributing-section {
@@ -250,6 +251,8 @@ header {
     padding: 1px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 50%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
 }
@@ -321,6 +324,15 @@ header {
 
 }
 
+.stat-card .value .value-sub {
+    font-size: 0.36em;
+    font-weight: 600;
+    -webkit-text-fill-color: var(--text-secondary);
+    color: var(--text-secondary);
+    margin-left: 0.35rem;
+    white-space: nowrap;
+}
+
 .card-link {
     color: var(--accent-color);
     text-decoration: none;
@@ -376,6 +388,7 @@ header {
 
 .feature-list li {
     background: rgba(255, 255, 255, 0.03);
+    border: 1px solid transparent;
     padding: 1rem;
     border-radius: 12px;
     margin-bottom: 1rem;
@@ -414,7 +427,7 @@ header {
     text-decoration: none;
 }
 
-.team-tag a {
+.team-tags a {
     opacity: 0.8;
     cursor: pointer;
     text-decoration: none;
@@ -613,6 +626,7 @@ footer {
 
 .kb-filter-tabs {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.5rem;
     background: rgba(255, 255, 255, 0.02);
     padding: 0.3rem;
