@@ -44,6 +44,11 @@ alwaysApply: true
 - **Geração Assíncrona e TTS:** Sempre que disparar operações demoradas (como síntese de voz TTS), apresente um indicador visual de espera (`st.spinner("🎙️ Gerando áudio... Por favor, aguarde")`).
 - **Cache de Sessão:** Armazene áudios e artefatos gerados em `st.session_state` (ex: `st.session_state[f"audio_cache_{i}"]`) para garantir que novas reproduções ocorram de forma instantânea sem chamadas redundantes de API.
 - **Gerenciamento de Estado:** Utilize `st.session_state` extensivamente para histórico conversacional e variáveis transitórias.
+- **GitHub Pages & Páginas Públicas (Padrão Editorial Instagram):**
+  - Páginas públicas (`index.html`, `pages/`) devem seguir o **Padrão Editorial dos Posts do Instagram** (`docs/identidade_visual.md`, Seção 3): fundo branco editorial (`#FFFFFF`), faixa arco-íris (`8px`), logotipo oficial (`static/branding/logo.png`), chapéus em `#64748B`, `Plus Jakarta Sans` + `Inter`, pills com bolinhas coloridas e fotografias comunitárias — **não** usar estética escura neon genérica de dashboard.
+  - **Deploy de Assets:** `.github/workflows/deploy_pages.yml` monta `_site/` explicitamente. Ao adicionar novas pastas em `static/` (ex.: `static/photos/`), garanta a cópia para `_site/static/` e a inclusão em `on.push.paths`.
+  - **Validação:** Sempre verificar a renderização real (ex.: screenshot via Chrome headless) e confirmar `HTTP 200` dos assets em produção após o deploy.
+  - **Linguagem:** Manter português brasileiro natural, acolhedor e com paralelismo gramatical (ex.: *Atualizações*, *Código aberto*, *Colaboradores*).
 
 # Padrões de Código e Boas Práticas (Pythonic)
 - **Tipagem Estrita:** Todas as funções, métodos e classes DEVEM ter type hints completos (`typing`).
