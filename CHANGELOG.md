@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.5.0 - 18/11/2026
+
+
+### ✨ Funcionalidades
+
+* Moderniza GitHub Pages com identidade visual v2.1.0 ([94d3d76](https://github.com/emn-f/vox-ai/commit/94d3d766d39ec8aebf7ada6fa9abcd8d331aa1f9))
+
+
 ## v5.4.2 - 15/11/2026
 
 
