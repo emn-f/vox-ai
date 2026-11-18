@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.6.0 - 18/11/2026
+
+
+### ✨ Funcionalidades
+
+* Aplica design editorial claro estilo Instagram e corrige deploy de assets ([46aa7f3](https://github.com/emn-f/vox-ai/commit/46aa7f339fbc58e51745089eec31a35ec7269b97))
+
+
 ## v5.5.0 - 18/11/2026
 
 
