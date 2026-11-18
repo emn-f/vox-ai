@@ -1,310 +1,353 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Vox AI: Tecnologia social open source de apoio e informação LGBTQIA+ com Inteligência Artificial.">
+        content="Vox AI: Tecnologia social open source de apoio, direitos, saúde e informação LGBTQIA+ com Inteligência Artificial.">
     <meta name="author" content="Emanuel Ferreira">
-    
-    <!-- Customização do visual no navegador móvel (Barra de endereços e status) -->
-    <meta name="theme-color" content="#7209b7">
+
+    <!-- Customização do visual no navegador móvel -->
+    <meta name="theme-color" content="#0E091B">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
+    <!-- Open Graph / Social -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://emn-f.github.io/vox-ai/">
-    <meta property="og:title" content="Projeto Vox">
+    <meta property="og:title" content="Vox AI — Informação é uma forma de cuidado">
     <meta property="og:description"
-        content="Assistente de apoio e informação LGBTQIA+ com Inteligência Artificial. Tecnologia social para inclusão e cidadania.">
+        content="Assistente de apoio e informação LGBTQIA+ com Inteligência Artificial. Tecnologia social open source para inclusão e cidadania.">
     <meta property="og:image" content="https://raw.githubusercontent.com/emn-f/vox-ai/main/static/branding/banner.png">
 
-    <title>Projeto Vox</title>
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏳️‍🌈</text></svg>">
+    <title>Vox AI — Projeto Vox</title>
+    <link rel="icon" href="static/branding/icon.png" type="image/png">
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js" defer></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="pages/dashboard.css">
 </head>
 
 <body>
-    <header>
-        <div class="logo-title">
-            <h1>Projeto Vox</h1>
-        </div>
+    <!-- Faixa Fixa Superior Arco-Íris (Rainbow Pride Ribbon) -->
+    <div class="vox-rainbow-ribbon" aria-hidden="true"></div>
 
-        <div class="nav-center">
-            <a data-link="vox_streamlit" href="#" target="_blank" rel="noopener noreferrer" class="cta-button-header">
-                Acessar Vox AI
-            </a>
-        </div>
+    <!-- Glow Atmosférico de Fundo -->
+    <div class="vox-ambient-glow" aria-hidden="true"></div>
 
-        <div class="header-links">
-            <a data-link="instagram" href="#" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram" aria-label="Instagram">
-                <img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png" alt="Instagram">
-            </a>
-            <a data-link="linkedin" href="#" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn" aria-label="LinkedIn">
-                <img src="https://img.icons8.com/?size=100&id=13930&format=png&color=000000" alt="LinkedIn">
-            </a>
-            <a data-link="feedback" href="#" target="_blank" rel="noopener noreferrer" class="social-link" title="Avaliar o Vox (Feedback)" aria-label="Avaliar o Vox (Feedback)">
-                <img src="https://img.icons8.com/?size=100&id=19417&format=png&color=000000" alt="Feedback">
-            </a>
-            <a data-link="linktree" href="#" target="_blank" rel="noopener noreferrer" class="social-link" title="Linktree" aria-label="Linktree">
-                <img src="https://img.icons8.com/?size=100&id=x03G5TG9OoEO&format=png&color=000000" alt="Linktree">
+    <!-- Navbar Sticky Glassmorphism -->
+    <header class="vox-navbar">
+        <div class="vox-navbar-inner">
+            <a href="#" class="vox-brand" aria-label="Projeto Vox Início">
+                <img src="static/branding/icon.png" alt="Vox AI Logo" class="vox-brand-icon">
+                <div class="vox-brand-wordmark">
+                    <span class="vox-word-vox">Vox</span><span class="vox-word-ai">AI</span>
+                </div>
+                <span class="vox-version-pill">v2.1.0</span>
             </a>
 
-            <a data-link="hugging_face" href="#" target="_blank" rel="noopener noreferrer" class="button-hf" title="Hugging Face">
-                <img src="https://img.icons8.com/?size=100&id=sop9ROXku5bb&format=png" alt="Hugging Face" height="21px">
-                <span>Hugging Face</span>
-            </a>
-            <a data-link="github_repo" href="#" target="_blank" rel="noopener noreferrer" class="button" title="GitHub">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub">
-                <span>GitHub</span>
-            </a>
+            <nav class="vox-nav-links" aria-label="Navegação principal">
+                <a href="#atualizacoes">Atualizações</a>
+                <a href="#base-conhecimento">Base de Conhecimento</a>
+                <a href="#sobre">Sobre &amp; Equipe</a>
+                <a href="#contribuir">Contribuir</a>
+            </nav>
+
+            <div class="vox-header-actions">
+                <div class="vox-social-group">
+                    <a data-link="instagram" href="#" target="_blank" rel="noreferrer" class="vox-icon-btn" title="Instagram" aria-label="Instagram">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a data-link="linkedin" href="#" target="_blank" rel="noreferrer" class="vox-icon-btn" title="LinkedIn" aria-label="LinkedIn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                    <a data-link="feedback" href="#" target="_blank" rel="noreferrer" class="vox-icon-btn" title="Enviar Feedback" aria-label="Avaliar o Vox">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    </a>
+                    <a data-link="linktree" href="#" target="_blank" rel="noreferrer" class="vox-icon-btn" title="Linktree" aria-label="Linktree">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                    </a>
+                </div>
+
+                <a data-link="hugging_face" href="#" target="_blank" rel="noreferrer" class="vox-pill-btn vox-hf-btn" title="Hugging Face">
+                    <span class="vox-status-dot"></span>
+                    <span>Hugging Face</span>
+                </a>
+
+                <a data-link="github_repo" href="#" target="_blank" rel="noreferrer" class="vox-pill-btn vox-gh-btn" title="GitHub">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    <span>GitHub</span>
+                </a>
+
+                <a data-link="vox_streamlit" href="#" target="_blank" rel="noreferrer" class="vox-cta-header">
+                    <span>Acessar Vox AI</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
         </div>
     </header>
 
-    <main>
-        <section class="hero-mobile">
-            <a data-link="vox_streamlit" href="#" target="_blank" rel="noopener noreferrer" class="cta-button-mobile">
-                Acessar o Vox AI
-            </a>
+    <main class="vox-main">
+        <!-- ==========================================
+             HERO SECTION
+             ========================================== -->
+        <section class="vox-hero">
+            <div class="vox-pride-badge">
+                <span class="vox-pride-dot" aria-hidden="true"></span>
+                <span>Tecnologia Social Open Source</span>
+                <span aria-hidden="true">🏳️‍🌈</span>
+            </div>
+
+            <h1 class="vox-hero-title">
+                Informação é uma forma de <span class="vox-text-gradient">cuidado</span>
+            </h1>
+
+            <p class="vox-hero-subtitle">
+                Apoio humanizado, garantia de direitos, saúde integral e acolhimento para a comunidade LGBTQIA+.
+                Uma inteligência artificial acessível, ética e open source com foco em Salvador/BA.
+            </p>
+
+            <div class="vox-hero-ctas">
+                <a data-link="vox_streamlit" href="#" target="_blank" rel="noreferrer" class="vox-btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    <span>Conversar com o Vox AI</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <a data-link="github_repo" href="#" target="_blank" rel="noreferrer" class="vox-btn-secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    <span>Ver no GitHub</span>
+                </a>
+            </div>
+
+            <div class="vox-trust-pills">
+                <div class="vox-trust-pill">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00A859" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <span>100% Gratuito &amp; Aberto</span>
+                </div>
+                <div class="vox-trust-pill">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e0b6ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <span>Base Validada com Parceiros</span>
+                </div>
+                <div class="vox-trust-pill">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F7931E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <span>Privacidade &amp; LGPD</span>
+                </div>
+            </div>
         </section>
 
-        <div class="info-grid">
+        <!-- ==========================================
+             BENTO GRID: CHANGELOG + MÉTRICAS & GOVERNANÇA
+             ========================================== -->
+        <section id="atualizacoes" class="vox-bento-grid">
+            <!-- Esquerda: Últimas Atualizações -->
+            <div class="vox-card vox-changelog-card" id="changelog-card">
+                <div class="vox-card-head">
+                    <div class="vox-card-title-group">
+                        <div class="vox-icon-box vox-icon-violet">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                        </div>
+                        <div>
+                            <h2>Últimas atualizações</h2>
+                            <p class="vox-card-subtitle">Histórico recente de releases do Projeto Vox</p>
+                        </div>
+                    </div>
+                    <span class="vox-badge-live">Sincronizado</span>
+                </div>
 
-            <div class="card-fullwidth" id="changelog-card">
-                <h2>Últimas atualizações</h2>
                 <div id="latest-changelog" class="content-md">
                     <p class="loading">Carregando Changelog...</p>
                 </div>
-                <a data-link="changelog" href="#" target="_blank" rel="noopener noreferrer" class="card-link">Histórico Completo &rarr;</a>
-            </div>
 
-            <div class="stacked-cards">
-                <div class="stat-card">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="card-icon">
-                            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-                            <path d="M3 5v14c0 1.66 4 3 9 3s 9-1.34 9-3V5"></path>
-                        </svg>
-                        Temas Curados
-                    </h3>
-                    <div class="value" id="kb-count"><span class="loading">...</span></div>
-                </div>
-                <div class="stat-card">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="card-icon">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="16" x2="12" y2="12"></line>
-                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                        </svg>
-                        Versão da Base de Conhecimento
-                    </h3>
-                    <div class="value" id="kb-version"><span class="loading">...</span></div>
-                </div>
-                <div class="stat-card">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="card-icon">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                        </svg>
-                        Licença GNU GPLv3
-                    </h3>
-                    <p>Projeto de código aberto.</p>
-                    <a data-link="license" href="#" target="_blank" rel="noopener noreferrer" class="card-link">Ver
-                        Licença &rarr;</a>
+                <div class="vox-card-footer">
+                    <span class="vox-footer-note">Pipeline contínuo via GitHub Actions</span>
+                    <a data-link="changelog" href="#" target="_blank" rel="noreferrer" class="card-link">
+                        Histórico Completo &rarr;
+                    </a>
                 </div>
             </div>
 
-            <div class="stacked-cards">
-                <div class="stat-card">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="card-icon">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                        </svg>
-                        Privacidade
-                    </h3>
-                    <p>Coleta de dados anônima.</p>
-                    <a data-link="privacy_policy" href="#" target="_blank" rel="noopener noreferrer" class="card-link">Ler
-                        Política &rarr;</a>
+            <!-- Direita: Métricas Principais + Governança 2x2 -->
+            <div class="vox-bento-right">
+                <div class="vox-metrics-pair">
+                    <div class="vox-card stat-card vox-metric-highlight">
+                        <div class="vox-metric-top">
+                            <span class="vox-metric-label">Temas Curados</span>
+                            <div class="vox-icon-box-sm vox-icon-violet">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                            </div>
+                        </div>
+                        <div class="value" id="kb-count"><span class="loading">...</span></div>
+                        <p class="vox-metric-desc">Chunks de informação verificada indexados na base</p>
+                    </div>
+
+                    <div class="vox-card stat-card vox-metric-highlight">
+                        <div class="vox-metric-top">
+                            <span class="vox-metric-label">Versão da Base</span>
+                            <div class="vox-icon-box-sm vox-icon-amber">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                            </div>
+                        </div>
+                        <div class="value vox-value-sm" id="kb-version"><span class="loading">...</span></div>
+                        <p class="vox-metric-desc">Última atualização registrada no Supabase</p>
+                    </div>
                 </div>
 
-                <div class="stat-card">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="card-icon">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-                        Código de Conduta
-                    </h3>
-                    <p>Nossos pactos de respeito.</p>
-                    <a data-link="code_of_conduct" href="#" target="_blank" rel="noopener noreferrer" class="card-link">Ler Código &rarr;</a>
-                </div>
+                <!-- Micro-cards de Governança 2x2 -->
+                <div class="vox-governance-grid">
+                    <div class="vox-card stat-card vox-gov-card">
+                        <h3>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            Licença GNU GPLv3
+                        </h3>
+                        <p>Projeto 100% open source e livre para a comunidade.</p>
+                        <a data-link="license" href="#" target="_blank" rel="noreferrer" class="card-link">Ver Licença &rarr;</a>
+                    </div>
 
-                <div class="stat-card">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="card-icon">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                        </svg>
-                        Segurança
-                    </h3>
-                    <p>Reporte vulnerabilidades.</p>
-                    <a data-link="security" href="#" target="_blank" rel="noopener noreferrer" class="card-link">Ver
-                        Política &rarr;</a>
+                    <div class="vox-card stat-card vox-gov-card">
+                        <h3>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            Privacidade
+                        </h3>
+                        <p>Coleta de dados anônima e em conformidade com a LGPD.</p>
+                        <a data-link="privacy_policy" href="#" target="_blank" rel="noreferrer" class="card-link">Ler Política &rarr;</a>
+                    </div>
+
+                    <div class="vox-card stat-card vox-gov-card">
+                        <h3>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            Código de Conduta
+                        </h3>
+                        <p>Nossos pactos de respeito, escuta e inclusão.</p>
+                        <a data-link="code_of_conduct" href="#" target="_blank" rel="noreferrer" class="card-link">Ler Código &rarr;</a>
+                    </div>
+
+                    <div class="vox-card stat-card vox-gov-card">
+                        <h3>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                            Segurança
+                        </h3>
+                        <p>Canal responsável para reporte de vulnerabilidades.</p>
+                        <a data-link="security" href="#" target="_blank" rel="noreferrer" class="card-link">Ver Política &rarr;</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="card-fullwidth" id="kb-health-card">
-            <h2>Saúde da Base de Conhecimento</h2>
-            <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">Métricas de cobertura e distribuição dos temas cadastrados na base de dados.</p>
+        <!-- ==========================================
+             SAÚDE DA BASE DE CONHECIMENTO
+             ========================================== -->
+        <section id="base-conhecimento" class="vox-card card-fullwidth">
+            <div class="vox-section-head">
+                <div>
+                    <span class="vox-section-eyebrow">Monitoramento em Tempo Real</span>
+                    <h2>Saúde da Base de Conhecimento</h2>
+                    <p class="vox-section-desc">
+                        Transparência total sobre métricas de cobertura e distribuição dos temas cadastrados no RAG do Vox AI.
+                    </p>
+                </div>
+            </div>
+
             <div id="kb-health-stats">
                 <p class="loading">Carregando estatísticas da base...</p>
             </div>
-        </div>
+        </section>
 
-        <div class="card-fullwidth tech-stack-section">
-            <h2>Tecnologias Utilizadas</h2>
-            <div class="tech-badges">
-                <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer">
-                    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"
-                        alt="Python">
-                </a>
-                <a href="https://streamlit.io/" target="_blank" rel="noopener noreferrer">
-                    <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white"
-                        alt="Streamlit">
-                </a>
-                <a href="https://ai.google.dev/" target="_blank" rel="noopener noreferrer">
-                    <img src="https://img.shields.io/badge/Gemini-8E75B8?style=for-the-badge&logo=google&logoColor=white"
-                        alt="Gemini">
-                </a>
-                <a href="https://huggingface.co/" target="_blank" rel="noopener noreferrer">
-                    <img src="https://img.shields.io/badge/Hugging%20Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black"
-                        alt="Hugging Face">
-                </a>
-                <a href="https://docs.github.com/en/actions" target="_blank" rel="noopener noreferrer">
-                    <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white"
-                        alt="GitHub Actions">
-                </a>
+        <!-- ==========================================
+             SOBRE O VOX AI, PARCERIAS & EQUIPE
+             ========================================== -->
+        <section id="sobre" class="vox-card card-fullwidth about-section">
+            <div class="vox-section-head">
+                <div>
+                    <span class="vox-section-eyebrow">Propósito &amp; Impacto Social</span>
+                    <h2>Sobre o Vox AI</h2>
+                </div>
             </div>
-        </div>
-
-        <div class="card-fullwidth contributing-section">
-            <h2>Como Contribuir</h2>
-            <p>O Vox AI é um projeto Open Source e sua ajuda é essencial! Seja corrigindo bugs, melhorando a
-                documentação ou
-                sugerindo novos temas.</p>
-            <a data-link="contributing" href="#" target="_blank" rel="noopener noreferrer" class="cta-button-secondary">
-                Ver Guia de Contribuição &rarr;
-            </a>
-        </div>
-
-        <div class="card-fullwidth about-section">
-            <h2>Sobre o Vox AI</h2>
 
             <div class="about-grid">
                 <div class="about-column">
                     <h3>Missão e Propósito</h3>
                     <p>
                         O Vox AI é uma <strong>tecnologia social open source</strong> dedicada ao apoio, informação e
-                        fortalecimento da
-                        comunidade LGBTQIA+. Mais do que um assistente virtual, somos uma ferramenta de cidadania
-                        digital que utiliza
-                        Inteligência Artificial para democratizar o acesso a direitos e serviços.
+                        fortalecimento da comunidade LGBTQIA+. Mais do que um assistente virtual, somos uma ferramenta de
+                        cidadania digital que utiliza Inteligência Artificial para democratizar o acesso a direitos e serviços.
                     </p>
                     <p>
                         Nossa missão é construir um espaço digital seguro e confiável, combatendo a desinformação com
-                        dados verificados.
-                        Facilitamos o acesso a orientações sobre saúde integral, legislação, retificação de nome e redes
-                        de acolhimento,
-                        servindo como uma ponte entre a comunidade e seus direitos, com foco especial em Salvador (BA).
+                        dados verificados. Facilitamos o acesso a orientações sobre saúde integral, legislação, retificação
+                        de nome e redes de acolhimento, com foco especial em Salvador (BA).
                     </p>
 
                     <h3>Funcionalidades</h3>
                     <ul class="feature-list">
                         <li>
-                            <span class="check-icon">✅</span>
-                            <div><strong>Direitos e Legislação:</strong> Tire dúvidas sobre leis e garantias
-                                constitucionais com base em dados
-                                oficiais.</div>
+                            <span class="vox-check-badge" aria-hidden="true">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                            <div><strong>Direitos e Legislação:</strong> Tire dúvidas sobre leis e garantias constitucionais com base em dados oficiais.</div>
                         </li>
                         <li>
-                            <span class="check-icon">✅</span>
-                            <div><strong>Saúde para Todos:</strong> Informações completas sobre prevenção, acesso ao
-                                SUS, saúde mental e acolhimento
-                                para toda a comunidade.</div>
+                            <span class="vox-check-badge" aria-hidden="true">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                            <div><strong>Saúde para Todos:</strong> Informações sobre prevenção, acesso ao SUS, saúde mental e acolhimento para toda a comunidade.</div>
                         </li>
                         <li>
-                            <span class="check-icon">✅</span>
-                            <div><strong>Exercício da Cidadania:</strong> Passo a passo para retificação de documentos,
-                                união estável e denúncias.
-                            </div>
+                            <span class="vox-check-badge" aria-hidden="true">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                            <div><strong>Exercício da Cidadania:</strong> Passo a passo para retificação de documentos, união estável e denúncias.</div>
                         </li>
                         <li>
-                            <span class="check-icon">✅</span>
-                            <div><strong>Mapeamento de Acolhimento:</strong> Conexão com instituições parceiras e redes
-                                de apoio seguro em Salvador.
-                            </div>
+                            <span class="vox-check-badge" aria-hidden="true">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                            <div><strong>Mapeamento de Acolhimento:</strong> Conexão com instituições parceiras e redes de apoio seguro em Salvador.</div>
                         </li>
                         <li>
-                            <span class="check-icon">✅</span>
-                            <div><strong>Educação e Cultura:</strong> Conteúdos sobre identidade de gênero, história do
-                                movimento e combate ao
-                                preconceito.</div>
+                            <span class="vox-check-badge" aria-hidden="true">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                            <div><strong>Educação e Cultura:</strong> Conteúdos sobre identidade de gênero, história do movimento e combate ao preconceito.</div>
                         </li>
                     </ul>
                 </div>
 
                 <div class="about-column">
-                    <h3>Parceria: Casa Marielle Franco</h3>
-                    <p>
-                        Temos orgulho de nossa parceria oficial com a <strong>Casa Marielle Franco</strong>, instituição
-                        de
-                        acolhimento independente em Salvador, coordenada por Sandra Muñoz. A Casa atua como ponto de
-                        escuta
-                        e validação de nossos conteúdos.
-                    </p>
+                    <div class="vox-partner-card">
+                        <div class="vox-partner-badge">Parceria Oficial</div>
+                        <h3>Casa Marielle Franco</h3>
+                        <p>
+                            Temos orgulho de nossa parceria oficial com a <strong>Casa Marielle Franco</strong>, instituição
+                            de acolhimento independente em Salvador, coordenada por Sandra Muñoz. A Casa atua como ponto de
+                            escuta e validação dos nossos conteúdos.
+                        </p>
+                    </div>
 
                     <h3>Nossa Equipe</h3>
                     <div class="team-wrapper">
                         <p class="team-role">Tech Lead</p>
                         <div class="team-tags">
-                            <a data-link="owner_vox" href="#" target="_blank" rel="noopener noreferrer">
+                            <a data-link="owner_vox" href="#" target="_blank" rel="noreferrer">
                                 <span class="team-tag leader">Emanuel Ferreira</span>
                             </a>
                         </div>
 
                         <p class="team-role">Desenvolvedores</p>
                         <div class="team-tags">
-                            <a data-link="owner_vox" href="#" target="_blank" rel="noopener noreferrer">
+                            <a data-link="owner_vox" href="#" target="_blank" rel="noreferrer">
                                 <span class="team-tag">Emanuel Ferreira</span>
                             </a>
-                            <a data-link="rodrigo_santos" href="#" target="_blank" rel="noopener noreferrer">
+                            <a data-link="rodrigo_santos" href="#" target="_blank" rel="noreferrer">
                                 <span class="team-tag">Rodrigo Santos</span>
                             </a>
-                            <a data-link="camila_fernandes" href="#" target="_blank" rel="noopener noreferrer">
+                            <a data-link="camila_fernandes" href="#" target="_blank" rel="noreferrer">
                                 <span class="team-tag">Camila Fernandes</span>
                             </a>
                         </div>
@@ -321,12 +364,64 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- ==========================================
+             TECNOLOGIAS & COMO CONTRIBUIR
+             ========================================== -->
+        <section id="contribuir" class="vox-bottom-grid">
+            <div class="vox-card tech-stack-section">
+                <span class="vox-section-eyebrow">Arquitetura Aberta</span>
+                <h2>Tecnologias Utilizadas</h2>
+                <p class="vox-card-subtitle">Stack moderna, auditável e orientada à acessibilidade.</p>
+
+                <div class="tech-pills">
+                    <a href="https://www.python.org/" target="_blank" rel="noreferrer" class="tech-pill">
+                        <span class="tech-dot" style="background:#3776AB;"></span> Python
+                    </a>
+                    <a href="https://streamlit.io/" target="_blank" rel="noreferrer" class="tech-pill">
+                        <span class="tech-dot" style="background:#FF4B4B;"></span> Streamlit
+                    </a>
+                    <a href="https://ai.google.dev/" target="_blank" rel="noreferrer" class="tech-pill">
+                        <span class="tech-dot" style="background:#8E75B8;"></span> Google Gemini
+                    </a>
+                    <a href="https://supabase.com/" target="_blank" rel="noreferrer" class="tech-pill">
+                        <span class="tech-dot" style="background:#3ECF8E;"></span> Supabase &amp; pgvector
+                    </a>
+                    <a href="https://huggingface.co/" target="_blank" rel="noreferrer" class="tech-pill">
+                        <span class="tech-dot" style="background:#FFD21E;"></span> Hugging Face
+                    </a>
+                    <a href="https://docs.github.com/en/actions" target="_blank" rel="noreferrer" class="tech-pill">
+                        <span class="tech-dot" style="background:#2088FF;"></span> GitHub Actions
+                    </a>
+                </div>
+            </div>
+
+            <div class="vox-card contributing-section">
+                <span class="vox-section-eyebrow">Comunidade</span>
+                <h2>Como Contribuir</h2>
+                <p>
+                    O Vox AI é um projeto Open Source e sua ajuda é essencial! Seja corrigindo bugs, melhorando a
+                    documentação ou sugerindo novos temas para a base de conhecimento.
+                </p>
+                <div class="contributing-actions">
+                    <a data-link="contributing" href="#" target="_blank" rel="noreferrer" class="vox-btn-primary">
+                        <span>Ver Guia de Contribuição &rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>🤖 Vox AI: conversas que importam 🏳️‍🌈</p>
-        <p>&copy; 2026 Projeto Vox </p>
+    <footer class="vox-footer">
+        <div class="vox-footer-rainbow" aria-hidden="true"></div>
+        <div class="vox-footer-content">
+            <div class="vox-footer-brand">
+                <img src="static/branding/icon.png" alt="Vox AI" class="vox-footer-icon">
+                <span><strong>Vox AI:</strong> conversas que importam 🏳️‍🌈</span>
+            </div>
+            <p class="vox-footer-copy">&copy; 2026 Projeto Vox • Tecnologia Social Open Source</p>
+        </div>
     </footer>
 
     <script src="pages/config.js" defer></script>
@@ -359,9 +454,9 @@
                         el.style.cursor = "pointer";
                     });
                 }
-            }});
+            }
+        });
     </script>
-
     <script src="pages/dashboard.js" defer></script>
 </body>
 
