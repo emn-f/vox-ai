@@ -11,6 +11,8 @@ on:
       - main
     paths:
       - 'CHANGELOG.md'
+      - 'index.html'
+      - 'pages/**'
 
 permissions:
   contents: read
@@ -32,15 +34,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Inject Supabase Credentials
+      - name: Prepare Pages Site & Inject Supabase Credentials
         env:
           SUPABASE_URL_DEV: ${{ secrets.SUPABASE_URL_DEV }}
           SUPABASE_ANON_KEY_DEV: ${{ secrets.SUPABASE_ANON_KEY_DEV }}
         run: |
-          sed -i "s|__SUPABASE_URL_DEV__|$SUPABASE_URL_DEV|g" pages/dashboard.js
-          sed -i "s|__SUPABASE_ANON_KEY_DEV__|$SUPABASE_ANON_KEY_DEV|g" pages/dashboard.js
-          
-          echo "✅ Credenciais injetadas no dashboard.js"
+          mkdir -p _site
+          cp index.html CHANGELOG.md _site/
+          cp -r pages _site/
+
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+
+          target = Path("_site/pages/dashboard.js")
+          content = target.read_text(encoding="utf-8")
+          content = content.replace("__SUPABASE_URL_DEV__", os.environ.get("SUPABASE_URL_DEV", ""))
+          content = content.replace("__SUPABASE_ANON_KEY_DEV__", os.environ.get("SUPABASE_ANON_KEY_DEV", ""))
+          target.write_text(content, encoding="utf-8")
+          PY
+
+          echo "✅ Site preparado em _site/ e credenciais injetadas com segurança"
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -48,7 +62,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment

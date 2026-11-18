@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.4.2 - 15/11/2026
+
+
+### 🐛 Correções
+
+* Corrige deploy, segurança, acessibilidade e UI do dashboard ([f123e4b](https://github.com/emn-f/vox-ai/commit/f123e4b04095f5c6144934c573ac448e93cf86bd))
+
+
 ## v5.4.1 - 15/11/2026
 
 
