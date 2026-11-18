@@ -13,6 +13,8 @@ on:
       - 'CHANGELOG.md'
       - 'index.html'
       - 'pages/**'
+      - 'static/branding/**'
+      - 'static/photos/**'
 
 permissions:
   contents: read
@@ -39,9 +41,10 @@ jobs:
           SUPABASE_URL_DEV: ${{ secrets.SUPABASE_URL_DEV }}
           SUPABASE_ANON_KEY_DEV: ${{ secrets.SUPABASE_ANON_KEY_DEV }}
         run: |
-          mkdir -p _site
+          mkdir -p _site/static
           cp index.html CHANGELOG.md _site/
           cp -r pages _site/
+          cp -r static/branding static/photos _site/static/
 
           python3 - <<'PY'
           import os
