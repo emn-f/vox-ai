@@ -7,6 +7,26 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.8.0 - 26/11/2026
+
+
+### ✨ Funcionalidades
+
+* Reformula dashboard editorial, transparência e suporte PT/EN ([d932e59](https://github.com/emn-f/vox-ai/commit/d932e5912dfa46ca25feb11904bc075271a4460a))
+
+* Adiciona suporte bilíngue PT/EN no Streamlit, voz e rede de apoio ([477d78f](https://github.com/emn-f/vox-ai/commit/477d78f3a1e90a41e0b344765b4ae07a5b7b7d9e))
+
+
+### 📚 Documentação
+
+* Atualiza regras de git, deploy e atribuição de fotos reais ([01cf75c](https://github.com/emn-f/vox-ai/commit/01cf75c559ec835080bc47ec3173fd5400c8f279))
+
+
+### 🔧 Tarefas Internas
+
+* Ignora pasta local da skill alethe no gitignore ([ca1c3fb](https://github.com/emn-f/vox-ai/commit/ca1c3fb39d89bc9d582d6d14490988c63e9732db))
+
+
 ## v5.7.1 - 26/11/2026
 
 
