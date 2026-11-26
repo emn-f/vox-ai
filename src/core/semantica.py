@@ -34,12 +34,15 @@ SAUDACOES_CONHECIDAS = {
     "oi", "oie", "oii", "oiii", "ola", "olá", "hey", "hello", "hi",
     "bom dia", "boa tarde", "boa noite", "opa", "e ai", "e aí", "eai",
     "tudo bem", "tudo bem?", "como vai", "como vai?", "tudo bom", "tudo bom?",
-    "salve", "fala ai", "fala aí", "koé", "coe", "coé", "boa", "buenas"
+    "salve", "fala ai", "fala aí", "koé", "coe", "coé", "boa", "buenas",
+    "good morning", "good afternoon", "good evening", "how are you", "how are you?",
+    "whats up", "what s up", "hey there", "hi there", "hello there"
 }
 TERMOS_SAUDACAO_BASE = {
     "oi", "ola", "olá", "hey", "hello", "hi", "opa", "eai", "salve",
     "tudo", "bem", "bom", "dia", "tarde", "noite", "vox", "ai",
-    "como", "vai", "voce", "você", "ta", "tá"
+    "como", "vai", "voce", "você", "ta", "tá",
+    "good", "morning", "afternoon", "evening", "how", "are", "you", "whats", "up", "there"
 }
 
 

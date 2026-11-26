@@ -1,9 +1,15 @@
-
 const SUPABASE_URL_DEV = "__SUPABASE_URL_DEV__";
 const SUPABASE_ANON_KEY_DEV = "__SUPABASE_ANON_KEY_DEV__";
 
+const DEV_ONLY_TOPICS = new Set([
+    "Como Contribuir",
+    "Padrões de Commit",
+    "Acesso ao Banco de Dados",
+    "Código Aberto e Git",
+]);
+
 function escapeHtml(unsafe) {
-    if (unsafe == null) return '';
+    if (unsafe == null) return "";
     return String(unsafe)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
@@ -12,23 +18,333 @@ function escapeHtml(unsafe) {
         .replace(/'/g, "&#039;");
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+function t(key, vars) {
+    if (typeof window.voxT === "function") {
+        return window.voxT(key, vars);
+    }
+    return key;
+}
 
-    // Carregar changelog (sempre executa, independente do Supabase)
-    const changelogEl = document.getElementById('latest-changelog');
+function bindExternalLinks() {
+    if (typeof VOX_LINKS === "undefined") return;
+    const lang = typeof window.voxGetLang === "function" ? window.voxGetLang() : "pt";
+    const baseStreamlit = VOX_LINKS.VOX_STREAMLIT || "";
+    const streamlitHref = lang === "en" && baseStreamlit
+        ? (baseStreamlit.includes("?") ? `${baseStreamlit}&lang=en` : `${baseStreamlit}?lang=en`)
+        : baseStreamlit;
+
+    const elementLinks = {
+        owner_vox: VOX_LINKS.OWNER_VOX,
+        github_repo: VOX_LINKS.GITHUB_REPO,
+        changelog: VOX_LINKS.CHANGELOG,
+        license: VOX_LINKS.LICENSE,
+        privacy_policy: VOX_LINKS.PRIVACY_POLICY,
+        code_of_conduct: VOX_LINKS.CODE_OF_CONDUCT,
+        security: VOX_LINKS.SECURITY,
+        contributing: VOX_LINKS.CONTRIBUTING,
+        vox_streamlit: streamlitHref,
+        hugging_face: VOX_LINKS.HUGGING_FACE,
+        instagram: VOX_LINKS.INSTAGRAM,
+        linkedin: VOX_LINKS.LINKEDIN,
+        feedback: VOX_LINKS.FEEDBACK,
+        contribute_kb_form: VOX_LINKS.CONTRIBUTE_KB_FORM,
+        linktree: VOX_LINKS.LINKTREE,
+        rodrigo_santos: VOX_LINKS.RODRIGO_SANTOS,
+        camila_fernandes: VOX_LINKS.CAMILA_FERNANDES,
+    };
+
+    for (const [key, url] of Object.entries(elementLinks)) {
+        if (!url) continue;
+        document.querySelectorAll(`[data-link="${key}"]`).forEach((el) => {
+            el.href = url;
+        });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    bindExternalLinks();
+
+    const kbState = {
+        status: "loading", // 'loading' | 'unconfigured' | 'ready' | 'empty' | 'error'
+        allTopics: [],
+        totalEntries: 0,
+        maxTopicQty: 0,
+        maxDate: 0,
+        searchQuery: "",
+        visibleHighCount: 9,
+        cardsPerPage: 9,
+        userExpandedEarly: false,
+    };
+
+    const statsEl = document.getElementById("kb-health-stats");
+    const elVersion = document.getElementById("kb-version");
+
+    function setVersionText(text) {
+        if (elVersion) elVersion.innerText = text;
+    }
+
+    function renderKbErrorOrStatus(message, isError = false) {
+        if (!statsEl) return;
+        const color = isError ? "#ef4444" : "var(--text-secondary)";
+        statsEl.innerHTML = `<p style="color: ${color};">${escapeHtml(message)}</p>`;
+    }
+
+    function renderKbReady() {
+        if (!statsEl) return;
+
+        const totalTopicsCount = kbState.allTopics.length;
+        const highTopicsAll = kbState.allTopics.filter((item) => item.quantidade >= 3);
+        const lowTopicsAll = kbState.allTopics.filter((item) => item.quantidade <= 2);
+
+        const existingSearch = document.getElementById("kb-search");
+        const hadFocus = existingSearch && document.activeElement === existingSearch;
+        const cursorPos = existingSearch ? existingSearch.selectionStart : null;
+
+        const contributeFormUrl =
+            (typeof VOX_LINKS !== "undefined" && VOX_LINKS.CONTRIBUTE_KB_FORM) ||
+            "https://forms.gle/Bwb3NEurV7YoZFXG8";
+
+        statsEl.innerHTML = `
+            <div class="kb-stats-summary">
+                <div class="kb-stat-widget">
+                    <div class="stat-val">${totalTopicsCount}</div>
+                    <div class="stat-lbl">${escapeHtml(t("kb_stat_mapped"))}</div>
+                </div>
+                <div class="kb-stat-widget">
+                    <div class="stat-val">${highTopicsAll.length}</div>
+                    <div class="stat-lbl">${escapeHtml(t("kb_stat_indepth"))}</div>
+                </div>
+                <div class="kb-stat-widget">
+                    <div class="stat-val">${kbState.totalEntries}</div>
+                    <div class="stat-lbl">${escapeHtml(t("kb_stat_entries"))}</div>
+                </div>
+            </div>
+
+            <div class="kb-controls-row">
+                <div class="kb-search-container">
+                    <span class="kb-search-icon" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input
+                        type="text"
+                        id="kb-search"
+                        class="kb-search-input"
+                        value="${escapeHtml(kbState.searchQuery)}"
+                        placeholder="${escapeHtml(t("kb_search_placeholder"))}"
+                        aria-label="${escapeHtml(t("kb_search_placeholder"))}"
+                    >
+                    <button
+                        type="button"
+                        id="kb-search-clear"
+                        class="kb-search-clear${kbState.searchQuery.trim() ? "" : " is-hidden"}"
+                        aria-label="${escapeHtml(t("kb_search_clear_aria"))}"
+                    >✕</button>
+                </div>
+                <p id="kb-filter-status" class="kb-filter-status"></p>
+            </div>
+
+            <div id="kb-results-container"></div>
+        `;
+
+        const searchInput = document.getElementById("kb-search");
+        const clearBtn = document.getElementById("kb-search-clear");
+        const statusEl = document.getElementById("kb-filter-status");
+        const resultsContainer = document.getElementById("kb-results-container");
+
+        if (hadFocus && searchInput) {
+            searchInput.focus();
+            if (cursorPos !== null) {
+                searchInput.setSelectionRange(cursorPos, cursorPos);
+            }
+        }
+
+        function renderTopicCard(item) {
+            const pct = kbState.totalEntries > 0
+                ? Math.max(1, Math.round((item.quantidade / kbState.totalEntries) * 100))
+                : 0;
+            const barWidth = kbState.maxTopicQty > 0
+                ? Math.round((item.quantidade / kbState.maxTopicQty) * 100)
+                : 0;
+            const unitLabel = item.quantidade === 1
+                ? t("kb_entries_singular")
+                : t("kb_entries_plural");
+
+            return `
+                <div class="kb-topic-card">
+                    <div class="kb-topic-header">
+                        <h4 class="kb-topic-title">${escapeHtml(item.tema)}</h4>
+                        <span class="kb-topic-badge">${item.quantidade} ${escapeHtml(unitLabel)}</span>
+                    </div>
+                    <div>
+                        <div class="kb-topic-bar-container">
+                            <div class="kb-topic-bar" data-width="${barWidth}%" style="width: 0%"></div>
+                        </div>
+                        <div class="kb-topic-percentage">${pct}% ${escapeHtml(t("kb_pct_of_total"))}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateResults() {
+            if (!resultsContainer) return;
+            const q = kbState.searchQuery.trim().toLowerCase();
+
+            if (clearBtn) {
+                clearBtn.classList.toggle("is-hidden", !q);
+            }
+            if (statusEl) {
+                statusEl.textContent = q
+                    ? `${t("kb_filter_search_status")} "${kbState.searchQuery.trim()}"`
+                    : t("kb_filter_all_status");
+            }
+
+            const highList = highTopicsAll.filter((item) => item.tema.toLowerCase().includes(q));
+            const lowList = lowTopicsAll.filter((item) => item.tema.toLowerCase().includes(q));
+
+            if (highList.length === 0 && lowList.length === 0) {
+                resultsContainer.innerHTML = `<p class="kb-empty-message">${escapeHtml(t("kb_empty_search"))}</p>`;
+                return;
+            }
+
+            let html = "";
+
+            if (highList.length > 0) {
+                const visibleHigh = q ? highList : highList.slice(0, kbState.visibleHighCount);
+                html += `
+                    <div class="kb-section-header">${escapeHtml(t("kb_high_heading"))} (${highList.length})</div>
+                    <div class="kb-health-grid">
+                        ${visibleHigh.map(renderTopicCard).join("")}
+                    </div>
+                `;
+
+                if (!q && highList.length > kbState.visibleHighCount) {
+                    const remaining = highList.length - kbState.visibleHighCount;
+                    html += `
+                        <div class="kb-pagination-container">
+                            <button type="button" id="kb-btn-load-more" class="kb-load-more-btn">
+                                ${escapeHtml(t("kb_show_more"))} (+${remaining})
+                            </button>
+                        </div>
+                    `;
+                }
+            }
+
+            if (lowList.length > 0) {
+                const isOpenAttr = (q || kbState.userExpandedEarly) ? " open" : "";
+                const summaryKey = q ? "kb_early_summary_filtered" : "kb_early_summary";
+                const summaryText = t(summaryKey, { count: lowList.length });
+
+                html += `
+                    <details id="kb-early-details" class="kb-early-details"${isOpenAttr}>
+                        <summary class="kb-early-summary">
+                            <span>${escapeHtml(summaryText)}</span>
+                            <svg class="kb-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </summary>
+                        <div class="kb-early-body">
+                            <p class="kb-early-invite">
+                                <span>${escapeHtml(t("kb_early_invite"))}</span>
+                                <a href="${escapeHtml(contributeFormUrl)}" target="_blank" rel="noopener noreferrer" class="kb-early-link">
+                                    ${escapeHtml(t("kb_early_link"))}
+                                </a>
+                            </p>
+                            <div class="kb-tags-container">
+                                ${lowList.map((item) => `
+                                    <span class="kb-topic-tag">${escapeHtml(item.tema)}</span>
+                                `).join("")}
+                            </div>
+                        </div>
+                    </details>
+                `;
+            }
+
+            resultsContainer.innerHTML = html;
+
+            requestAnimationFrame(() => {
+                resultsContainer.querySelectorAll(".kb-topic-bar[data-width]").forEach((bar) => {
+                    bar.style.width = bar.getAttribute("data-width");
+                });
+            });
+
+            const loadMoreBtn = document.getElementById("kb-btn-load-more");
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener("click", () => {
+                    kbState.visibleHighCount += 12;
+                    updateResults();
+                });
+            }
+
+            const detailsEl = document.getElementById("kb-early-details");
+            if (detailsEl) {
+                detailsEl.addEventListener("toggle", () => {
+                    if (!kbState.searchQuery.trim()) {
+                        kbState.userExpandedEarly = detailsEl.open;
+                    }
+                });
+            }
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener("input", (e) => {
+                kbState.searchQuery = e.target.value || "";
+                kbState.visibleHighCount = kbState.cardsPerPage;
+                updateResults();
+            });
+        }
+
+        if (clearBtn) {
+            clearBtn.addEventListener("click", () => {
+                kbState.searchQuery = "";
+                kbState.visibleHighCount = kbState.cardsPerPage;
+                if (searchInput) searchInput.value = "";
+                updateResults();
+            });
+        }
+
+        updateResults();
+    }
+
+    function renderKbByState() {
+        if (kbState.status === "ready") {
+            renderKbReady();
+            return;
+        }
+        if (kbState.status === "unconfigured") {
+            setVersionText(t("kb_unavailable"));
+            renderKbErrorOrStatus(t("kb_local_unavailable"));
+            return;
+        }
+        if (kbState.status === "empty") {
+            setVersionText("v1.0.0");
+            renderKbErrorOrStatus(t("kb_empty_db"));
+            return;
+        }
+        if (kbState.status === "error") {
+            setVersionText(t("kb_unavailable"));
+            renderKbErrorOrStatus(t("kb_fetch_error"), true);
+        }
+    }
+
+    window.voxRenderKb = renderKbByState;
+
+    // Carregar changelog (3 últimas versões)
+    const changelogEl = document.getElementById("latest-changelog");
     if (changelogEl) {
-        fetch('CHANGELOG.md', { headers: { 'Cache-Control': 'no-cache' } })
-            .then(response => {
-                if (!response.ok) throw new Error('Erro ao buscar CHANGELOG.md');
+        fetch("CHANGELOG.md", { headers: { "Cache-Control": "no-cache" } })
+            .then((response) => {
+                if (!response.ok) throw new Error("Erro ao buscar CHANGELOG.md");
                 return response.text();
             })
-            .then(markdown => {
-                // Pega os 5 primeiros blocos que começam com "## "
-                const start = markdown.indexOf('## ');
+            .then((markdown) => {
+                const start = markdown.indexOf("## ");
                 if (start !== -1) {
                     let end = start;
-                    for (let i = 0; i < 5; i++) {
-                        const next = markdown.indexOf('\n## ', end + 1);
+                    for (let i = 0; i < 3; i++) {
+                        const next = markdown.indexOf("\n## ", end + 1);
                         if (next === -1) {
                             end = markdown.length;
                             break;
@@ -37,23 +353,27 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     const entryMarkdown = markdown.substring(start, end);
 
-                    if (typeof marked !== 'undefined' && typeof DOMPurify !== 'undefined') {
+                    if (typeof marked !== "undefined" && typeof DOMPurify !== "undefined") {
                         changelogEl.innerHTML = DOMPurify.sanitize(marked.parse(entryMarkdown));
                     } else {
                         changelogEl.innerText = entryMarkdown;
                     }
                 }
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error("Erro Changelog:", error);
-                changelogEl.innerHTML = '<p style="color: #ef4444;">Erro ao carregar histórico.</p>';
+                changelogEl.innerHTML = `<p style="color: #ef4444;">${escapeHtml(t("changelog_error"))}</p>`;
             });
     }
 
-    // Verificar se as credenciais do Supabase estão configuradas e válidas
+    // Verificar credenciais do Supabase
     let supabaseConfigured = false;
-    if (SUPABASE_URL_DEV && SUPABASE_ANON_KEY_DEV && 
-        !SUPABASE_URL_DEV.startsWith('__') && !SUPABASE_ANON_KEY_DEV.startsWith('__')) {
+    if (
+        SUPABASE_URL_DEV &&
+        SUPABASE_ANON_KEY_DEV &&
+        !SUPABASE_URL_DEV.startsWith("__") &&
+        !SUPABASE_ANON_KEY_DEV.startsWith("__")
+    ) {
         try {
             new URL(SUPABASE_URL_DEV);
             supabaseConfigured = true;
@@ -64,279 +384,81 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!supabaseConfigured) {
         console.warn("Supabase não configurado ou indisponível localmente.");
-        const elCount = document.getElementById('kb-count');
-        if (elCount) elCount.innerHTML = '<span style="font-size:0.5em">Indisponível</span>';
-        const elVersion = document.getElementById('kb-version');
-        if (elVersion) elVersion.innerText = 'Indisponível';
-        const statsEl = document.getElementById('kb-health-stats');
-        if (statsEl) statsEl.innerHTML = '<p style="color: var(--text-secondary);">Métricas indisponíveis em ambiente local de desenvolvimento.</p>';
+        kbState.status = "unconfigured";
+        renderKbByState();
         return;
     }
 
     const headers = {
-        'apikey': SUPABASE_ANON_KEY_DEV,
-        'Authorization': `Bearer ${SUPABASE_ANON_KEY_DEV}`,
-        'Content-Type': 'application/json'
+        apikey: SUPABASE_ANON_KEY_DEV,
+        Authorization: `Bearer ${SUPABASE_ANON_KEY_DEV}`,
+        "Content-Type": "application/json",
     };
 
-    // Buscar estatísticas agregadas da base de conhecimento
     const urlStats = new URL(`${SUPABASE_URL_DEV}/rest/v1/knowledge_base_public_stats`);
-    urlStats.searchParams.set('select', 'tema,quantidade,modificado_em');
+    urlStats.searchParams.set("select", "tema,quantidade,modificado_em");
 
     fetch(urlStats.toString(), {
-        method: 'GET',
-        headers: headers
+        method: "GET",
+        headers: headers,
     })
-        .then(response => {
+        .then((response) => {
             if (!response.ok) {
                 throw new Error(`Erro HTTP ${response.status} ao buscar estatísticas da base`);
             }
             return response.json();
         })
-        .then(data => {
-            let totalChunks = 0;
-            let maxDate = 0;
-            const statsEl = document.getElementById('kb-health-stats');
-            
+        .then((data) => {
             if (Array.isArray(data) && data.length > 0) {
                 const allTopics = [];
-                data.forEach(item => {
-                    const qty = parseInt(item.quantidade, 10) || 0;
-                    totalChunks += qty;
-                    if (item.tema) {
-                        allTopics.push({ tema: item.tema, quantidade: qty });
-                    }
+                let totalEntries = 0;
+                let maxDate = 0;
+
+                data.forEach((item) => {
                     if (item.modificado_em) {
                         const d = new Date(item.modificado_em).getTime();
                         if (d > maxDate) maxDate = d;
                     }
+
+                    if (!item.tema || DEV_ONLY_TOPICS.has(item.tema)) {
+                        return;
+                    }
+
+                    const qty = parseInt(item.quantidade, 10) || 0;
+                    totalEntries += qty;
+                    allTopics.push({ tema: item.tema, quantidade: qty });
                 });
 
-                // Ordenar tópicos por quantidade decrescente
-                allTopics.sort((a, b) => b.quantidade - a.quantidade);
+                allTopics.sort((a, b) => b.quantidade - a.quantidade || a.tema.localeCompare(b.tema));
 
-                // Calcular estatísticas rápidas
-                const totalTopicsCount = allTopics.length;
-                const maxTopicQty = totalTopicsCount > 0 ? allTopics[0].quantidade : 0;
-                const highCoverageCount = allTopics.filter(t => t.quantidade >= 3).length;
-                const lowCoverageCount = allTopics.filter(t => t.quantidade <= 2).length;
-                const avgChunksPerTopic = totalTopicsCount > 0 ? (totalChunks / totalTopicsCount).toFixed(1) : 0;
-
-                // Atualizar Contagem (temas + chunks)
-                const elCount = document.getElementById('kb-count');
-                if (elCount) {
-                    elCount.innerHTML = `${totalTopicsCount} <span class="value-sub">${totalChunks} chunks</span>`;
+                if (maxDate > 0) {
+                    const lastDate = new Date(maxDate);
+                    const versionString = `v${lastDate.getFullYear()}.${String(lastDate.getMonth() + 1).padStart(2, "0")}.${String(lastDate.getDate()).padStart(2, "0")}`;
+                    setVersionText(versionString);
+                } else {
+                    setVersionText("v1.0.0");
                 }
 
-                // Atualizar Versão
-                const elVersion = document.getElementById('kb-version');
-                if (elVersion) {
-                    if (maxDate > 0) {
-                        const lastDate = new Date(maxDate);
-                        const versionString = `v${lastDate.getFullYear()}.${String(lastDate.getMonth() + 1).padStart(2, '0')}.${String(lastDate.getDate()).padStart(2, '0')}`;
-                        elVersion.innerText = versionString;
-                    } else {
-                        elVersion.innerText = "v1.0.0";
-                    }
+                if (allTopics.length === 0) {
+                    kbState.status = "empty";
+                    renderKbByState();
+                    return;
                 }
 
-                // Atualizar Distribuição de Temas de forma interativa e concisa
-                if (statsEl) {
-                    let currentFilter = 'all'; // 'all', 'high', 'low'
-                    let searchQuery = '';
-                    let visibleCardsCount = 12;
-                    const cardsPerPage = 12;
-
-                    // Estrutura básica dos controles
-                    statsEl.innerHTML = `
-                        <!-- Resumo Executivo da Base -->
-                        <div class="kb-stats-summary">
-                            <div class="kb-stat-widget">
-                                <div class="stat-val">${totalTopicsCount}</div>
-                                <div class="stat-lbl">Tópicos Cadastrados</div>
-                            </div>
-                            <div class="kb-stat-widget">
-                                <div class="stat-val">${highCoverageCount}</div>
-                                <div class="stat-lbl">Alta Cobertura (3+)</div>
-                            </div>
-                            <div class="kb-stat-widget">
-                                <div class="stat-val">${lowCoverageCount}</div>
-                                <div class="stat-lbl">Baixa Cobertura (1-2)</div>
-                            </div>
-                            <div class="kb-stat-widget">
-                                <div class="stat-val">${avgChunksPerTopic}</div>
-                                <div class="stat-lbl">Média de Chunks</div>
-                            </div>
-                        </div>
-
-                        <!-- Barra de Ações (Filtro e Busca) -->
-                        <div class="kb-controls-row">
-                            <div class="kb-search-container">
-                                <span class="kb-search-icon" aria-hidden="true">🔍</span>
-                                <input type="text" id="kb-search" class="kb-search-input" placeholder="Buscar tópico por nome..." aria-label="Buscar tópico por nome">
-                            </div>
-                            <div class="kb-filter-tabs" role="group" aria-label="Filtrar tópicos por cobertura">
-                                <button class="kb-filter-tab active" data-filter="all" aria-pressed="true">Todos (${totalTopicsCount})</button>
-                                <button class="kb-filter-tab" data-filter="high" aria-pressed="false">Alta Cobertura (${highCoverageCount})</button>
-                                <button class="kb-filter-tab" data-filter="low" aria-pressed="false">Baixa Cobertura (${lowCoverageCount})</button>
-                            </div>
-                        </div>
-
-                        <!-- Container para renderizar os tópicos -->
-                        <div id="kb-results-container"></div>
-                    `;
-
-                    const resultsContainer = document.getElementById('kb-results-container');
-                    const searchInput = document.getElementById('kb-search');
-                    const filterTabs = document.querySelectorAll('.kb-filter-tab');
-
-                    function renderTopicCard(t) {
-                        const pct = totalChunks > 0 ? Math.round((t.quantidade / totalChunks) * 100) : 0;
-                        const barWidth = maxTopicQty > 0 ? Math.round((t.quantidade / maxTopicQty) * 100) : 0;
-                        return `
-                            <div class="kb-topic-card">
-                                <div class="kb-topic-header">
-                                    <h4 class="kb-topic-title">${escapeHtml(t.tema)}</h4>
-                                    <span class="kb-topic-badge">${t.quantidade} ${t.quantidade === 1 ? 'chunk' : 'chunks'}</span>
-                                </div>
-                                <div>
-                                    <div class="kb-topic-bar-container">
-                                        <div class="kb-topic-bar" data-width="${barWidth}%" style="width: 0%"></div>
-                                    </div>
-                                    <div class="kb-topic-percentage">${pct}% do total</div>
-                                </div>
-                            </div>
-                        `;
-                    }
-
-                    function renderLowCoverageTags(list, extraMarginTop = false) {
-                        const styleAttr = extraMarginTop ? ' style="margin-top: 2.5rem;"' : '';
-                        return `
-                            <div class="kb-section-header"${styleAttr}>Tópicos com Baixa Cobertura (${list.length})</div>
-                            <div class="kb-tags-container">
-                                ${list.map(t => `
-                                    <div class="kb-topic-tag" title="${escapeHtml(t.tema)}">
-                                        <span>${escapeHtml(t.tema)}</span>
-                                        <span class="tag-count">${t.quantidade}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        `;
-                    }
-
-                    function renderResults() {
-                        if (!resultsContainer) return;
-
-                        // Aplicar filtros de busca e aba selecionada
-                        const filtered = allTopics.filter(topic => {
-                            const matchesSearch = topic.tema.toLowerCase().includes(searchQuery.toLowerCase());
-                            if (!matchesSearch) return false;
-
-                            if (currentFilter === 'high') return topic.quantidade >= 3;
-                            if (currentFilter === 'low') return topic.quantidade <= 2;
-                            return true;
-                        });
-
-                        if (filtered.length === 0) {
-                            resultsContainer.innerHTML = '<p style="color: var(--text-secondary); text-align: center; padding: 2rem;">Nenhum tópico encontrado com os filtros selecionados.</p>';
-                            return;
-                        }
-
-                        let html = '';
-
-                        if (currentFilter === 'low') {
-                            html += renderLowCoverageTags(filtered);
-                        } else {
-                            const highList = currentFilter === 'high' ? filtered : filtered.filter(t => t.quantidade >= 3);
-                            const lowList = currentFilter === 'high' ? [] : filtered.filter(t => t.quantidade <= 2);
-
-                            if (highList.length > 0) {
-                                const paginatedHigh = highList.slice(0, visibleCardsCount);
-                                html += `
-                                    <div class="kb-section-header">Tópicos com Alta Cobertura (${highList.length})</div>
-                                    <div class="kb-health-grid">
-                                        ${paginatedHigh.map(renderTopicCard).join('')}
-                                    </div>
-                                `;
-
-                                if (highList.length > visibleCardsCount) {
-                                    html += `
-                                        <div class="kb-pagination-container">
-                                            <button id="kb-btn-load-more" class="kb-load-more-btn">Carregar Mais Tópicos</button>
-                                        </div>
-                                    `;
-                                }
-                            }
-
-                            if (lowList.length > 0) {
-                                html += renderLowCoverageTags(lowList, highList.length > 0);
-                            }
-                        }
-
-                        resultsContainer.innerHTML = html;
-
-                        // Animar barras de progresso após renderização no DOM
-                        requestAnimationFrame(() => {
-                            resultsContainer.querySelectorAll('.kb-topic-bar[data-width]').forEach(bar => {
-                                bar.style.width = bar.getAttribute('data-width');
-                            });
-                        });
-
-                        // Adicionar listener ao botão Carregar Mais
-                        const loadMoreBtn = document.getElementById('kb-btn-load-more');
-                        if (loadMoreBtn) {
-                            loadMoreBtn.addEventListener('click', () => {
-                                visibleCardsCount += cardsPerPage;
-                                renderResults();
-                            });
-                        }
-                    }
-
-                    // Ouvinte do campo de busca
-                    searchInput.addEventListener('input', (e) => {
-                        searchQuery = e.target.value;
-                        visibleCardsCount = cardsPerPage; // Resetar paginação
-                        renderResults();
-                    });
-
-                    // Ouvinte de mudança de abas de filtro
-                    filterTabs.forEach(tab => {
-                        tab.addEventListener('click', () => {
-                            filterTabs.forEach(t => {
-                                t.classList.remove('active');
-                                t.setAttribute('aria-pressed', 'false');
-                            });
-                            tab.classList.add('active');
-                            tab.setAttribute('aria-pressed', 'true');
-                            currentFilter = tab.getAttribute('data-filter');
-                            visibleCardsCount = cardsPerPage; // Resetar paginação
-                            renderResults();
-                        });
-                    });
-
-                    // Primeira renderização
-                    renderResults();
-                }
+                kbState.allTopics = allTopics;
+                kbState.totalEntries = totalEntries;
+                kbState.maxTopicQty = allTopics[0].quantidade;
+                kbState.maxDate = maxDate;
+                kbState.status = "ready";
+                renderKbByState();
             } else {
-                // Dados vazios
-                const elCount = document.getElementById('kb-count');
-                if (elCount) elCount.innerText = "0";
-                
-                const elVersion = document.getElementById('kb-version');
-                if (elVersion) elVersion.innerText = "v1.0.0";
-                
-                if (statsEl) {
-                    statsEl.innerHTML = '<p style="color: var(--text-secondary);">Nenhum tema cadastrado na base de conhecimento.</p>';
-                }
+                kbState.status = "empty";
+                renderKbByState();
             }
         })
-        .catch(error => {
+        .catch((error) => {
             console.error("Erro ao carregar estatísticas da base:", error);
-            const elCount = document.getElementById('kb-count');
-            if (elCount) elCount.innerHTML = '<span style="font-size:0.5em">Indisponível</span>';
-            const elVersion = document.getElementById('kb-version');
-            if (elVersion) elVersion.innerText = 'Indisponível';
-            const statsEl = document.getElementById('kb-health-stats');
-            if (statsEl) statsEl.innerHTML = '<p style="color: #ef4444;">Falha ao carregar estatísticas da base.</p>';
+            kbState.status = "error";
+            renderKbByState();
         });
 });

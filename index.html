@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Vox AI: tecnologia social open source de apoio, direitos, saúde e informação LGBTQIA+ com Inteligência Artificial.">
+        content="Vox AI: assistente gratuito, anônimo e open source sobre direitos, saúde e acolhimento LGBTQIA+ no Brasil.">
     <meta name="author" content="Emanuel Ferreira">
     <meta name="theme-color" content="#FFFFFF">
 
@@ -13,7 +13,7 @@
     <meta property="og:url" content="https://emn-f.github.io/vox-ai/">
     <meta property="og:title" content="Vox AI — Informação é uma forma de cuidado">
     <meta property="og:description"
-        content="Assistente de apoio e informação LGBTQIA+ com Inteligência Artificial. Tecnologia social open source para inclusão e cidadania.">
+        content="Assistente gratuito e anônimo para dúvidas sobre direitos, saúde e acolhimento LGBTQIA+ no Brasil. Tecnologia social open source.">
     <meta property="og:image" content="https://emn-f.github.io/vox-ai/static/branding/banner.png">
     <meta name="twitter:card" content="summary_large_image">
 
@@ -36,18 +36,23 @@
 
     <header class="vox-header">
         <div class="vox-header-inner">
-            <a href="#topo" class="vox-logo" aria-label="Vox AI — início">
+            <a href="#topo" class="vox-logo" aria-label="Vox AI">
                 <img src="static/branding/logo.png" alt="Vox AI" width="150" height="50">
             </a>
 
-            <nav class="vox-nav" aria-label="Navegação principal">
-                <a href="#novidades">Novidades</a>
-                <a href="#base-conhecimento">Base de conhecimento</a>
-                <a href="#sobre">Sobre</a>
-                <a href="#contribuir">Contribuir</a>
+            <nav class="vox-nav" data-i18n-aria="nav_aria" aria-label="Navegação principal">
+                <a href="#sobre" data-i18n="nav_about">Sobre</a>
+                <a href="#base-conhecimento" data-i18n="nav_kb">Base de conhecimento</a>
+                <a href="#contribuir" data-i18n="nav_contribute">Contribuir</a>
+                <a href="#atualizacoes" data-i18n="nav_updates">Atualizações</a>
             </nav>
 
             <div class="vox-header-actions">
+                <div class="vox-lang-toggle" role="group" data-i18n-aria="lang_group_aria" aria-label="Selecionar idioma">
+                    <button type="button" class="vox-lang-btn active" data-lang-btn="pt" aria-pressed="true">PT</button>
+                    <button type="button" class="vox-lang-btn" data-lang-btn="en" aria-pressed="false">EN</button>
+                </div>
+
                 <a data-link="instagram" href="#" target="_blank" rel="noopener noreferrer" class="vox-icon-link"
                     title="Instagram" aria-label="Instagram">
                     <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -64,7 +69,8 @@
                             d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
                     </svg>
                 </a>
-                <a data-link="vox_streamlit" href="#" target="_blank" rel="noopener noreferrer" class="vox-btn vox-btn-dark vox-btn-sm">
+                <a data-link="vox_streamlit" href="#" target="_blank" rel="noopener noreferrer"
+                    class="vox-btn vox-btn-dark vox-btn-sm" data-i18n="header_cta">
                     Acessar o Vox AI
                 </a>
             </div>
@@ -72,202 +78,114 @@
     </header>
 
     <main id="topo">
-        <!-- HERO -->
+        <!-- 1. HERO -->
         <section class="vox-hero">
             <div class="vox-hero-text">
-                <p class="vox-eyebrow">Projeto Vox • Acolhimento e direitos</p>
-                <h1>Informação é uma forma de cuidado.</h1>
-                <p class="vox-lead">
-                    Assistente virtual de apoio emocional, orientação jurídica e cidadania LGBTQIA+,
-                    com escuta ativa e acolhimento ético. Open source, gratuito e feito em Salvador (BA).
+                <p class="vox-eyebrow" data-i18n="hero_eyebrow">Projeto Vox</p>
+                <h1 data-i18n="hero_title">Informação é uma forma de cuidado.</h1>
+                <p class="vox-lead" data-i18n="hero_lead">
+                    Assistente gratuito e anônimo para tirar dúvidas sobre direitos, saúde e acolhimento LGBTQIA+ no Brasil. Código aberto, feito em Salvador (BA).
                 </p>
 
                 <div class="vox-hero-actions">
                     <a data-link="vox_streamlit" href="#" target="_blank" rel="noopener noreferrer" class="vox-btn vox-btn-dark">
-                        Conversar com o Vox AI <span aria-hidden="true">→</span>
+                        <span data-i18n="hero_btn_chat">Conversar com o Vox AI</span>
+                        <span aria-hidden="true">→</span>
                     </a>
-                    <a data-link="github_repo" href="#" target="_blank" rel="noopener noreferrer" class="vox-btn vox-btn-outline">
-                        Ver no GitHub
+                    <a data-link="github_repo" href="#" target="_blank" rel="noopener noreferrer" class="vox-btn vox-btn-outline"
+                        data-i18n="hero_btn_github">
+                        Ver código no GitHub
                     </a>
                 </div>
 
-                <ul class="vox-chips" aria-label="Princípios do Vox AI">
-                    <li><span class="dot" style="--c:#E7383B"></span>Inclusão total</li>
-                    <li><span class="dot" style="--c:#0084C8"></span>Anonimato e LGPD</li>
-                    <li><span class="dot" style="--c:#00A859"></span>Rede de apoio</li>
-                    <li><span class="dot" style="--c:#7209B7"></span>Voz e escuta</li>
-                </ul>
+                <p class="vox-hero-facts" data-i18n="hero_facts">
+                    100% gratuito · Sem cadastro (LGPD) · Texto e voz · Código aberto
+                </p>
             </div>
 
             <figure class="vox-hero-photo">
-                <img src="static/photos/hero.jpg" alt="Grupo diverso da comunidade LGBTQIA+ sorrindo reunido com leque e vestido nas cores do arco-íris após a Parada do Orgulho em São Paulo"
+                <img src="static/photos/hero.jpg"
+                    data-i18n-alt="hero_photo_alt"
+                    alt="Grupo diverso da comunidade LGBTQIA+ sorrindo reunido com leque e vestido nas cores do arco-íris após a Parada do Orgulho em São Paulo"
                     width="1280" height="853" fetchpriority="high">
                 <figcaption>
-                    <span class="vox-caption-lead">Comunidade que acolhe e fortalece</span>
-                    <span class="vox-photo-credit">Foto: <a href="https://commons.wikimedia.org/wiki/File:After_Parada_LGBTQIAP%2B_na_NAVE_%C2%B7_19_06_2022_%C2%B7_S%C3%A3o_Paulo_(SP)_(52433767424).jpg" title="Fonte: Wikimedia Commons" target="_blank" rel="noopener noreferrer">Oliver Kornblihtt / Mídia NINJA</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a></span>
+                    <span class="vox-caption-lead" data-i18n="hero_photo_caption">Comunidade que acolhe e fortalece</span>
+                    <span class="vox-photo-credit"><span data-i18n="photo_credit_label">Foto:</span> <a href="https://commons.wikimedia.org/wiki/File:After_Parada_LGBTQIAP%2B_na_NAVE_%C2%B7_19_06_2022_%C2%B7_S%C3%A3o_Paulo_(SP)_(52433767424).jpg" title="Fonte: Wikimedia Commons" target="_blank" rel="noopener noreferrer">Oliver Kornblihtt / Mídia NINJA</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a></span>
                 </figcaption>
             </figure>
         </section>
 
-        <!-- NOVIDADES + NÚMEROS -->
-        <section id="novidades" class="vox-section">
-            <header class="vox-section-head">
-                <p class="vox-eyebrow">Novidades • Atualizações</p>
-                <h2>O que mudou por aqui</h2>
-            </header>
-
-            <div class="vox-grid-news">
-                <article class="vox-card vox-changelog" id="changelog-card">
-                    <div class="vox-card-top">
-                        <h3>Últimas atualizações</h3>
-                        <a data-link="changelog" href="#" target="_blank" rel="noopener noreferrer" class="vox-link">
-                            Histórico completo <span aria-hidden="true">→</span>
-                        </a>
-                    </div>
-                    <div id="latest-changelog" class="content-md">
-                        <p class="loading">Carregando changelog...</p>
-                    </div>
-                </article>
-
-                <div class="vox-side">
-                    <div class="vox-card stat-card">
-                        <p class="vox-meta">Temas curados</p>
-                        <div class="value" id="kb-count"><span class="loading">...</span></div>
-                        <p class="vox-card-note">Conteúdo verificado e indexado na base de conhecimento.</p>
-                    </div>
-                    <div class="vox-card stat-card">
-                        <p class="vox-meta">Versão da base</p>
-                        <div class="value value-sm" id="kb-version"><span class="loading">...</span></div>
-                        <p class="vox-card-note">Última atualização registrada.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="vox-grid-gov">
-                <a data-link="license" href="#" target="_blank" rel="noopener noreferrer" class="vox-card vox-gov">
-                    <span class="vox-gov-icon" style="--c:#7209B7">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                    </span>
-                    <h3>Licença GNU GPLv3</h3>
-                    <p>Código aberto e livre para a comunidade.</p>
-                </a>
-                <a data-link="privacy_policy" href="#" target="_blank" rel="noopener noreferrer" class="vox-card vox-gov">
-                    <span class="vox-gov-icon" style="--c:#0084C8">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                    </span>
-                    <h3>Privacidade</h3>
-                    <p>Coleta de dados anônima, em conformidade com a LGPD.</p>
-                </a>
-                <a data-link="code_of_conduct" href="#" target="_blank" rel="noopener noreferrer" class="vox-card vox-gov">
-                    <span class="vox-gov-icon" style="--c:#00A859">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    </span>
-                    <h3>Código de conduta</h3>
-                    <p>Nossos pactos de respeito, escuta e inclusão.</p>
-                </a>
-                <a data-link="security" href="#" target="_blank" rel="noopener noreferrer" class="vox-card vox-gov">
-                    <span class="vox-gov-icon" style="--c:#F77F00">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                    </span>
-                    <h3>Segurança</h3>
-                    <p>Como reportar vulnerabilidades com responsabilidade.</p>
-                </a>
-            </div>
-        </section>
-
-        <!-- SAÚDE DA BASE -->
-        <section id="base-conhecimento" class="vox-section">
-            <div class="vox-card card-fullwidth" id="kb-health-card">
-                <header class="vox-section-head">
-                    <p class="vox-eyebrow">Transparência • Base de conhecimento</p>
-                    <h2>Saúde da base de conhecimento</h2>
-                    <p class="vox-section-desc">Métricas de cobertura e distribuição dos temas cadastrados. Quanto mais conteúdo verificado,
-                        melhores as respostas.</p>
-                </header>
-                <div id="kb-health-stats">
-                    <p class="loading">Carregando estatísticas da base...</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SOBRE -->
+        <!-- 2. SOBRE O PROJETO -->
         <section id="sobre" class="vox-section">
             <header class="vox-section-head">
-                <p class="vox-eyebrow">Sobre • Missão e propósito</p>
-                <h2>Tecnologia a serviço da dignidade e da cidadania</h2>
+                <p class="vox-eyebrow" data-i18n="about_eyebrow">Sobre o projeto</p>
+                <h2 data-i18n="about_title">Como o Vox AI nasceu e o que ele cobre</h2>
             </header>
 
             <div class="vox-about">
                 <div class="vox-about-main">
-                    <p class="vox-body">
-                        O Vox AI é uma <strong>tecnologia social open source</strong> dedicada ao apoio, à informação e ao
-                        fortalecimento da comunidade LGBTQIA+. Mais do que um assistente virtual, é uma ferramenta de
-                        cidadania digital que usa Inteligência Artificial para democratizar o acesso a direitos e serviços.
+                    <p class="vox-body" data-i18n-html="about_p1">
+                        O Vox AI nasceu em 2025 como projeto de extensão na disciplina <em>Tecnologias e Inteligências Artificiais</em> da <strong>Universidade Católica do Salvador (UCSAL)</strong>, com o objetivo de facilitar o acesso a informações confiáveis sobre direitos, saúde e acolhimento para a comunidade LGBTQIA+ em Salvador (BA).
                     </p>
-                    <p class="vox-body">
-                        Nossa missão é construir um espaço digital seguro e confiável, combatendo a desinformação com
-                        dados verificados — com foco especial em Salvador (BA).
+                    <p class="vox-body" data-i18n-html="about_p2">
+                        Encerrada a disciplina, o projeto continuou em desenvolvimento de forma <strong>independente, gratuita e open source</strong>, mantido sem financiamento institucional, com base de conhecimento verificada e escuta de iniciativas locais como a Casa Marielle Franco.
                     </p>
 
-                    <ul class="feature-list">
-                        <li>
-                            <span class="vox-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
-                            <div><strong>Direitos e legislação.</strong> Tire dúvidas sobre leis e garantias constitucionais com base em dados oficiais.</div>
-                        </li>
-                        <li>
-                            <span class="vox-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
-                            <div><strong>Saúde para todos.</strong> Prevenção, acesso ao SUS, saúde mental e acolhimento.</div>
-                        </li>
-                        <li>
-                            <span class="vox-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
-                            <div><strong>Exercício da cidadania.</strong> Passo a passo para retificação de documentos, união estável e denúncias.</div>
-                        </li>
-                        <li>
-                            <span class="vox-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
-                            <div><strong>Mapeamento de acolhimento.</strong> Conexão com instituições parceiras e redes de apoio seguro em Salvador.</div>
-                        </li>
-                        <li>
-                            <span class="vox-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
-                            <div><strong>Educação e cultura.</strong> Identidade de gênero, história do movimento e combate ao preconceito.</div>
-                        </li>
-                    </ul>
+                    <div class="vox-pillars">
+                        <div class="vox-pillar" style="--c:#7209B7">
+                            <h3 data-i18n="pillar1_title">Direitos e legislação</h3>
+                            <p data-i18n="pillar1_desc">Leis, retificação de nome e proteção contra discriminação.</p>
+                        </div>
+                        <div class="vox-pillar" style="--c:#0084C8">
+                            <h3 data-i18n="pillar2_title">Saúde integral</h3>
+                            <p data-i18n="pillar2_desc">SUS, prevenção (PrEP/PEP), hormonioterapia e saúde mental.</p>
+                        </div>
+                        <div class="vox-pillar" style="--c:#00A859">
+                            <h3 data-i18n="pillar3_title">Rede de acolhimento</h3>
+                            <p data-i18n="pillar3_desc">Casas de acolhida, centros de referência e canais seguros.</p>
+                        </div>
+                        <div class="vox-pillar" style="--c:#F77F00">
+                            <h3 data-i18n="pillar4_title">Memória e cultura</h3>
+                            <p data-i18n="pillar4_desc">História do movimento, representatividade e educação inclusiva.</p>
+                        </div>
+                    </div>
                 </div>
 
                 <figure class="vox-photo">
-                    <img src="static/photos/acolhimento.jpg" alt="Quatro pessoas amigas abraçadas de costas observando o horizonte ao pôr do sol em um morro"
+                    <img src="static/photos/acolhimento.jpg"
+                        data-i18n-alt="about_photo_alt"
+                        alt="Quatro pessoas amigas abraçadas de costas observando o horizonte ao pôr do sol em um morro"
                         width="960" height="640" loading="lazy">
                     <figcaption class="vox-photo-caption">
                         <!-- Foto em Domínio Público (CC0 1.0 — Helena Lopes / StockSnap); crédito consolidado no rodapé e em docs/assets/ASSETS.md -->
-                        <span>Rede de apoio e escuta ativa</span>
+                        <span data-i18n="about_photo_caption">Rede de apoio e escuta ativa</span>
                     </figcaption>
                 </figure>
             </div>
 
             <div class="vox-grid-people">
                 <div class="vox-card vox-partner">
-                    <p class="vox-meta">Parceria oficial</p>
+                    <p class="vox-meta" data-i18n="partner_eyebrow">Parceria comunitária</p>
                     <h3>Casa Marielle Franco</h3>
-                    <p>
-                        Instituição de acolhimento independente em Salvador, coordenada por Sandra Muñoz. A Casa atua como
-                        ponto de escuta e validação dos nossos conteúdos.
+                    <p data-i18n="partner_desc">
+                        Instituição de acolhimento independente em Salvador, coordenada por Sandra Muñoz. Entrevistas e uma visita presencial em 2025 orientaram a linguagem, o acolhimento e os recursos de acessibilidade do Vox AI.
                     </p>
                 </div>
 
                 <div class="vox-card team-wrapper">
-                    <p class="vox-meta">Nossa equipe</p>
-                    <p class="team-role">Tech Lead</p>
+                    <p class="vox-meta" data-i18n="team_eyebrow">Quem constrói o projeto</p>
+                    <p class="team-role" data-i18n="team_role_lead">Idealizador e manutenção</p>
                     <div class="team-tags">
                         <a data-link="owner_vox" href="#" target="_blank" rel="noopener noreferrer"><span class="team-tag leader">Emanuel Ferreira</span></a>
                     </div>
 
-                    <p class="team-role">Desenvolvedores</p>
+                    <p class="team-role" data-i18n="team_role_devs">Desenvolvimento (contribuições)</p>
                     <div class="team-tags">
-                        <a data-link="owner_vox" href="#" target="_blank" rel="noopener noreferrer"><span class="team-tag">Emanuel Ferreira</span></a>
                         <a data-link="rodrigo_santos" href="#" target="_blank" rel="noopener noreferrer"><span class="team-tag">Rodrigo Santos</span></a>
                         <a data-link="camila_fernandes" href="#" target="_blank" rel="noopener noreferrer"><span class="team-tag">Camila Fernandes</span></a>
                     </div>
 
-                    <p class="team-role">Colaboradores</p>
+                    <p class="team-role" data-i18n="team_role_ext">Equipe inicial do projeto de extensão (UCSAL, 2025.1)</p>
                     <div class="team-tags">
                         <span class="team-tag">Alicia Batista</span>
                         <span class="team-tag">Brenda Pires</span>
@@ -280,45 +198,127 @@
             </div>
         </section>
 
-        <!-- CONTRIBUIR -->
+        <!-- 3. SAÚDE DA BASE DE CONHECIMENTO -->
+        <section id="base-conhecimento" class="vox-section">
+            <div class="vox-card card-fullwidth" id="kb-health-card">
+                <header class="vox-section-head">
+                    <p class="vox-eyebrow" data-i18n="kb_eyebrow">Transparência</p>
+                    <h2 data-i18n="kb_title">O que o Vox AI sabe hoje</h2>
+                    <p class="vox-section-desc" data-i18n="kb_desc">
+                        Temas verificados na base de conhecimento do assistente. Assuntos com cobertura inicial ficam recolhidos e abertos a sugestões da comunidade.
+                    </p>
+                </header>
+                <div id="kb-health-stats">
+                    <p class="loading" data-i18n="kb_loading">Carregando estatísticas da base...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. CONTRIBUIR + GOVERNANÇA COMPACTA + TECNOLOGIAS -->
         <section id="contribuir" class="vox-section">
             <div class="vox-cta-card">
                 <figure class="vox-cta-photo">
-                    <img src="static/photos/comunidade.jpg" alt="Grupo diverso de amigos sorrindo e conversando em um piquenique ao ar livre em um parque"
+                    <img src="static/photos/comunidade.jpg"
+                        data-i18n-alt="cta_photo_alt"
+                        alt="Grupo diverso de amigos sorrindo e conversando em um piquenique ao ar livre em um parque"
                         width="960" height="652" loading="lazy">
                     <figcaption class="vox-photo-caption vox-photo-caption-cta">
                         <!-- Foto em Domínio Público (CC0 1.0 — Helena Lopes / StockSnap); crédito consolidado no rodapé e em docs/assets/ASSETS.md -->
-                        <span>Comunidade e troca colaborativa</span>
+                        <span data-i18n="cta_photo_caption">Comunidade e troca colaborativa</span>
                     </figcaption>
                 </figure>
                 <div class="vox-cta-body contributing-section">
-                    <p class="vox-eyebrow">Comunidade • Código aberto</p>
-                    <h2>Faça parte da construção do Vox AI</h2>
-                    <p class="vox-body">
-                        O Vox AI é um projeto open source e a sua ajuda é essencial! Seja corrigindo bugs, melhorando a
-                        documentação ou sugerindo novos temas para a base de conhecimento.
+                    <p class="vox-eyebrow" data-i18n="cta_eyebrow">Código aberto</p>
+                    <h2 data-i18n="cta_title">Contribua com o projeto Vox AI</h2>
+                    <p class="vox-body" data-i18n="cta_desc">
+                        O código e a curadoria do Vox AI são abertos. Você pode ajudar corrigindo bugs, melhorando a documentação, traduzindo ou sugerindo novos temas para a base de conhecimento.
                     </p>
                     <div class="vox-hero-actions">
                         <a data-link="contributing" href="#" target="_blank" rel="noopener noreferrer" class="vox-btn vox-btn-dark">
-                            Guia de contribuição <span aria-hidden="true">→</span>
+                            <span data-i18n="cta_btn_guide">Guia de contribuição</span>
+                            <span aria-hidden="true">→</span>
                         </a>
-                        <a data-link="feedback" href="#" target="_blank" rel="noopener noreferrer" class="vox-btn vox-btn-outline">
-                            Enviar feedback
+                        <a data-link="feedback" href="#" target="_blank" rel="noopener noreferrer" class="vox-btn vox-btn-outline"
+                            data-i18n="cta_btn_feedback">
+                            Sugerir conteúdo / feedback
                         </a>
                     </div>
                 </div>
             </div>
 
+            <div class="vox-gov-strip">
+                <a data-link="license" href="#" target="_blank" rel="noopener noreferrer" class="vox-gov-pill">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7209B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <span data-i18n="gov_license">Licença GNU GPLv3</span>
+                </a>
+                <a data-link="privacy_policy" href="#" target="_blank" rel="noopener noreferrer" class="vox-gov-pill">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0084C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    <span data-i18n="gov_privacy">Privacidade (LGPD)</span>
+                </a>
+                <a data-link="code_of_conduct" href="#" target="_blank" rel="noopener noreferrer" class="vox-gov-pill">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00A859" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <span data-i18n="gov_conduct">Código de conduta</span>
+                </a>
+                <a data-link="security" href="#" target="_blank" rel="noopener noreferrer" class="vox-gov-pill">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F77F00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <span data-i18n="gov_security">Segurança</span>
+                </a>
+            </div>
+
             <div class="tech-stack-section">
-                <p class="vox-meta">Tecnologias utilizadas</p>
-                <ul class="tech-pills">
-                    <li><a href="https://www.python.org/" target="_blank" rel="noopener noreferrer"><span class="dot" style="--c:#3776AB"></span>Python</a></li>
-                    <li><a href="https://streamlit.io/" target="_blank" rel="noopener noreferrer"><span class="dot" style="--c:#FF4B4B"></span>Streamlit</a></li>
-                    <li><a href="https://ai.google.dev/" target="_blank" rel="noopener noreferrer"><span class="dot" style="--c:#8E75B8"></span>Google Gemini</a></li>
-                    <li><a href="https://supabase.com/" target="_blank" rel="noopener noreferrer"><span class="dot" style="--c:#3ECF8E"></span>Supabase</a></li>
-                    <li><a href="https://huggingface.co/" target="_blank" rel="noopener noreferrer"><span class="dot" style="--c:#FFD21E"></span>Hugging Face</a></li>
-                    <li><a href="https://docs.github.com/en/actions" target="_blank" rel="noopener noreferrer"><span class="dot" style="--c:#2088FF"></span>GitHub Actions</a></li>
-                </ul>
+                <p class="vox-meta" data-i18n="tech_label">Tecnologias</p>
+                <p class="tech-stack-inline">
+                    <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer">Python</a>
+                    · <a href="https://streamlit.io/" target="_blank" rel="noopener noreferrer">Streamlit</a>
+                    · <a href="https://ai.google.dev/" target="_blank" rel="noopener noreferrer">Google Gemini</a>
+                    · <a href="https://supabase.com/" target="_blank" rel="noopener noreferrer">Supabase</a>
+                    · <a href="https://huggingface.co/" target="_blank" rel="noopener noreferrer">Hugging Face</a>
+                    · <a href="https://docs.github.com/en/actions" target="_blank" rel="noopener noreferrer">GitHub Actions</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- 5. ATUALIZAÇÕES -->
+        <section id="atualizacoes" class="vox-section">
+            <header class="vox-section-head">
+                <p class="vox-eyebrow" data-i18n="updates_eyebrow">Atualizações</p>
+                <h2 data-i18n="updates_title">Últimas versões</h2>
+            </header>
+
+            <div class="vox-grid-news">
+                <article class="vox-card vox-changelog" id="changelog-card">
+                    <div class="vox-card-top">
+                        <h3 data-i18n="changelog_card_title">Changelog recente</h3>
+                        <a data-link="changelog" href="#" target="_blank" rel="noopener noreferrer" class="vox-link">
+                            <span data-i18n="changelog_link">Histórico completo no GitHub</span>
+                            <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                    <p id="changelog-en-note" class="vox-changelog-note" hidden>
+                        Release notes are maintained in Portuguese.
+                    </p>
+                    <div id="latest-changelog" class="content-md">
+                        <p class="loading" data-i18n="changelog_loading">Carregando changelog...</p>
+                    </div>
+                </article>
+
+                <div class="vox-side">
+                    <div class="vox-card stat-card">
+                        <div>
+                            <p class="vox-meta" data-i18n="kb_version_label">Versão da base</p>
+                            <div class="value value-sm" id="kb-version"><span class="loading">...</span></div>
+                            <p class="vox-card-note" data-i18n="kb_version_note">Última atualização registrada na base verificada.</p>
+                        </div>
+
+                        <div class="vox-quick-open">
+                            <p class="vox-card-note" data-i18n="quick_open_note">Quer testar o assistente agora?</p>
+                            <a data-link="vox_streamlit" href="#" target="_blank" rel="noopener noreferrer"
+                                class="vox-btn vox-btn-dark vox-btn-full" data-i18n="header_cta">
+                                Acessar o Vox AI
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -326,15 +326,15 @@
     <footer class="vox-footer">
         <div class="vox-footer-inner">
             <img src="static/branding/logo.png" alt="Vox AI" width="120" height="40">
-            <p class="vox-footer-slogan">Informação é uma forma de cuidado 🏳️‍🌈</p>
+            <p class="vox-footer-slogan" data-i18n="footer_slogan">Informação é uma forma de cuidado</p>
             <div class="vox-footer-links">
                 <a data-link="instagram" href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
                 <a data-link="linkedin" href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 <a data-link="linktree" href="#" target="_blank" rel="noopener noreferrer">Linktree</a>
                 <a data-link="hugging_face" href="#" target="_blank" rel="noopener noreferrer">Hugging Face</a>
             </div>
-            <p class="vox-footer-copy">© 2026 Projeto Vox • Tecnologia social open source</p>
-            <p class="vox-footer-credits">
+            <p class="vox-footer-copy" data-i18n="footer_copy">© 2026 Projeto Vox · Tecnologia social open source</p>
+            <p class="vox-footer-credits" data-i18n-html="footer_credits">
                 Fotografias reais sob licença livre:
                 <a href="https://commons.wikimedia.org/wiki/File:After_Parada_LGBTQIAP%2B_na_NAVE_%C2%B7_19_06_2022_%C2%B7_S%C3%A3o_Paulo_(SP)_(52433767424).jpg" target="_blank" rel="noopener noreferrer">Oliver Kornblihtt / Mídia NINJA</a> (<a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a>) ·
                 <a href="https://stocksnap.io/photo/friends-hugging-6ZYX4YY4IR" target="_blank" rel="noopener noreferrer">Helena Lopes — Apoio</a> e
@@ -345,32 +345,7 @@
     </footer>
 
     <script src="pages/config.js" defer></script>
-    <script>
-        window.addEventListener('DOMContentLoaded', function () {
-            if (typeof VOX_LINKS === 'undefined') return;
-            const elementLinks = {
-                "owner_vox": VOX_LINKS.OWNER_VOX,
-                "github_repo": VOX_LINKS.GITHUB_REPO,
-                "changelog": VOX_LINKS.CHANGELOG,
-                "license": VOX_LINKS.LICENSE,
-                "privacy_policy": VOX_LINKS.PRIVACY_POLICY,
-                "code_of_conduct": VOX_LINKS.CODE_OF_CONDUCT,
-                "security": VOX_LINKS.SECURITY,
-                "contributing": VOX_LINKS.CONTRIBUTING,
-                "vox_streamlit": VOX_LINKS.VOX_STREAMLIT,
-                "hugging_face": VOX_LINKS.HUGGING_FACE,
-                "instagram": VOX_LINKS.INSTAGRAM,
-                "linkedin": VOX_LINKS.LINKEDIN,
-                "feedback": VOX_LINKS.FEEDBACK,
-                "linktree": VOX_LINKS.LINKTREE,
-                "rodrigo_santos": VOX_LINKS.RODRIGO_SANTOS,
-                "camila_fernandes": VOX_LINKS.CAMILA_FERNANDES
-            };
-            for (const [key, url] of Object.entries(elementLinks)) {
-                document.querySelectorAll(`[data-link="${key}"]`).forEach(el => { el.href = url; });
-            }
-        });
-    </script>
+    <script src="pages/i18n.js" defer></script>
     <script src="pages/dashboard.js" defer></script>
 </body>
 

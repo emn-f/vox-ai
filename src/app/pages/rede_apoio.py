@@ -1,9 +1,9 @@
 """
 Rede de Apoio e Diretório de Acolhimento — Vox AI.
 
-Página e componente interativo dedicado à divulgação de profissionais verificados,
-casas de acolhimento parceiras, centros de referência municipais/estaduais e ONGs
-que oferecem suporte especializado à comunidade LGBTQIA+.
+Página e componente interativo dedicado à divulgação de casas de acolhimento parceiras,
+centros de referência municipais/estaduais, ambulatórios especializados e ONGs
+que oferecem suporte à comunidade LGBTQIA+.
 
 Pode ser executado diretamente como página Streamlit ou importado como componente:
 `from src.app.pages.rede_apoio import render_rede_apoio; render_rede_apoio()`
@@ -11,11 +11,17 @@ Pode ser executado diretamente como página Streamlit ou importado como componen
 
 from __future__ import annotations
 
-import streamlit as st
 from typing import Any, Dict, List
 
+import streamlit as st
 
-# Base Curada e Auditada de Instituições e Profissionais de Apoio LGBTQIA+
+from src.external_links import EMAIL_CONTATO
+from src.i18n import get_active_lang, normalize_lang, t, translate_support_category
+
+CONTRIBUTE_KB_FORM_URL = "https://forms.gle/Bwb3NEurV7YoZFXG8"
+
+
+# Base Curada e Auditada de Instituições e Iniciativas de Apoio LGBTQIA+
 REDE_APOIO_DATA: List[Dict[str, Any]] = [
     # Casas de Acolhimento
     {
@@ -219,7 +225,7 @@ REDE_APOIO_DATA: List[Dict[str, Any]] = [
         "modalidade": "Presencial e Online",
     },
 
-    # Saúde e Profissionais Afirmativos
+    # Saúde e Ambulatórios
     {
         "nome": "Ambulatório Transdisciplinar de Identidade de Gênero e Orientação Sexual (AMTIGOS - IPq/HCFMUSP)",
         "categoria": "Saúde e Ambulatórios",
@@ -235,60 +241,42 @@ REDE_APOIO_DATA: List[Dict[str, Any]] = [
         "gratuito": True,
         "modalidade": "Presencial",
     },
-    {
-        "nome": "Rede Psicológica Afirmativa Vox",
-        "categoria": "Profissionais Afirmativos",
-        "uf": "Nacional",
-        "cidade": "Atendimento Online",
-        "descricao": (
-            "Diretório de psicólogos(as/es) cadastrados com formação em Psicologia Afirmativa LGBTQIA+, "
-            "atendimento com valores sociais e plantões voluntários para situações de crise."
-        ),
-        "tags": ["Tabela Social", "Atendimento Online", "Psicologia Afirmativa", "Verificado Vox"],
-        "contato": "apoio@voxai.org",
-        "link": "https://voxai.org/apoio-psicologico",
-        "gratuito": False,
-        "modalidade": "Online",
-    },
-    {
-        "nome": "Assessoria Jurídica Popular — Retifica Já",
-        "categoria": "Profissionais Afirmativos",
-        "uf": "Nacional",
-        "cidade": "Atendimento Online",
-        "descricao": (
-            "Rede de advogados(as/es) e defensores populares dedicados a orientar o passo a passo da retificação "
-            "de prenome e gênero em cartórios de Registro Civil (Provimento CNJ nº 73/2018)."
-        ),
-        "tags": ["Voluntário / Gratuito", "Retificação de Nome", "Jurídico", "Verificado Vox"],
-        "contato": "juridico@voxai.org",
-        "link": "https://voxai.org/retificacao",
-        "gratuito": True,
-        "modalidade": "Online",
-    },
 ]
 
 
-def render_banner_sos() -> None:
-    """Renderiza a barra de contatos emergenciais de socorro imediato."""
+def render_banner_sos(lang: str | None = None) -> None:
+    """
+    Renderiza a barra de contatos emergenciais de socorro imediato.
+
+    Args:
+        lang (str | None): Idioma da interface ('pt' ou 'en').
+    """
+    active_lang = normalize_lang(lang) if lang is not None else get_active_lang()
+    sos_title = t("support_sos_title", active_lang)
+    sos_desc = t("support_sos_desc", active_lang)
+    sos_100 = t("support_sos_100", active_lang)
+    sos_188 = t("support_sos_188", active_lang)
+    sos_190 = t("support_sos_190", active_lang)
+
     st.markdown(
-        """
+        f"""
         <div style="background: linear-gradient(135deg, #1f122f, #2d0b28); border: 1px solid #FF1E56; border-radius: 12px; padding: 18px; margin-bottom: 24px;">
             <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
                 <span style="font-size: 24px;">🚨</span>
-                <strong style="font-size: 18px; color: #FF4D6D;">Precisa de Ajuda Imediata?</strong>
+                <strong style="font-size: 18px; color: #FF4D6D;">{sos_title}</strong>
             </div>
             <p style="color: #E2E8F0; margin-bottom: 12px; font-size: 14px;">
-                Se você está sofrendo violência física, ameaça à vida ou crise emocional severa, contate os canais públicos gratuitos:
+                {sos_desc}
             </p>
             <div style="display: flex; flex-wrap: wrap; gap: 10px;">
                 <span style="background: rgba(255, 30, 86, 0.2); border: 1px solid #FF1E56; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; color: #FFF;">
-                    📞 Disque 100 — Direitos Humanos &amp; LGBTfobia
+                    {sos_100}
                 </span>
                 <span style="background: rgba(0, 180, 216, 0.2); border: 1px solid #00B4D8; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; color: #FFF;">
-                    💛 CVV 188 — Apoio Emocional e Prevenção
+                    {sos_188}
                 </span>
                 <span style="background: rgba(114, 9, 183, 0.2); border: 1px solid #7209B7; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; color: #FFF;">
-                    🛡️ 190 — Polícia Militar em Caso de Risco
+                    {sos_190}
                 </span>
             </div>
         </div>
@@ -297,26 +285,32 @@ def render_banner_sos() -> None:
     )
 
 
-def render_rede_apoio(show_title: bool = True) -> None:
+def render_rede_apoio(show_title: bool = True, lang: str | None = None) -> None:
     """
     Renderiza o diretório completo com busca interativa, filtros por categoria,
-    estado (UF), tags e formulário de inscrição para novos profissionais.
+    estado (UF), tags e links reais de colaboração.
+
+    Args:
+        show_title (bool): Exibe o título principal quando renderizado como página dedicada.
+        lang (str | None): Idioma da interface ('pt' ou 'en').
     """
+    active_lang = normalize_lang(lang) if lang is not None else get_active_lang()
+
     if show_title:
-        st.title("🤝 Rede de Apoio e Acolhimento Vox")
-    st.markdown(
-        "Conectamos você a **casas de acolhimento parceiras**, **centros públicos de referência**, "
-        "**ONGs combativas** e **profissionais de saúde e direito afirmativos** em todo o Brasil. 🏳️‍🌈"
-    )
+        st.title(t("support_page_title", active_lang))
+    st.markdown(t("support_intro", active_lang))
 
     # Banner de SOS
-    render_banner_sos()
+    render_banner_sos(lang=active_lang)
 
     # Controles de Filtro
     col_search, col_cat, col_uf = st.columns([2, 1.5, 1])
 
     with col_search:
-        busca_termo = st.text_input("🔍 Buscar por nome, serviço ou palavra-chave:", placeholder="Ex: moradia, trans, jurídico, psicologia...")
+        busca_termo = st.text_input(
+            t("support_search_label", active_lang),
+            placeholder=t("support_search_placeholder", active_lang),
+        )
 
     categorias_disponiveis = [
         "Todas as Categorias",
@@ -324,63 +318,78 @@ def render_rede_apoio(show_title: bool = True) -> None:
         "Centros Públicos de Referência",
         "ONGs e Coletivos",
         "Saúde e Ambulatórios",
-        "Profissionais Afirmativos",
     ]
     with col_cat:
-        categoria_sel = st.selectbox("Categoria:", categorias_disponiveis)
+        categoria_sel = st.selectbox(
+            t("support_cat_label", active_lang),
+            categorias_disponiveis,
+            format_func=lambda c: (
+                t("support_cat_all", active_lang)
+                if c == "Todas as Categorias"
+                else translate_support_category(c, active_lang)
+            ),
+        )
 
     ufs_disponiveis = ["Todos os Estados", "Nacional", "SP", "RJ", "MG", "DF", "AM", "PE", "RS"]
     with col_uf:
-        uf_sel = st.selectbox("Localização:", ufs_disponiveis)
+        uf_sel = st.selectbox(
+            t("support_uf_label", active_lang),
+            ufs_disponiveis,
+            format_func=lambda u: (
+                t("support_uf_all", active_lang)
+                if u == "Todos os Estados"
+                else (t("support_uf_national", active_lang) if u == "Nacional" else u)
+            ),
+        )
 
-    check_somente_gratuitos = st.checkbox("Apenas serviços 100% gratuitos ou SUS")
+    check_somente_gratuitos = st.checkbox(t("support_free_only", active_lang))
 
     # Filtragem dos Registros
     registros_filtrados = []
-    termo_limpo = busca_termo.lower().strip()
+    termo_limpo = (busca_termo or "").lower().strip()
 
     for item in REDE_APOIO_DATA:
-        # Filtro de Categoria
         if categoria_sel != "Todas as Categorias" and item["categoria"] != categoria_sel:
             continue
 
-        # Filtro de UF
         if uf_sel != "Todos os Estados":
             if uf_sel == "Nacional" and item["uf"] != "Nacional":
                 continue
             elif uf_sel != "Nacional" and item["uf"] not in (uf_sel, "Nacional"):
                 continue
 
-        # Filtro de Gratuidade
         if check_somente_gratuitos and not item.get("gratuito", False):
             continue
 
-        # Filtro de Termo de Busca
         if termo_limpo:
-            conteudo_completo = f"{item['nome']} {item['cidade']} {item['descricao']} {' '.join(item['tags'])}".lower()
+            conteudo_completo = (
+                f"{item['nome']} {item['cidade']} {item['descricao']} {' '.join(item['tags'])}"
+            ).lower()
             if termo_limpo not in conteudo_completo:
                 continue
 
         registros_filtrados.append(item)
 
-    st.markdown(f"**Exibindo {len(registros_filtrados)} locais e iniciativas encontradas:**")
+    st.markdown(t("support_results_count", active_lang, count=len(registros_filtrados)))
 
     if not registros_filtrados:
-        st.info("Nenhuma iniciativa encontrada para os filtros selecionados. Tente expandir a busca.")
+        st.info(t("support_empty", active_lang))
     else:
-        # Renderização em Grid de Cards
         for item in registros_filtrados:
+            uf_display = t("support_uf_national", active_lang) if item["uf"] == "Nacional" else item["uf"]
+            cidade_display = "Brazil" if active_lang == "en" and item["cidade"] == "Brasil" else item["cidade"]
+
             with st.container():
                 st.markdown(
                     f"""
                     <div style="background: rgba(22, 18, 38, 0.85); border: 1px solid rgba(114, 9, 183, 0.25); border-radius: 14px; padding: 18px; margin-bottom: 16px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); backdrop-filter: blur(8px);">
                         <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;">
                             <h3 style="margin: 0; color: #FFFFFF; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.15rem; font-weight: 700;">{item['nome']}</h3>
-                            <span style="background: linear-gradient(135deg, #7209B7 0%, #B5179E 100%); color: #FFF; font-size: 11px; font-weight: bold; padding: 4px 10px; border-radius: 12px; box-shadow: 0 2px 8px rgba(114, 9, 183, 0.3);">{item['uf']} — {item['cidade']}</span>
+                            <span style="background: linear-gradient(135deg, #7209B7 0%, #B5179E 100%); color: #FFF; font-size: 11px; font-weight: bold; padding: 4px 10px; border-radius: 12px; box-shadow: 0 2px 8px rgba(114, 9, 183, 0.3);">{uf_display} — {cidade_display}</span>
                         </div>
                         <p style="color: #CBD5E1; margin: 10px 0 12px 0; font-size: 14px; line-height: 1.5;">{item['descricao']}</p>
                         <div style="margin-bottom: 12px;">
-                            {' '.join([f'<span style="background: rgba(114, 9, 183, 0.15); border: 1px solid rgba(114, 9, 183, 0.3); color: #C084FC; font-size: 11px; padding: 3px 8px; border-radius: 6px; margin-right: 6px;">#{t}</span>' for t in item['tags']])}
+                            {' '.join([f'<span style="background: rgba(114, 9, 183, 0.15); border: 1px solid rgba(114, 9, 183, 0.3); color: #C084FC; font-size: 11px; padding: 3px 8px; border-radius: 6px; margin-right: 6px;">#{tag}</span>' for tag in item['tags']])}
                         </div>
                     </div>
                     """,
@@ -390,42 +399,39 @@ def render_rede_apoio(show_title: bool = True) -> None:
                 cols_act = st.columns([1, 1, 2])
                 with cols_act[0]:
                     if item.get("link"):
-                        st.link_button("🌐 Visitar Site / Redes", item["link"], use_container_width=True)
+                        st.link_button(t("support_visit_btn", active_lang), item["link"], use_container_width=True)
                 with cols_act[1]:
                     if item.get("whatsapp"):
-                        st.link_button("💬 Falar no WhatsApp", f"https://wa.me/{item['whatsapp']}", use_container_width=True)
+                        st.link_button(
+                            t("support_whatsapp_btn", active_lang),
+                            f"https://wa.me/{item['whatsapp']}",
+                            use_container_width=True,
+                        )
                     elif item.get("contato"):
-                        st.caption(f"📞 Contato: **{item['contato']}**")
+                        st.caption(t("support_contact_caption", active_lang, contact=item["contato"]))
 
-    # Seção de Cadastro Colaborativo
+    # Seção de Colaboração Real (formulário oficial + e-mail)
     st.markdown("---")
-    st.markdown("### 📝 Você é profissional afirmativo ou representa uma instituição?")
-    st.write(
-        "Nossa rede é colaborativa e passa por processo rigoroso de verificação ética, "
-        "assegurando respeito irrestrito aos direitos humanos da comunidade LGBTQIA+."
-    )
+    st.markdown(t("support_collab_heading", active_lang))
+    st.write(t("support_collab_desc", active_lang))
 
-    with st.expander("✨ Quero cadastrar minha entidade ou consultório"):
-        with st.form("form_cadastro_rede"):
-            nome_entidade = st.text_input("Nome do Profissional ou Entidade:")
-            registro_prof = st.text_input("Registro Profissional (CRP, CRM, OAB, etc.) ou CNPJ:")
-            categoria_form = st.selectbox("Categoria de Atuação:", categorias_disponiveis[1:])
-            uf_cidade = st.text_input("Cidade e Estado de Atendimento:")
-            email_contato = st.text_input("E-mail de Contato:")
-            descricao_atendimento = st.text_area("Descreva os serviços oferecidos e política de acessibilidade/valores:")
-            declaracao_etica = st.checkbox("Declaro que sigo diretrizes éticas afirmativas e repudio qualquer prática discriminatória ou de 'cura gay'.")
-
-            submitted = st.form_submit_button("Submeter para Análise da Equipe Vox 🌈")
-            if submitted:
-                if not declaracao_etica:
-                    st.error("É obrigatório concordar com as diretrizes éticas afirmativas para submissão.")
-                elif not (nome_entidade and email_contato):
-                    st.warning("Preencha ao menos seu nome/entidade e e-mail de contato.")
-                else:
-                    st.success("✅ Solicitação enviada com sucesso! Nossa equipe entrará em contato para validação dos dados.")
+    cols_collab = st.columns(2)
+    with cols_collab[0]:
+        st.link_button(
+            t("support_collab_form_btn", active_lang),
+            CONTRIBUTE_KB_FORM_URL,
+            use_container_width=True,
+        )
+    with cols_collab[1]:
+        st.link_button(
+            t("support_collab_email_btn", active_lang),
+            EMAIL_CONTATO,
+            use_container_width=True,
+        )
 
 
 # Se executado diretamente como página do Streamlit
 if __name__ == "__main__":
-    st.set_page_config(page_title="Rede de Apoio — Vox AI", page_icon="🤝", layout="wide")
-    render_rede_apoio()
+    active = get_active_lang()
+    st.set_page_config(page_title=t("support_page_title", active), page_icon="🤝", layout="wide")
+    render_rede_apoio(lang=active)

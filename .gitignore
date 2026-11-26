@@ -99,5 +99,6 @@ scripts/debug_models.py
 # Antigravity CLI
 # ==============================================================================
 .antigravity/
+.agents/skills/alethe/
 gerar_conteudo_kb.py
 scripts/inserir_kb_pendencias.py

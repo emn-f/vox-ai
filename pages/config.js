@@ -20,8 +20,9 @@ const VOX_LINKS = {
 
     // Redes Sociais
     "INSTAGRAM": "https://www.instagram.com/projetovoxai/",
-    "LINKEDIN": "https://www.linkedin.com/company/vox-ai/",
+    "LINKEDIN": "https://www.linkedin.com/company/projetovox/",
     "FEEDBACK": "https://forms.gle/GpG9ESkUpBTA7HoV9",
+    "CONTRIBUTE_KB_FORM": "https://forms.gle/Bwb3NEurV7YoZFXG8",
     "LINKTREE": "https://linktr.ee/vox_ai",
 
     // Contribuidores
