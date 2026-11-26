@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.7.1 - 26/11/2026
+
+
+### 🐛 Correções
+
+* Ajusta altura do card de contribuição, remove badge verde e refina legendas ([9558f5c](https://github.com/emn-f/vox-ai/commit/9558f5c8e45f478c590cdefcd65a6dcce857df30))
+
+
 ## v5.7.0 - 26/11/2026
 
 
