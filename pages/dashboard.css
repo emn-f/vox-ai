@@ -1239,6 +1239,12 @@ a:hover .team-tag.leader {
     gap: 0.85rem;
 }
 
+.vox-footer-inner > img {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+}
+
 .vox-footer-slogan {
     margin: 0;
     font-family: var(--font-heading);

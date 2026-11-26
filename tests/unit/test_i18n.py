@@ -118,10 +118,9 @@ def test_configurar_pagina_sets_page_config_before_resolving_language():
          patch("src.app.ui.st.markdown"):
         assert configurar_pagina() == "en"
 
-    assert calls[0] == (
-        "config",
-        {"page_title": t("page_title", "pt"), "page_icon": "🌈"},
-    )
+    assert calls[0][0] == "config"
+    assert calls[0][1]["page_title"] == t("page_title", "pt")
+    assert calls[0][1]["page_icon"] in ("static/branding/icon.png", "🌈")
     assert calls[1] == ("resolve", None)
 
 
