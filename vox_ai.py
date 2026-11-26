@@ -34,14 +34,11 @@ from src.i18n import (
     get_saudacao,
     get_sidebar_body,
     get_sidebar_footer,
-    resolve_lang,
     t,
 )
 from src.utils import git_version
 
-lang = resolve_lang()
-
-configurar_pagina(lang=lang)
+lang = configurar_pagina()
 
 if "session_id" not in st.session_state:
     st.session_state.session_id = str(uuid.uuid4())

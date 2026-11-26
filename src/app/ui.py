@@ -18,6 +18,7 @@ from src.i18n import (
     get_active_lang,
     get_saudacao,
     normalize_lang,
+    resolve_lang,
     t,
     translate_report_category,
 )
@@ -35,16 +36,21 @@ def carregar_icone_base64() -> str:
     return ""
 
 
-def configurar_pagina(lang: str = "pt") -> None:
+def configurar_pagina(lang: str | None = None) -> str:
     """
     Configura as propriedades básicas da página web (título, ícone) no Streamlit
     e renderiza o cabeçalho estilizado da aplicação.
 
     Args:
-        lang (str): Idioma ativo da interface ('pt' ou 'en').
+        lang (str | None): Idioma ativo da interface ('pt' ou 'en').
+
+    Returns:
+        str: Idioma ativo da interface.
     """
-    active_lang = normalize_lang(lang)
-    st.set_page_config(page_title=t("page_title", active_lang), page_icon="🌈")
+    page_lang = normalize_lang(lang) if lang is not None else "pt"
+    st.set_page_config(page_title=t("page_title", page_lang), page_icon="🌈")
+    # Resolve o idioma só depois da configuração, pois isso acessa o estado do Streamlit.
+    active_lang = normalize_lang(lang) if lang is not None else resolve_lang()
 
     # O CSS precisa ser injetado antes do cabeçalho; caso contrário a logo
     # aparece sem estilo (tamanho original) por um instante e depois "pula".
@@ -109,6 +115,7 @@ def configurar_pagina(lang: str = "pt") -> None:
         """,
         unsafe_allow_html=True,
     )
+    return active_lang
 
 
 def carregar_css(path: str = CSS_PATH) -> None:

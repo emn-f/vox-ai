@@ -7,7 +7,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from src.app.pages.rede_apoio import REDE_APOIO_DATA, render_rede_apoio
-from src.app.ui import _aplicar_troca_idioma
+from src.app.ui import _aplicar_troca_idioma, configurar_pagina
 from src.i18n import (
     REPORT_CATEGORY_EN,
     _TRANSLATIONS,
@@ -98,6 +98,31 @@ def test_resolve_lang_from_query_params_and_session():
     with patch("src.i18n.st.session_state", session_mock_pt), \
          patch("src.i18n.st.query_params", {"lang": "en"}):
         assert resolve_lang() == "pt"
+
+
+@pytest.mark.unit
+def test_configurar_pagina_sets_page_config_before_resolving_language():
+    calls = []
+
+    def set_page_config(**kwargs):
+        calls.append(("config", kwargs))
+
+    def resolve_language():
+        calls.append(("resolve", None))
+        return "en"
+
+    with patch("src.app.ui.st.set_page_config", side_effect=set_page_config), \
+         patch("src.app.ui.resolve_lang", side_effect=resolve_language), \
+         patch("src.app.ui.carregar_css"), \
+         patch("src.app.ui.carregar_icone_base64", return_value=""), \
+         patch("src.app.ui.st.markdown"):
+        assert configurar_pagina() == "en"
+
+    assert calls[0] == (
+        "config",
+        {"page_title": t("page_title", "pt"), "page_icon": "🌈"},
+    )
+    assert calls[1] == ("resolve", None)
 
 
 @pytest.mark.unit
