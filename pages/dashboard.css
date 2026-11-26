@@ -332,19 +332,49 @@ main {
     width: 100%;
     height: 420px;
     object-fit: cover;
-    object-position: center;
+    object-position: center 25%;
 }
 
 .vox-hero-photo figcaption {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 0.55rem;
+    justify-content: space-between;
+    gap: 0.45rem 0.75rem;
     padding: 0.9rem 1.25rem;
     font-size: 0.88rem;
     font-weight: 600;
     color: var(--graphite);
     background: var(--surface);
     border-top: 1px solid var(--border);
+}
+
+.vox-caption-lead {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.vox-photo-credit {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--muted);
+    line-height: 1.35;
+}
+
+.vox-photo-credit a {
+    text-decoration: underline;
+    text-decoration-color: var(--border-strong);
+    text-underline-offset: 2px;
+}
+
+.vox-photo-credit a:last-child {
+    white-space: nowrap;
+}
+
+.vox-photo-credit a:hover {
+    color: var(--graphite);
+    text-decoration-color: var(--graphite);
 }
 
 /* --------------------------------------------------------------------------
@@ -877,6 +907,8 @@ main {
 
 .vox-photo {
     margin: 0;
+    display: flex;
+    flex-direction: column;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-card);
@@ -896,6 +928,21 @@ main {
     width: 100%;
     height: 410px;
     object-fit: cover;
+    object-position: center;
+}
+
+.vox-photo-caption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem 0.75rem;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--graphite);
+    background: var(--surface);
+    border-top: 1px solid var(--border);
 }
 
 .vox-grid-people {
@@ -985,13 +1032,21 @@ a:hover .team-tag.leader {
 .vox-cta-photo {
     margin: 0;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .vox-cta-photo img {
     width: 100%;
-    height: 100%;
-    min-height: 340px;
+    flex: 1 1 auto;
+    min-height: 300px;
     object-fit: cover;
+    object-position: center 45%;
+}
+
+.vox-photo-caption-cta {
+    background: var(--bg-alt);
+    border-right: 1px solid var(--border);
 }
 
 .vox-cta-body {
@@ -1094,6 +1149,25 @@ a:hover .team-tag.leader {
     color: var(--muted);
 }
 
+.vox-footer-credits {
+    margin: 0;
+    max-width: 760px;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--muted);
+}
+
+.vox-footer-credits a {
+    text-decoration: underline;
+    text-decoration-color: var(--border-strong);
+    text-underline-offset: 2px;
+}
+
+.vox-footer-credits a:hover {
+    color: var(--graphite);
+    text-decoration-color: var(--graphite);
+}
+
 .loading {
     color: var(--muted);
     font-style: italic;
@@ -1127,6 +1201,15 @@ a:hover .team-tag.leader {
     .vox-hero-photo img,
     .vox-photo img {
         height: 320px;
+    }
+
+    .vox-cta-photo img {
+        height: 280px;
+        flex: none;
+    }
+
+    .vox-photo-caption-cta {
+        border-right: none;
     }
 }
 
