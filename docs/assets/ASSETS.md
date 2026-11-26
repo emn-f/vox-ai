@@ -80,6 +80,8 @@ Fotografias reais sob licença livre exibidas em `index.html` (`static/photos/`)
 | `static/photos/acolhimento.jpg` | Quatro amigos abraçados ao pôr do sol | Helena Lopes | [StockSnap](https://stocksnap.io/photo/friends-hugging-6ZYX4YY4IR) | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) |
 | `static/photos/comunidade.jpg` | Grupo diverso de amigos conversando ao ar livre | Helena Lopes | [StockSnap](https://stocksnap.io/photo/friends-picnic-3IVBNKC2JH) | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) |
 
+> **Política de exibição:** `hero.jpg` (`CC BY-SA 2.0`) mantém atribuição obrigatória diretamente na legenda do Hero e no rodapé; `acolhimento.jpg` e `comunidade.jpg` (`CC0 1.0` — Domínio Público) dispensam atribuição obrigatória na imagem e mantêm os créditos consolidados no rodapé e neste inventário.
+
 ---
 
 <div align="left">
