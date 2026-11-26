@@ -7,6 +7,76 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.8.1 - 26/11/2026
+
+
+### 🐛 Correções
+
+* Configure page before resolving locale (#375) ([1a0e443](https://github.com/emn-f/vox-ai/commit/1a0e4437ef04027b1c9cee34480126396b12164e))
+
+
+## v5.8.0 - 26/11/2026
+
+
+### ✨ Funcionalidades
+
+* Reformula dashboard editorial, transparência e suporte PT/EN ([d932e59](https://github.com/emn-f/vox-ai/commit/d932e5912dfa46ca25feb11904bc075271a4460a))
+
+* Adiciona suporte bilíngue PT/EN no Streamlit, voz e rede de apoio ([477d78f](https://github.com/emn-f/vox-ai/commit/477d78f3a1e90a41e0b344765b4ae07a5b7b7d9e))
+
+
+### 📚 Documentação
+
+* Atualiza regras de git, deploy e atribuição de fotos reais ([01cf75c](https://github.com/emn-f/vox-ai/commit/01cf75c559ec835080bc47ec3173fd5400c8f279))
+
+
+### 🔧 Tarefas Internas
+
+* Ignora pasta local da skill alethe no gitignore ([ca1c3fb](https://github.com/emn-f/vox-ai/commit/ca1c3fb39d89bc9d582d6d14490988c63e9732db))
+
+
+## v5.7.1 - 26/11/2026
+
+
+### 🐛 Correções
+
+* Ajusta altura do card de contribuição, remove badge verde e refina legendas ([9558f5c](https://github.com/emn-f/vox-ai/commit/9558f5c8e45f478c590cdefcd65a6dcce857df30))
+
+
+## v5.7.0 - 26/11/2026
+
+
+### ✨ Funcionalidades
+
+* Substitui imagens geradas por IA por fotografias reais com atribuição ([af0d195](https://github.com/emn-f/vox-ai/commit/af0d195520ee02374a2a60b322600cf31da8a41d))
+
+
+## v5.6.1 - 18/11/2026
+
+
+### 📚 Documentação
+
+* Refina linguagem e paralelismo nos textos da página ([425d173](https://github.com/emn-f/vox-ai/commit/425d17318acb311f06dfb2f6d521a370864c3cbc))
+
+* Adiciona regras de padrão editorial Instagram e deploy do GitHub Pages ([03c0aaf](https://github.com/emn-f/vox-ai/commit/03c0aaf54f672c1e3f7342cb5ce11bb5bb0225ad))
+
+
+## v5.6.0 - 18/11/2026
+
+
+### ✨ Funcionalidades
+
+* Aplica design editorial claro estilo Instagram e corrige deploy de assets ([46aa7f3](https://github.com/emn-f/vox-ai/commit/46aa7f339fbc58e51745089eec31a35ec7269b97))
+
+
+## v5.5.0 - 18/11/2026
+
+
+### ✨ Funcionalidades
+
+* Moderniza GitHub Pages com identidade visual v2.1.0 ([94d3d76](https://github.com/emn-f/vox-ai/commit/94d3d766d39ec8aebf7ada6fa9abcd8d331aa1f9))
+
+
 ## v5.4.2 - 15/11/2026
 
 
