@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.7.0 - 26/11/2026
+
+
+### ✨ Funcionalidades
+
+* Substitui imagens geradas por IA por fotografias reais com atribuição ([af0d195](https://github.com/emn-f/vox-ai/commit/af0d195520ee02374a2a60b322600cf31da8a41d))
+
+
 ## v5.6.1 - 18/11/2026
 
 
