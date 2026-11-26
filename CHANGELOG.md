@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.8.1 - 26/11/2026
+
+
+### 🐛 Correções
+
+* Configure page before resolving locale (#375) ([1a0e443](https://github.com/emn-f/vox-ai/commit/1a0e4437ef04027b1c9cee34480126396b12164e))
+
+
 ## v5.8.0 - 26/11/2026
 
 
