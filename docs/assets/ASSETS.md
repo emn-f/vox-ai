@@ -1,3 +1,6 @@
+> [!WARNING] Somente leitura no celular
+> Arquivo montado: edições feitas no Obsidian mobile não voltam para o PC — edite apenas no PC.
+
 # 🗺️ Vox AI: Inventário de Links e Ativos Digitais
 
 **Objetivo:** Centralizar todas as URLs externas, internas e documentações do projeto para facilitar a manutenção e o acesso rápido.
@@ -24,6 +27,7 @@ Canais de contato oficiais e de divulgação do Projeto Vox.
 
 ## 🚀 Infraestrutura & Deploy
 Links técnicos de acesso à aplicação e código-fonte.
+
 | Ambiente | URL | Status |
 | :--- | :--- | :--- |
 | **Streamlit Cloud** | [vox-ai.streamlit.app](https://vox-ai.streamlit.app/) | ✅ Produção (Principal) |
@@ -34,6 +38,7 @@ Links técnicos de acesso à aplicação e código-fonte.
 ## ⚖️ Documentação Legal e Governança
 
 Links diretos para os arquivos markdown de governança no repositório (Branch `main`).
+
 | Arquivo | Definição | Descrição |
 | :--- | :--- | :--- |
 | **[CONTRIBUTING.md](../CONTRIBUTING.md)** | **Como Contribuir** | Guia para contribuidores. |
@@ -64,6 +69,17 @@ Fontes dos ícones utilizados na interface (Icons8 - Biblioteca Fluency e Color)
 * **LinkedIn (Fluency):** `https://img.icons8.com/fluency/48/linkedin.png`
 * **Estrela/Avaliar (Fluency):** `https://img.icons8.com/fluency/48/star.png`
 * **Gmail (Fluency):** `https://img.icons8.com/fluency/48/gmail-new.png`
+
+## 📸 Créditos das Fotografias (GitHub Pages)
+
+Fotografias reais sob licença livre exibidas em `index.html` (`static/photos/`):
+
+| Arquivo | Descrição | Autoria | Fonte | Licença |
+| :--- | :--- | :--- | :--- | :--- |
+| `static/photos/hero.jpg` | Comunidade LGBTQIA+ após a 26ª Parada do Orgulho em São Paulo (SP) | Oliver Kornblihtt / Mídia NINJA (via Fora do Eixo) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:After_Parada_LGBTQIAP%2B_na_NAVE_%C2%B7_19_06_2022_%C2%B7_S%C3%A3o_Paulo_(SP)_(52433767424).jpg) | [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/) |
+| `static/photos/acolhimento.jpg` | Quatro amigos abraçados ao pôr do sol | Helena Lopes | [StockSnap](https://stocksnap.io/photo/friends-hugging-6ZYX4YY4IR) | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) |
+| `static/photos/comunidade.jpg` | Grupo diverso de amigos conversando ao ar livre | Helena Lopes | [StockSnap](https://stocksnap.io/photo/friends-picnic-3IVBNKC2JH) | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) |
+
 ---
 
 <div align="left">
