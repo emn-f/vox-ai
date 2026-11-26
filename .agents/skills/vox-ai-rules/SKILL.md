@@ -29,7 +29,10 @@ alwaysApply: true
 6. **Integridade de Git:**
    - NUNCA use `--no-verify` em commits ou pushes. Todos os hooks de validação (segredos, AI Code Review) devem rodar obrigatoriamente.
    - NUNCA sobrescreva ou descarte edições manuais feitas pelo usuário (ex: `.gitignore`, toasts, ajustes locais).
-   - Respeite o fluxo de branches: desenvolvimento e testes em `develop` (ou branches temáticas `feat/*`, `fix/*`), com integração em `main` via Pull Requests.
+   - Faça staging apenas dos arquivos explicitamente alterados na tarefa (nunca `git add .`/`-A`), preservando modificações locais de ambiente como avisos de bind-mount em `docs/identidade_visual.md` e `.agents/skills/alethe/`.
+   - Se `commit.gpgsign=true` (1Password SSH) falhar (`failed to fill whole buffer` / `Could not connect to socket`), NÃO desative a assinatura por conta própria; pergunte ao usuário se vai desbloquear o 1Password ou se autoriza `-c commit.gpgsign=false`.
+   - Respeite o fluxo de branches: desenvolvimento e testes em `develop` (ou branches temáticas `feat/*`, `fix/*`), com integração em `main` via Pull Requests (sem `--delete-branch`).
+   - Após o merge em `main`, aguarde também o 2º `Deploy to GitHub Pages` (`workflow_run` disparado após `🚀 Production Pipeline` atualizar o `CHANGELOG.md`) finalizar com `success` antes de validar assets ou capturar screenshots de produção.
 7. **Migrações:** NUNCA altere arquivos de migração já comitados em `supabase/migrations/`. Novas migrações devem ser criadas com timestamp sequencial.
 
 # Regras Estritas de Arquitetura, RAG e Anti-Alucinação
@@ -46,6 +49,7 @@ alwaysApply: true
 - **Gerenciamento de Estado:** Utilize `st.session_state` extensivamente para histórico conversacional e variáveis transitórias.
 - **GitHub Pages & Páginas Públicas (Padrão Editorial Instagram):**
   - Páginas públicas (`index.html`, `pages/`) devem seguir o **Padrão Editorial dos Posts do Instagram** (`docs/identidade_visual.md`, Seção 3): fundo branco editorial (`#FFFFFF`), faixa arco-íris (`8px`), logotipo oficial (`static/branding/logo.png`), chapéus em `#64748B`, `Plus Jakarta Sans` + `Inter`, pills com bolinhas coloridas e fotografias comunitárias — **não** usar estética escura neon genérica de dashboard.
+  - **Fotografias reais (`static/photos/`):** não usar imagens geradas por IA. Imagens `CC BY-SA` exigem atribuição obrigatória visível na legenda do card e no rodapé; imagens `CC0 1.0` (Domínio Público) devem exibir apenas legenda editorial limpa no card, consolidando créditos no rodapé + `docs/assets/ASSETS.md` com comentário HTML explicativo no `<figcaption>` para evitar falso `[BLOCK]` no `pre-push`.
   - **Deploy de Assets:** `.github/workflows/deploy_pages.yml` monta `_site/` explicitamente. Ao adicionar novas pastas em `static/` (ex.: `static/photos/`), garanta a cópia para `_site/static/` e a inclusão em `on.push.paths`.
   - **Validação:** Sempre verificar a renderização real (ex.: screenshot via Chrome headless) e confirmar `HTTP 200` dos assets em produção após o deploy.
   - **Linguagem:** Manter português brasileiro natural, acolhedor e com paralelismo gramatical (ex.: *Atualizações*, *Código aberto*, *Colaboradores*).
