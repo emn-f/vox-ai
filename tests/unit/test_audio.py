@@ -26,6 +26,11 @@ class TestSanitizacaoEUtilitariosAudio:
         assert "Olá, tudo bem? Sou o Vox AI!" in resultado
         assert "LGBTQIA+" in resultado
 
+    def test_sanitizar_texto_preserva_apostrofo_ingles(self):
+        texto = "I'm here and it's safe, don't worry!"
+        resultado = _sanitizar_texto(texto)
+        assert resultado == "I'm here and it's safe, don't worry!"
+
     def test_sanitizar_texto_vazio_ou_none(self):
         assert _sanitizar_texto("") == ""
         assert _sanitizar_texto(None) == ""
@@ -457,6 +462,21 @@ class TestSinteseFalaGemini:
         assert isinstance(buffer, io.BytesIO)
         assert buffer.getvalue() == b"bytes-mp3-gtts"
         mock_gtts_cls.assert_called_once_with(text="Texto para síntese gTTS", lang="pt", tld="com.br")
+
+    @patch("src.core.audio.gTTS")
+    def test_gerar_fala_gtts_ingles(self, mock_gtts_cls):
+        mock_tts = MagicMock()
+
+        def fake_write_to_fp(fp):
+            fp.write(b"bytes-mp3-en")
+
+        mock_tts.write_to_fp.side_effect = fake_write_to_fp
+        mock_gtts_cls.return_value = mock_tts
+
+        buffer = gerar_fala_gemini("Hello, how can I help?", client=None, lang="en")
+        assert isinstance(buffer, io.BytesIO)
+        assert buffer.getvalue() == b"bytes-mp3-en"
+        mock_gtts_cls.assert_called_once_with(text="Hello, how can I help?", lang="en", tld="com")
 
     @patch("src.core.audio.gTTS", side_effect=Exception("Falha total na conexão de rede"))
     def test_gerar_fala_resiliencia_falha_total(self, _mock_gtts):

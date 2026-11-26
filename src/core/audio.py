@@ -68,8 +68,8 @@ def _sanitizar_texto(texto: str) -> str:
     texto_processado = re.sub(r'https?://\S+', '', texto_processado)
     # Remove símbolos de formatação comuns do Markdown
     texto_processado = re.sub(r'[#*_~`]', '', texto_processado)
-    # Permite caracteres alfanuméricos Unicode (\w), acentuação pt-BR, pontuação básica e símbolos + e -
-    texto_processado = re.sub(r'[^\w\s,.:;!?áéíóúàèìòùâêîôûãõçÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÇ+\-]', '', texto_processado)
+    # Permite caracteres alfanuméricos Unicode (\w), acentuação pt-BR, pontuação básica (incl. apóstrofo EN) e símbolos + e -
+    texto_processado = re.sub(r"[^\w\s,.:;!?'áéíóúàèìòùâêîôûãõçÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÇ+\-]", '', texto_processado)
     # Normaliza múltiplos espaços
     return re.sub(r'\s+', ' ', texto_processado).strip()
 
@@ -146,12 +146,13 @@ def _pcm_to_wav(
         return pcm_data
 
 
-def _gerar_fala_gtts(texto: str) -> io.BytesIO:
+def _gerar_fala_gtts(texto: str, lang: str = "pt") -> io.BytesIO:
     """
     Gera áudio utilizando o mecanismo de fallback gTTS (Google Text-to-Speech).
 
     Args:
         texto (str): Texto a ser sintetizado.
+        lang (str): Idioma de síntese ('pt' ou 'en').
 
     Returns:
         io.BytesIO: Buffer de memória contendo o áudio MP3 gerado.
@@ -161,11 +162,15 @@ def _gerar_fala_gtts(texto: str) -> io.BytesIO:
             logger.warning("⚠️ Biblioteca gTTS não instalada no ambiente. Retornando buffer vazio.")
             return io.BytesIO()
 
+        is_en = isinstance(lang, str) and lang.strip().lower().startswith("en")
         texto_limpo = _sanitizar_texto(texto)
         if not texto_limpo:
-            texto_limpo = "Não foi possível ler a resposta."
+            texto_limpo = "Could not read the response." if is_en else "Não foi possível ler a resposta."
 
-        tts = gTTS(text=texto_limpo, lang="pt", tld="com.br")
+        if is_en:
+            tts = gTTS(text=texto_limpo, lang="en", tld="com")
+        else:
+            tts = gTTS(text=texto_limpo, lang="pt", tld="com.br")
         buffer = io.BytesIO()
         tts.write_to_fp(buffer)
         buffer.seek(0)
@@ -271,7 +276,8 @@ def transcrever_audio_gemini(
 
         modelos_tentativa = [model] if model else (GEMINI_FALLBACK_MODELS or [GEMINI_MODEL_NAME])
         prompt_transcricao = (
-            "Transcreva com máxima precisão este áudio para o português do Brasil. "
+            "Transcreva com máxima precisão este áudio mantendo exatamente o idioma original falado "
+            "(português do Brasil, inglês ou outro), sem traduzir. "
             "Mantenha a pontuação adequada, fidelidade aos termos utilizados (incluindo vocabulário "
             "e identidades LGBTQIA+) e retorne EXCLUSIVAMENTE o texto transcrito, sem introduções, "
             "aspas ou comentários explicativos."
@@ -299,9 +305,11 @@ def transcrever_audio_gemini(
                     )
                     try:
                         import streamlit as st
+                        from src.i18n import get_active_lang, t
                         if hasattr(st, "toast"):
+                            active_lang = get_active_lang()
                             st.toast(
-                                f"Instabilidade no áudio. Tentando modelo alternativo ({proximo})...",
+                                t("toast_audio_fallback", active_lang, proximo=proximo),
                                 icon="🎙️",
                             )
                     except Exception:
@@ -322,6 +330,7 @@ def gerar_fala_gemini(
     voz: str = "Puck",
     client: Optional[genai.Client] = None,
     model: Optional[str] = None,
+    lang: str = "pt",
 ) -> io.BytesIO:
     """
     Sintetiza um texto em áudio falado utilizando a geração nativa de fala da API Gemini (TTS),
@@ -334,13 +343,24 @@ def gerar_fala_gemini(
                    Opções suportadas: 'Puck', 'Charon', 'Aoede', 'Fenrir', 'Kore', 'Leda', 'Zephyr', 'Callisto'.
         client (Optional[genai.Client]): Instância do cliente Gemini (opcional).
         model (Optional[str]): Modelo do Gemini para TTS (opcional; padrão GEMINI_MODEL_NAME).
+        lang (str): Idioma para o fallback gTTS ('pt' ou 'en').
 
     Returns:
         io.BytesIO: Buffer em memória contendo o áudio gerado (WAV ou MP3), posicionado no início.
     """
+    active_lang = "en" if isinstance(lang, str) and lang.strip().lower().startswith("en") else "pt"
     texto_limpo = _sanitizar_texto(texto)
     if not texto_limpo:
-        texto_limpo = "Não foi possível gerar a resposta falada."
+        texto_limpo = (
+            "Could not generate the spoken response."
+            if active_lang == "en"
+            else "Não foi possível gerar a resposta falada."
+        )
+
+    def _chamar_fallback_gtts() -> io.BytesIO:
+        if active_lang == "en":
+            return _gerar_fala_gtts(texto_limpo, lang="en")
+        return _gerar_fala_gtts(texto_limpo)
 
     client_ativo = None
     try:
@@ -367,7 +387,7 @@ def gerar_fala_gemini(
 
     if not client_ativo:
         logger.info("ℹ️ Cliente Gemini ausente. Acionando fallback direto para gTTS.")
-        return _gerar_fala_gtts(texto_limpo)
+        return _chamar_fallback_gtts()
 
     modelos_tts = [model] if model else (GEMINI_TTS_MODELS or [GEMINI_MODEL_NAME])
     voz_limpa = (voz or "Puck").strip()
@@ -447,4 +467,4 @@ def gerar_fala_gemini(
             )
 
     logger.warning("⚠️ Todos os modelos de fala nativa do Gemini falharam. Acionando fallback transparente para gTTS.")
-    return _gerar_fala_gtts(texto_limpo)
+    return _chamar_fallback_gtts()

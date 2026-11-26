@@ -2,19 +2,9 @@
 Inicializa e orquestra a interface web do Vox AI construída com Streamlit.
 
 Gerencia o fluxo de interação com o usuário (chat), incluindo suporte a entrada por
-texto e áudio (com transcrição via IA), inicializa a sessão do usuário, realiza a busca
-semântica de contexto (RAG) no banco de dados Supabase e chama o modelo Gemini para gerar
-a resposta final de maneira assistida e personalizada.
-
-Fluxo de Execução Principal:
-1. Configuração inicial da página e carregamento do estilo CSS personalizado.
-2. Inicialização de identificadores únicos de sessão.
-3. Carregamento da barra lateral (sidebar) contendo informações e créditos do projeto.
-4. Conexão/Autenticação com a API do Google GenAI.
-5. Captura de entrada do usuário (campo de chat ou gravação de voz).
-6. Processamento semântico de contexto relevante para o prompt.
-7. Solicitação de resposta do modelo e exibição em fluxo contínuo (streaming).
-8. Persistência de logs da conversa e tratamento centralizado de erros no banco de dados.
+texto e áudio (com transcrição via IA), seleção de idioma (PT/EN), inicializa a sessão
+do usuário, realiza a busca semântica de contexto (RAG) no banco de dados Supabase e
+chama o modelo Gemini para gerar a resposta final de maneira assistida e personalizada.
 """
 
 import os
@@ -22,15 +12,14 @@ import uuid
 
 import streamlit as st
 
-import startup_patch
+import startup_patch  # noqa: F401
 
-from data.prompts.ui_content import SAUDACAO, SIDEBAR_BODY, SIDEBAR_FOOTER
 from src.app.ui import (
     carregar_sidebar,
     configurar_pagina,
-    stream_resposta,
     exibir_historico_chat,
     exibir_mensagem_erro,
+    stream_resposta,
 )
 from src.config import logger
 from src.core.database import salvar_erro, salvar_log_chat, salvar_sessao
@@ -41,18 +30,27 @@ from src.core.genai import (
     transcrever_audio,
 )
 from src.core.semantica import semantica
+from src.i18n import (
+    get_saudacao,
+    get_sidebar_body,
+    get_sidebar_footer,
+    resolve_lang,
+    t,
+)
 from src.utils import git_version
 
-configurar_pagina()
+lang = resolve_lang()
+
+configurar_pagina(lang=lang)
 
 if "session_id" not in st.session_state:
     st.session_state.session_id = str(uuid.uuid4())
     salvar_sessao(st.session_state.session_id)
 
 if "hist_exibir" not in st.session_state:
-    st.session_state.hist_exibir = [{"role": "model", "parts": [SAUDACAO]}]
+    st.session_state.hist_exibir = [{"role": "model", "parts": [get_saudacao(lang)]}]
 
-carregar_sidebar(SIDEBAR_BODY, SIDEBAR_FOOTER)
+carregar_sidebar(get_sidebar_body(lang), get_sidebar_footer(lang), lang=lang)
 
 st.session_state.key_api = configurar_api_gemini()
 
@@ -62,19 +60,19 @@ if st.session_state.get("key_api"):
     except Exception as e_init:
         logger.warning(f"Aviso ao inicializar chat conversacional: {e_init}")
 
-exibir_historico_chat(st.session_state.hist_exibir)
+exibir_historico_chat(st.session_state.hist_exibir, lang=lang)
 
 if st.session_state.get("key_api"):
-    prompt = st.chat_input("Digite aqui...")
+    prompt = st.chat_input(t("chat_input", lang))
 
-    with st.popover("🎙️ Falar com Vox", help="Grave sua pergunta por voz para o Vox AI"):
+    with st.popover(t("voice_btn", lang), help=t("voice_help", lang)):
         st.markdown(
             "<p style='font-size: 0.88rem; color: #CBD5E1; margin: 0 0 8px 0;'>"
-            "🎙️ <b>Grave sua dúvida por voz:</b> Pressione o microfone abaixo para iniciar a gravação."
+            f"{t('voice_prompt', lang)}"
             "</p>",
             unsafe_allow_html=True,
         )
-        audio_val = st.audio_input("Fale sua pergunta", label_visibility="collapsed")
+        audio_val = st.audio_input(t("voice_label", lang), label_visibility="collapsed")
 
     prompt_final = None
 
@@ -85,7 +83,7 @@ if st.session_state.get("key_api"):
             "ultimo_audio_id" not in st.session_state
             or st.session_state.ultimo_audio_id != audio_val.name
         ):
-            with st.spinner("Ouvindo e transcrevendo... 🎧"):
+            with st.spinner(t("spinner_transcribing", lang)):
                 texto_transcrito = transcrever_audio(audio_val)
                 if texto_transcrito and texto_transcrito.strip():
                     prompt_final = texto_transcrito.strip()
@@ -101,7 +99,7 @@ if st.session_state.get("key_api"):
         try:
             avatar_assistant = "static/branding/icon.png" if os.path.exists("static/branding/icon.png") else "🌈"
             with st.chat_message("assistant", avatar=avatar_assistant):
-                with st.spinner("Vox está pensando com carinho e acolhimento... 💜"):
+                with st.spinner(t("spinner_thinking", lang)):
                     tema_match, descricao_match, ids_referencia = semantica(prompt_final)
 
                     info_adicional_contexto = ""
@@ -139,4 +137,4 @@ if st.session_state.get("key_api"):
 
         except Exception as e:
             error_id = salvar_erro(st.session_state.session_id, git_version(), e)
-            exibir_mensagem_erro(error_id)
+            exibir_mensagem_erro(error_id, lang=lang)

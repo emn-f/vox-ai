@@ -102,8 +102,10 @@ def _notificar_fallback_ui(modelo_falhou: str, proximo_modelo: str) -> None:
     """Emite uma notificação visual amigável (toast) no Streamlit se a UI estiver ativa."""
     try:
         if hasattr(st, "toast"):
+            from src.i18n import get_active_lang, t
+            active_lang = get_active_lang()
             st.toast(
-                f"Servidor ocupado. Alternando para contingência ({proximo_modelo})...",
+                t("toast_model_fallback", active_lang, proximo_modelo=proximo_modelo),
                 icon="ℹ️",
             )
     except Exception:
@@ -259,37 +261,24 @@ def _tratar_erro_genai(e: Exception) -> str:
             is_unavailable = True
 
     try:
+        from src.i18n import get_active_lang, t
+        active_lang = get_active_lang()
+
         if is_safety:
-            st.error(
-                f"⚠️ **Essa pergunta não pode ser respondida pelo Vox.**\n\n"
-                f"Por razões de segurança e acolhimento, sua mensagem ativou nossas diretrizes de proteção e não pôde ser processada.\n\n"
-                f"*(Código do Erro: **{error_id}**)*",
-                icon="🚫",
-            )
+            st.error(t("error_safety", active_lang, error_id=error_id), icon="🚫")
         elif is_quota:
-            st.error(
-                f"Olá! O Vox está recebendo muitas mensagens de carinho e dúvidas no momento, e atingimos nosso limite de processamento temporário da API do Google. "
-                f"Por favor, aguarde cerca de um minutinho e tente enviar sua mensagem novamente! 💜\n\n"
-                f"*(Código do Erro: **{error_id}**)*",
-                icon="⚠️",
-            )
+            st.error(t("error_quota", active_lang, error_id=error_id), icon="⚠️")
         elif is_unavailable:
-            st.error(
-                f"Ops! Os servidores da inteligência artificial estão com uma demanda muito alta agora e temporariamente instáveis. "
-                f"Que tal respirar fundo, tomar uma água e tentar de novo em alguns instantes? Estarei aqui esperando! 🏳️‍🌈\n\n"
-                f"*(Código do Erro: **{error_id}**)*",
-                icon="⏳",
-            )
+            st.error(t("error_unavailable", active_lang, error_id=error_id), icon="⏳")
         else:
             try:
                 from src.app.ui import exibir_mensagem_erro
-                exibir_mensagem_erro(error_id)
+                if active_lang == "pt":
+                    exibir_mensagem_erro(error_id)
+                else:
+                    exibir_mensagem_erro(error_id, lang=active_lang)
             except Exception:
-                st.error(
-                    f"Putz, algo deu errado por aqui :/\n\n"
-                    f"Por favor, reporte este erro para nossa equipe informando o código: **{error_id}**",
-                    icon="🚫",
-                )
+                st.error(t("error_generic", active_lang, error_id=error_id), icon="🚫")
     except Exception as e_ui:
         logger.error(f"Erro ao exibir mensagem amigável no Streamlit: {e_ui}")
 
@@ -323,7 +312,8 @@ def gerar_resposta_stream(chat: Any, prompt: str, info_adicional: str) -> Genera
             f"Prompt do Usuário: {prompt}\n\n"
             f"Contexto interno da sua base de conhecimento, que o usuário NÃO forneceu "
             f"(use para embasar sua resposta): {info_adicional}\n\n"
-            f"Responda à pergunta do usuário com base no contexto fornecido."
+            f"Responda à pergunta do usuário no mesmo idioma usado por ele "
+            f"(português, inglês ou outro), com base no contexto fornecido."
         )
 
     modelos = _obter_lista_modelos_fallback(chat)

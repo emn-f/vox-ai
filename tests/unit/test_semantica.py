@@ -35,6 +35,10 @@ class TestSaudacoesBypass:
             "oi tudo bem",
             "ola vox",
             "hey como vai",
+            "good morning",
+            "how are you?",
+            "what's up?",
+            "hi there",
             "",
             "   ",
         ],
@@ -82,6 +86,10 @@ class TestFiltroDevRetrieval:
             ("Como rodar o projeto localmente com uv run?", True),
             ("Onde configuro o secrets.toml?", True),
             ("Quais são os padrões de commit do repositório?", True),
+            ("How can I contribute to the source code?", True),
+            ("Where is the GitHub repository?", True),
+            ("How do I run local setup?", True),
+            ("What is PrEP?", False),
         ],
     )
     def test_eh_pergunta_desenvolvedor(self, pergunta: str, esperado: bool):

@@ -96,16 +96,19 @@ def limpeza_texto(texto: str) -> str:
     texto_limpo = re.sub(r'[^\w\s,.:;!?áéíóúàèìòùâêîôûãõçÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÇ+\-]', '', str(texto))
     return texto_limpo.strip()
 
-def texto_para_audio(texto: str) -> io.BytesIO:
+def texto_para_audio(texto: str, lang: str | None = None) -> io.BytesIO:
     """
     Converte um bloco de texto escrito em um áudio falado utilizando Gemini TTS
     com fallback automático e resiliente para gTTS (Google Text-to-Speech).
 
     Args:
         texto (str): O texto que será falado.
+        lang (str | None): Idioma opcional para síntese de contingência ('pt' ou 'en').
 
     Returns:
         io.BytesIO: Um buffer em memória contendo o arquivo de áudio gerado.
     """
     from src.core.audio import gerar_fala_gemini
-    return gerar_fala_gemini(texto) 
+    if lang is None:
+        return gerar_fala_gemini(texto)
+    return gerar_fala_gemini(texto, lang=lang)
