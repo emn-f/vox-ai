@@ -25,14 +25,19 @@ from src.i18n import (
 
 
 def carregar_icone_base64() -> str:
-    """Carrega o ícone oficial em formato Base64 para exibição no cabeçalho."""
-    caminho_icone = "static/branding/icon.png"
-    if os.path.exists(caminho_icone):
-        try:
-            with open(caminho_icone, "rb") as f:
-                return base64.b64encode(f.read()).decode("utf-8")
-        except Exception:
-            return ""
+    """Carrega o ícone oficial como data URI Base64 (SVG vetorial com fallback PNG) para o cabeçalho."""
+    fontes = (
+        ("static/branding/icon.svg", "image/svg+xml"),
+        ("static/branding/icon.png", "image/png"),
+    )
+    for caminho_icone, mime_type in fontes:
+        if os.path.exists(caminho_icone):
+            try:
+                with open(caminho_icone, "rb") as f:
+                    b64 = base64.b64encode(f.read()).decode("utf-8")
+                return f"data:{mime_type};base64,{b64}"
+            except Exception:
+                continue
     return ""
 
 
@@ -48,7 +53,8 @@ def configurar_pagina(lang: str | None = None) -> str:
         str: Idioma ativo da interface.
     """
     page_lang = normalize_lang(lang) if lang is not None else "pt"
-    st.set_page_config(page_title=t("page_title", page_lang), page_icon="🌈")
+    page_icon = "static/branding/icon.png" if os.path.exists("static/branding/icon.png") else "🌈"
+    st.set_page_config(page_title=t("page_title", page_lang), page_icon=page_icon)
     # Resolve o idioma só depois da configuração, pois isso acessa o estado do Streamlit.
     active_lang = normalize_lang(lang) if lang is not None else resolve_lang()
 
@@ -94,7 +100,10 @@ def configurar_pagina(lang: str | None = None) -> str:
 
     icone_b64 = carregar_icone_base64()
     if icone_b64:
-        img_tag = f'<img src="data:image/png;base64,{icone_b64}" class="vox-header-icon" alt="Vox AI Logo" />'
+        icone_src = (
+            icone_b64 if icone_b64.startswith("data:") else f"data:image/png;base64,{icone_b64}"
+        )
+        img_tag = f'<img src="{icone_src}" class="vox-header-icon" alt="Vox AI Logo" />'
     else:
         img_tag = '<span style="font-size: 2.8rem; margin-right: 0.8rem;">🌈</span>'
 

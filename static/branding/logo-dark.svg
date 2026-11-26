@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 624 210" width="624" height="210" role="img" aria-label="Vox AI">
+  <defs>
+    <clipPath id="vox-dark-mic-clip">
+      <path d="M 26 37 A 37 37 0 0 1 100 37 L 100 49.5 L 81.5 49.5 A 5.5 5.5 0 0 0 81.5 60.5 L 100 60.5 L 100 101 A 37 37 0 0 1 26 101 Z"/>
+      <path d="M 0 91 A 6.5 6.5 0 0 1 13 91 L 13 101 A 50 50 0 0 0 113 101 L 113 91 A 6.5 6.5 0 0 1 126 91 L 126 101 A 63 63 0 0 1 0 101 Z"/>
+      <path d="M 52 161 Q 56.5 162.5 56.5 167 L 56.5 173 Q 56.5 177 52 177 L 74 177 Q 69.5 177 69.5 173 L 69.5 167 Q 69.5 162.5 74 161 Z"/>
+      <rect x="39" y="177" width="48" height="13" rx="6.5" ry="6.5"/>
+    </clipPath>
+    <linearGradient id="vox-dk-red" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F21D2F"/>
+      <stop offset="100%" stop-color="#FA4B26"/>
+    </linearGradient>
+    <linearGradient id="vox-dk-org" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F77F1E"/>
+      <stop offset="100%" stop-color="#FAA232"/>
+    </linearGradient>
+    <linearGradient id="vox-dk-yel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFCA0A"/>
+      <stop offset="100%" stop-color="#FFD824"/>
+    </linearGradient>
+    <linearGradient id="vox-dk-grn" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1EA343"/>
+      <stop offset="100%" stop-color="#2EB54A"/>
+    </linearGradient>
+    <linearGradient id="vox-dk-blu" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1E62C8"/>
+      <stop offset="100%" stop-color="#2F72D6"/>
+    </linearGradient>
+    <linearGradient id="vox-dk-vio" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#533F94"/>
+      <stop offset="100%" stop-color="#6A489B"/>
+    </linearGradient>
+    <linearGradient id="vox-dk-mag" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#9A4896"/>
+      <stop offset="100%" stop-color="#B154A4"/>
+    </linearGradient>
+    <linearGradient id="vox-dk-ai" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFC71C"/>
+      <stop offset="100%" stop-color="#F7A81B"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(16,10)">
+    <g clip-path="url(#vox-dark-mic-clip)">
+      <g transform="translate(63,95) rotate(-45)">
+        <rect x="-180" y="-180" width="360" height="133.9" fill="url(#vox-dk-red)"/>
+        <rect x="-180" y="-46.5" width="360" height="20.9" fill="url(#vox-dk-org)"/>
+        <rect x="-180" y="-26.0" width="360" height="20.9" fill="url(#vox-dk-yel)"/>
+        <rect x="-180" y="-5.5"  width="360" height="20.9" fill="url(#vox-dk-grn)"/>
+        <rect x="-180" y="15.0"  width="360" height="20.9" fill="url(#vox-dk-blu)"/>
+        <rect x="-180" y="35.5"  width="360" height="20.9" fill="url(#vox-dk-vio)"/>
+        <rect x="-180" y="56.0"  width="360" height="140"  fill="url(#vox-dk-mag)"/>
+      </g>
+    </g>
+
+    <g fill="#F8FAFC">
+      <path d="M 156 43 L 183.5 43 L 213 117.5 L 242.5 43 L 270 43 L 227 146 L 199 146 Z"/>
+      <path d="M 308 63 A 43.5 42.5 0 1 1 307.99 63 Z M 308 85 A 18.5 20.5 0 1 0 308.01 85 Z" fill-rule="evenodd"/>
+      <path d="M 355 66 L 383.5 66 L 398.5 89.5 L 413.5 66 L 441.5 66 L 413 105.5 L 442.5 146 L 414 146 L 398.5 121.5 L 383 146 L 354 146 L 384 105.5 Z"/>
+    </g>
+    <g fill="url(#vox-dk-ai)">
+      <path d="M 486.5 43 L 513.5 43 L 556 146 L 528.5 146 L 520 125 L 480 125 L 471.5 146 L 444 146 Z M 500 68 L 486.5 105 L 513.5 105 Z" fill-rule="evenodd"/>
+      <path d="M 565 43 L 591 43 L 591 146 L 565 146 Z"/>
+    </g>
+  </g>
+</svg>
