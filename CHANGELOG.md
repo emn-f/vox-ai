@@ -7,6 +7,19 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.9.0 - 26/11/2026
+
+
+### ✨ Funcionalidades
+
+* Reconstrói logotipo, ícone e banner em SVG vetorial puro ([033736e](https://github.com/emn-f/vox-ai/commit/033736e0cab046a349d9ff97592b0d7c9e810f39))
+
+
+### 🐛 Correções
+
+* Configure page before resolving locale ([c3463b4](https://github.com/emn-f/vox-ai/commit/c3463b46444feb978152bbfb2d6218018c23515f))
+
+
 ## v5.8.1 - 26/11/2026
 
 
