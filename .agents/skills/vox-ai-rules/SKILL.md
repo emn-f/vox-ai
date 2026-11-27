@@ -47,8 +47,12 @@ alwaysApply: true
 - **Geração Assíncrona e TTS:** Sempre que disparar operações demoradas (como síntese de voz TTS), apresente um indicador visual de espera (`st.spinner("🎙️ Gerando áudio... Por favor, aguarde")`).
 - **Cache de Sessão:** Armazene áudios e artefatos gerados em `st.session_state` (ex: `st.session_state[f"audio_cache_{i}"]`) para garantir que novas reproduções ocorram de forma instantânea sem chamadas redundantes de API.
 - **Gerenciamento de Estado:** Utilize `st.session_state` extensivamente para histórico conversacional e variáveis transitórias.
+- **Ordem Estrita de `st.set_page_config` (Cloud/Spaces vs. Local):** `st.set_page_config()` DEVE ser sempre a primeira chamada Streamlit do script (`configurar_pagina()` configura a página antes de acessar `st.session_state`, `st.query_params`, `st.context` ou `resolve_lang()`). Versões recentes do Streamlit local (`1.67+` / `AppTest`) relaxam essa restrição e podem mascarar falhas que quebram no Streamlit Cloud/Hugging Face (`streamlit>=1.40.0`); valide a ordem de inicialização com teste unitário explícito (como `test_configurar_pagina_sets_page_config_before_resolving_language`).
 - **GitHub Pages & Páginas Públicas (Padrão Editorial Instagram):**
   - Páginas públicas (`index.html`, `pages/`) devem seguir o **Padrão Editorial dos Posts do Instagram** (`docs/identidade_visual.md`, Seção 3): fundo branco editorial (`#FFFFFF`), faixa arco-íris (`8px`), logotipo oficial (`static/branding/logo.png`), chapéus em `#64748B`, `Plus Jakarta Sans` + `Inter`, pills com bolinhas coloridas e fotografias comunitárias — **não** usar estética escura neon genérica de dashboard.
+  - **Copy, Origem e Anti-padrões de IA:** priorizar *Sobre* e *Base de conhecimento* antes de changelog/governança; evitar chapéus com `•` + linha inferior, caixinhas verdes de check, pílulas decorativas no Hero e clichês de LLM (*"Mais do que X, é Y"*). Ao citar a origem na **UCSAL** (disciplina de extensão *Tecnologias e Inteligências Artificiais*, 2025), deixar claro que o projeto segue de forma independente e sem financiamento institucional.
+  - **Transparência da Base (`pages/dashboard.js`):** filtrar `TOPICOS_EXCLUSIVOS_DEV` da vitrine pública, evitar jargão *"chunks"* (usar *"registros verificados"*) e recolher tópicos de cobertura inicial (`<= 2` registros) em `<details>` sem contador numérico ao lado (abrindo automaticamente apenas na busca).
+  - **Internacionalização (`PT | EN`):** manter `pt` como padrão (sem sobrescrever pelo idioma do navegador), sincronizando a troca entre `pages/i18n.js` e `src/i18n.py` via `?lang=en`, com STT preservando o idioma falado e fallback `gTTS` alternando `pt`/`en`.
   - **Fotografias reais (`static/photos/`):** não usar imagens geradas por IA. Imagens `CC BY-SA` exigem atribuição obrigatória visível na legenda do card e no rodapé; imagens `CC0 1.0` (Domínio Público) devem exibir apenas legenda editorial limpa no card, consolidando créditos no rodapé + `docs/assets/ASSETS.md` com comentário HTML explicativo no `<figcaption>` para evitar falso `[BLOCK]` no `pre-push`.
   - **Deploy de Assets:** `.github/workflows/deploy_pages.yml` monta `_site/` explicitamente. Ao adicionar novas pastas em `static/` (ex.: `static/photos/`), garanta a cópia para `_site/static/` e a inclusão em `on.push.paths`.
   - **Validação:** Sempre verificar a renderização real (ex.: screenshot via Chrome headless) e confirmar `HTTP 200` dos assets em produção após o deploy.
@@ -63,6 +67,7 @@ alwaysApply: true
   - `src/api/` (Rotas REST FastAPI, serviços headless)
   - `src/core/` (GenAI, Semântica, Áudio STT/TTS, Banco de Dados)
   - `data/` (Prompts, Datasets de Enriquecimento e Fine-Tuning)
+- **Compatibilidade com Mocks Streamlit:** prefira `st.session_state["chave"]` (em vez de atributo `.chave`) e indexação (`cols[0]`, `cols[1]`) em `st.columns(...)` para manter compatibilidade com mocks unitários em `pytest`.
 
 # Governança, Segurança e Ética
 - O Vox AI é um projeto de apoio à comunidade LGBTQIA+. A moderação de conteúdo e as respostas devem priorizar **segurança, privacidade (anonimato absoluto), acolhimento e escuta afetiva**.
