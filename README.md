@@ -61,7 +61,7 @@ O **Vox AI** é um chatbot de apoio e informação a comunidade LGBTQIA+. Nossa 
 ![Last Update](https://img.shields.io/github/last-commit/emn-f/vox-ai/main?style=flat-square&logo=github&label=Last%20Update)
 
 ### Atividade e Evolução
-![Commits Last Release](https://img.shields.io/github/commits-since/emn-f/vox-ai/v5.0.0?style=flat-square&logo=git&label=Commits%20since%20last%20release&color=007acc)
+![Commits Last Release](https://img.shields.io/github/commits-since/emn-f/vox-ai/latest?style=flat-square&logo=git&label=Commits%20since%20last%20release&color=007acc)
 ![Closed Issues](https://img.shields.io/github/issues-closed/emn-f/vox-ai?style=flat-square&logo=github&label=Issues%20Resolved&color=28a745)
 ![Closed PRs](https://img.shields.io/github/issues-pr-closed/emn-f/vox-ai?style=flat-square&logo=github&label=PRs%20Merged&color=6f42c1)
 
