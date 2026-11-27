@@ -7,6 +7,14 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 > _Arquivo gerado automaticamente via `git-cliff`._
 
 
+## v5.9.1 - 27/11/2026
+
+
+### 🐛 Correções
+
+* Corrige resolução de versão em produção e automatiza GitHub Releases ([4675c2e](https://github.com/emn-f/vox-ai/commit/4675c2e3e3cc040f2a68fafee554afd4d50b55a6))
+
+
 ## v5.9.0 - 26/11/2026
 
 

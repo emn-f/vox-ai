@@ -1,6 +1,6 @@
 [project]
 name = "vox-ai"
-version = "5.9.0"
+version = "5.9.1"
 description = "Vox AI: Assistente de apoio e informação LGBTQIA+ com Inteligência Artificial"
 readme = "README.md"
 requires-python = ">=3.13"
