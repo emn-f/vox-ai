@@ -53,31 +53,79 @@ def get_version_from_changelog() -> str:
     return ""
 
 
-@safe_cache
-def git_version() -> str:
+def _parse_semver_tuple(tag: str) -> tuple[int, int, int]:
     """
-    Obtém a versão atual do git baseada em tags ou no CHANGELOG.
-    O resultado é cacheado para evitar chamadas de subprocesso repetitivas.
+    Extrai a tupla numérica ``(major, minor, patch)`` de uma tag SemVer
+    (ex.: ``v5.9.0`` ou ``dev-v4.9.1``).
     """
+    match = re.search(r"(\d+)\.(\d+)\.(\d+)", tag or "")
+    if match:
+        return int(match.group(1)), int(match.group(2)), int(match.group(3))
+    return (0, 0, 0)
+
+
+def _get_changelog_mtime() -> float:
+    """Retorna o timestamp de modificação do ``CHANGELOG.md`` para invalidar o cache."""
+    changelog_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "CHANGELOG.md")
     try:
-        current_branch = get_current_branch()
-        if current_branch == "main":
-            tag_pattern = "v*"
-        else:
-            tag_pattern = "dev-v*"
-            
-        last_tag = subprocess.check_output(["git", "tag", "--list", tag_pattern, "--sort=-v:refname"]).decode("utf-8").splitlines()
-        last_tag = last_tag[0] if last_tag else ""
+        return os.path.getmtime(changelog_path)
+    except OSError:
+        return 0.0
+
+
+@safe_cache
+def _resolve_git_version(_changelog_mtime: float) -> str:
+    """
+    Resolve a versão atual do aplicativo com cache vinculado ao ``mtime`` do CHANGELOG.
+
+    Em branches de desenvolvimento, prioriza tags ``dev-v*``. Em produção (``main``,
+    ``master``, ``HEAD`` destacado ou ambiente sem ``.git``), compara a versão do
+    ``CHANGELOG.md`` com a tag local ``v*`` e retorna a mais recente, evitando que
+    clones sem ``git fetch --tags`` exibam versões antigas.
+    """
+    current_branch = get_current_branch()
+    is_dev_branch = current_branch not in ("main", "master", "HEAD", "unknown", "")
+    tag_pattern = "dev-v*" if is_dev_branch else "v*"
+
+    try:
+        tags = (
+            subprocess.check_output(
+                ["git", "tag", "--list", tag_pattern, "--sort=-v:refname"],
+                stderr=subprocess.DEVNULL,
+            )
+            .decode("utf-8")
+            .splitlines()
+        )
+        last_tag = tags[0].strip() if tags else ""
     except (subprocess.CalledProcessError, FileNotFoundError):
         last_tag = ""
-    
-    if not last_tag:
-        last_tag = get_version_from_changelog()
-    
-    if not last_tag:
-        last_tag = "v5.0.0"
-    
-    return f"{last_tag}"
+
+    changelog_ver = get_version_from_changelog()
+
+    if is_dev_branch:
+        return last_tag or changelog_ver or "v5.0.0"
+
+    if changelog_ver and last_tag:
+        if _parse_semver_tuple(changelog_ver) >= _parse_semver_tuple(last_tag):
+            return changelog_ver
+        return last_tag
+
+    return changelog_ver or last_tag or "v5.0.0"
+
+
+def git_version() -> str:
+    """
+    Obtém a versão atual do aplicativo com base no ``CHANGELOG.md`` e nas tags Git.
+    O resultado é cacheado pelo timestamp do ``CHANGELOG.md`` para evitar chamadas
+    repetitivas de subprocesso sem congelar versões após deploys.
+    """
+    return _resolve_git_version(_get_changelog_mtime())
+
+
+if hasattr(_resolve_git_version, "cache_clear"):
+    git_version.cache_clear = _resolve_git_version.cache_clear
+elif hasattr(_resolve_git_version, "clear"):
+    git_version.cache_clear = _resolve_git_version.clear
 
 def limpeza_texto(texto: str) -> str:
     """

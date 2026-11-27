@@ -69,18 +69,55 @@ jobs:
           config: cliff.toml
           args: --unreleased --tag ${{ steps.get_tag.outputs.new_tag }} --prepend CHANGELOG.md
 
+      - name: Sincronizar versão em pyproject.toml e uv.lock
+        env:
+          NEW_TAG: ${{ steps.get_tag.outputs.new_tag }}
+        run: |
+          python3 - <<'PY'
+          import os, re
+          from pathlib import Path
+
+          ver = os.environ["NEW_TAG"].lstrip("v")
+
+          pyproject = Path("pyproject.toml")
+          pyproject_text = pyproject.read_text(encoding="utf-8")
+          pyproject_updated, count_py = re.subn(
+              r'(\[project\][\s\S]*?^version\s*=\s*")([^"]+)(")',
+              rf'\g<1>{ver}\g<3>',
+              pyproject_text,
+              count=1,
+              flags=re.MULTILINE,
+          )
+          if count_py != 1:
+              raise RuntimeError("Não foi possível atualizar version em pyproject.toml")
+          pyproject.write_text(pyproject_updated, encoding="utf-8")
+
+          uvlock = Path("uv.lock")
+          uvlock_text = uvlock.read_text(encoding="utf-8")
+          uvlock_updated, count_uv = re.subn(
+              r'(\[\[package\]\]\s*\nname\s*=\s*"vox-ai"\s*\nversion\s*=\s*")([^"]+)(")',
+              rf'\g<1>{ver}\g<3>',
+              uvlock_text,
+              count=1,
+          )
+          if count_uv != 1:
+              raise RuntimeError("Não foi possível atualizar version em uv.lock")
+          uvlock.write_text(uvlock_updated, encoding="utf-8")
+          print(f"✅ pyproject.toml e uv.lock sincronizados para {ver}")
+          PY
+
       - name: Commitar, Taggear e Push
         env:
           NEW_TAG: ${{ steps.get_tag.outputs.new_tag }}
           REPO: ${{ github.repository }}
           TOKEN: ${{ secrets.TOKEN_DEPLOY_VOX }}
         run: |
-          git add CHANGELOG.md
+          git add CHANGELOG.md pyproject.toml uv.lock
 
           if git diff --staged --quiet; then
-            echo "🚫 Changelog não mudou."
+            echo "🚫 Changelog e arquivos de versão não mudaram."
           else
-            git commit -m "chore(release): changelog atualizado para versão ${NEW_TAG} [skip ci]"
+            git commit -m "chore(release): atualiza changelog e versão para ${NEW_TAG} [skip ci]"
           fi
 
           git tag "$NEW_TAG"
@@ -90,6 +127,31 @@ jobs:
           git push origin main --tags
 
           echo "✅ Versão Oficial ${NEW_TAG} lançada!"
+
+      - name: Publicar GitHub Release Oficial
+        env:
+          GH_TOKEN: ${{ secrets.TOKEN_DEPLOY_VOX }}
+          NEW_TAG: ${{ steps.get_tag.outputs.new_tag }}
+        run: |
+          if gh release view "$NEW_TAG" >/dev/null 2>&1; then
+            echo "ℹ️ Release $NEW_TAG já existe."
+            exit 0
+          fi
+
+          python3 - <<'PY'
+          import os, re
+          from pathlib import Path
+
+          tag = os.environ["NEW_TAG"]
+          content = Path("CHANGELOG.md").read_text(encoding="utf-8")
+          pattern = rf"(^##\s+\[?{re.escape(tag)}\]?[^\n]*\n[\s\S]*?)(?=\n##\s+|\Z)"
+          match = re.search(pattern, content, flags=re.MULTILINE)
+          notes = match.group(1).strip() if match else f"Release {tag}"
+          Path("/tmp/release_notes.md").write_text(notes + "\n", encoding="utf-8")
+          PY
+
+          gh release create "$NEW_TAG" --title "$NEW_TAG" --notes-file /tmp/release_notes.md --latest
+          rm -f /tmp/release_notes.md
 
       - name: Verificar se o último deploy do banco falhou e re-executar
         env:

@@ -22,6 +22,7 @@ from src.i18n import (
     t,
     translate_report_category,
 )
+from src.utils import git_version
 
 
 def carregar_icone_base64() -> str:
@@ -192,7 +193,7 @@ def _render_dialog_reportar(lang: str) -> None:
     with col_submit:
         if st.button(t("report_submit", active_lang), type="primary"):
             with st.spinner(t("report_sending", active_lang)):
-                version = st.session_state.get("git_version_str", "Unknown")
+                version = st.session_state.get("git_version_str") or git_version()
                 sess_id = st.session_state.get("session_id", "Unknown")
                 cat_id = find_categorias[categoria]
 
@@ -216,7 +217,7 @@ def _render_dialog_reportar(lang: str) -> None:
                 except Exception as e:
                     error_id = salvar_erro(
                         st.session_state.get("session_id", "Unknown"),
-                        st.session_state.get("git_version_str", "Unknown"),
+                        st.session_state.get("git_version_str") or git_version(),
                         e,
                     )
                     st.error(t("report_error", active_lang, error_id=error_id))
